@@ -100,15 +100,15 @@ abstract class ILess_Node
         $result = '';
         if ($context->debugInfo && $env->dumpLineNumbers && !$env->compress) {
             switch ((string)$env->dumpLineNumbers) {
-                case ILess_DebugInfo::FORMAT_COMMENT;
+                case ILess_DebugInfo::FORMAT_COMMENT:
                     $result = $context->debugInfo->getAsComment();
                     break;
 
-                case ILess_DebugInfo::FORMAT_MEDIA_QUERY;
+                case ILess_DebugInfo::FORMAT_MEDIA_QUERY:
                     $result = $context->debugInfo->getAsMediaQuery();
                     break;
 
-                case ILess_DebugInfo::FORMAT_ALL;
+                case ILess_DebugInfo::FORMAT_ALL:
                 case '1':
                     $result = sprintf('%s%s%s',
                         $context->debugInfo->getAsComment(), $lineSeparator,
