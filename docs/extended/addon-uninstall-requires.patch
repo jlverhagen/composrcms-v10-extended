@@ -1,0 +1,11 @@
+--- a/sources/addons2.php
++++ b/sources/addons2.php
+@@ -491,7 +491,7 @@
+                 $dep = is_array($_hook_bits[0]) ? call_user_func_array($_hook_bits[0][0], $_hook_bits[0][1]) : @eval($_hook_bits[0]);
+             }
+ 
+-            $ocproducts_addon_dep_cache[$hook] = $dep['requires'];
++            $ocproducts_addon_dep_cache[$hook] = $dep['requires'] ?? array();
+         }
+     }
+     $list_b = array();
