@@ -102,7 +102,7 @@ function print_config_value_as_string( $p_type, $p_value, $p_for_display = true 
 			echo (float)$p_value;
 			return;
 		case CONFIG_TYPE_INT:
-			echo (integer)$p_value;
+			echo (int)$p_value;
 			return;
 		case CONFIG_TYPE_STRING:
 			$t_value = string_html_specialchars( config_eval( $p_value ) );

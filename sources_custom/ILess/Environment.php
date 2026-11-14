@@ -255,7 +255,7 @@ class ILess_Environment
                 case 'compress':
                 case 'importMultiple':
                 case 'ieCompat':
-                    $value = (boolean)$value;
+                    $value = (bool)$value;
                     break;
             }
 

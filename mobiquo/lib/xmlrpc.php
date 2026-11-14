@@ -668,7 +668,7 @@ ini_set('ocproducts.type_strictness','0');
 						else
 						{
 							// it's ok, add it on
-							$GLOBALS['_xh']['value']=(double)$GLOBALS['_xh']['ac'];
+							$GLOBALS['_xh']['value']=(float)$GLOBALS['_xh']['ac'];
 						}
 					}
 					else
@@ -3047,7 +3047,7 @@ xmlrpc_encode_entitites($this->errstr, $GLOBALS['xmlrpc_internalencoding'], $cha
 							// sprintf('%F') could be most likely ok but it fails eg. on 2e-14.
 							// The code below tries its best at keeping max precision while avoiding exp notation,
 							// but there is of course no limit in the number of decimal places to be used...
-							$rs.="<${typ}>".preg_replace('/\\.?0+$/','',number_format((double)$val, 128, '.', ''))."</${typ}>";
+							$rs.="<${typ}>".preg_replace('/\\.?0+$/','',number_format((float)$val, 128, '.', ''))."</${typ}>";
 							break;
 						case $GLOBALS['xmlrpcDateTime']:
 							if (is_string($val))

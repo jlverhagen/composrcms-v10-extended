@@ -65,7 +65,7 @@ class ILess_Node_MixinCall extends ILess_Node implements ILess_Node_VisitableInt
         $this->arguments = (array)$arguments;
         $this->index = $index;
         $this->currentFileInfo = $currentFileInfo;
-        $this->important = (boolean)$important;
+        $this->important = (bool)$important;
     }
 
     /**

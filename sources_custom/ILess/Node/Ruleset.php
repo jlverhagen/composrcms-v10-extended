@@ -142,7 +142,7 @@ class ILess_Node_Ruleset extends ILess_Node implements ILess_Node_VisitableInter
     {
         $this->selectors = $selectors;
         $this->rules = $rules;
-        $this->strictImports = (boolean)$strictImports;
+        $this->strictImports = (bool)$strictImports;
         $this->setRulesetId();
     }
 

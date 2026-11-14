@@ -472,7 +472,7 @@ See http://msdn.microsoft.com/library/default.asp?url=/library/en-us/db2/htm/db2
 */
 	function DB2Types($t)
 	{
-		switch ((integer)$t) {
+		switch ((int)$t) {
 		case 1:
 		case 12:
 		case 0:

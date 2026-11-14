@@ -324,7 +324,7 @@ class ApnsPHP_Message
 	 */
 	public function setAutoAdjustLongPayload($bAutoAdjust)
 	{
-		$this->_bAutoAdjustLongPayload = (boolean)$bAutoAdjust;
+		$this->_bAutoAdjustLongPayload = (bool)$bAutoAdjust;
 	}
 
 	/**

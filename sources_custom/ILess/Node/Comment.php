@@ -52,7 +52,7 @@ class ILess_Node_Comment extends ILess_Node implements ILess_Node_MarkableAsRefe
     public function __construct($value, $silent = false, $index = 0, ILess_FileInfo $currentFileInfo = null)
     {
         parent::__construct($value);
-        $this->silent = (boolean)$silent;
+        $this->silent = (bool)$silent;
         $this->index = $index;
         $this->currentFileInfo = $currentFileInfo;
     }

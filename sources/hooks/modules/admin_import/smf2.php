@@ -202,17 +202,17 @@ class Hook_smf2
             }
 
             if (isset($row['variable']) && $row['variable'] == 'attachmentNumPerPostLimit') {
-                $ADDITIONAL_DATA['maxattachments'] = (integer)$row['value'];
+                $ADDITIONAL_DATA['maxattachments'] = (int)$row['value'];
                 continue;
             }
 
             if (isset($row['variable']) && $row['variable'] == 'avatar_max_width_upload') {
-                $ADDITIONAL_DATA['avatar_max_width'] = (integer)$row['value'];
+                $ADDITIONAL_DATA['avatar_max_width'] = (int)$row['value'];
                 continue;
             }
 
             if (isset($row['variable']) && $row['variable'] == 'avatar_max_height_upload') {
-                $ADDITIONAL_DATA['avatar_max_height'] = (integer)$row['value'];
+                $ADDITIONAL_DATA['avatar_max_height'] = (int)$row['value'];
                 continue;
             }
             /*
@@ -484,7 +484,7 @@ class Hook_smf2
                 $on_join = 0;
                 $show_in_posts = $row['show_display'];
                 $desc = $row['field_desc'];
-                $private = (integer)$row['private'];
+                $private = (int)$row['private'];
 
                 switch ($private) {
                     case 0:
@@ -812,7 +812,7 @@ class Hook_smf2
             $parent_forum = ($row['id_parent'] > 0) ? $row['id_parent'] : db_get_first_id();
             $cat_id = $row['id_cat'];
 
-            $profile_id = (integer)$row['id_profile'];
+            $profile_id = (int)$row['id_profile'];
             $redirection = isset($row['redirect']) && !empty($row['redirect']) ? $row['redirect'] : '';
 
             $category_id = import_id_remap_get('category', strval($cat_id), true);
@@ -830,7 +830,7 @@ class Hook_smf2
                 }
                 foreach ($permissions_on_groups as $gid) {
                     // Let's deal with Guest group
-                    if ((integer)$gid === -1) {
+                    if ((int)$gid === -1) {
                         //Yup its Guests so let's get value
                         $v = $this->get_role_value(-1, $profile_id, $db, $table_prefix);
                         //Now set Forum view access
@@ -839,14 +839,14 @@ class Hook_smf2
                         $this->static_perm_arr(1, $profile_id, $v);
                         continue;
                     }
-                    if ((integer)$gid === 0) {
+                    if ((int)$gid === 0) {
                         continue; // We already did all groups so skip
                     }
-                    if ((integer)$gid === 1) {
+                    if ((int)$gid === 1) {
                         continue; // Admin so skip
                     }
                     // Check for SMF Global Moderators Group and map to cms SuperModerators
-                    if ((integer)$gid === 2) {
+                    if ((int)$gid === 2) {
                         //Yup its Moderators so let's get value
                         $v = $this->get_role_value(2, $profile_id, $db, $table_prefix);
                         //Now set Forum view access
@@ -859,16 +859,16 @@ class Hook_smf2
                     }
                     // Ok now it's regular groups so lets deal with them
                     // First let's get value
-                    $v = $this->get_role_value((integer)$gid, $profile_id, $db, $table_prefix);
+                    $v = $this->get_role_value((int)$gid, $profile_id, $db, $table_prefix);
                     //get the mapped group id
-                    $new_gid = import_id_remap_get('group', strval((integer)$gid), true);
+                    $new_gid = import_id_remap_get('group', strval((int)$gid), true);
                     //Now set Forum view access
                     if (!$done_all_groups && $new_gid !== null) {
-                        $this->set_forum_view_accesss((integer)$new_gid, $id_new);
+                        $this->set_forum_view_accesss((int)$new_gid, $id_new);
                     }
                     // Now Set the static permissions array
                     if ($new_gid !== null) {
-                        $this->static_perm_arr((integer)$new_gid, $profile_id, $v);
+                        $this->static_perm_arr((int)$new_gid, $profile_id, $v);
                     }
                 }
                 // Let's get the Array map of groups and profile ids
@@ -915,7 +915,7 @@ class Hook_smf2
                 if (in_array(get_translated_text($row['g_name'], $GLOBALS['SITE_DB']), $ignore_groups)) {
                     continue;
                 }
-                $gid = (integer)$row['id'];
+                $gid = (int)$row['id'];
                 // Set them to view
                 $this->set_forum_view_accesss($gid, $fid);
                 //fill the static profile array map
@@ -938,7 +938,7 @@ class Hook_smf2
         // Set default 0 as Read Only
         $v = 0;
         // Get the permission profile
-        $permissions = $db->query('SELECT * FROM ' . $table_prefix . 'board_permissions WHERE id_group=' . strval((integer)$gid) . ' AND id_profile=' . strval((integer)$pid));
+        $permissions = $db->query('SELECT * FROM ' . $table_prefix . 'board_permissions WHERE id_group=' . strval((int)$gid) . ' AND id_profile=' . strval((int)$pid));
         // Loop it
         foreach ($permissions as $p) {
             // Close as we can guess to a Post Role
@@ -1532,7 +1532,7 @@ class Hook_smf2
     {
         //Let's start the cycle
         foreach ($arr as $key => $val) {
-            if ((integer)$key === 0) {
+            if ((int)$key === 0) {
                 continue; // That's the one we set for return so skip!
             }
             //Set default value of 0 lowest so we can sort to highest

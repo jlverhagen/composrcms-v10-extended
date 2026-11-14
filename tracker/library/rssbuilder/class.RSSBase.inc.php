@@ -22,37 +22,37 @@ abstract class RSSBase {
 		if (!in_array($type, $this->allowed_datatypes) ||
 			$type != 'boolean' && ($data === FALSE ||
 			$this->isFilledString($var_name) === FALSE)) {
-			return (boolean) FALSE;
+			return (bool) FALSE;
 		} // end if
 
 		switch ($type) {
 			case 'string':
 				if ($this->isFilledString($data) === TRUE) {
 					$this->$var_name = (string) trim($data);
-					return (boolean) TRUE;
+					return (bool) TRUE;
 				} // end if
 			case 'int':
 				if (is_numeric($data)) {
 					$this->$var_name = (int) $data;
-					return (boolean) TRUE;
+					return (bool) TRUE;
 				} // end if
 			case 'boolean':
 				if (is_bool($data)) {
-					$this->$var_name = (boolean) $data;
-					return (boolean) TRUE;
+					$this->$var_name = (bool) $data;
+					return (bool) TRUE;
 				}  // end if
 			case 'object':
 				if (is_object($data)) {
 					$this->$var_name =& $data;
-					return (boolean) TRUE;
+					return (bool) TRUE;
 				} // end if
 			case 'array':
 				if (is_array($data)) {
 					$this->$var_name = (array) $data;
-					return (boolean) TRUE;
+					return (bool) TRUE;
 				} // end if
 		} // end switch
-		return (boolean) FALSE;
+		return (bool) FALSE;
 	} // end function
 
 	protected function getVar($var_name = 'dummy') {
@@ -61,10 +61,10 @@ abstract class RSSBase {
 
 	public static function isFilledString($string = '', $min_length = 0) {
 		if ($min_length == 0) {
-			return (boolean) (!ctype_space($string)) ? TRUE : FALSE;
+			return (bool) (!ctype_space($string)) ? TRUE : FALSE;
 		} // end if
 
-		return (boolean) (strlen(trim($var)) > $min_length) ? TRUE : FALSE;
+		return (bool) (strlen(trim($var)) > $min_length) ? TRUE : FALSE;
 	} // end function
 
 } // end class

@@ -1163,7 +1163,7 @@ ini_set('ocproducts.type_strictness','0');
 							// an eror response
 							if (is_array($r) && array_key_exists('faultCode', $r) && array_key_exists('faultString', $r))
 							{
-								$r = new xmlrpcresp(0, (integer)$r['faultCode'], (string)$r['faultString']);
+								$r = new xmlrpcresp(0, (int)$r['faultCode'], (string)$r['faultString']);
 							}
 							else
 							{

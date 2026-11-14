@@ -324,7 +324,7 @@ class Forum_driver_ipb2 extends forum_driver_ipb_shared
                 warn_exit(do_lang_tempcode('MISSING_FORUM', escape_html($forum_name)));
             }
         } else {
-            $forum_id = (integer)$forum_name;
+            $forum_id = (int)$forum_name;
         }
         $username = $this->get_username($member);
 

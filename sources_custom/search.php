@@ -265,7 +265,7 @@ class Composr_fulltext_engine
             $cat_sql = '';
             $cat_sql .= 'SELECT DISTINCT category_name FROM ' . $db->get_table_prefix() . 'group_category_access WHERE (' . $g_or . ') AND ' . db_string_equal_to('module_the_name', $permissions_module);
             $cat_sql .= ' UNION ALL ';
-            $cat_sql .= 'SELECT DISTINCT category_name FROM ' . $db->get_table_prefix() . 'member_category_access WHERE (member_id=' . strval((integer)get_member()) . ' AND active_until>' . strval(time()) . ') AND ' . db_string_equal_to('module_the_name', $permissions_module);
+            $cat_sql .= 'SELECT DISTINCT category_name FROM ' . $db->get_table_prefix() . 'member_category_access WHERE (member_id=' . strval((int)get_member()) . ' AND active_until>' . strval(time()) . ') AND ' . db_string_equal_to('module_the_name', $permissions_module);
             $cat_access = array_keys(list_to_map('category_name', $db->query($cat_sql, null, null, false, true)));
 
             if (empty($cat_access)) {

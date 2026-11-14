@@ -1120,7 +1120,7 @@ function mc_issue_update( $p_username, $p_password, $p_issue_id, stdClass $p_iss
 			}
 
 			if( isset( $t_note['id'] ) && ( (int)$t_note['id'] > 0 ) ) {
-				$t_bugnote_id = (integer)$t_note['id'];
+				$t_bugnote_id = (int)$t_note['id'];
 
 				$t_view_state_id = mci_get_enum_id_from_objectref( 'view_state', $t_view_state );
 
@@ -1298,7 +1298,7 @@ function mc_issue_note_add( $p_username, $p_password, $p_issue_id, stdClass $p_n
 	}
 
 	# TODO: Keep the code path below for adding REMINDERs.
-	if( (integer)$p_issue_id < 1 ) {
+	if( (int)$p_issue_id < 1 ) {
 		return ApiObjectFactory::faultBadRequest( 'Invalid issue id \'' . $p_issue_id . '\'' );
 	}
 
@@ -1374,7 +1374,7 @@ function mc_issue_note_delete( $p_username, $p_password, $p_issue_note_id ) {
 		return mci_fault_login_failed();
 	}
 
-	if( (integer)$p_issue_note_id < 1 ) {
+	if( (int)$p_issue_note_id < 1 ) {
 		return ApiObjectFactory::faultBadRequest( 'Invalid issue note id \'' . $p_issue_note_id . '\'.' );
 	}
 

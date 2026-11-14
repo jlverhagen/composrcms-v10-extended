@@ -58,7 +58,7 @@ class ILess_Variable
     {
         $this->name = ltrim($name, '@');
         $this->value = $value;
-        $this->important = (boolean)$important;
+        $this->important = (bool)$important;
     }
 
     /**

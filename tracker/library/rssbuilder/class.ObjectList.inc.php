@@ -34,9 +34,9 @@ abstract class ObjectList extends RSSBase implements IteratorAggregate {
 	public function addObject($object) {
 		if (is_object($object)) {
 			$this->objects[] = $object;
-			return (boolean) TRUE;
+			return (bool) TRUE;
 		} // end if
-		return (boolean) FALSE;
+		return (bool) FALSE;
 	} // end function
 
 	public function &getSize() {
@@ -57,11 +57,11 @@ abstract class ObjectList extends RSSBase implements IteratorAggregate {
 
 	public function setFactory($class_name = FALSE) {
 		if (!isset($class_name) || $class_name === FALSE) {
-			return (boolean) FALSE;
+			return (bool) FALSE;
 		} // end if
 		
 		$this->factory =& parent::getObjectFactory($class_name);
-		return (boolean) TRUE;
+		return (bool) TRUE;
 	} // end function
 	
 	public function getIterator() {

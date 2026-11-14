@@ -83,7 +83,7 @@ class ILess_Node_Rule extends ILess_Node implements ILess_Node_VisitableInterfac
         $this->merge = $merge;
         $this->index = $index;
         $this->currentFileInfo = $currentFileInfo;
-        $this->inline = (boolean)$inline;
+        $this->inline = (bool)$inline;
 
         if ($name[0] === '@') {
             $this->variable = true;

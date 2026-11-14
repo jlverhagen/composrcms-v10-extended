@@ -1204,7 +1204,7 @@ function print_project_user_list( $p_user_id, $p_include_remove_link = true ) {
  * @return void
  */
 function print_custom_field_projects_list( $p_field_id ) {
-	$c_field_id = (integer)$p_field_id;
+	$c_field_id = (int)$p_field_id;
 	$t_project_ids = custom_field_get_project_ids( $p_field_id );
 
 	$t_security_token = form_security_param( 'manage_proj_custom_field_remove' );

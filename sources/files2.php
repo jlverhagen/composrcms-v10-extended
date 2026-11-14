@@ -1607,7 +1607,7 @@ function _http_download_file($url, $byte_limit = null, $trigger_error = true, $n
     if ((!is_null($cookies)) && (count($cookies) != 0)) {
         $headers .= 'Cookie: ' . $_cookies . "\r\n";
     }
-    $headers .= 'User-Agent: ' . rawurlencode($ua) . "\r\n";
+    $headers .= 'User-Agent: ' . rawurlencode($ua ?? '') . "\r\n";
     if (!is_null($auth)) {
         $headers .= 'Authorization: Basic ' . base64_encode(implode(':', $auth)) . "==\r\n";
     }

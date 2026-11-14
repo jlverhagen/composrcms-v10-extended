@@ -167,7 +167,7 @@ class BugFilterQuery extends DbQuery {
 						$this->user_id = (int)$t_value;
 						break;
 					case 'use_sticky':
-						$this->use_sticky = (boolean)$t_value;
+						$this->use_sticky = (bool)$t_value;
 						break;
 				}
 			}

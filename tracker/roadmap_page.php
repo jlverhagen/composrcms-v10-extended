@@ -338,10 +338,10 @@ foreach( $t_project_ids as $t_project_id ) {
 
 		user_cache_array_rows( array_unique( $t_issue_handlers ) );
 
-		$t_progress = $t_issues_planned > 0 ? ( (integer)( $t_issues_resolved * 100 / $t_issues_planned ) ) : 0;
+		$t_progress = $t_issues_planned > 0 ? ( (int)( $t_issues_resolved * 100 / $t_issues_planned ) ) : 0;
 
 		if( $t_issues_planned > 0 ) {
-			$t_progress = (integer)( $t_issues_resolved * 100 / $t_issues_planned );
+			$t_progress = (int)( $t_issues_resolved * 100 / $t_issues_planned );
 
 			if( !$t_project_header_printed ) {
 				print_project_header_roadmap( $t_project_name );

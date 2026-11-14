@@ -90,9 +90,9 @@ function user_cache_row( $p_user_id, $p_trigger_errors = true ) {
 	if( !$t_user_row ) {
 		if( $p_trigger_errors ) {
 			throw new ClientException(
-				sprintf( "User id '%d' not found.", (integer)$p_user_id ),
+				sprintf( "User id '%d' not found.", (int)$p_user_id ),
 				ERROR_USER_BY_ID_NOT_FOUND,
-				array( (integer)$p_user_id )
+				array( (int)$p_user_id )
 			);
 		}
 
@@ -297,7 +297,7 @@ function user_exists( $p_user_id ) {
  * @return void
  */
 function user_ensure_exists( $p_user_id ) {
-	$c_user_id = (integer)$p_user_id;
+	$c_user_id = (int)$p_user_id;
 
 	if( !user_exists( $c_user_id ) ) {
 		throw new ClientException( "User $c_user_id not found", ERROR_USER_BY_ID_NOT_FOUND, array( $c_user_id ) );
@@ -549,7 +549,7 @@ function user_count_level( $p_level = ANYBODY, $p_enabled = null ) {
  * @return array
  */
 function user_get_logged_in_user_ids( $p_session_duration_in_minutes ) {
-	$t_session_duration_in_minutes = (integer)$p_session_duration_in_minutes;
+	$t_session_duration_in_minutes = (int)$p_session_duration_in_minutes;
 
 	# if session duration is 0, then there is no logged in users.
 	if( $t_session_duration_in_minutes == 0 ) {

@@ -183,7 +183,7 @@ function sponsorship_get_id( $p_bug_id, $p_user_id = null ) {
 		return false;
 	}
 
-	return (integer)$t_row['id'];
+	return (int)$t_row['id'];
 }
 
 /**
@@ -319,7 +319,7 @@ function sponsorship_set( SponsorshipData $p_sponsorship ) {
 	$c_bug_id = (int)$p_sponsorship->bug_id;
 	$c_user_id = (int)$p_sponsorship->user_id;
 	//$c_amount = (int)$p_sponsorship->amount;
-	$c_amount = (double)$p_sponsorship->amount; // Composr - support non-integer sponsorship
+	$c_amount = (float)$p_sponsorship->amount; // Composr - support non-integer sponsorship
 	$c_logo = $p_sponsorship->logo;
 	$c_url = $p_sponsorship->url;
 	$c_now = db_now();

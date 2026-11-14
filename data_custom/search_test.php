@@ -183,7 +183,7 @@ function search_test_script()
                             $where_clause .= ' OR ';
                         }
                         if ($info['integer_category']) {
-                            $where_clause .= ((strpos($info['category'], '.') !== false) ? '' : 'r.') . $info['category'] . '=' . strval((integer)$cat);
+                            $where_clause .= ((strpos($info['category'], '.') !== false) ? '' : 'r.') . $info['category'] . '=' . strval((int)$cat);
                         } else {
                             $where_clause .= db_string_equal_to(((strpos($info['category'], '.') !== false) ? '' : 'r.') . $info['category'], $cat);
                         }

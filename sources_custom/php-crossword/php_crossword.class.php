@@ -73,7 +73,7 @@ class PHP_Crossword
 	 */
 	function setDebug($debug = TRUE)
 	{
-		$this->_debug = (boolean)$debug;
+		$this->_debug = (bool)$debug;
 	}
 
 	/**

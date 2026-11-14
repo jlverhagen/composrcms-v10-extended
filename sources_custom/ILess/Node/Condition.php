@@ -71,7 +71,7 @@ class ILess_Node_Condition extends ILess_Node implements ILess_Node_VisitableInt
         $this->lvalue = $l;
         $this->rvalue = $r;
         $this->index = $i;
-        $this->negate = (boolean)$negate;
+        $this->negate = (bool)$negate;
     }
 
     /**

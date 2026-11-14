@@ -108,7 +108,7 @@ class ILess_Node_MixinDefinition extends ILess_Node_Ruleset
 
         $this->params = $params;
         $this->condition = $condition;
-        $this->variadic = (boolean)$variadic;
+        $this->variadic = (bool)$variadic;
         $this->arity = count($params);
         $this->rules = $rules;
 
