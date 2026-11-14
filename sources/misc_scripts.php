@@ -647,12 +647,13 @@ function external_url_proxy_script()
     // Stream
     $content_type = 'application/octet-stream';
     $f = @fopen($url, 'rb');
-    if (isset($http_response_header)) {
+    $response_headers = function_exists('http_get_last_response_headers') ? http_get_last_response_headers() : (${'http_response_header'} ?? null);
+    if (isset($response_headers)) {
         // Work out appropriate content type (with restrictions)
         require_code('mime_types');
         $mime_types = array_flip(get_mime_types(false));
         $matches = array();
-        foreach ($http_response_header as $header) {
+        foreach ($response_headers as $header) {
             if (preg_match('#^Content-Type:\s*(.*)\s*#i', $header, $matches) != 0) {
                 $content_type = $matches[1];
             }
@@ -662,7 +663,7 @@ function external_url_proxy_script()
         }
         header('Content-Type: ' . $content_type);
 
-        foreach ($http_response_header as $header) {
+        foreach ($response_headers as $header) {
             if (preg_match('#^Content-Type:\s*(.*)\s*#i', $header) == 0) {
                 header($header);
             }

@@ -79,18 +79,19 @@ class PBAPI_Request_fopenurl extends PBAPI_Request {
      */
     protected function fopenurl_request($ctx, $url) {
         $out = @file_get_contents($url, false, $ctx);
+        $response_headers = function_exists('http_get_last_response_headers') ? http_get_last_response_headers() : (${'http_response_header'} ?? []);
 
         //detect redirect from headers
         $httpcode_reg = '#HTTP/1\.\d (\d+)#';
-        $grep = preg_grep($httpcode_reg, $http_response_header);
+        $grep = preg_grep($httpcode_reg, $response_headers ?? []);
         preg_match($httpcode_reg, current($grep), $matches);
-        $http_code = $matches[1];
+        $http_code = $matches[1] ?? null;
 
         if (in_array($http_code, array(301, 302, 303, 307))) {
             //redirect detected, find URL to redirect to
             $redir_parts = false;
             $location_reg = '/Location:(.*)(\n|$)/';
-            $grep = preg_grep($location_reg, $http_response_header);
+            $grep = preg_grep($location_reg, $response_headers ?? []);
             $redirline = current($grep);
             if ($redirline) {
                 preg_match($location_reg, $redirline, $matches);

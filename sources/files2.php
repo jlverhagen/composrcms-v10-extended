@@ -2163,8 +2163,9 @@ function _http_download_file($url, $byte_limit = null, $trigger_error = true, $n
             }
             safe_ini_set('allow_url_fopen', '0');
             safe_ini_set('default_socket_timeout', $timeout_before);
-            if (isset($http_response_header)) {
-                foreach ($http_response_header as $header) {
+            $response_headers = function_exists('http_get_last_response_headers') ? http_get_last_response_headers() : (${'http_response_header'} ?? null);
+            if (isset($response_headers)) {
+                foreach ($response_headers as $header) {
                     _read_in_headers($header . "\r\n");
                 }
             }

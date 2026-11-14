@@ -115,6 +115,7 @@ function handle_failover_auto_switching($iteration = 0)
             do {
                 $time_before = microtime(true);
                 $data = @file_get_contents($full_url, false, $context);
+                $response_headers = function_exists('http_get_last_response_headers') ? http_get_last_response_headers() : (${'http_response_header'} ?? null);
                 $time_after = microtime(true);
                 $time = $time_after - $time_before;
 
@@ -130,9 +131,9 @@ function handle_failover_auto_switching($iteration = 0)
                 }
 
                 // Bad HTTP status
-                if (strpos($http_response_header[0], '200') === false) {
+                if (strpos(($response_headers[0] ?? ''), '200') === false) {
                     if ($done_retries >= $max_retries) {
-                        is_failing($full_url . ' (bad HTTP code; ' . $http_response_header[0] . ')');
+                        is_failing($full_url . ' (bad HTTP code; ' . ($response_headers[0] ?? '') . ')');
                     } else {
                         $done_retries++;
                         @usleep($time_between_retries * 1000000);
