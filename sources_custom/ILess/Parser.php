@@ -44,7 +44,7 @@ class ILess_Parser extends ILess_Parser_Core
      * @param array $outputFilters Array of output filters
      */
     public function __construct(array $options = array(),
-                                ILess_CacheInterface $cache = null,
+                                ?ILess_CacheInterface $cache = null,
                                 array $importers = array(), array $outputFilters = array())
     {
         $importDirs = array();

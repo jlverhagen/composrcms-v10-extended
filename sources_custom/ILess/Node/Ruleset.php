@@ -539,7 +539,7 @@ class ILess_Node_Ruleset extends ILess_Node implements ILess_Node_VisitableInter
      * @param ILess_Environment $env
      * @return array
      */
-    public function find(ILess_Node $selector, ILess_Environment $env, ILess_Node_Ruleset $self = null)
+    public function find(ILess_Node $selector, ILess_Environment $env, ?ILess_Node_Ruleset $self = null)
     {
         $key = $selector->toCSS($env);
         if (!$self) {

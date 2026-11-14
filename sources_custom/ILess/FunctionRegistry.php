@@ -133,7 +133,7 @@ class ILess_FunctionRegistry
      * @param array $aliases Array of function aliases in the format array(alias => function)
      * @param ILess_Environment $env The environment
      */
-    public function __construct($aliases = array(), ILess_Environment $env = null)
+    public function __construct($aliases = array(), ?ILess_Environment $env = null)
     {
         $this->env = $env;
         $this->addAliases($aliases);
@@ -416,7 +416,7 @@ class ILess_FunctionRegistry
      * @param $flags
      * @return ILess_Node_Quoted
      */
-    public function replace(ILess_Node $string, ILess_Node $pattern, ILess_Node $replacement, ILess_Node $flags = null)
+    public function replace(ILess_Node $string, ILess_Node $pattern, ILess_Node $replacement, ?ILess_Node $flags = null)
     {
         $flags  = $flags ? $flags->value : '';
         $limit = strpos($flags, 'g') === false ? 1 : -1;
@@ -435,7 +435,7 @@ class ILess_FunctionRegistry
      * @param string $mimeType A mime type string
      * @param string $url The URL of the file to inline.
      */
-    public function dataUri(ILess_Node $mimeType, ILess_Node $filePath = null)
+    public function dataUri(ILess_Node $mimeType, ?ILess_Node $filePath = null)
     {
         if (func_num_args() < 2) {
             $path = $mimeType->value;
@@ -531,7 +531,7 @@ class ILess_FunctionRegistry
      * @param integer $places The precision
      * @return ILess_Node_Dimension
      */
-    public function round($number, ILess_Node_Dimension $places = null)
+    public function round($number, ?ILess_Node_Dimension $places = null)
     {
         if ($number instanceof ILess_Node_Dimension) {
             $unit = $number->unit;
@@ -740,7 +740,7 @@ class ILess_FunctionRegistry
      * @param ILess_Node $number The dimension
      * @param ILess_Node $unit The unit
      */
-    public function unit(ILess_Node $number, ILess_Node $unit = null)
+    public function unit(ILess_Node $number, ?ILess_Node $unit = null)
     {
         if (!$number instanceof ILess_Node_Dimension) {
             throw new ILess_Exception_Compiler(sprintf('The first argument to unit must be a number%s',
@@ -1097,7 +1097,7 @@ class ILess_FunctionRegistry
      * @param ILess_Node The percentage
      * @return string
      */
-    public function saturate(ILess_Node $color, ILess_Node $percentage = null)
+    public function saturate(ILess_Node $color, ?ILess_Node $percentage = null)
     {
         if (!$color instanceof ILess_Node_Color) {
             if ($color instanceof ILess_Node_Dimension
@@ -1120,7 +1120,7 @@ class ILess_FunctionRegistry
      * @param ILess_Node_Color $color
      * @return string
      */
-    public function desaturate(ILess_Node_Color $color, ILess_Node $percentage = null)
+    public function desaturate(ILess_Node_Color $color, ?ILess_Node $percentage = null)
     {
         $percentage = $percentage ? $percentage->value : 10;
         $saturation = $this->clamp($color->getSaturation(true) - $percentage / 100);
@@ -1135,7 +1135,7 @@ class ILess_FunctionRegistry
      * @param ILess_Node $percentage The percentage (Default to 10%)
      * @return string
      */
-    public function lighten(ILess_Node $color, ILess_Node $percentage = null)
+    public function lighten(ILess_Node $color, ?ILess_Node $percentage = null)
     {
         // this is a keyword
         if ($color instanceof ILess_Node_Keyword && ILess_Color::isNamedColor($color->value)) {
@@ -1160,7 +1160,7 @@ class ILess_FunctionRegistry
      * @return string
      * @throws InvalidArgumentException If the node is invalid
      */
-    public function darken(ILess_Node $color, ILess_Node_Dimension $percentage = null)
+    public function darken(ILess_Node $color, ?ILess_Node_Dimension $percentage = null)
     {
         // this is a keyword
         if ($color instanceof ILess_Node_Keyword && ILess_Color::isNamedColor($color->value)) {
@@ -1183,7 +1183,7 @@ class ILess_FunctionRegistry
      * @param ILess_Node_Color $color
      * @return ILess_Node_Color
      */
-    public function fadein(ILess_Node_Color $color, ILess_Node_Dimension $percentage = null)
+    public function fadein(ILess_Node_Color $color, ?ILess_Node_Dimension $percentage = null)
     {
         $alpha = $color->getAlpha(true);
         if ($percentage && $percentage->unit->is('%')) {
@@ -1202,7 +1202,7 @@ class ILess_FunctionRegistry
      * @param ILess_Node_Dimension $percentage
      * @return string
      */
-    public function fadeout(ILess_Node_Color $color, ILess_Node_Dimension $percentage = null)
+    public function fadeout(ILess_Node_Color $color, ?ILess_Node_Dimension $percentage = null)
     {
         $alpha = $color->getAlpha(true);
         if ($percentage && $percentage->unit->is('%')) {
@@ -1221,7 +1221,7 @@ class ILess_FunctionRegistry
      * @param ILess_Node_Dimension $percentage
      * @return string
      */
-    public function fade(ILess_Node_Color $color, ILess_Node_Dimension $percentage = null)
+    public function fade(ILess_Node_Color $color, ?ILess_Node_Dimension $percentage = null)
     {
         $hsl = $color->toHSL();
 
@@ -1243,7 +1243,7 @@ class ILess_FunctionRegistry
      * @param ILess_Node_Dimension $degrees
      * @return ILess_Node_Color
      */
-    public function spin(ILess_Node_Color $color, ILess_Node_Dimension $degrees = null)
+    public function spin(ILess_Node_Color $color, ?ILess_Node_Dimension $degrees = null)
     {
         $degrees = $degrees ? $degrees->value : 10;
         $hue = (string)fmod($color->getHue(true) + $degrees, 360);
@@ -1262,7 +1262,7 @@ class ILess_FunctionRegistry
      * @link http://sass-lang.com
      * @copyright 2006-2009 Hampton Catlin, Nathan Weizenbaum, and Chris Eppstein
      */
-    public function mix(ILess_Node $color1, ILess_Node $color2, ILess_Node_Dimension $weightPercentage = null)
+    public function mix(ILess_Node $color1, ILess_Node $color2, ?ILess_Node_Dimension $weightPercentage = null)
     {
         if (!$color1 instanceof ILess_Node_Color) {
             return $color1;
@@ -1299,7 +1299,7 @@ class ILess_FunctionRegistry
      * @param ILess_Node $color
      * @return string
      */
-    public function tint(ILess_Node $color, ILess_Node $percentage = null)
+    public function tint(ILess_Node $color, ?ILess_Node $percentage = null)
     {
         return $this->mix($this->rgb(255, 255, 255), $color, $percentage);
     }
@@ -1311,7 +1311,7 @@ class ILess_FunctionRegistry
      * @param ILess_Node $percentage
      * @return string
      */
-    public function shade(ILess_Node $color, ILess_Node $percentage = null)
+    public function shade(ILess_Node $color, ?ILess_Node $percentage = null)
     {
         return $this->mix($this->rgb(0, 0, 0), $color, $percentage);
     }
@@ -1333,8 +1333,8 @@ class ILess_FunctionRegistry
      * @param ILess_Node_Color $color
      * @return string
      */
-    public function contrast(ILess_Node $color, ILess_Node_Color $darkColor = null,
-                             ILess_Node_Color $lightColor = null, ILess_Node_Dimension $thresholdPercentage = null)
+    public function contrast(ILess_Node $color, ?ILess_Node_Color $darkColor = null,
+                             ?ILess_Node_Color $lightColor = null, ?ILess_Node_Dimension $thresholdPercentage = null)
     {
         // ping pong back
         // filter: contrast(3.2);
@@ -1648,7 +1648,7 @@ class ILess_FunctionRegistry
      * @param ILess_Node $unit The unit to check
      * @return boolean
      */
-    public function isunit(ILess_Node $node, ILess_Node $unit = null)
+    public function isunit(ILess_Node $node, ?ILess_Node $unit = null)
     {
         if ($this->isA($node, 'ILess_Node_Dimension')
             && $node->unit->is((property_exists($unit, 'value') ? $unit->value : $unit))

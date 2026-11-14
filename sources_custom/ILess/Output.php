@@ -30,7 +30,7 @@ class ILess_Output implements Countable
      * @param mixed $mapLines
      * @return ILess_Output
      */
-    public function add($chunk, ILess_FileInfo $fileInfo = null, $index = 0, $mapLines = null)
+    public function add($chunk, ?ILess_FileInfo $fileInfo = null, $index = 0, $mapLines = null)
     {
         $this->output[] = array(
             // commented out to save some memory

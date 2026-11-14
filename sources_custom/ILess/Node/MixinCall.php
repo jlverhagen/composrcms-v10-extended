@@ -59,7 +59,7 @@ class ILess_Node_MixinCall extends ILess_Node implements ILess_Node_VisitableInt
      * @param ILess_FileInfo $currentFileInfo
      * @param boolean $important
      */
-    public function __construct(array $elements, array $arguments = array(), $index = 0, ILess_FileInfo $currentFileInfo = null, $important = false)
+    public function __construct(array $elements, array $arguments = array(), $index = 0, ?ILess_FileInfo $currentFileInfo = null, $important = false)
     {
         $this->selector = new ILess_Node_Selector($elements);
         $this->arguments = (array)$arguments;

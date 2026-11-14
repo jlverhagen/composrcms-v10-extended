@@ -59,7 +59,7 @@ class ILess_Node_Quoted extends ILess_Node implements ILess_Node_ComparableInter
      * @param integer $index Current index
      * @param ILess_FileInfo $currentFileInfo The current file info
      */
-    public function __construct($quotedString, $string, $escaped = false, $index = 0, ILess_FileInfo $currentFileInfo = null)
+    public function __construct($quotedString, $string, $escaped = false, $index = 0, ?ILess_FileInfo $currentFileInfo = null)
     {
         parent::__construct($string ? $string : '');
         $this->escaped = $escaped;

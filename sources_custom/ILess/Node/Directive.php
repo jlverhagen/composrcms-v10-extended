@@ -65,7 +65,7 @@ class ILess_Node_Directive extends ILess_Node implements ILess_Node_VisitableInt
      * @param integer $index The index
      * @param array $currentFileInfo Current file info
      */
-    public function __construct($name, $value, $index = 0, ILess_FileInfo $currentFileInfo = null)
+    public function __construct($name, $value, $index = 0, ?ILess_FileInfo $currentFileInfo = null)
     {
         $this->name = $name;
         if (is_array($value)) {

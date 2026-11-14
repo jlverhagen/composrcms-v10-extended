@@ -63,7 +63,7 @@ class ILess_Output_Mapped extends ILess_Output
      * @param mixed $mapLines
      * @return ILess_Output
      */
-    public function add($chunk, ILess_FileInfo $fileInfo = null, $index = 0, $mapLines = null)
+    public function add($chunk, ?ILess_FileInfo $fileInfo = null, $index = 0, $mapLines = null)
     {
         // nothing to do
         if ($chunk == '') {

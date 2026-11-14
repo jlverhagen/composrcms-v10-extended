@@ -97,7 +97,7 @@ class ILess_Node_Import extends ILess_Node implements ILess_Node_VisitableInterf
      * @param integer $index The index
      * @param ILess_FileInfo $currentFileInfo Current file info
      */
-    public function __construct(ILess_Node $path, ILess_Node $features = null, array $options = array(), $index = 0, ILess_FileInfo $currentFileInfo = null)
+    public function __construct(ILess_Node $path, ?ILess_Node $features = null, array $options = array(), $index = 0, ?ILess_FileInfo $currentFileInfo = null)
     {
         $this->path = $path;
         $this->features = $features;

@@ -28,7 +28,7 @@ class ILess_Node_Url extends ILess_Node implements ILess_Node_VisitableInterface
      * @param ILess_Node $value
      * @param ILess_FileInfo $currentFileInfo
      */
-    public function __construct(ILess_Node $value, ILess_FileInfo $currentFileInfo = null)
+    public function __construct(ILess_Node $value, ?ILess_FileInfo $currentFileInfo = null)
     {
         parent::__construct($value);
         $this->currentFileInfo = $currentFileInfo;

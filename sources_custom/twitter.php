@@ -245,7 +245,7 @@ class Twitter
      * @param  array[optional] $parameters The parameters.
      * @return array
      */
-    protected function doOAuthCall($method, array $parameters = null)
+    protected function doOAuthCall($method, ?array $parameters = null)
     {
         // redefine
         $method = (string) $method;
@@ -331,7 +331,7 @@ class Twitter
      * @return string
      */
     protected function doCall(
-        $url, array $parameters = null, $authenticate = false, $method = 'GET',
+        $url, ?array $parameters = null, $authenticate = false, $method = 'GET',
         $filePath = null, $expectJSON = true, $returnHeaders = false
     )
     {
@@ -2781,7 +2781,7 @@ class Twitter
     public function geoSearch(
         $lat = null, $long = null, $query = null, $ip = null,
         $granularity = null, $accuracy = null, $maxResults = null,
-        $containedWithin = null, array $attributes = null
+        $containedWithin = null, ?array $attributes = null
     )
     {
         // build parameters
@@ -2833,7 +2833,7 @@ class Twitter
      * @return array
      */
     public function geoSimilarPlaces(
-        $lat, $long, $name, $containedWithin = null, array $attributes = null
+        $lat, $long, $name, $containedWithin = null, ?array $attributes = null
     )
     {
         // build parameters
@@ -2865,7 +2865,7 @@ class Twitter
      * @return array
      */
     public function geoPlace(
-        $name, $containedWithin, $token, $lat, $long, array $attributes = null
+        $name, $containedWithin, $token, $lat, $long, ?array $attributes = null
     )
     {
         // build parameters
@@ -3146,7 +3146,7 @@ class Twitter
      * @param  array  $resources A comma-separated list of resource families you want to know the current rate limit disposition for. For best performance, only specify the resource families pertinent to your application.
      * @return string
      */
-    public function applicationRateLimitStatus(array $resources = null)
+    public function applicationRateLimitStatus(?array $resources = null)
     {
         $parameters = null;
         if (!empty($resources)) {

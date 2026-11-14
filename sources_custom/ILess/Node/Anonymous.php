@@ -44,7 +44,7 @@ class ILess_Node_Anonymous extends ILess_Node
      * @param string $currentFileInfo
      * @param boolean $mapLines
      */
-    public function __construct($value, $index = 0, ILess_FileInfo $currentFileInfo = null, $mapLines = false)
+    public function __construct($value, $index = 0, ?ILess_FileInfo $currentFileInfo = null, $mapLines = false)
     {
         $this->value = (string)($value instanceof ILess_Node ? $value->value : $value);
         $this->index = $index;

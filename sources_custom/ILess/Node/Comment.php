@@ -49,7 +49,7 @@ class ILess_Node_Comment extends ILess_Node implements ILess_Node_MarkableAsRefe
      * @param string $value The comment value
      * @param boolean $silent
      */
-    public function __construct($value, $silent = false, $index = 0, ILess_FileInfo $currentFileInfo = null)
+    public function __construct($value, $silent = false, $index = 0, ?ILess_FileInfo $currentFileInfo = null)
     {
         parent::__construct($value);
         $this->silent = (bool)$silent;

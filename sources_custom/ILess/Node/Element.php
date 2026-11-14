@@ -43,7 +43,7 @@ class ILess_Node_Element extends ILess_Node implements ILess_Node_VisitableInter
      * @param integer $index The current index
      * @param array $currentFileInfo Current file information
      */
-    public function __construct($combinator, $value, $index = 0, ILess_FileInfo $currentFileInfo = null)
+    public function __construct($combinator, $value, $index = 0, ?ILess_FileInfo $currentFileInfo = null)
     {
         if (!($combinator instanceof ILess_Node_Combinator)) {
             $combinator = new ILess_Node_Combinator($combinator);

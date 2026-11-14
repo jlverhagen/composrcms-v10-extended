@@ -75,7 +75,7 @@ class ILess_Node_Rule extends ILess_Node implements ILess_Node_VisitableInterfac
      * @param ILess_FileInfo $currentFileInfo The current file info
      * @param boolean $inline Inline flag
      */
-    public function __construct($name, $value, $important = null, $merge = null, $index = 0, ILess_FileInfo $currentFileInfo = null, $inline = false)
+    public function __construct($name, $value, $important = null, $merge = null, $index = 0, ?ILess_FileInfo $currentFileInfo = null, $inline = false)
     {
         $this->name = $name;
         $this->value = ($value instanceof ILess_Node_Value) ? $value : new ILess_Node_Value(array($value));

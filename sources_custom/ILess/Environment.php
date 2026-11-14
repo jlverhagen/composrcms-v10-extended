@@ -218,7 +218,7 @@ class ILess_Environment
      * @param array $options
      * @throws InvalidArgumentException If passed options are invalid
      */
-    public function __construct(array $options = array(), ILess_FunctionRegistry $registry = null)
+    public function __construct(array $options = array(), ?ILess_FunctionRegistry $registry = null)
     {
         if ($registry) {
             $this->setFunctionRegistry($registry);

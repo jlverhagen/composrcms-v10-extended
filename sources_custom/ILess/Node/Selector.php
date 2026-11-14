@@ -74,7 +74,7 @@ class ILess_Node_Selector extends ILess_Node implements ILess_Node_VisitableInte
      * @param array $currentFileInfo Current file information
      * @param boolean $isReferenced Referenced flag
      */
-    public function __construct(array $elements, array $extendList = array(), ILess_Node_Condition $condition = null, $index = 0, ILess_FileInfo $currentFileInfo = null, $isReferenced = false)
+    public function __construct(array $elements, array $extendList = array(), ?ILess_Node_Condition $condition = null, $index = 0, ?ILess_FileInfo $currentFileInfo = null, $isReferenced = false)
     {
         $this->elements = $elements;
         $this->extendList = $extendList;

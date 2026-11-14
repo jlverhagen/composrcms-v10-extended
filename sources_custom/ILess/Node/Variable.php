@@ -43,7 +43,7 @@ class ILess_Node_Variable extends ILess_Node
      * @param integer $index The current index
      * @param ILess_FileInf $currentFileInfo The current file information
      */
-    public function __construct($name, $index = 0, ILess_FileInfo $currentFileInfo = null)
+    public function __construct($name, $index = 0, ?ILess_FileInfo $currentFileInfo = null)
     {
         $this->name = $name;
         $this->index = $index;

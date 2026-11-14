@@ -57,7 +57,7 @@ class ILess_Node_Media extends ILess_Node implements ILess_Node_VisitableInterfa
      * @param integer $index The index
      * @param ILess_FileInfo $currentFileInfo The current file info
      */
-    public function __construct(array $value = array(), array $features = array(), $index = 0, ILess_FileInfo $currentFileInfo = null)
+    public function __construct(array $value = array(), array $features = array(), $index = 0, ?ILess_FileInfo $currentFileInfo = null)
     {
         $this->index = $index;
         $this->currentFileInfo = $currentFileInfo;

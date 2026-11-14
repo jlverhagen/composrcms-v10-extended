@@ -87,7 +87,7 @@ class ILess_SourceMap_Generator extends ILess_Configurable
      */
     public function __construct(ILess_Node_Ruleset $root,
                                 array $contentsMap,
-                                $options = array(), ILess_SourceMap_Base64VLQ $encoder = null)
+                                $options = array(), ?ILess_SourceMap_Base64VLQ $encoder = null)
     {
         $this->root = $root;
         $this->contentsMap = $contentsMap;

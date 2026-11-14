@@ -76,7 +76,7 @@ class ILess_Exception extends Exception
      * @param Exception $previous Previous exception
      * @param integer $code The exception code
      */
-    public function __construct($message = null, $index = null, $currentFile = null, Exception $previous = null, $code = 0)
+    public function __construct($message = null, $index = null, $currentFile = null, ?Exception $previous = null, $code = 0)
     {
         $message = $this->formatMessage($message, $previous);
 
@@ -102,7 +102,7 @@ class ILess_Exception extends Exception
      * @param Exception $previous Previous exception
      * @return string
      */
-    private function formatMessage($message, Exception $previous = null)
+    private function formatMessage($message, ?Exception $previous = null)
     {
         $messageFormatted = $message;
         if ($previous) {
