@@ -48,7 +48,7 @@ class Differ
      *
      * @return string
      */
-    public function diff($from, $to, LongestCommonSubsequence $lcs = null)
+    public function diff($from, $to, ?LongestCommonSubsequence $lcs = null)
     {
         $from  = $this->validateDiffInput($from);
         $to    = $this->validateDiffInput($to);
@@ -201,7 +201,7 @@ class Differ
      *
      * @return array
      */
-    public function diffToArray($from, $to, LongestCommonSubsequence $lcs = null)
+    public function diffToArray($from, $to, ?LongestCommonSubsequence $lcs = null)
     {
         if (\is_string($from)) {
             $fromMatches = $this->getNewLineMatches($from);

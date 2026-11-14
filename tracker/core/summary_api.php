@@ -690,7 +690,7 @@ function summary_print_by_category() {
  * @param array   $p_cache    Summary cache.
  * @return void
  */
-function summary_print_by_project( array $p_projects = array(), $p_level = 0, array $p_cache = null ) {
+function summary_print_by_project( array $p_projects = array(), $p_level = 0, ?array $p_cache = null ) {
 	$t_project_id = helper_get_current_project();
 
 	if( empty( $p_projects ) ) {

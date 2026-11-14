@@ -88,7 +88,7 @@ class Router implements RouterInterface
      *
      * @param RouteParser   $parser
      */
-    public function __construct(RouteParser $parser = null)
+    public function __construct(?RouteParser $parser = null)
     {
         $this->routeParser = $parser ?: new StdParser;
     }

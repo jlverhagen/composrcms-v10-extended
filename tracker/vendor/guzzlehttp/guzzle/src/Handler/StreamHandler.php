@@ -75,7 +75,7 @@ class StreamHandler
         array $options,
         RequestInterface $request,
         $startTime,
-        ResponseInterface $response = null,
+        ?ResponseInterface $response = null,
         $error = null
     ) {
         if (isset($options['on_stats'])) {
@@ -319,9 +319,11 @@ class StreamHandler
         );
 
         return $this->createResource(
-            function () use ($uri, &$http_response_header, $context, $options) {
+            function () use ($uri, $context, $options) {
                 $resource = fopen((string) $uri, 'r', null, $context);
-                $this->lastHeaders = $http_response_header;
+                $this->lastHeaders = function_exists('http_get_last_response_headers')
+                    ? http_get_last_response_headers()
+                    : (${'http_response_header'} ?? null);
 
                 if (isset($options['read_timeout'])) {
                     $readTimeout = $options['read_timeout'];

@@ -163,7 +163,7 @@ class DbQuery {
 	 * @param array $p_bind_array		Bind values
 	 * @return void
 	 */
-	public function __construct( $p_query_string = null, array $p_bind_array = null ) {
+	public function __construct( $p_query_string = null, ?array $p_bind_array = null ) {
 		# Itialization
 		if( null === $p_query_string ) {
 			$this->query_string = '';
@@ -240,7 +240,7 @@ class DbQuery {
 	 * @param integer $p_offset		Offset value
 	 * @return IteratorAggregate|boolean ADOdb result set or false if the query failed.
 	 */
-	public function execute( array $p_bind_array = null, $p_limit = null, $p_offset = null ) {
+	public function execute( ?array $p_bind_array = null, $p_limit = null, $p_offset = null ) {
 		# bind values if provided
 		if( null !== $p_bind_array ) {
 			$this->bind_values( $p_bind_array );
@@ -768,7 +768,7 @@ class DbQuery {
 	 * @param boolean $p_pop_param  Set to false to leave the parameters on the stack
 	 * @return IteratorAggregate|boolean ADOdb result set or false if the query failed
 	 */
-	public static function compat_db_query( $p_query, array $p_arr_parms = null, $p_limit = -1, $p_offset = -1, $p_pop_param = true ) {
+	public static function compat_db_query( $p_query, ?array $p_arr_parms = null, $p_limit = -1, $p_offset = -1, $p_pop_param = true ) {
 		global $g_db_param;
 
 		if( !is_array( $p_arr_parms ) ) {

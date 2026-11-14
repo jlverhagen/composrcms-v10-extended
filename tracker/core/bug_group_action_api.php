@@ -207,7 +207,7 @@ function bug_group_action_process( $p_action, $p_bug_id ) {
  * @param array $p_project_ids An array containing one or more project IDs.
  * @return array
  */
-function bug_group_action_get_commands( array $p_project_ids = null ) {
+function bug_group_action_get_commands( ?array $p_project_ids = null ) {
 	if( $p_project_ids === null || count( $p_project_ids ) == 0 ) {
 		$p_project_ids = array( ALL_PROJECTS );
 	}

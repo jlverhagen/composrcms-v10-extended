@@ -623,7 +623,7 @@ function email_notify_new_account( $p_username, $p_email ) {
  * @param array   $p_extra_user_ids_to_email Array of additional users to email.
  * @return void
  */
-function email_generic( $p_bug_id, $p_notify_type, $p_message_id = null, array $p_header_optional_params = null, array $p_extra_user_ids_to_email = array() ) {
+function email_generic( $p_bug_id, $p_notify_type, $p_message_id = null, ?array $p_header_optional_params = null, array $p_extra_user_ids_to_email = array() ) {
 	# @todo yarick123: email_collect_recipients(...) will be completely rewritten to provide additional information such as language, user access,..
 	# @todo yarick123:sort recipients list by language to reduce switches between different languages
 	$t_recipients = email_collect_recipients( $p_bug_id, $p_notify_type, $p_extra_user_ids_to_email );
@@ -640,7 +640,7 @@ function email_generic( $p_bug_id, $p_notify_type, $p_message_id = null, array $
  * @param array   $p_header_optional_params  Optional Parameters (default null)
  * @return void
  */
-function email_generic_to_recipients( $p_bug_id, $p_notify_type, array $p_recipients, $p_message_id = null, array $p_header_optional_params = null ) {
+function email_generic_to_recipients( $p_bug_id, $p_notify_type, array $p_recipients, $p_message_id = null, ?array $p_header_optional_params = null ) {
 	if( empty( $p_recipients ) ) {
 		return;
 	}
@@ -1143,7 +1143,7 @@ function email_bug_deleted( $p_bug_id ) {
  *                             even when using cronjob
  * @return integer|null
  */
-function email_store( $p_recipient, $p_subject, $p_message, array $p_headers = null, $p_force = false ) {
+function email_store( $p_recipient, $p_subject, $p_message, ?array $p_headers = null, $p_force = false ) {
 	global $g_email_shutdown_processing;
 
 	$t_recipient = trim( $p_recipient );
@@ -1603,7 +1603,7 @@ function email_user_mention( $p_bug_id, $p_mention_user_ids, $p_message, $p_remo
  * @param array   $p_header_optional_params Array of additional email headers.
  * @return void
  */
-function email_bug_info_to_one_user( array $p_visible_bug_data, $p_message_id, $p_user_id, array $p_header_optional_params = null ) {
+function email_bug_info_to_one_user( array $p_visible_bug_data, $p_message_id, $p_user_id, ?array $p_header_optional_params = null ) {
 	$t_user_email = user_get_email( $p_user_id );
 
 	# check whether email should be sent

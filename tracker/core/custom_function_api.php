@@ -327,7 +327,7 @@ function custom_function_default_get_columns_to_view( $p_columns_target = COLUMN
  * @param array $p_sort_properties  Array of filter sortin gproeprties, in the format returned from filter_get_visible_sort_properties_array()
  * @return void
  */
-function custom_function_default_print_column_title( $p_column, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE, array $p_sort_properties = null ) {
+function custom_function_default_print_column_title( $p_column, $p_columns_target = COLUMNS_TARGET_VIEW_PAGE, ?array $p_sort_properties = null ) {
 	global $t_sort, $t_dir;
 
 	# if no sort properties are provided, resort to deprecated golbal vars, to keep compatibility

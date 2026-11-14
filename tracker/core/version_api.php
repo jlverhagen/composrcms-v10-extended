@@ -89,7 +89,7 @@ class VersionData {
 	 * project_version table row.
 	 * @param array|null $p_row
 	 */
-	public function __construct( array $p_row = null ) {
+	public function __construct( ?array $p_row = null ) {
 		if( $p_row !== null ) {
 			$this->set_from_db_row( $p_row );
 		}

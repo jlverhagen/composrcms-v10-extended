@@ -52,7 +52,7 @@ class Exporter
      * @param  Context $context
      * @return string
      */
-    public function shortenedRecursiveExport(&$data, Context $context = null)
+    public function shortenedRecursiveExport(&$data, ?Context $context = null)
     {
         $result   = array();
         $exporter = new self();

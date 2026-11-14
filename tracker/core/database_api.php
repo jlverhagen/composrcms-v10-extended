@@ -308,7 +308,7 @@ function db_query_bound() {
  * @param boolean $p_pop_param Set to false to leave the parameters on the stack
  * @return IteratorAggregate|boolean adodb result set or false if the query failed.
  */
-function db_query( $p_query, array $p_arr_parms = null, $p_limit = -1, $p_offset = -1, $p_pop_param = true ) {
+function db_query( $p_query, ?array $p_arr_parms = null, $p_limit = -1, $p_offset = -1, $p_pop_param = true ) {
 	# Use DbQuery class to execute the query
 	return DbQuery::compat_db_query( $p_query, $p_arr_parms, $p_limit, $p_offset, $p_pop_param );
 }
@@ -975,7 +975,7 @@ function db_oracle_order_binds_sequentially( $p_query ) {
  * @param array  &$p_arr_parms Array of parameters matching $p_query, function sorts array keys.
  * @return string Query string with sorted bind variable numbers.
  */
-function db_oracle_adapt_query_syntax( $p_query, array &$p_arr_parms = null ) {
+function db_oracle_adapt_query_syntax( $p_query, ?array &$p_arr_parms = null ) {
 	# Remove "AS" keyword, because not supported with table aliasing
 	# - Do not remove text literal within "'" quotes
 	# - Will remove all "AS", except when it's part of a "CAST(x AS y)" expression

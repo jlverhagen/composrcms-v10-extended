@@ -182,7 +182,7 @@ function print_filter_values_reporter_id( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_reporter_id( array $p_filter = null ) {
+function print_filter_reporter_id( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -276,7 +276,7 @@ function print_filter_values_user_monitor( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_user_monitor( array $p_filter = null ) {
+function print_filter_user_monitor( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -357,7 +357,7 @@ function print_filter_values_handler_id( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_handler_id( array $p_filter = null ) {
+function print_filter_handler_id( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -428,7 +428,7 @@ function print_filter_values_show_category( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_show_category( array $p_filter = null ) {
+function print_filter_show_category( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -458,7 +458,7 @@ function print_filter_values_platform( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_platform( array $p_filter = null ) {
+function print_filter_platform( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -490,7 +490,7 @@ function print_filter_values_os( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_os( array $p_filter = null ) {
+function print_filter_os( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -519,7 +519,7 @@ function print_filter_values_os_build( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_os_build( array $p_filter = null ) {
+function print_filter_os_build( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -575,7 +575,7 @@ function print_filter_values_show_severity( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_show_severity( array $p_filter = null ) {
+function print_filter_show_severity( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -630,7 +630,7 @@ function print_filter_values_show_resolution( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_show_resolution( array $p_filter = null ) {
+function print_filter_show_resolution( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -685,7 +685,7 @@ function print_filter_values_show_status( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_show_status( array $p_filter = null ) {
+function print_filter_show_status( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -744,7 +744,7 @@ function print_filter_values_hide_status( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_hide_status( array $p_filter = null ) {
+function print_filter_hide_status( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -801,7 +801,7 @@ function print_filter_values_show_build( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_show_build( array $p_filter = null ) {
+function print_filter_show_build( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -860,7 +860,7 @@ function print_filter_values_show_version( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_show_version( array $p_filter = null ) {
+function print_filter_show_version( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -918,7 +918,7 @@ function print_filter_values_show_fixed_in_version( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_show_fixed_in_version( array $p_filter = null ) {
+function print_filter_show_fixed_in_version( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -977,7 +977,7 @@ function print_filter_values_show_target_version( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_show_target_version( array $p_filter = null ) {
+function print_filter_show_target_version( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -1033,7 +1033,7 @@ function print_filter_values_show_priority( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_show_priority( array $p_filter = null ) {
+function print_filter_show_priority( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -1088,7 +1088,7 @@ function print_filter_values_show_profile( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_show_profile( array $p_filter = null ) {
+function print_filter_show_profile( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -1118,7 +1118,7 @@ function print_filter_values_per_page( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_per_page( array $p_filter = null ) {
+function print_filter_per_page( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -1152,7 +1152,7 @@ function print_filter_values_view_state( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_view_state( array $p_filter = null ) {
+function print_filter_view_state( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -1196,7 +1196,7 @@ function print_filter_values_sticky_issues( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_sticky_issues( array $p_filter = null ) {
+function print_filter_sticky_issues( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -1231,7 +1231,7 @@ function print_filter_values_highlight_changed( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_highlight_changed( array $p_filter = null ) {
+function print_filter_highlight_changed( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -1303,7 +1303,7 @@ function print_filter_values_do_filter_by_date( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_do_filter_by_date( $p_hide_checkbox = false, array $p_filter = null ) {
+function print_filter_do_filter_by_date( $p_hide_checkbox = false, ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -1455,7 +1455,7 @@ function print_filter_values_do_filter_by_last_updated_date( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_do_filter_by_last_updated_date( $p_hide_checkbox = false, array $p_filter = null ) {
+function print_filter_do_filter_by_last_updated_date( $p_hide_checkbox = false, ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -1564,7 +1564,7 @@ function print_filter_values_relationship_type( array $p_filter ) {
 			case META_FILTER_ANY:
 				echo lang_get( 'any' );
 				break;
-			default;
+			default:
 				echo lang_get( 'any' ),' ' , lang_get( 'with' ), ' ', $c_rel_bug;
 		}
 	} elseif( BUG_REL_NONE == $c_rel_type ) {
@@ -1573,7 +1573,7 @@ function print_filter_values_relationship_type( array $p_filter ) {
 			case META_FILTER_NONE:
 			case META_FILTER_ANY:
 				break;
-			default;
+			default:
 				echo ' ', lang_get( 'with' ), ' ', $c_rel_bug;
 		}
 	} else {
@@ -1585,7 +1585,7 @@ function print_filter_values_relationship_type( array $p_filter ) {
 			case META_FILTER_ANY:
 				echo lang_get( 'any' );
 				break;
-			default;
+			default:
 				echo $c_rel_bug;
 		}
 	}
@@ -1597,7 +1597,7 @@ function print_filter_values_relationship_type( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_relationship_type( array $p_filter = null ) {
+function print_filter_relationship_type( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -1629,7 +1629,7 @@ function print_filter_values_tag_string( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_tag_string( array $p_filter = null ) {
+function print_filter_tag_string( ?array $p_filter = null ) {
 	global $g_filter;
 	if( !access_has_project_level( config_get( 'tag_view_threshold' ) ) ) {
 		return;
@@ -1700,7 +1700,7 @@ function print_filter_values_note_user_id( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_note_user_id( array $p_filter = null ) {
+function print_filter_note_user_id( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -1781,7 +1781,7 @@ function print_filter_values_plugin_field( array $p_filter, $p_field_name, $p_fi
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_plugin_field( $p_field_name, $p_filter_object, array $p_filter = null ) {
+function print_filter_plugin_field( $p_field_name, $p_filter_object, ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -1945,7 +1945,7 @@ function print_filter_values_custom_field_date( array $p_filter, $p_field_id ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_custom_field( $p_field_id, array $p_filter = null ) {
+function print_filter_custom_field( $p_field_id, ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -2037,7 +2037,7 @@ function print_filter_values_show_sort( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_show_sort( array $p_filter = null ) {
+function print_filter_show_sort( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -2114,7 +2114,7 @@ function print_filter_show_sort( array $p_filter = null ) {
  * @param array $p_filter 	Filter array
  * @return void
  */
-function print_filter_custom_field_date( $p_field_id, array $p_filter = null ) {
+function print_filter_custom_field_date( $p_field_id, ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -2263,7 +2263,7 @@ function print_filter_values_project_id( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_project_id( array $p_filter = null ) {
+function print_filter_project_id( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;
@@ -2307,7 +2307,7 @@ function print_filter_values_match_type( array $p_filter ) {
  * @param array $p_filter Filter array
  * @return void
  */
-function print_filter_match_type( array $p_filter = null ) {
+function print_filter_match_type( ?array $p_filter = null ) {
 	global $g_filter;
 	if( null === $p_filter ) {
 		$p_filter = $g_filter;

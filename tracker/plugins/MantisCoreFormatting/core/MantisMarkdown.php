@@ -140,7 +140,7 @@ class MantisMarkdown extends Parsedown
 	 * @access protected
 	 * @return string html representation generated from markdown.
 	 */
-	protected function blockTable( $line, array $block = null ) {
+	protected function blockTable( $line, ?array $block = null ) {
 		return $this->__doTable( $line, $block, __FUNCTION__ );
 	}
 

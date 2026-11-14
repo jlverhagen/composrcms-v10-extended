@@ -133,7 +133,7 @@ function custom_field_cache_row( $p_field_id, $p_trigger_errors = true ) {
  * @return void
  * @access public
  */
-function custom_field_cache_array_rows( array $p_cf_id_array = null ) {
+function custom_field_cache_array_rows( ?array $p_cf_id_array = null ) {
 	global $g_cache_custom_field, $g_cache_name_to_id_map;
 
 	$c_cf_id_array = array();

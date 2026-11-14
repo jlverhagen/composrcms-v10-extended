@@ -3227,7 +3227,7 @@ function filter_create_monitored_by( $p_project_id, $p_user_id ) {
  * @param array $p_filter An existing filter array
  * @return array The resulting filter array
  */
-function filter_gpc_get( array $p_filter = null ) {
+function filter_gpc_get( ?array $p_filter = null ) {
 	# Get or copy the view_type first as it's needed to get proper defaults
 	$f_view_type = gpc_get_string( 'view_type', null );
 	if( null === $f_view_type && is_array( $p_filter ) && isset( $p_filter['_view_type'] ) ) {
@@ -3762,7 +3762,7 @@ function filter_get_included_projects( array $p_filter, $p_project_id = null, $p
  * @param array $p_default     A filter array to return when id is not found
  * @return array	A filter array
  */
-function filter_get( $p_filter_id, array $p_default = null ) {
+function filter_get( $p_filter_id, ?array $p_default = null ) {
 	# if no default was provided, we will trigger an error if not found
 	$t_trigger_error = func_num_args() == 1;
 

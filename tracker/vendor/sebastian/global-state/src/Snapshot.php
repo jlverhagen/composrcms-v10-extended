@@ -92,7 +92,7 @@ class Snapshot
      * @param bool      $includeIniSettings
      * @param bool      $includeIncludedFiles
      */
-    public function __construct(Blacklist $blacklist = null, $includeGlobalVariables = true, $includeStaticAttributes = true, $includeConstants = true, $includeFunctions = true, $includeClasses = true, $includeInterfaces = true, $includeTraits = true, $includeIniSettings = true, $includeIncludedFiles = true)
+    public function __construct(?Blacklist $blacklist = null, $includeGlobalVariables = true, $includeStaticAttributes = true, $includeConstants = true, $includeFunctions = true, $includeClasses = true, $includeInterfaces = true, $includeTraits = true, $includeIniSettings = true, $includeIncludedFiles = true)
     {
         if ($blacklist === null) {
             $blacklist = new Blacklist;
