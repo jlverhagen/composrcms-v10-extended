@@ -115,7 +115,7 @@ function extended_fetch_verified_addon($addon, $temporary_directory)
         throw new RuntimeException('Incomplete addon entry');
     }
     require_once __DIR__ . '/extended_http_transport.php';
-    $path = extended_transport_fetch($addon['download_url'], $temporary_directory, 52428800);
+    $path = extended_transport_fetch($addon['download_url'], $temporary_directory, 52428800, true);
     try {
         $result = extended_verify_local_addon_package($path, $addon['sha256'], $addon['id']);
         return array('path' => $path, 'verification' => $result);
