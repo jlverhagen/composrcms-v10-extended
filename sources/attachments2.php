@@ -215,7 +215,7 @@ function _handle_data_url_attachments(&$comcode, $type, $id, $connection)
                             $new_path = get_custom_file_base() . '/uploads/attachments/' . $new_filename;
                         } while (file_exists($new_path));
                         cms_imagesave($image, $new_path) or intelligent_write_error($new_path);
-                        imagedestroy($image);
+                        unset($image);
 
                         // Images cleanup pipeline
                         require_code('images_cleanup_pipeline');
