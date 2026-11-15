@@ -225,7 +225,7 @@ function _symbol_thumbnail($param)
                     }
                     $source_x = imagesx($source);
                     $source_y = imagesy($source);
-                    imagedestroy($source);
+                    unset($source);
                 }
 
                 // We only need to crop/pad if the aspect ratio
@@ -390,7 +390,7 @@ function cms_getimagesizefromstring($data, $ext = null)
             $sx = imagesx($img_res);
             $sy = imagesy($img_res);
 
-            imagedestroy($img_res);
+            unset($img_res);
 
             return array(max(1, $sx), max(1, $sy));
         }
