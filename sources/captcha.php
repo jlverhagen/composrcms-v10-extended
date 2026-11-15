@@ -104,14 +104,14 @@ function captcha_script()
         </body>
         </html>
         ';
-        imagedestroy($img);
+        unset($img);
         exit();
     }
 
     // Output as a PNG
     header('Content-Type: image/png');
     imagepng($img);
-    imagedestroy($img);
+    unset($img);
 }
 
 /**
