@@ -6,7 +6,7 @@
 	{TITLE}
 
 	{+START,IF_PASSED,AWARDS}
-		{+START,IF_NON_EMPTY,{AWARDS}}
+		{+START,IF_NON_EMPTY,{AWARDS}}{+START,IF_NON_EMPTY,{$IMG,awarded,0,,1}}
 			{+START,SET,AWARDS_TEXT}
 				<h2>{!AWARD_WINNER}</h2>
 				<p class="lonely_label">{!AWARDS_WON,{AWARDS}}</p>
@@ -19,8 +19,8 @@
 					{+END}
 				</ul>
 			{+END}
-			<a href="{$PAGE_LINK*,_SEARCH:awards}"><img onmouseover="if (typeof window.activate_tooltip!='undefined') activate_tooltip(this,event,'{$GET;^*,AWARDS_TEXT}','auto',null,null,false,true);" title="" alt="{!AWARD_WINNER}" src="{$IMG*,awarded}" /></a>
-		{+END}
+			<a href="{$PAGE_LINK*,_SEARCH:awards}"><img onmouseover="if (typeof window.activate_tooltip!='undefined') activate_tooltip(this,event,'{$GET;^*,AWARDS_TEXT}','auto',null,null,false,true);" title="" alt="{!AWARD_WINNER}" src="{$IMG*,awarded,0,,1}" /></a>
+		{+END}{+END}
 	{+END}
 </h1>
 
