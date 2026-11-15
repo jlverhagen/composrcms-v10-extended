@@ -92,6 +92,10 @@ a.top_left_toggleicon:hover {
 
 /* New version indicator */
 
+.staff_extended_version {
+	text-align: center;
+}
+
 .staff_new_versions .notes_about {
 	display: none;
 }
