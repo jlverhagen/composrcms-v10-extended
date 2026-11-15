@@ -228,6 +228,11 @@ function find_remote_addons()
  */
 function find_updated_addons()
 {
+    require_code('extended_version', true);
+    if (function_exists('extended_distribution_version')) {
+        return array();
+    }
+
     static $updated_addons = null; // Cache
     if ($updated_addons === null) {
         $updated_addons = mixed();

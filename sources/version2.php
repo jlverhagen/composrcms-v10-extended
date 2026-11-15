@@ -44,6 +44,18 @@ PHP: 10.3.0.beta4         (only used when interfacing with PHP, not our standard
 function get_future_version_information()
 {
     require_lang('version');
+    require_code('extended_version', true);
+    if (function_exists('extended_distribution_version')) {
+        $release = get_extended_release_update();
+        if ($release === null) {
+            return paragraph(do_lang_tempcode('EXTENDED_RELEASE_CHECK_UNAVAILABLE'));
+        }
+        if ($release === array()) {
+            return paragraph(do_lang_tempcode('EXTENDED_RELEASE_NO_UPDATE'));
+        }
+
+        return paragraph(do_lang_tempcode('EXTENDED_RELEASE_AVAILABLE', escape_html($release['version']), escape_html($release['url'])));
+    }
 
     $version_dotted = get_param_string('keep_test_version', get_version_dotted()); // E.g. ?keep_test_version=10.RC29&keep_cache_blocks=0 to test
     $url = 'http://compo.sr/uploads/website_specific/compo.sr/scripts/version.php?version=' . urlencode($version_dotted) . '&lang=' . urlencode(user_lang());
@@ -71,6 +83,68 @@ function get_future_version_information()
 
     require_code('xhtml');
     return make_string_tempcode(xhtmlise_html($table->evaluate()));
+}
+
+/**
+ * Look for a published Extended update. Stable sites receive stable releases.
+ *
+ * @return ?array The selected release, an empty array if none is newer, or null if the check failed
+ */
+function get_extended_release_update()
+{
+    global $SITE_INFO;
+
+    $repository = $SITE_INFO['extended_release_repository'] ?? 'jlverhagen/composrcms-v10-extended';
+    if (!is_string($repository) || !preg_match('#^[A-Za-z0-9][A-Za-z0-9-]*/[A-Za-z0-9_][A-Za-z0-9_.-]*$#D', $repository)) {
+        return null;
+    }
+
+    require_code('files2');
+    $url = 'https://api.github.com/repos/' . $repository . '/releases?per_page=30';
+    list($data) = cache_and_carry('http_download_file', array($url, 2 * 1024 * 1024, false, true, 'ComposrCMS-Extended', null, null, 'application/vnd.github+json'), 15);
+    if (!is_string($data)) {
+        return null;
+    }
+
+    $releases = json_decode($data, true);
+    if (!is_array($releases) || !array_is_list($releases)) {
+        return null;
+    }
+
+    $current = extended_distribution_version();
+    $allow_prerelease = (bool)preg_match('#-(?:alpha|beta|rc)\.[1-9][0-9]*$#D', $current);
+    $selected = array();
+    foreach ($releases as $release) {
+        if (!is_array($release) || ($release['draft'] ?? true) !== false || !is_string($release['tag_name'] ?? null)) {
+            continue;
+        }
+        $tag = $release['tag_name'];
+        if (!preg_match('#^v?([1-9][0-9]{3}\.(?:0[1-9]|1[0-2])\.[1-9][0-9]*)(-(?:alpha|beta|rc)\.[1-9][0-9]*)?$#D', $tag, $matches)) {
+            continue;
+        }
+        if (!$allow_prerelease && (isset($matches[2]) || ($release['prerelease'] ?? false) === true)) {
+            continue;
+        }
+        $version = $matches[1] . ($matches[2] ?? '');
+        if (!version_compare($version, $selected['version'] ?? $current, '>')) {
+            continue;
+        }
+
+        $assets = $release['assets'] ?? null;
+        if (!is_array($assets)) {
+            continue;
+        }
+        $uploaded = array();
+        foreach ($assets as $asset) {
+            if (is_array($asset) && ($asset['state'] ?? null) === 'uploaded' && is_string($asset['name'] ?? null)) {
+                $uploaded[$asset['name']] = true;
+            }
+        }
+        if (isset($uploaded['composr_upgrader-' . $version . '.cms'], $uploaded['SHA256SUMS'])) {
+            $selected = array('version' => $version, 'url' => 'https://github.com/' . $repository . '/releases/tag/' . rawurlencode($tag));
+        }
+    }
+    return $selected;
 }
 
 /**
