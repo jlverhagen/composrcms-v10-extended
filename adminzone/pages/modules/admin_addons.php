@@ -539,19 +539,25 @@ class Module_admin_addons
 
         require_code('form_templates');
 
-        $fields = new Tempcode();
-        $set_name = 'addon';
-        $required = true;
-        $set_title = do_lang_tempcode('SOURCE');
-        $field_set = alternate_fields_set__start($set_name);
+        require_code('extended_version', true);
+        $is_extended = function_exists('extended_distribution_version');
+        if ($is_extended) {
+            $fields = form_input_upload(do_lang_tempcode('UPLOAD'), do_lang_tempcode('DESCRIPTION_UPLOAD'), 'file', true, null, null, true, 'tar');
+        } else {
+            $fields = new Tempcode();
+            $set_name = 'addon';
+            $required = true;
+            $set_title = do_lang_tempcode('SOURCE');
+            $field_set = alternate_fields_set__start($set_name);
 
-        $to_import = get_param_string('to_import', null);
+            $to_import = get_param_string('to_import', null);
 
-        $field_set->attach(form_input_tree_list(do_lang_tempcode('DOWNLOAD'), do_lang_tempcode('DESCRIPTION_DOWNLOAD_COMPOSR_HOMESITE', escape_html(get_brand_page_url(array('page' => 'community'), 'site'))), 'url', null, 'choose_composr_homesite_addon', array(), false, $to_import, false, null, true));
+            $field_set->attach(form_input_tree_list(do_lang_tempcode('DOWNLOAD'), do_lang_tempcode('DESCRIPTION_DOWNLOAD_COMPOSR_HOMESITE', escape_html(get_brand_page_url(array('page' => 'community'), 'site'))), 'url', null, 'choose_composr_homesite_addon', array(), false, $to_import, false, null, true));
 
-        $field_set->attach(form_input_upload(do_lang_tempcode('UPLOAD'), do_lang_tempcode('DESCRIPTION_UPLOAD'), 'file', false, null, null, true, 'tar'));
+            $field_set->attach(form_input_upload(do_lang_tempcode('UPLOAD'), do_lang_tempcode('DESCRIPTION_UPLOAD'), 'file', false, null, null, true, 'tar'));
 
-        $fields->attach(alternate_fields_set__end($set_name, $set_title, '', $field_set, $required));
+            $fields->attach(alternate_fields_set__end($set_name, $set_title, '', $field_set, $required));
+        }
 
         $hidden = new Tempcode();
         handle_max_file_size($hidden);
@@ -562,6 +568,10 @@ class Module_admin_addons
 
         $text = new Tempcode();
         $text->attach(paragraph(do_lang_tempcode('HELP_IMPORTING_ADDON')));
+        if ($is_extended && $GLOBALS['FORUM_DRIVER']->is_super_admin(get_member())) {
+            $catalogue_url = build_url(array('page' => 'admin_extended_addons'), 'adminzone');
+            $text->attach(paragraph(do_lang_tempcode('EXTENDED_ADDON_CATALOGUE_LINK', escape_html($catalogue_url->evaluate()))));
+        }
 
         require_code('files2');
         $max = floatval(get_max_file_size()) / floatval(1024 * 1024);
@@ -586,15 +596,20 @@ class Module_admin_addons
 
         $url_map = array('page' => '_SELF', 'type' => 'multi_action');
 
-        $__url = post_param_string('url', '');
-        foreach (explode(',', $__url) as $i => $url) {
-            if (is_numeric($url)) {
-                $_POST['url'] = 'http://compo.sr/site/dload.php?id=' . $url;
-            } else {
-                $_POST['url'] = $url; // In case it was submitted in array form, which is possible on some UAs (based on an automated bug report)
-            }
+        require_code('extended_version', true);
+        $is_extended = function_exists('extended_distribution_version');
+        $submitted_urls = post_param_string('url', '');
+        if ($is_extended && $submitted_urls !== '') {
+            return warn_screen(get_screen_title('ERROR_OCCURRED'), do_lang_tempcode('EXTENDED_ADDON_UPLOAD_OR_CATALOGUE'));
+        }
 
-            $urls = get_url('url', 'file', 'imports/addons', 0, CMS_UPLOAD_ANYTHING, false, '', '', true);
+        foreach (explode(',', $submitted_urls) as $i => $url) {
+            if ($is_extended) {
+                $urls = get_url('', 'file', 'imports/addons', 0, CMS_UPLOAD_ANYTHING, false, '', '', false, false, true);
+            } else {
+                $_POST['url'] = is_numeric($url) ? 'http://compo.sr/site/dload.php?id=' . $url : $url;
+                $urls = get_url('url', 'file', 'imports/addons', 0, CMS_UPLOAD_ANYTHING, false, '', '', true);
+            }
 
             $full = get_custom_file_base() . '/' . $urls[0];
             if (strtolower(substr($full, -4)) != '.tar') {

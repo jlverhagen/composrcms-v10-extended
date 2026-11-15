@@ -32,6 +32,11 @@ class Hook_choose_composr_homesite_addon
      */
     protected function get_file($id, $default)
     {
+        require_code('extended_version', true);
+        if (function_exists('extended_distribution_version')) {
+            return '';
+        }
+
         $stub = (get_param_integer('localhost', 0) == 1) ? get_base_url() : 'http://compo.sr';
         $v = 'Version ' . float_to_raw_string(cms_version_number(), 2, true);
         if (!is_null($id)) {
