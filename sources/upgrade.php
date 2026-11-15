@@ -28,6 +28,8 @@ function upgrade_script()
     require_lang('upgrade');
     require_code('database_action');
     require_code('config2');
+    require_code('extended_version', true);
+    $is_extended = function_exists('extended_distribution_version');
     if (php_function_allowed('set_time_limit')) {
         @set_time_limit(180);
     }
@@ -100,7 +102,7 @@ function upgrade_script()
                     $news_id = post_param_integer('news_id', null);
                     $from_version = post_param_string('from_version', strval(cms_version()) . '.' . cms_version_minor());
                     $tar_url = '';
-                    if (!is_null($news_id)) {
+                    if (!$is_extended && !is_null($news_id)) {
                         require_code('files');
                         $fetch_url = 'http://compo.sr/uploads/website_specific/compo.sr/scripts/fetch_release_details.php?news_id=' . strval($news_id) . '&from_version=' . urlencode($from_version);
                         $news = http_download_file($fetch_url, null, true, false, 'Composr', null, null, null, null, null, null, null, null, 30.0);
@@ -221,19 +223,25 @@ function upgrade_script()
                 case 'file_upgrade':
                     appengine_live_guard();
 
-                    require_code('version2');
-                    $personal_upgrader_url = 'http://compo.sr/uploads/website_specific/compo.sr/scripts/build_personal_upgrader.php?from=' . urlencode(get_version_dotted());
-                    $hooks = find_all_hooks('systems', 'addon_registry');
-                    foreach (array_keys($hooks) as $hook) {
-                        if (is_file(get_file_base() . '/sources/hooks/systems/addon_registry/' . $hook . '.php')) {
-                            $personal_upgrader_url .= '&addon_' . $hook . '=1';
+                    if ($is_extended) {
+                        if (get_param_string('tar_url', '') == '') {
+                            echo do_lang('FU_EXTENDED_FILE_UPGRADE_INFO');
                         }
-                    }
+                    } else {
+                        require_code('version2');
+                        $personal_upgrader_url = 'http://compo.sr/uploads/website_specific/compo.sr/scripts/build_personal_upgrader.php?from=' . urlencode(get_version_dotted());
+                        $hooks = find_all_hooks('systems', 'addon_registry');
+                        foreach (array_keys($hooks) as $hook) {
+                            if (is_file(get_file_base() . '/sources/hooks/systems/addon_registry/' . $hook . '.php')) {
+                                $personal_upgrader_url .= '&addon_' . $hook . '=1';
+                            }
+                        }
 
-                    if (get_param_string('tar_url', '') == '') {
-                        echo do_lang('FU_FILE_UPGRADE_INFO');
+                        if (get_param_string('tar_url', '') == '') {
+                            echo do_lang('FU_FILE_UPGRADE_INFO');
+                        }
+                        echo do_lang('FU_FILE_UPGRADE_INFO_MANUAL', escape_html($personal_upgrader_url));
                     }
-                    echo do_lang('FU_FILE_UPGRADE_INFO_MANUAL', escape_html($personal_upgrader_url));
                     echo '<form title="' . do_lang('PROCEED') . '" enctype="multipart/form-data" action="upgrader.php?type=_file_upgrade" method="post">' . post_fields_relay();
                     echo '<p><label for="url">' . do_lang('URL') . '</label> <input type="text" id="url" name="url" size="80" value="' . escape_html(base64_decode(get_param_string('tar_url', ''))) . '" /></p>';
                     if (get_option('site_closed') != '1') {
@@ -944,6 +952,7 @@ function up_do_header()
 {
     $upgrader_title = do_lang('FU_UPGRADER_TITLE');
     $upgrader_intro = do_lang('FU_UPGRADER_INTRO');
+    $favicon = function_exists('extended_distribution_version') ? '' : '<link rel="icon" href="https://compo.sr/favicon.ico" type="image/x-icon" />';
     $charset = get_charset();
     $lang = user_lang();
     $dir = do_lang('dir');
@@ -956,7 +965,7 @@ function up_do_header()
         <meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
 
         <title>{$upgrader_title}</title>
-        <link rel="icon" href="https://compo.sr/favicon.ico" type="image/x-icon" />
+        {$favicon}
 
         <style>/*<![CDATA[*/
 END;
