@@ -35,6 +35,20 @@ function extended_run_local_addon_install($type, $admin_id)
     if ($type === 'review_local_addon') {
         $addon = extended_find_local_install_entry(post_param_string('addon'));
         $archive = $directory . '/' . $addon['sha256'] . '.tar';
+        if (!file_exists($archive) && !is_link($archive)
+            && defined('EXTENDED_REMOTE_ADDON_DOWNLOADS') && EXTENDED_REMOTE_ADDON_DOWNLOADS === true) {
+            require_code('extended_addon_download');
+            $download = extended_fetch_verified_addon($addon, $directory);
+            try {
+                if (!chmod($download['path'], 0400) || !rename($download['path'], $archive)) {
+                    throw new RuntimeException('Cannot stage the verified addon archive');
+                }
+            } finally {
+                if (is_file($download['path'])) {
+                    unlink($download['path']);
+                }
+            }
+        }
         extended_assert_private_addon_archive($archive);
         $confirmation = extended_create_addon_confirmation(
             $directory, $admin_id, $archive, $addon['source_id'], $addon['id'], $addon['sha256']
