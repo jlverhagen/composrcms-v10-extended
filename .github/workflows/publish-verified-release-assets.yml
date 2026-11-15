@@ -1,0 +1,59 @@
+name: Publish verified release assets
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Prerelease version
+        required: true
+      core_commit:
+        description: Exact source commit on the release branch
+        required: true
+      manifest_sha256:
+        description: SHA-256 of the staged SHA256SUMS file
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  draft:
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      VERSION: ${{ inputs.version }}
+      CORE_COMMIT: ${{ inputs.core_commit }}
+      MANIFEST_SHA: ${{ inputs.manifest_sha256 }}
+    steps:
+      - name: Fetch and verify staged assets
+        run: |
+          [[ "$VERSION" =~ ^[1-9][0-9]{3}\.(0[1-9]|1[0-2])\.[1-9][0-9]*-(alpha|beta|rc)\.[1-9][0-9]*$ ]]
+          [[ "$CORE_COMMIT" =~ ^[a-f0-9]{40}$ ]]
+          [[ "$MANIFEST_SHA" =~ ^[a-f0-9]{64}$ ]]
+          mkdir assets
+          cd assets
+          base=https://composr.duckdns.org/extended-mirror/test-upgrades
+          fetch() { curl --fail --silent --show-error --proto '=https' --max-time 120 --max-filesize "$2" "$base/$1" -o "$1"; }
+          fetch SHA256SUMS 32768
+          printf '%s  SHA256SUMS\n' "$MANIFEST_SHA" | sha256sum -c -
+          files=(
+            "catalogue-enforcement-$VERSION.sha256"
+            "composr-$VERSION.tar.gz"
+            "composr_manualextraction_installer-$VERSION.zip"
+            "composr_quick_installer-$VERSION.zip"
+            "composr_upgrader-$VERSION.cms"
+          )
+          printf '%s\n' "${files[@]}" | sort > ../expected
+          awk 'length($1)!=64 || $1 !~ /^[a-f0-9]+$/ || NF!=2 || $0!=$1 "  " $2 {exit 1} {print $2}' SHA256SUMS | sort > ../actual
+          cmp ../expected ../actual
+          for name in "${files[@]}"; do fetch "$name" 536870912; done
+          sha256sum -c SHA256SUMS
+      - name: Create the draft prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git ls-remote "https://github.com/$GITHUB_REPOSITORY.git" refs/heads/release | grep -Fx "$(printf '%s\trefs/heads/release' "$CORE_COMMIT")"
+          gh release create "$VERSION" assets/* --repo "$GITHUB_REPOSITORY" \
+            --target "$CORE_COMMIT" --title "ComposrCMS v$VERSION" --draft --prerelease \
+            --notes "Verified prerelease packages built from commit $CORE_COMMIT."
