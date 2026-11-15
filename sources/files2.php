@@ -1469,7 +1469,7 @@ function _http_download_file($url, $byte_limit = null, $trigger_error = true, $n
                                                     // Error
                                                     $error = curl_error($ch);
                                                     $curl_errno = curl_errno($ch);
-                                                    curl_close($ch);
+                                                    unset($ch);
 
                                                     $possible_internal_curl_errors = array(1, 2, 4, 5, 16, 34, 35, 41, 43, 45, 48, 52, 53, 54, 55, 56, 58, 59, 60, 64, 66, 77, 80, 81, 82, 83, 89, 90, 91, 92);
                                                     if (!in_array($curl_errno, $possible_internal_curl_errors)) {
@@ -1500,7 +1500,7 @@ function _http_download_file($url, $byte_limit = null, $trigger_error = true, $n
                                                         $HTTP_DOWNLOAD_MIME_TYPE = substr($HTTP_DOWNLOAD_MIME_TYPE, 0, strpos($HTTP_DOWNLOAD_MIME_TYPE, ';'));
                                                     }
 
-                                                    curl_close($ch);
+                                                    unset($ch);
 
                                                     // Receive headers
                                                     foreach ($CURL_HEADERS as $header) {
