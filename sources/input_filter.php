@@ -633,10 +633,9 @@ class Field_restriction_loader
         if ($xml_parser === false) {
             return; // PHP5 default build on windows comes with this function disabled, so we need to be able to escape on error
         }
-        xml_set_object($xml_parser, $this);
         @xml_parser_set_option($xml_parser, XML_OPTION_TARGET_ENCODING, get_charset());
-        xml_set_element_handler($xml_parser, 'startElement', 'endElement');
-        xml_set_character_data_handler($xml_parser, 'startText');
+        xml_set_element_handler($xml_parser, array($this, 'startElement'), array($this, 'endElement'));
+        xml_set_character_data_handler($xml_parser, array($this, 'startText'));
 
         // Run the parser
         $data = cms_file_get_contents_safe(is_file(get_custom_file_base() . '/data_custom/xml_config/fields.xml') ? (get_custom_file_base() . '/data_custom/xml_config/fields.xml') : (get_file_base() . '/data/xml_config/fields.xml'));
@@ -649,7 +648,7 @@ class Field_restriction_loader
             attach_message('fields.xml: ' . $err_msg, 'warn');
             return;
         }
-        @xml_parser_free($xml_parser);
+        unset($xml_parser);
     }
 
     /**
