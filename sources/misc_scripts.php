@@ -179,7 +179,6 @@ function gd_text_script()
         $dest_img = imagecreatetruecolor($real_width + intval(ceil(floatval($baseline_offset) / floatval($scale))), $real_height);
         imagealphablending($dest_img, false);
         imagecopyresampled($dest_img, $img, 0, 0, 0, 0, $real_width + intval(ceil(floatval($baseline_offset) / floatval($scale))), $real_height, $width, $height); // Sizes down, for simple antialiasing-like effect
-        imagedestroy($img);
         $img = $dest_img;
         if (function_exists('imagesavealpha')) {
             imagesavealpha($img, true);
@@ -188,7 +187,7 @@ function gd_text_script()
 
     header('Content-Type: image/png');
     imagepng($img);
-    imagedestroy($img);
+    unset($img);
 }
 
 /**
