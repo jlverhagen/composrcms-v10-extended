@@ -229,7 +229,7 @@ function _convert_image($from, $to, $width, $height, $box_width = -1, $exit_on_e
             if (!$reorientated) {
                 // We can just escape, nothing to do...
 
-                imagedestroy($source);
+                unset($source);
 
                 if (($using_path) && ($from == $to)) {
                     return true;
@@ -378,7 +378,7 @@ function _convert_image($from, $to, $width, $height, $box_width = -1, $exit_on_e
                 }
 
                 // Destroy the temporary image
-                imagedestroy($temp_img);
+                unset($temp_img);
             }
 
             // Now we need to work out how much padding we're giving, and where
@@ -420,7 +420,7 @@ function _convert_image($from, $to, $width, $height, $box_width = -1, $exit_on_e
     if (($_width == $sx) && ($_height == $sy) && ($dest_x == 0) && ($dest_y == 0) && (!$reorientated)) {
         // We can just escape, nothing to do...
 
-        imagedestroy($source);
+        unset($source);
 
         if (($using_path) && ($from == $to)) {
             return true;
@@ -490,7 +490,7 @@ function _convert_image($from, $to, $width, $height, $box_width = -1, $exit_on_e
     }
 
     // Clean up
-    imagedestroy($source);
+    unset($source);
 
     // Save
     if (is_null($ext2)) {
@@ -537,7 +537,7 @@ function _convert_image($from, $to, $width, $height, $box_width = -1, $exit_on_e
     }
 
     // Clean up
-    imagedestroy($dest);
+    unset($dest);
 
     return true;
 }
@@ -692,7 +692,6 @@ function remove_white_edges($source)
     }
 
     if (imagecopyresampled($dest, $source, 0, 0, $remove_from_left, $remove_from_top, $target_width, $target_height, $target_width, $target_height)) {
-        imagedestroy($source);
         $source = $dest;
     }
 

@@ -215,7 +215,7 @@ function handle_images_cleanup_pipeline($path, $filename = null, $recompress_mod
     }
 
     // Clean up
-    imagedestroy($image);
+    unset($image);
 }
 
 /**
@@ -312,7 +312,6 @@ function adjust_pic_orientation($image, $exif)
 
             if ($deg != 0) {
                 $dest = imagerotate($image, floatval($deg), 0);
-                imagedestroy($image);
                 $image = $dest;
             }
 
@@ -343,7 +342,6 @@ function adjust_pic_orientation($image, $exif)
                 }
 
                 if (imagecopyresampled($dest, $image, 0, 0, $src_x, $src_y, $width, $height, $src_width, $src_height)) {
-                    imagedestroy($image);
                     $image = $dest;
                 }
             }
@@ -407,7 +405,6 @@ function adjust_pic_size($image, $maximum_dimension)
         imagecopyresized($dest, $image, 0, 0, 0, 0, $_width, $_height, $width, $height);
     }
 
-    imagedestroy($image);
     $image = $dest;
 
     return array($image, true);
@@ -624,7 +621,7 @@ function png_compress($path, $lossy = false)
         if (function_exists('imagepalettetotruecolor')) {
             imagepalettetotruecolor($img);
         } else {
-            imagedestroy($img);
+            unset($img);
             return;
         }
     }
@@ -641,7 +638,7 @@ function png_compress($path, $lossy = false)
                 $has_alpha = true;
                 if ($parsed_colour['alpha'] != 0) {
                     // Blended alpha, cannot handle as anything other than a proper 32-bit PNG
-                    imagedestroy($img);
+                    unset($img);
                     return;
                 }
             }
@@ -679,7 +676,7 @@ function png_compress($path, $lossy = false)
                 }
 
                 // Return
-                imagedestroy($img);
+                unset($img);
                 return;
             }
         }
@@ -720,5 +717,5 @@ function png_compress($path, $lossy = false)
     fix_permissions($path);
     sync_file($path);
 
-    imagedestroy($img);
+    unset($img);
 }
