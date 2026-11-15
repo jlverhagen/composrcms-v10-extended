@@ -214,8 +214,7 @@ function upgrade_script()
                     break;
 
                 case 'close_site':
-                    set_option('closed', do_lang('FU_CLOSED_FOR_UPGRADES', get_site_name()));
-                    set_option('site_closed', '1');
+                    up_close_site_for_upgrade();
                     echo '<p>' . do_lang('SUCCESS') . '</p>';
                     break;
 
@@ -237,6 +236,10 @@ function upgrade_script()
                     echo do_lang('FU_FILE_UPGRADE_INFO_MANUAL', escape_html($personal_upgrader_url));
                     echo '<form title="' . do_lang('PROCEED') . '" enctype="multipart/form-data" action="upgrader.php?type=_file_upgrade" method="post">' . post_fields_relay();
                     echo '<p><label for="url">' . do_lang('URL') . '</label> <input type="text" id="url" name="url" size="80" value="' . escape_html(base64_decode(get_param_string('tar_url', ''))) . '" /></p>';
+                    if (get_option('site_closed') != '1') {
+                        echo '<p class="red_alert">' . do_lang('FU_FILE_UPGRADE_SITE_OPEN') . '</p>';
+                        echo '<p><label for="close_site_before_upgrade"><input type="checkbox" id="close_site_before_upgrade" name="close_site_before_upgrade" value="1" /> ' . do_lang('FU_CLOSE_BEFORE_FILE_UPGRADE') . '</label></p>';
+                    }
                     echo '<p><label for="dry_run"><input type="checkbox" id="dry_run" name="dry_run" value="1" /> ' . do_lang('FU_DRY_RUN') . '</label></p>';
                     if ((cms_srv('HTTP_HOST') == 'compo.sr') || ($GLOBALS['DEV_MODE'])) { // for ocProducts to use on own site, for testing
                         echo '<p><label for="upload">' . do_lang('ALT_FIELD', do_lang('UPLOAD')) . '</label> <input type="file" id="upload" name="upload" /></p>';
@@ -303,6 +306,10 @@ function upgrade_script()
 
                     // Hopefully $popup_simple_extract will be true (i.e. suEXEC mode), as it is safer
                     $popup_simple_extract = (_ftp_info() === false);
+                    if (!$dry_run && post_param_integer('close_site_before_upgrade', 0) == 1 && get_option('site_closed') != '1') {
+                        up_close_site_for_upgrade();
+                    }
+
                     $data = array('todo' => array()); // Data to pass through
                     if (!$popup_simple_extract) {
                         echo '<p>' . do_lang('EXTRACTING_MESSAGE') . '</p>';
@@ -987,6 +994,18 @@ function clear_caches_1() // These have to happen early - to prevent things that
     erase_cached_templates();
     erase_cached_language();
     delete_value('cdn');
+}
+
+/**
+ * Close the site before file changes and stop if closure did not take effect.
+ */
+function up_close_site_for_upgrade()
+{
+    set_option('closed', do_lang('FU_CLOSED_FOR_UPGRADES', get_site_name()));
+    set_option('site_closed', '1');
+    if (get_option('site_closed') != '1') {
+        warn_exit(do_lang_tempcode('FU_SITE_CLOSE_FAILED'));
+    }
 }
 
 /**
