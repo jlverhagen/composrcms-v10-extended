@@ -874,6 +874,12 @@ function up_do_login($message = null)
     $news_id = either_param_integer('news_id', null); // Comes in via GET, but carries through via POST
     $from_version = either_param_string('from_version', null);
     $url = "upgrader.php?type=" . escape_html($type);
+    if ($type === 'file_upgrade') {
+        $tar_url = get_param_string('tar_url', '');
+        if ($tar_url !== '') {
+            $url .= '&tar_url=' . rawurlencode($tar_url);
+        }
+    }
     if (get_param_integer('keep_safe_mode', 0) == 1) {
         $url .= '&keep_safe_mode=1';
     }

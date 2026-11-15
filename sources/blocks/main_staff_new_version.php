@@ -66,15 +66,18 @@ class Block_main_staff_new_version
         require_code('version2');
         require_css('adminzone_dashboard');
 
-        $table = get_future_version_information();
+        $extended_release = null;
+        $table = get_future_version_information($extended_release);
 
         require_code('addons2');
         $updated_addons = find_updated_addons();
         $has_updated_addons = (count($updated_addons) != 0);
 
         require_code('extended_version', true);
-        $display_version = function_exists('extended_distribution_version') ? extended_distribution_version() : cms_version_pretty();
+        $is_extended = function_exists('extended_distribution_version');
+        $display_version = $is_extended ? extended_distribution_version() : cms_version_pretty();
+        $upgrade_url = empty($extended_release) ? '' : get_base_url() . '/upgrader.php?type=file_upgrade&tar_url=' . rawurlencode(base64_encode($extended_release['upgrader_url']));
 
-        return do_template('BLOCK_MAIN_STAFF_NEW_VERSION', array('_GUID' => '43c7b18d3d44e825247579df23a2ad9c', 'VERSION' => $display_version, 'VERSION_TABLE' => $table, 'HAS_UPDATED_ADDONS' => $has_updated_addons));
+        return do_template('BLOCK_MAIN_STAFF_NEW_VERSION', array('_GUID' => '43c7b18d3d44e825247579df23a2ad9c', 'VERSION' => $display_version, 'VERSION_TABLE' => $table, 'IS_EXTENDED' => $is_extended, 'UPGRADE_URL' => $upgrade_url, 'UPGRADE_VERSION' => $extended_release['version'] ?? '', 'HAS_UPDATED_ADDONS' => $has_updated_addons));
     }
 }

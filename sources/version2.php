@@ -39,22 +39,24 @@ PHP: 10.3.0.beta4         (only used when interfacing with PHP, not our standard
 /**
  * Get information about new versions of Composr (or more accurately, what's wrong with this version).
  *
+ * @param  ?array $extended_release The selected Extended release, if any (passed by reference)
  * @return Tempcode Information about the installed Composr version
  */
-function get_future_version_information()
+function get_future_version_information(&$extended_release = null)
 {
+    $extended_release = null;
     require_lang('version');
     require_code('extended_version', true);
     if (function_exists('extended_distribution_version')) {
-        $release = get_extended_release_update();
-        if ($release === null) {
+        $extended_release = get_extended_release_update();
+        if ($extended_release === null) {
             return paragraph(do_lang_tempcode('EXTENDED_RELEASE_CHECK_UNAVAILABLE'));
         }
-        if ($release === array()) {
+        if ($extended_release === array()) {
             return paragraph(do_lang_tempcode('EXTENDED_RELEASE_NO_UPDATE'));
         }
 
-        return paragraph(do_lang_tempcode('EXTENDED_RELEASE_AVAILABLE', escape_html($release['version']), escape_html($release['url'])));
+        return paragraph(do_lang_tempcode('EXTENDED_RELEASE_AVAILABLE', escape_html($extended_release['version']), escape_html($extended_release['url'])));
     }
 
     $version_dotted = get_param_string('keep_test_version', get_version_dotted()); // E.g. ?keep_test_version=10.RC29&keep_cache_blocks=0 to test
@@ -140,8 +142,14 @@ function get_extended_release_update()
                 $uploaded[$asset['name']] = true;
             }
         }
-        if (isset($uploaded['composr_upgrader-' . $version . '.cms'], $uploaded['SHA256SUMS'])) {
-            $selected = array('version' => $version, 'url' => 'https://github.com/' . $repository . '/releases/tag/' . rawurlencode($tag));
+        $upgrader = 'composr_upgrader-' . $version . '.cms';
+        if (isset($uploaded[$upgrader], $uploaded['SHA256SUMS'])) {
+            $releases_url = 'https://github.com/' . $repository . '/releases/';
+            $selected = array(
+                'version' => $version,
+                'url' => $releases_url . 'tag/' . rawurlencode($tag),
+                'upgrader_url' => $releases_url . 'download/' . rawurlencode($tag) . '/' . $upgrader,
+            );
         }
     }
     return $selected;
