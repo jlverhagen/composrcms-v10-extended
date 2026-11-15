@@ -1,7 +1,8 @@
 <?php
 /**
  * Experimental fail-closed HTTPS transport for signed catalogues and addon packages.
- * No redirects, no proxy, no credentials, no private IPs, no install side effects.
+ * No proxy, credentials, private IPs, or install side effects. Addon downloads may opt in
+ * to a single GitHub Release asset redirect.
  * DNS answers are checked then a selected address is pinned via CURLOPT_RESOLVE.
  * Requires PHP cURL, and must be audited against the actual hosting environment.
  */
@@ -85,7 +86,7 @@ function extended_transport_resolve_public($host)
 }
 
 /** Download to a new temporary file in $directory. Caller owns cleanup. */
-function extended_transport_fetch($url, $directory, $max_bytes = 2097152)
+function extended_transport_fetch($url, $directory, $max_bytes = 2097152, $allow_github_release_redirect = false)
 {
     if (!extension_loaded('curl')) throw new RuntimeException('PHP cURL is required');
     if (!is_int($max_bytes) || $max_bytes < 1 || $max_bytes > 52428800) throw new RuntimeException('Invalid byte limit');
@@ -138,8 +139,20 @@ function extended_transport_fetch($url, $directory, $max_bytes = 2097152)
         $status = curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
         $remote_ip = curl_getinfo($curl, CURLINFO_PRIMARY_IP);
         if ($limit_exceeded) throw new RuntimeException('Download exceeds byte limit');
-        if ($ok !== true || $status !== 200 || $bytes === 0) throw new RuntimeException('HTTPS retrieval failed or returned non-200 status');
+        if ($ok !== true) throw new RuntimeException('HTTPS retrieval failed');
         if ($remote_ip !== $pinned) throw new RuntimeException('Remote IP did not match DNS pin');
+        if ($status === 302 && $allow_github_release_redirect && $host === 'github.com'
+            && preg_match('#^/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/releases/download/[^/]+/[^/]+$#D', parse_url($url, PHP_URL_PATH))) {
+            $redirect = curl_getinfo($curl, CURLINFO_REDIRECT_URL);
+            if (extended_transport_validate_url($redirect) !== 'release-assets.githubusercontent.com') {
+                throw new RuntimeException('Unexpected GitHub Release asset host');
+            }
+            // A new request independently validates and pins DNS for the asset host.
+            $asset = extended_transport_fetch($redirect, $directory, $max_bytes);
+            @unlink($path);
+            return $asset;
+        }
+        if ($status !== 200 || $bytes === 0) throw new RuntimeException('HTTPS retrieval failed or returned non-200 status');
         if (!fflush($file)) throw new RuntimeException('Cannot flush temporary download');
         return $path;
     } catch (Throwable $e) {
