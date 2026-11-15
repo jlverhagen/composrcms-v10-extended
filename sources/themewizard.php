@@ -346,17 +346,17 @@ function generate_logo($name, $font_choice = null, $logo_theme_image = 'logo/def
 
         imagecopy($canvas, $imgs['background'], 0, 0, 0, 0, imagesx($imgs['standalone']), imagesy($imgs['standalone']));
 
-        imagedestroy($imgs['background']);
-        imagedestroy($imgs['standalone']);
+        unset($imgs['background']);
+        unset($imgs['standalone']);
     } else {
         $canvas = $imgs['background'];
-        imagedestroy($imgs['standalone']);
+        unset($imgs['standalone']);
     }
     imagealphablending($canvas, true);
 
     // Add logo onto the canvas
     imagecopy($canvas, $imgs['logo'], intval($logowizard_details['logo_x_offset']), intval($logowizard_details['logo_y_offset']), 0, 0, imagesx($imgs['logo']), imagesy($imgs['logo']));
-    imagedestroy($imgs['logo']);
+    unset($imgs['logo']);
 
     // Find font details
     require_code('fonts');
@@ -433,7 +433,7 @@ function generate_logo($name, $font_choice = null, $logo_theme_image = 'logo/def
         }
 
         imagepng($canvas);
-        imagedestroy($canvas);
+        unset($canvas);
 
         exit();
     }
@@ -540,7 +540,7 @@ function make_theme($theme_name, $source_theme, $algorithm, $seed, $use, $dark =
                                     afm_make_directory($composite . substr($image_code, 0, $pos), true, true);
                                 }
                                 cms_imagesave($image, $saveat) or intelligent_write_error($saveat);
-                                imagedestroy($image);
+                                unset($image);
                                 actual_edit_theme_image($image_code, $theme_name, $lang, $image_code, $saveat_url, true);
                             }
                         } else { // Still need to do the edit, as currently it'll have been mapped to the default theme when this theme was added
@@ -647,7 +647,7 @@ function themewizard_script()
         $saveat = cms_tempnam();
         cms_imagesave($image, $saveat, 'png') or intelligent_write_error($saveat);
 
-        imagedestroy($image);
+        unset($image);
 
         cms_ob_end_clean();
 
