@@ -60,14 +60,16 @@ class Module_admin_extended_addons
                 $html = extended_browser_render_html($result, $local_install);
                 if ($local_install && $result['addons'] !== array()) {
                     $url = build_url(array('page' => '_SELF', 'type' => 'review_local_addon'), '_SELF');
-                    $html .= '<h2>Review a staged local addon</h2><form method="post" action="' .
+                    $download_enabled = defined('EXTENDED_REMOTE_ADDON_DOWNLOADS') && EXTENDED_REMOTE_ADDON_DOWNLOADS === true;
+                    $review_title = $download_enabled ? 'Download and review a verified addon' : 'Review a staged local addon';
+                    $html .= '<h2>' . $review_title . '</h2><form method="post" action="' .
                         escape_html($url->evaluate()) . '"><label for="extended_local_addon">Addon</label> ' .
                         '<select id="extended_local_addon" name="addon">';
                     foreach ($result['addons'] as $key => $addon) {
                         $html .= '<option value="' . escape_html($key) . '">' . escape_html($key) . '</option>';
                     }
                     $csrf = symbol_tempcode('INSERT_SPAMMER_BLACKHOLE');
-                    $html .= '</select>' . $csrf->evaluate() . '<button type="submit">Review local addon</button></form>';
+                    $html .= '</select>' . $csrf->evaluate() . '<button type="submit">' . ($download_enabled ? 'Download and review' : 'Review local addon') . '</button></form>';
                 }
             } catch (Throwable $e) {
                 // No file paths, secrets or parser internals leak to the Admin Zone page.
