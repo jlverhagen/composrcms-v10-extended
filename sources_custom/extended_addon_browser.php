@@ -78,7 +78,7 @@ function extended_browser_load($config, $now = null)
                     'name' => $addon['name'], 'version' => $addon['version'],
                     'license' => $addon['license'], 'cms_minimum' => $addon['cms_compatibility']['minimum'],
                     'php_minimum' => $addon['php_compatibility']['minimum'],
-                    'sha256' => $addon['sha256']
+                    'sha256' => $addon['sha256'], 'download_url' => $addon['download_url']
                 );
                 $count++;
             }
@@ -101,9 +101,11 @@ function extended_browser_escape($s)
 function extended_browser_render_html($result, $local_install = false)
 {
     $html = '<div class="extended-addon-browser">';
-    $html .= $local_install
-        ? '<p><strong>Signed addon catalogue</strong> - review an operator-staged local archive below.</p>'
-        : '<p><strong>Read-only signed addon catalogue</strong> - downloads and installation are disabled.</p>';
+    if ($local_install) {
+        $html .= '<p><strong>Signed addon catalogue</strong> - review a verified archive before installing.</p>';
+    } else {
+        $html .= '<p><strong>Read-only signed addon catalogue</strong> - downloads and installation are disabled.</p>';
+    }
     $html .= '<h2>Repository status</h2><ul>';
     foreach ($result['sources'] as $source) {
         $html .= '<li>' . extended_browser_escape($source['id']) . ': ' . extended_browser_escape($source['status']) .
