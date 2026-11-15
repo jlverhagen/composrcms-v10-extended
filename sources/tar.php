@@ -568,6 +568,27 @@ function tar_get_file(&$resource, $path, $tolerate_errors = false, $write_data_t
 }
 
 /**
+ * Split a member path into the USTAR prefix and name fields, measured in bytes.
+ *
+ * @param  string $path The member path
+ * @return ?array The prefix and name, or null if the path requires LongLink
+ */
+function tar_split_ustar_path($path)
+{
+    $length = strlen($path);
+    if ($length <= 100) {
+        return array('', $path);
+    }
+
+    // Find the first separator that leaves at most 100 bytes for the name.
+    $separator = strpos($path, '/', max(1, $length - 101));
+    if ($separator === false || $separator > 155 || $separator === $length - 1) {
+        return null;
+    }
+    return array(substr($path, 0, $separator), substr($path, $separator + 1));
+}
+
+/**
  * Add a file to the specified TAR file.
  *
  * @param  array $resource The TAR file handle
@@ -612,10 +633,12 @@ function tar_add_file(&$resource, $target_path, $data, $_mode = 0644, $_mtime = 
                 warn_exit(do_lang_tempcode('FILE_IN_ARCHIVE_TWICE', escape_html($target_path)));
             }
         }
+    }
 
-        if (strlen($target_path) > 100) {
-            tar_add_file($resource, '././@LongLink', $target_path, $_mode, $_mtime, false, $return_on_errors);
-        }
+    $ustar_path = tar_split_ustar_path($target_path);
+    if ($ustar_path === null) {
+        tar_add_file($resource, '././@LongLink', $target_path, $_mode, $_mtime, false, $return_on_errors);
+        $ustar_path = array('', substr($target_path, -100));
     }
 
     $myfile = $resource['myfile'];
@@ -629,21 +652,8 @@ function tar_add_file(&$resource, $target_path, $data, $_mode = 0644, $_mtime = 
     $offset = $resource['end'];
     $resource['directory'][$resource['end']] = array('path' => $target_path, 'mode' => $_mode, 'size' => $data_is_path ? filesize($data) : strlen($data));
 
-    if (strlen($target_path) > 100) {
-        $slash_pos = strpos(substr($target_path, strlen($target_path) - 100), '/');
-        if ($slash_pos === false) { // Must chop off start of filename because $prefix must be a directory :S
-            $slash_pos = 0;
-            $target_path = substr($target_path, 0, strrpos(substr($target_path, 0, -100), '/')) . substr($target_path, -100);
-        } else {
-            $slash_pos++;
-        }
-        $prefix_length = strlen($target_path) - 100 + $slash_pos;
-        $prefix = rtrim(pack('a155', substr($target_path, 0, $prefix_length)), '/');
-        $name = pack('a100', substr($target_path, $prefix_length));
-    } else {
-        $prefix = pack('a155', '');
-        $name = pack('a100', $target_path);
-    }
+    $prefix = pack('a155', $ustar_path[0]);
+    $name = pack('a100', $ustar_path[1]);
 
     $mode = sprintf('%07s', decoct($_mode)) . chr(0);
     $uid = sprintf('%07s', decoct(fileowner(get_file_base() . '/sources/global.php'))) . chr(0);
@@ -660,9 +670,9 @@ function tar_add_file(&$resource, $target_path, $data, $_mode = 0644, $_mtime = 
     $typeflag = pack('a1', ($target_path == '././@LongLink') ? 'L' : '');
     $linkname = pack('a100', '');
     $magic = pack('a6', 'ustar');
-    $version = pack('a2', '');
-    $uname = pack('a8', '');
-    $gname = pack('a8', '');
+    $version = '00';
+    $uname = pack('a32', '');
+    $gname = pack('a32', '');
     $devmajor = pack('a8', '');
     $devminor = pack('a8', '');
 
