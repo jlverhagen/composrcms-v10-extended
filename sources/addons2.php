@@ -1139,7 +1139,7 @@ function inform_about_addon_install($file, $also_uninstalling = null, $also_inst
     }
 
     // Check dependencies
-    $_dependencies = explode(',', array_key_exists('dependencies', $info) ? $info['dependencies'] : '');
+    $_dependencies = is_array($info['dependencies']) ? $info['dependencies'] : explode(',', $info['dependencies']);
     $dependencies = array();
     foreach ($_dependencies as $dependency) {
         if ($dependency == '') {
