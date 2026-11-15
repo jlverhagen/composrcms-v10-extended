@@ -259,7 +259,6 @@ Translations may also be downloaded directly from Transifex.';
             'lang_custom/ES/cns.ini',
             'lang_custom/ES/recommend.ini',
             'lang_custom/ES/cns_components.ini',
-            'lang_custom/ES/tapatalk.ini',
             'lang_custom/ES/facebook.ini',
             'lang_custom/ES/composr_homesite.ini',
             'lang_custom/ES/activities.ini',
