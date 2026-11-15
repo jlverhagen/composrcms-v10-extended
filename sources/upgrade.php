@@ -2769,7 +2769,7 @@ function upgrade_theme($theme, $from_version, $to_version, $test_run = true)
                             if (!is_null($image)) {
                                 if (!$test_run) {
                                     cms_imagesave($image, get_custom_file_base() . '/' . $new_path) or intelligent_write_error(get_custom_file_base() . '/' . $new_path);
-                                    imagedestroy($image);
+                                    unset($image);
 
                                     $successes[] = do_lang_tempcode('THEME_IMAGE_NEW', escape_html($new));
                                 }
