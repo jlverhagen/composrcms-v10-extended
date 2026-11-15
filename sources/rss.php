@@ -120,13 +120,12 @@ class CMS_RSS
                 $this->error = do_lang_tempcode('XML_PARSING_NOT_SUPPORTED');
                 return; // PHP5 default build on windows comes with this function disabled, so we need to be able to escape on error
             }
-            xml_set_object($xml_parser, $this);
             @xml_parser_set_option($xml_parser, XML_OPTION_TARGET_ENCODING, $parser_charset);
-            xml_set_element_handler($xml_parser, 'startElement', 'endElement');
-            xml_set_character_data_handler($xml_parser, 'startText');
+            xml_set_element_handler($xml_parser, array($this, 'startElement'), array($this, 'endElement'));
+            xml_set_character_data_handler($xml_parser, array($this, 'startText'));
             //xml_set_external_entity_ref_handler($xml_parser, 'extEntity');
-            xml_set_start_namespace_decl_handler($xml_parser, 'startNamespace');
-            xml_set_end_namespace_decl_handler($xml_parser, 'endNameSpace');
+            xml_set_start_namespace_decl_handler($xml_parser, array($this, 'startNamespace'));
+            xml_set_end_namespace_decl_handler($xml_parser, array($this, 'endNameSpace'));
 
             /*
             require_code('character_sets');
@@ -168,7 +167,7 @@ class CMS_RSS
                 $err_msg = xml_error_string($err_code) . ' [#' . strval($err_code) . ' @ ' . strval(xml_get_current_line_number($xml_parser)) . ']';
                 $this->error = do_lang('RSS_XML_ERROR', $err_msg);
             }
-            @xml_parser_free($xml_parser);
+            unset($xml_parser);
 
             $new_items = array();
             foreach ($this->gleamed_items as $i) {
