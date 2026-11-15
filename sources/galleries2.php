@@ -1283,7 +1283,7 @@ function _watermark_corner($source, $watermark_url, $x, $y)
                 $y = imagesy($source) - imagesy($watermark);
             }
             imagecopy($source, $watermark, $x, $y, 0, 0, imagesx($watermark), imagesy($watermark));
-            imagedestroy($watermark);
+            unset($watermark);
         }
     }
 }

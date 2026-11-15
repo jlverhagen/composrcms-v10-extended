@@ -148,7 +148,7 @@ class Block_main_custom_gfx
             }
 
             cms_imagesave($img, $thumb_path);
-            imagedestroy($img);
+            unset($img);
         }
 
         $url = get_custom_base_url() . '/uploads/auto_thumbs/' . $cache_id . '.png';
