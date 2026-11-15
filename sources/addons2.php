@@ -632,12 +632,13 @@ function create_addon($file, $files, $addon, $incompatibilities, $dependencies, 
  * @param  ?array $files The files to install (null: all)
  * @param  boolean $do_files Do file part
  * @param  boolean $do_db Do DB part
+ * @param  ?PATH $verified_local_path Trusted local archive supplied by the Extended controller
  */
-function install_addon($file, $files = null, $do_files = true, $do_db = true)
+function install_addon($file, $files = null, $do_files = true, $do_db = true, $verified_local_path = null)
 {
     site_maintenance_lock_engage();
 
-    $full = get_custom_file_base() . '/imports/addons/' . $file;
+    $full = $verified_local_path ?? (get_custom_file_base() . '/imports/addons/' . $file);
 
     require_code('zones2');
     require_code('zones3');
@@ -964,9 +965,10 @@ function uninstall_addon($addon, $clear_caches = true)
  * @param  ?array $also_uninstalling List of addons that we're currently uninstalling (so dependencies from these are irrelevant). (null: none)
  * @param  ?array $also_installing List of addons that we're currently installing (so dependencies to these are irrelevant). (null: none)
  * @param  boolean $always_return Whether to make sure we always return, rather than possibly bombing out with a dependency management UI
+ * @param  ?PATH $verified_local_path Trusted local archive supplied by the Extended controller
  * @return array Triple: warnings, files, addon info array
  */
-function inform_about_addon_install($file, $also_uninstalling = null, $also_installing = null, $always_return = false)
+function inform_about_addon_install($file, $also_uninstalling = null, $also_installing = null, $always_return = false, $verified_local_path = null)
 {
     if (is_null($also_uninstalling)) {
         $also_uninstalling = array();
@@ -975,7 +977,7 @@ function inform_about_addon_install($file, $also_uninstalling = null, $also_inst
         $also_installing = array();
     }
 
-    $full = get_custom_file_base() . '/imports/addons/' . $file;
+    $full = $verified_local_path ?? (get_custom_file_base() . '/imports/addons/' . $file);
 
     // Look in the tar
     require_code('tar');
