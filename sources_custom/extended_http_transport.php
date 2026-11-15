@@ -160,7 +160,7 @@ function extended_transport_fetch($url, $directory, $max_bytes = 2097152, $allow
         @unlink($path);
         throw $e;
     } finally {
-        curl_close($curl);
+        unset($curl);
         if (is_resource($file)) fclose($file);
     }
 }
