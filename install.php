@@ -571,19 +571,6 @@ function step_3()
         exit(do_lang('INST_POST_ERROR'));
     }
 
-    global $INSTALL_LANG;
-
-    // Call home, if they asked to
-    $advertise_on = post_param_integer('advertise_on', 0);
-    $email = $_POST['email'];
-    if ($email == do_lang('EMAIL_ADDRESS')) {
-        $email = ''; // In case was left as the label
-    }
-    if (($email != '') || ($advertise_on == 1)) {
-        require_code('files');
-        http_download_file('http://compo.sr/uploads/website_specific/compo.sr/scripts/newsletter_join.php?url=' . urlencode('http://' . cms_srv('HTTP_HOST') . cms_srv('SCRIPT_NAME')) . '&email=' . urlencode($email) . '&interest_level=' . urlencode($_POST['interest_level']) . '&advertise_on=' . strval($advertise_on) . '&lang=' . urlencode($INSTALL_LANG), null, false);
-    }
-
     // Forum chooser
     $forums = get_dir_contents('sources/forum', true);
     unset($forums['none']);
@@ -1000,7 +987,6 @@ function step_4()
     $master_password = '';
     $options->attach(make_option(do_lang_tempcode('MASTER_PASSWORD'), example('', 'CHOOSE_MASTER_PASSWORD'), 'master_password', $master_password, true));
     require_lang('config');
-    $options->attach(make_tick(do_lang_tempcode('SEND_ERROR_EMAILS_OCPRODUCTS'), example('', 'CONFIG_OPTION_send_error_emails_ocproducts'), 'send_error_emails_ocproducts', 1));
     $options->attach(make_tick(do_lang_tempcode('MULTI_LANG_CONTENT'), example('', 'MULTI_LANG_CONTENT_TEXT'), 'multi_lang_content', $multi_lang_content));
     $sections->attach(do_template('INSTALLER_STEP_4_SECTION', array('_GUID' => 'f051465e86a7a53ec078e0d9de773993', 'HIDDEN' => $hidden, 'TITLE' => $title, 'TEXT' => $text, 'OPTIONS' => $options)));
     $hidden->attach(form_input_hidden('self_learning_cache', '1'));
@@ -2398,7 +2384,7 @@ function step_7()
         }
     }
 
-    set_option('send_error_emails_ocproducts', strval(post_param_integer('send_error_emails_ocproducts', 0)));
+    set_option('send_error_emails_ocproducts', '0');
 
     require_code('addons2');
     $addons = find_all_hooks('systems', 'addon_registry');
