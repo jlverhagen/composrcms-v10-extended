@@ -201,6 +201,11 @@ function uninstall_addon_soft($addon)
  */
 function find_remote_addons()
 {
+    require_code('extended_version', true);
+    if (function_exists('extended_distribution_version')) {
+        return array();
+    }
+
     static $addons = array();
     if ($addons !== array()) {
         return $addons; // Caching
