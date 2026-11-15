@@ -6,8 +6,13 @@
 	</h3>
 
 	<div class="toggleable_tray">
-		<div class="staff_new_versions">
+		<div class="staff_new_versions{+START,IF,{IS_EXTENDED}} staff_extended_version{+END}">
 			{VERSION_TABLE}
+
+			{+START,IF_NON_EMPTY,{UPGRADE_URL}}
+				<p>{!EXTENDED_RUN_UPGRADER}</p>
+				<p><a class="button_screen buttons__proceed" href="{UPGRADE_URL*}"><span>{!EXTENDED_UPGRADE_TO,{UPGRADE_VERSION*}}</span></a></p>
+			{+END}
 
 			{+START,IF,{HAS_UPDATED_ADDONS}}
 				<p class="red_alert">
