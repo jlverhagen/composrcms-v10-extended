@@ -882,6 +882,19 @@ function remove_ip_ban($ip)
 }
 
 /**
+ * Check whether stock upstream error reporting is available.
+ *
+ * Do not load library code here because this can run during bootstrap failure.
+ *
+ * @return boolean Whether upstream error reporting is available
+ */
+function failure_upstream_reporting_enabled()
+{
+    return !function_exists('extended_distribution_version')
+        && !is_file(dirname(__DIR__) . '/sources_custom/extended_version.php');
+}
+
+/**
  * Lookup error on compo.sr, to see if there is more information.
  *
  * @param  mixed $error_message The error message (string or Tempcode)
@@ -889,6 +902,9 @@ function remove_ip_ban($ip)
  */
 function get_webservice_result($error_message)
 {
+    if (!failure_upstream_reporting_enabled()) {
+        return null;
+    }
     if (get_domain() == 'compo.sr') {
         return null;
     }
@@ -1119,6 +1135,7 @@ function relay_error_notification($text, $ocproducts = true, $notification_type 
     dispatch_notification($notification_type, null, do_lang('ERROR_OCCURRED_SUBJECT', get_page_or_script_name(), $ocproducts ? '?' : get_ip_address(), null, get_site_default_lang()), $mail, null, A_FROM_SYSTEM_PRIVILEGED);
     if (
         ($ocproducts) &&
+        failure_upstream_reporting_enabled() &&
         (get_option('send_error_emails_ocproducts') == '1') &&
         (!$BLOCK_OCPRODUCTS_ERROR_EMAILS) &&
         (!running_script('cron_bridge')) &&
