@@ -167,11 +167,10 @@ class Breadcrumb_substitution_loader
         if ($xml_parser === false) {
             return; // PHP5 default build on windows comes with this function disabled, so we need to be able to escape on error
         }
-        xml_set_object($xml_parser, $this);
         @xml_parser_set_option($xml_parser, XML_OPTION_TARGET_ENCODING, get_charset());
         @xml_parser_set_option($xml_parser, XML_OPTION_CASE_FOLDING, 0);
-        xml_set_element_handler($xml_parser, 'startElement', 'endElement');
-        xml_set_character_data_handler($xml_parser, 'startText');
+        xml_set_element_handler($xml_parser, array($this, 'startElement'), array($this, 'endElement'));
+        xml_set_character_data_handler($xml_parser, array($this, 'startText'));
 
         // Run the parser
         if (@xml_parse($xml_parser, $data, true) == 0) {
@@ -180,7 +179,7 @@ class Breadcrumb_substitution_loader
             attach_message('breadcrumbs.xml: ' . $err_msg, 'warn');
             return;
         }
-        @xml_parser_free($xml_parser);
+        unset($xml_parser);
     }
 
     /**
