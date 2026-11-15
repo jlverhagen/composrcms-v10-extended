@@ -72,6 +72,9 @@ class Block_main_staff_new_version
         $updated_addons = find_updated_addons();
         $has_updated_addons = (count($updated_addons) != 0);
 
-        return do_template('BLOCK_MAIN_STAFF_NEW_VERSION', array('_GUID' => '43c7b18d3d44e825247579df23a2ad9c', 'VERSION' => cms_version_pretty(), 'VERSION_TABLE' => $table, 'HAS_UPDATED_ADDONS' => $has_updated_addons));
+        require_code('extended_version', true);
+        $display_version = function_exists('extended_distribution_version') ? extended_distribution_version() : cms_version_pretty();
+
+        return do_template('BLOCK_MAIN_STAFF_NEW_VERSION', array('_GUID' => '43c7b18d3d44e825247579df23a2ad9c', 'VERSION' => $display_version, 'VERSION_TABLE' => $table, 'HAS_UPDATED_ADDONS' => $has_updated_addons));
     }
 }
