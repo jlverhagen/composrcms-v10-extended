@@ -181,9 +181,9 @@ class Hook_task_download_member_csv
             // Load data
             $data = array();
             $outfile = fopen($outfile_path, 'rb');
-            fgetcsv($outfile); // Skip header
+            fgetcsv($outfile, escape: '\\'); // Skip header
             $heading_values = array_keys($headings);
-            while (($_data = fgetcsv($outfile)) !== false) {
+            while (($_data = fgetcsv($outfile, escape: '\\')) !== false) {
                 $data[] = array_combine($heading_values, $_data);
             }
             fclose($outfile);

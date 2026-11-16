@@ -1493,12 +1493,12 @@ class Module_admin_newsletter extends Standard_crud_module
                 safe_ini_set('auto_detect_line_endings', '1');
                 $myfile = fopen($_FILES['file']['tmp_name'], GOOGLE_APPENGINE ? 'rb' : 'rt');
                 $del = ',';
-                $csv_test_line = fgetcsv($myfile, 4096, $del);
+                $csv_test_line = fgetcsv($myfile, 4096, $del, escape: '\\');
                 if ((count($csv_test_line) == 1) && (strpos($csv_test_line[0], ';') !== false)) {
                     $del = ';';
                 }
                 rewind($myfile);
-                while (($csv_line = fgetcsv($myfile, 4096, $del)) !== false) {
+                while (($csv_line = fgetcsv($myfile, 4096, $del, escape: '\\')) !== false) {
                     $__csv_data[] = $csv_line;
                 }
                 fclose($myfile);

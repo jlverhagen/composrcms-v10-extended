@@ -75,7 +75,7 @@ class Hook_task_import_member_csv
         safe_ini_set('auto_detect_line_endings', '1');
         $myfile = fopen($path, 'rt');
         $del = ',';
-        $csv_header = fgetcsv($myfile, 102400, $del);
+        $csv_header = fgetcsv($myfile, 102400, $del, escape: '\\');
         if ($csv_header === false) {
             @unlink($path);
             sync_file($path);
@@ -84,9 +84,9 @@ class Hook_task_import_member_csv
         if ((count($csv_header) == 1) && (strpos($csv_header[0], ';') !== false)) {
             $del = ';';
             rewind($myfile);
-            $csv_header = fgetcsv($myfile, 102400, $del);
+            $csv_header = fgetcsv($myfile, 102400, $del, escape: '\\');
         }
-        while (($csv_line = fgetcsv($myfile, 102400, $del)) !== false) {
+        while (($csv_line = fgetcsv($myfile, 102400, $del, escape: '\\')) !== false) {
             $line = array();
             foreach ($csv_header as $i => $h) {
                 $extracted_value = trim(unixify_line_format(array_key_exists($i, $csv_line) ? $csv_line[$i] : ''));
