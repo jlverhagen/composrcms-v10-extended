@@ -74,7 +74,6 @@ class http_timeouts_test_set extends cms_test_case
         curl_setopt($ch, CURLOPT_LOW_SPEED_LIMIT, 1);
         curl_setopt($ch, CURLOPT_LOW_SPEED_TIME, intval(ceil($timeout)));
         $result = curl_exec($ch);
-        curl_close($ch);
 
         return array(is_string($result), is_string($result) ? strlen($result) : 0);
     }
@@ -96,7 +95,7 @@ class http_timeouts_test_set extends cms_test_case
         $parsed = parse_url($url);
         $fh = fsockopen($parsed['host'], isset($parsed['port']) ? $parsed['port'] : 80, $errno, $errstr, $timeout);
         if ($fh !== false) {
-            socket_set_timeout($fh, intval($timeout), fmod($timeout, 1.0) / 1000000.0);
+            stream_set_timeout($fh, intval($timeout), fmod($timeout, 1.0) / 1000000.0);
             $out = "GET " . $url . " HTTP/1.1\r\n";
             $out .= "Host: " . $parsed['host'] . "\r\n";
             $out .= "Connection: Close\r\n\r\n";
