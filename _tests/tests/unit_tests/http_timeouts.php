@@ -74,7 +74,6 @@ class http_timeouts_test_set extends cms_test_case
         curl_setopt($ch, CURLOPT_LOW_SPEED_LIMIT, 1);
         curl_setopt($ch, CURLOPT_LOW_SPEED_TIME, intval(ceil($timeout)));
         $result = curl_exec($ch);
-        curl_close($ch);
 
         return array(is_string($result), is_string($result) ? strlen($result) : 0);
     }
