@@ -1649,15 +1649,11 @@ function _http_download_file($url, $byte_limit = null, $trigger_error = true, $n
     } else {
         $mysock = false; // Can't handle SSL here, so let it flow onto the PHP stream wrappers implementation
     }
-    if ($mysock !== false) {
-        if (function_exists('stream_set_timeout')) {
-            if (@stream_set_timeout($mysock, intval($timeout), fmod($timeout, 1.0) / 1000000.0) === false) {
-                $mysock = false;
-            }
-        } elseif (function_exists('socket_set_timeout')) {
-            if (@socket_set_timeout($mysock, intval($timeout), fmod($timeout, 1.0) / 1000000.0) === false) {
-                $mysock = false;
-            }
+    $timeout_seconds = intval($timeout);
+    $timeout_microseconds = intval(fmod($timeout, 1.0) * 1000000);
+    if (($mysock !== false) && function_exists('stream_set_timeout')) {
+        if (@stream_set_timeout($mysock, $timeout_seconds, $timeout_microseconds) === false) {
+            $mysock = false;
         }
     }
     if ($mysock !== false) {
@@ -1703,7 +1699,7 @@ function _http_download_file($url, $byte_limit = null, $trigger_error = true, $n
         $_frh = array($mysock);
         $_fwh = null;
         while ((!@feof($mysock)) || (($chunked) && ($buffer_unprocessed != ''))) { // @'d because socket might have died. If so fread will will return false and hence we'll break
-            if ((count($_frh) == 0) || ((function_exists('stream_select')) && (!@stream_select($_frh, $_fwh, $_fwh, intval($timeout), fmod($timeout, 1.0) / 1000000.0)))) {
+            if ((count($_frh) == 0) || ((function_exists('stream_select')) && (!@stream_select($_frh, $_fwh, $_fwh, $timeout_seconds, $timeout_microseconds)))) {
                 // Detected timeout
                 if (($chunked) && ($buffer_unprocessed != '')) {
                     // Either a broken chunked stream or no input at all yet...
