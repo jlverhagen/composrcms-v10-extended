@@ -326,7 +326,7 @@ function get_timezoned_date($timestamp, $include_time = true, $verbose = false, 
     $usered_now_timestamp = $utc_time ? time() : utctime_to_usertime(time(), $member);
 
     if ($usered_timestamp < 0) {
-        if (@strftime('%Y', @mktime(0, 0, 0, 1, 1, 1963)) != '1963') {
+        if (date('Y', (int) @mktime(0, 0, 0, 1, 1, 1963)) != '1963') {
             return 'pre-1970';
         }
     }
