@@ -224,7 +224,7 @@ function render_member_box($poster_details, $preview = false, $hooks = null, $ho
     $year = $GLOBALS['CNS_DRIVER']->get_member_row_field($member_id, 'm_dob_year');
     if (($day !== null) && ($month !== null) && ($year !== null)) {
         if ($GLOBALS['CNS_DRIVER']->get_member_row_field($member_id, 'm_reveal_age') == 1) {
-            if (@strftime('%Y', @mktime(0, 0, 0, 1, 1, 1963)) != '1963') {
+            if (date('Y', (int) @mktime(0, 0, 0, 1, 1, 1963)) != '1963') {
                 $dob = strval($year) . '-' . str_pad(strval($month), 2, '0', STR_PAD_LEFT) . '-' . str_pad(strval($day), 2, '0', STR_PAD_LEFT);
             } else {
                 $dob = get_timezoned_date(mktime(12, 0, 0, $month, $day, $year), false, false, true);

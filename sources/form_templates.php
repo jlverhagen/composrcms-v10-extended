@@ -2135,7 +2135,7 @@ function _form_input_date($name, $required, $null_default, $do_time, $default_ti
 
     $required = filter_form_field_required($name, $required);
 
-    if ((is_array($default_time)) && ($default_time[4] < 1970) && (@strftime('%Y', @mktime(0, 0, 0, 1, 1, 1963)) != '1963')) { // Some systems can't do negative timestamps. Actually the maximum negative integer size is also an issue
+    if ((is_array($default_time)) && ($default_time[4] < 1970) && (date('Y', (int) @mktime(0, 0, 0, 1, 1, 1963)) != '1963')) { // Some systems can't do negative timestamps. Actually the maximum negative integer size is also an issue
         list($default_minute, $default_hour, $default_month, $default_day, $default_year) = $default_time;
         if (is_null($default_minute)) {
             $default_minute = 0;

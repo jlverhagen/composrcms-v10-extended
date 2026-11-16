@@ -261,7 +261,7 @@ class Hook_profiles_tabs_about
             $_dob = mktime(12, 0, 0, $month, $day, $year);
             $_dob_censored = mktime(12, 0, 0, $month, $day);
             if ($GLOBALS['FORUM_DRIVER']->get_member_row_field($member_id_of, 'm_reveal_age') == 1) {
-                if (@strftime('%Y', @mktime(0, 0, 0, 1, 1, 1963)) != '1963') {
+                if (date('Y', (int) @mktime(0, 0, 0, 1, 1, 1963)) != '1963') {
                     $dob = strval($year) . '-' . str_pad(strval($month), 2, '0', STR_PAD_LEFT) . '-' . str_pad(strval($day), 2, '0', STR_PAD_LEFT);
                     $_dob = $_dob_censored; // Have to use censored as other is broken
                 } else {
@@ -269,7 +269,7 @@ class Hook_profiles_tabs_about
                     $_dob_censored = $_dob; // No censoring needed
                 }
             } else {
-                if (@strftime('%Y', @mktime(0, 0, 0, 1, 1, 1963)) != '1963') {
+                if (date('Y', (int) @mktime(0, 0, 0, 1, 1, 1963)) != '1963') {
                     $_dob = $_dob_censored;
                 }
                 $dob = cms_strftime(do_lang('date_no_year'), $_dob_censored);
