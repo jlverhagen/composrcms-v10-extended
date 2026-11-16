@@ -31,7 +31,6 @@ class Database_Static_mysqli extends Database_super_mysql
 {
     public $cache_db = array();
     public $last_select_db = null;
-    public $reconnected_once = false;
 
     /**
      * Get a database connection. This function shouldn't be used by you, as a connection to the database is established automatically.
@@ -252,15 +251,6 @@ class Database_Static_mysqli extends Database_super_mysql
         $results = @mysqli_query($db, $query);
         if (($results === false) && ((!$fail_ok) || (strpos(mysqli_error($db), 'is marked as crashed and should be repaired') !== false))) {
             $err = mysqli_error($db);
-
-            if ((function_exists('mysqli_ping')) && ($err == 'MySQL server has gone away') && (!$this->reconnected_once)) {
-                safe_ini_set('mysqli.reconnect', '1');
-                $this->reconnected_once = true;
-                mysqli_ping($db);
-                $ret = $this->db_query($query, $db_parts, null/*already encoded*/, null/*already encoded*/, $fail_ok, $get_insert_id);
-                $this->reconnected_once = false;
-                return $ret;
-            }
 
             if (function_exists('ocp_mark_as_escaped')) {
                 ocp_mark_as_escaped($err);
