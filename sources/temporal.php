@@ -245,6 +245,20 @@ function usertime_to_utctime($timestamp = null, $member = null)
 }
 
 /**
+ * Get a timestamp for displaying a birthday without its birth year.
+ *
+ * @param  integer $month Birth month
+ * @param  integer $day Birth day
+ * @return TIME Timestamp for the month and day
+ */
+function birthday_without_year_timestamp($month, $day)
+{
+    // Use a leap year when the current year would roll February 29 into March.
+    $year = ($month == 2 && $day == 29 && date('L') === '0') ? 2000 : null;
+    return mktime(12, 0, 0, $month, $day, $year);
+}
+
+/**
  * Format a local time/date according to locale settings. Combines best features of 'strftime' and 'date'.
  * %l is 'g' in date
  * %o is 'S' in date
