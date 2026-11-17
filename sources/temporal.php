@@ -315,6 +315,18 @@ function get_timezoned_date_tempcode($timestamp, $include_time = true)
 }
 
 /**
+ * Identify a calendar week starting on Sunday, within its calendar year.
+ *
+ * @param  TIME $timestamp Input timestamp
+ * @return array Calendar year and week number (the days before the first Sunday are week zero)
+ */
+function get_sunday_based_week($timestamp)
+{
+    $parts = getdate($timestamp);
+    return array($parts['year'], intdiv($parts['yday'] + 7 - $parts['wday'], 7));
+}
+
+/**
  * Get a nice formatted date from the specified Unix timestamp.
  *
  * @param  TIME $timestamp Input timestamp
@@ -370,9 +382,7 @@ function get_timezoned_date($timestamp, $include_time = true, $verbose = false, 
             if ($ret1 == $yesterday) { // It is/was yesterday
                 $ret = do_lang('YESTERDAY') . (($ret2 == '') ? '' : ($joiner . $ret2));
             } else {
-                $week = cms_strftime('%U %Y', $usered_timestamp);
-                $now_week = cms_strftime('%U %Y', $usered_now_timestamp);
-                if ($week == $now_week) { // It is/was this week
+                if (get_sunday_based_week($usered_timestamp) === get_sunday_based_week($usered_now_timestamp)) { // It is/was this week
                     $date_string1 = do_lang('date_withinweek_date'); // The date renderer string
                     $joiner = do_lang('date_withinweek_joiner');
                     $date_string2 = ($include_time) ? do_lang('date_regular_time') : ''; // The time renderer string
