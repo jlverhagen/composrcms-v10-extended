@@ -107,12 +107,12 @@ class XLS extends AbstractWriter
      * Writes a string (or label) to the Excel Spreadsheet
      *
      * @see pack()
-     * @param string $value The value to write out
+     * @param string|null $value The value to write out (null for a blank cell)
      * @return boolean Success status
      */
     function label($value)
     {
-        $value = str_replace(array("\r\n", "\r"), "\n", $value);
+        $value = str_replace(array("\r\n", "\r"), "\n", $value ?? '');
 
         // We're doing BIFF5, not BIFF8 - meaning a 255 char limit. If you want something good, use XLSX, else XLS for compatibility.
         if (strlen($value) >= 255) {
