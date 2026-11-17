@@ -204,7 +204,8 @@ class SharedStringsHelper
             $this->tempFilePointer = fopen($tempFilePath, 'w');
         }
 
-        fwrite($this->tempFilePointer, $sharedString . PHP_EOL);
+        // Keep each shared string on one cache line, even when the cell contains newlines.
+        fwrite($this->tempFilePointer, base64_encode($sharedString) . PHP_EOL);
     }
 
     /**
@@ -240,20 +241,15 @@ class SharedStringsHelper
             // free memory
             unset($this->inMemoryTempFileContents);
 
-            $this->inMemoryTempFileContents = explode(PHP_EOL, file_get_contents($tempFilePath));
+            $this->inMemoryTempFileContents = file($tempFilePath, FILE_IGNORE_NEW_LINES);
             $this->inMemoryTempFilePath = $tempFilePath;
         }
 
-        $sharedString = null;
-        if (array_key_exists($indexInFile, $this->inMemoryTempFileContents)) {
-            $sharedString = $this->inMemoryTempFileContents[$indexInFile];
-        }
-
-        if (!$sharedString) {
+        if (!isset($this->inMemoryTempFileContents[$indexInFile])) {
             throw new SharedStringNotFoundException("Shared string not found for index: $sharedStringIndex");
         }
 
-        return rtrim($sharedString, PHP_EOL);
+        return base64_decode($this->inMemoryTempFileContents[$indexInFile]);
     }
 
     /**
