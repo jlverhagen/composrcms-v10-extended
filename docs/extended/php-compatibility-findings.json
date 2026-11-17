@@ -1,0 +1,1003 @@
+{
+  "baseline": "ec0f8a7b8c1459f31bd10b0f3c1f3810bc174b14",
+  "date": "2026-11-17",
+  "php_files": 5116,
+  "method": "PHP token API shortlist plus source review and focused class-load probes. Call sites are grouped and runtime reachability remains dependent on installed features.",
+  "syntax": {
+    "8.2.35": {
+      "examined": 5116,
+      "failures": 4
+    },
+    "8.3.36": {
+      "examined": 5116,
+      "failures": 4
+    },
+    "8.4": {
+      "status": "unavailable on test host"
+    },
+    "8.5.12": {
+      "examined": 5116,
+      "failures": 4
+    }
+  },
+  "findings": {
+    "F14": [
+      {
+        "file": "_tests/libs/mf_parse.php",
+        "line": 77,
+        "kind": "function",
+        "name": "curl_close",
+        "arguments": 1
+      },
+      {
+        "file": "_tests/simpletest/compatibility.php",
+        "line": 167,
+        "kind": "function",
+        "name": "socket_set_timeout",
+        "arguments": 3
+      },
+      {
+        "file": "_tests/simpletest/errors.php",
+        "line": 239,
+        "kind": "constant",
+        "name": "E_STRICT",
+        "arguments": null
+      },
+      {
+        "file": "_tests/simpletest/xml.php",
+        "line": 520,
+        "kind": "function",
+        "name": "xml_set_object",
+        "arguments": 2
+      },
+      {
+        "file": "sources_custom/spout/tests/Spout/ReflectionHelper.php",
+        "line": 38,
+        "kind": "method-candidate",
+        "name": "setAccessible",
+        "arguments": null
+      },
+      {
+        "file": "sources_custom/spout/tests/Spout/ReflectionHelper.php",
+        "line": 42,
+        "kind": "method-candidate",
+        "name": "setAccessible",
+        "arguments": null
+      },
+      {
+        "file": "sources_custom/spout/tests/Spout/ReflectionHelper.php",
+        "line": 61,
+        "kind": "method-candidate",
+        "name": "setAccessible",
+        "arguments": null
+      },
+      {
+        "file": "sources_custom/spout/tests/Spout/ReflectionHelper.php",
+        "line": 71,
+        "kind": "method-candidate",
+        "name": "setAccessible",
+        "arguments": null
+      },
+      {
+        "file": "sources_custom/spout/tests/Spout/ReflectionHelper.php",
+        "line": 84,
+        "kind": "method-candidate",
+        "name": "setAccessible",
+        "arguments": null
+      },
+      {
+        "file": "sources_custom/spout/tests/Spout/ReflectionHelper.php",
+        "line": 88,
+        "kind": "method-candidate",
+        "name": "setAccessible",
+        "arguments": null
+      },
+      {
+        "file": "tracker/vendor/pimple/pimple/src/Pimple/Tests/PimpleTest.php",
+        "line": 267,
+        "kind": "method-candidate",
+        "name": "setAccessible",
+        "arguments": null
+      },
+      {
+        "file": "tracker/vendor/pimple/pimple/src/Pimple/Tests/PimpleTest.php",
+        "line": 271,
+        "kind": "method-candidate",
+        "name": "setAccessible",
+        "arguments": null
+      }
+    ],
+    "F02": [
+      {
+        "file": "adminzone/pages/minimodules_custom/fix_partial_themewizard_css.php",
+        "line": 166,
+        "kind": "function",
+        "name": "imagedestroy",
+        "arguments": 1
+      },
+      {
+        "file": "adminzone/pages/modules/admin_setupwizard.php",
+        "line": 918,
+        "kind": "function",
+        "name": "imagedestroy",
+        "arguments": 1
+      },
+      {
+        "file": "adminzone/pages/modules/admin_setupwizard.php",
+        "line": 923,
+        "kind": "function",
+        "name": "imagedestroy",
+        "arguments": 1
+      },
+      {
+        "file": "adminzone/pages/modules/admin_themewizard.php",
+        "line": 497,
+        "kind": "function",
+        "name": "imagedestroy",
+        "arguments": 1
+      },
+      {
+        "file": "adminzone/pages/modules/admin_themewizard.php",
+        "line": 511,
+        "kind": "function",
+        "name": "imagedestroy",
+        "arguments": 1
+      },
+      {
+        "file": "data_custom/multi_domain_login.php",
+        "line": 32,
+        "kind": "function",
+        "name": "imagedestroy",
+        "arguments": 1
+      }
+    ],
+    "F05": [
+      {
+        "file": "data_custom/free_article_import.php",
+        "line": 87,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 2
+      },
+      {
+        "file": "data_custom/free_article_import.php",
+        "line": 88,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 2
+      },
+      {
+        "file": "sources_custom/blocks/main_sortable_table.php",
+        "line": 166,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 2
+      },
+      {
+        "file": "sources_custom/errorservice.php",
+        "line": 43,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/errorservice.php",
+        "line": 44,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/locations_catalogues_install.php",
+        "line": 31,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 2
+      },
+      {
+        "file": "sources_custom/locations_catalogues_install.php",
+        "line": 33,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 2
+      },
+      {
+        "file": "sources_custom/locations_catalogues_install.php",
+        "line": 59,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 2
+      },
+      {
+        "file": "sources_custom/locations_catalogues_install.php",
+        "line": 61,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 2
+      },
+      {
+        "file": "sources_custom/locations_catalogues_install.php",
+        "line": 74,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 2
+      },
+      {
+        "file": "sources_custom/locations_catalogues_install.php",
+        "line": 76,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 2
+      },
+      {
+        "file": "sources_custom/locations_catalogues_install.php",
+        "line": 257,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 2
+      },
+      {
+        "file": "sources_custom/locations_catalogues_install.php",
+        "line": 259,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 2
+      },
+      {
+        "file": "sources_custom/nested_csv.php",
+        "line": 60,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 2
+      },
+      {
+        "file": "sources_custom/nested_csv.php",
+        "line": 72,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 2
+      },
+      {
+        "file": "sources_custom/nested_csv.php",
+        "line": 87,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 2
+      },
+      {
+        "file": "sources_custom/patreons.php",
+        "line": 21,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/patreons.php",
+        "line": 22,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/user_import.php",
+        "line": 65,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 3
+      },
+      {
+        "file": "sources_custom/user_import.php",
+        "line": 82,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 3
+      }
+    ],
+    "F01": [
+      {
+        "file": "pages/modules/recommend.php",
+        "line": 430,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 3
+      },
+      {
+        "file": "pages/modules/recommend.php",
+        "line": 434,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 3
+      },
+      {
+        "file": "pages/modules/recommend.php",
+        "line": 464,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 3
+      },
+      {
+        "file": "pages/modules/recommend.php",
+        "line": 516,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 3
+      },
+      {
+        "file": "pages/modules/recommend.php",
+        "line": 576,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 3
+      }
+    ],
+    "F04": [
+      {
+        "file": "sources/firephp.php",
+        "line": 767,
+        "kind": "function",
+        "name": "assert_options",
+        "arguments": 2
+      }
+    ],
+    "F03": [
+      {
+        "file": "sources/global2.php",
+        "line": 390,
+        "kind": "function",
+        "name": "strftime",
+        "arguments": 1
+      },
+      {
+        "file": "sources/temporal.php",
+        "line": 309,
+        "kind": "function",
+        "name": "strftime",
+        "arguments": 2
+      }
+    ],
+    "F07": [
+      {
+        "file": "sources_custom/Cloudinary/Uploader.php",
+        "line": 291,
+        "kind": "function",
+        "name": "curl_close",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/facebook/facebook.php",
+        "line": 1034,
+        "kind": "function",
+        "name": "curl_close",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/facebook/facebook.php",
+        "line": 1037,
+        "kind": "function",
+        "name": "curl_close",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/photobucket/PBAPI/Request/curl.php",
+        "line": 67,
+        "kind": "function",
+        "name": "curl_close",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/twitter.php",
+        "line": 103,
+        "kind": "function",
+        "name": "curl_close",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/vimeo.php",
+        "line": 243,
+        "kind": "function",
+        "name": "curl_close",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/vimeo.php",
+        "line": 501,
+        "kind": "function",
+        "name": "curl_close",
+        "arguments": 1
+      }
+    ],
+    "F06": [
+      {
+        "file": "sources_custom/getid3/getid3.lib.php",
+        "line": 860,
+        "kind": "function",
+        "name": "utf8_encode",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/getid3/getid3.lib.php",
+        "line": 932,
+        "kind": "function",
+        "name": "utf8_decode",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/photobucket/OAuth/Utils.php",
+        "line": 76,
+        "kind": "function",
+        "name": "utf8_encode",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/photobucket/OAuth/Utils.php",
+        "line": 97,
+        "kind": "function",
+        "name": "utf8_decode",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/sabredav/lib/Sabre/DAV/StringUtil.php",
+        "line": 84,
+        "kind": "function",
+        "name": "utf8_encode",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/sabredav/lib/Sabre/DAV/URLUtil.php",
+        "line": 84,
+        "kind": "function",
+        "name": "utf8_encode",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/StringUtil.php",
+        "line": 50,
+        "kind": "function",
+        "name": "utf8_encode",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/spout/src/Spout/Writer/XLS.php",
+        "line": 124,
+        "kind": "function",
+        "name": "utf8_decode",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/twitter.php",
+        "line": 1017,
+        "kind": "function",
+        "name": "utf8_encode",
+        "arguments": 1
+      }
+    ],
+    "F08": [
+      {
+        "file": "sources_custom/getid3/module.graphic.bmp.php",
+        "line": 664,
+        "kind": "function",
+        "name": "imagedestroy",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/getid3/module.graphic.bmp.php",
+        "line": 669,
+        "kind": "function",
+        "name": "imagedestroy",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/getid3/module.tag.xmp.php",
+        "line": 250,
+        "kind": "function",
+        "name": "xml_parser_free",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/getid3/module.tag.xmp.php",
+        "line": 260,
+        "kind": "function",
+        "name": "xml_parser_free",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/getid3/module.tag.xmp.php",
+        "line": 268,
+        "kind": "function",
+        "name": "xml_parser_free",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/getid3/module.tag.xmp.php",
+        "line": 273,
+        "kind": "function",
+        "name": "xml_parser_free",
+        "arguments": 1
+      }
+    ],
+    "F09": [
+      {
+        "file": "sources_custom/programe/botloaderfuncs.php",
+        "line": 964,
+        "kind": "function",
+        "name": "xml_parser_free",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/programe/botloaderfuncs.php",
+        "line": 1045,
+        "kind": "function",
+        "name": "xml_parser_free",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/programe/botloaderfuncs.php",
+        "line": 1117,
+        "kind": "function",
+        "name": "xml_parser_free",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/programe/botloaderfuncs.php",
+        "line": 1164,
+        "kind": "function",
+        "name": "xml_parser_free",
+        "arguments": 1
+      },
+      {
+        "file": "sources_custom/programe/util.php",
+        "line": 788,
+        "kind": "function",
+        "name": "xml_parser_free",
+        "arguments": 1
+      }
+    ],
+    "F13": [
+      {
+        "file": "tracker/api/soap/mantisconnect.php",
+        "line": 88,
+        "kind": "constant",
+        "name": "SOAP_FUNCTIONS_ALL",
+        "arguments": null
+      },
+      {
+        "file": "tracker/core/error_api.php",
+        "line": 196,
+        "kind": "constant",
+        "name": "E_STRICT",
+        "arguments": null
+      },
+      {
+        "file": "tracker/core/url_api.php",
+        "line": 69,
+        "kind": "function",
+        "name": "curl_close",
+        "arguments": 1
+      },
+      {
+        "file": "tracker/plugins/MantisGraph/core/Period.php",
+        "line": 68,
+        "kind": "function",
+        "name": "strftime",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/plugins/MantisGraph/core/Period.php",
+        "line": 69,
+        "kind": "function",
+        "name": "strftime",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/plugins/MantisGraph/core/Period.php",
+        "line": 108,
+        "kind": "function",
+        "name": "strftime",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/plugins/MantisGraph/core/Period.php",
+        "line": 109,
+        "kind": "function",
+        "name": "strftime",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/plugins/MantisGraph/core/Period.php",
+        "line": 138,
+        "kind": "function",
+        "name": "strftime",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/plugins/MantisGraph/core/Period.php",
+        "line": 150,
+        "kind": "function",
+        "name": "strftime",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/plugins/MantisGraph/core/Period.php",
+        "line": 151,
+        "kind": "function",
+        "name": "strftime",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/plugins/MantisGraph/core/Period.php",
+        "line": 181,
+        "kind": "function",
+        "name": "strftime",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/plugins/MantisGraph/core/Period.php",
+        "line": 192,
+        "kind": "function",
+        "name": "strftime",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/plugins/MantisGraph/core/Period.php",
+        "line": 193,
+        "kind": "function",
+        "name": "strftime",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/plugins/MantisGraph/core/Period.php",
+        "line": 213,
+        "kind": "function",
+        "name": "strftime",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/plugins/MantisGraph/core/Period.php",
+        "line": 249,
+        "kind": "function",
+        "name": "strftime",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/plugins/MantisGraph/core/Period.php",
+        "line": 258,
+        "kind": "function",
+        "name": "strftime",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-csvlib.inc.php",
+        "line": 109,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 3
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-csvlib.inc.php",
+        "line": 213,
+        "kind": "function",
+        "name": "fgetcsv",
+        "arguments": 3
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-time.inc.php",
+        "line": 439,
+        "kind": "function",
+        "name": "strftime",
+        "arguments": 1
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-time.inc.php",
+        "line": 1367,
+        "kind": "function",
+        "name": "gmstrftime",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-time.inc.php",
+        "line": 1367,
+        "kind": "function",
+        "name": "strftime",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-time.inc.php",
+        "line": 1379,
+        "kind": "function",
+        "name": "gmstrftime",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-time.inc.php",
+        "line": 1381,
+        "kind": "function",
+        "name": "gmstrftime",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-xmlschema.inc.php",
+        "line": 268,
+        "kind": "function",
+        "name": "xml_set_object",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-xmlschema.inc.php",
+        "line": 274,
+        "kind": "function",
+        "name": "xml_set_object",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-xmlschema.inc.php",
+        "line": 350,
+        "kind": "function",
+        "name": "xml_set_object",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-xmlschema.inc.php",
+        "line": 708,
+        "kind": "function",
+        "name": "xml_set_object",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-xmlschema.inc.php",
+        "line": 845,
+        "kind": "function",
+        "name": "xml_set_object",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-xmlschema.inc.php",
+        "line": 1067,
+        "kind": "function",
+        "name": "xml_set_object",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-xmlschema.inc.php",
+        "line": 1473,
+        "kind": "function",
+        "name": "xml_parser_free",
+        "arguments": 1
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-xmlschema.inc.php",
+        "line": 1516,
+        "kind": "function",
+        "name": "xml_parser_free",
+        "arguments": 1
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-xmlschema.inc.php",
+        "line": 1638,
+        "kind": "function",
+        "name": "xml_set_object",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-xmlschema.inc.php",
+        "line": 1656,
+        "kind": "function",
+        "name": "xml_set_object",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-xmlschema.inc.php",
+        "line": 1661,
+        "kind": "function",
+        "name": "xml_set_object",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-xmlschema03.inc.php",
+        "line": 293,
+        "kind": "function",
+        "name": "xml_set_object",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-xmlschema03.inc.php",
+        "line": 299,
+        "kind": "function",
+        "name": "xml_set_object",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-xmlschema03.inc.php",
+        "line": 382,
+        "kind": "function",
+        "name": "xml_set_object",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-xmlschema03.inc.php",
+        "line": 749,
+        "kind": "function",
+        "name": "xml_set_object",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-xmlschema03.inc.php",
+        "line": 887,
+        "kind": "function",
+        "name": "xml_set_object",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-xmlschema03.inc.php",
+        "line": 1166,
+        "kind": "function",
+        "name": "xml_set_object",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-xmlschema03.inc.php",
+        "line": 1629,
+        "kind": "function",
+        "name": "xml_parser_free",
+        "arguments": 1
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-xmlschema03.inc.php",
+        "line": 1673,
+        "kind": "function",
+        "name": "xml_parser_free",
+        "arguments": 1
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-xmlschema03.inc.php",
+        "line": 1795,
+        "kind": "function",
+        "name": "xml_set_object",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-xmlschema03.inc.php",
+        "line": 1814,
+        "kind": "function",
+        "name": "xml_set_object",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/adodb-xmlschema03.inc.php",
+        "line": 1820,
+        "kind": "function",
+        "name": "xml_set_object",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/drivers/adodb-ldap.inc.php",
+        "line": 69,
+        "kind": "function",
+        "name": "ldap_connect",
+        "arguments": 2
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/session/adodb-session.php",
+        "line": 446,
+        "kind": "function",
+        "name": "session_set_save_handler",
+        "arguments": 6
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/session/adodb-session2.php",
+        "line": 468,
+        "kind": "function",
+        "name": "session_set_save_handler",
+        "arguments": 6
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/session/old/adodb-cryptsession.php",
+        "line": 306,
+        "kind": "function",
+        "name": "session_set_save_handler",
+        "arguments": 6
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/session/old/adodb-session-clob.php",
+        "line": 430,
+        "kind": "function",
+        "name": "session_set_save_handler",
+        "arguments": 6
+      },
+      {
+        "file": "tracker/vendor/adodb/adodb-php/session/old/adodb-session.php",
+        "line": 421,
+        "kind": "function",
+        "name": "session_set_save_handler",
+        "arguments": 6
+      },
+      {
+        "file": "tracker/vendor/dapphp/securimage/securimage.php",
+        "line": 2156,
+        "kind": "function",
+        "name": "imagedestroy",
+        "arguments": 1
+      },
+      {
+        "file": "tracker/vendor/guzzlehttp/guzzle/src/Handler/CurlFactory.php",
+        "line": 67,
+        "kind": "function",
+        "name": "curl_close",
+        "arguments": 1
+      },
+      {
+        "file": "tracker/vendor/guzzlehttp/guzzle/src/Handler/CurlMultiHandler.php",
+        "line": 158,
+        "kind": "function",
+        "name": "curl_close",
+        "arguments": 1
+      },
+      {
+        "file": "tracker/vendor/sebastian/global-state/src/Restorer.php",
+        "line": 82,
+        "kind": "method-candidate",
+        "name": "setAccessible",
+        "arguments": null
+      },
+      {
+        "file": "tracker/vendor/sebastian/global-state/src/Restorer.php",
+        "line": 106,
+        "kind": "method-candidate",
+        "name": "setAccessible",
+        "arguments": null
+      },
+      {
+        "file": "tracker/vendor/sebastian/global-state/src/Snapshot.php",
+        "line": 351,
+        "kind": "method-candidate",
+        "name": "setAccessible",
+        "arguments": null
+      }
+    ],
+    "F10": [
+      {
+        "file": "sources_custom/swift_mailer/lib/classes/Swift/Transport/EsmtpTransport.php",
+        "line": 289,
+        "kind": "function",
+        "name": "trigger_error(..., E_USER_ERROR)"
+      }
+    ],
+    "F11": [
+      {
+        "file": "sources/database/mysql_pdo.php",
+        "line": 78,
+        "kind": "constant",
+        "name": "PDO::MYSQL_ATTR_INIT_COMMAND"
+      }
+    ],
+    "F12": [
+      {
+        "file": "sources_custom/ILess/Output.php",
+        "line": 58,
+        "kind": "runtime-class-load",
+        "name": "ILess_Output::count",
+        "diagnostics_per_runtime": 1
+      },
+      {
+        "file": "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Node.php",
+        "line": 1,
+        "kind": "runtime-class-load",
+        "name": "Sabre\\VObject\\Node",
+        "diagnostics_per_runtime": 6
+      },
+      {
+        "file": "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/ElementList.php",
+        "line": 1,
+        "kind": "runtime-class-load",
+        "name": "Sabre\\VObject\\ElementList",
+        "diagnostics_per_runtime": 10
+      },
+      {
+        "file": "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/RecurrenceIterator.php",
+        "line": 1,
+        "kind": "runtime-class-load",
+        "name": "Sabre\\VObject\\RecurrenceIterator",
+        "diagnostics_per_runtime": 5
+      }
+    ]
+  }
+}
