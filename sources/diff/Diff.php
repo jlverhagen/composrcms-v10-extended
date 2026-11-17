@@ -259,24 +259,24 @@ class Text_Diff
     public function _check($from_lines, $to_lines)
     {
         if (serialize($from_lines) != serialize($this->getOriginal())) {
-            trigger_error("Reconstructed original doesn't match", E_USER_ERROR);
+            throw new RuntimeException("Reconstructed original doesn't match");
         }
         if (serialize($to_lines) != serialize($this->getFinal())) {
-            trigger_error("Reconstructed final doesn't match", E_USER_ERROR);
+            throw new RuntimeException("Reconstructed final doesn't match");
         }
 
         $rev = $this->reverse();
         if (serialize($to_lines) != serialize($rev->getOriginal())) {
-            trigger_error("Reversed original doesn't match", E_USER_ERROR);
+            throw new RuntimeException("Reversed original doesn't match");
         }
         if (serialize($from_lines) != serialize($rev->getFinal())) {
-            trigger_error("Reversed final doesn't match", E_USER_ERROR);
+            throw new RuntimeException("Reversed final doesn't match");
         }
 
         $prevtype = null;
         foreach ($this->_edits as $edit) {
             if ($prevtype == get_class($edit)) {
-                trigger_error("Edit sequence is non-optimal", E_USER_ERROR);
+                throw new RuntimeException("Edit sequence is non-optimal");
             }
             $prevtype = get_class($edit);
         }
@@ -345,7 +345,7 @@ class Text_Diff_Op
 
     public function &reverse()
     {
-        trigger_error('Abstract method', E_USER_ERROR);
+        throw new RuntimeException('Abstract method');
     }
 
     public function norig()

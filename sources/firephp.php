@@ -314,9 +314,6 @@ class FB
 /**
  * @see http://code.google.com/p/firephp/issues/detail?id=112
  */
-if (!defined('E_STRICT')) {
-    define('E_STRICT', 2048);
-}
 if (!defined('E_RECOVERABLE_ERROR')) {
     define('E_RECOVERABLE_ERROR', 4096);
 }
@@ -1174,7 +1171,7 @@ class FirePHP {
                         $severity = 'E_USER_NOTICE';
                         break;
 
-                    case E_STRICT:
+                    case 2048: // Historical E_STRICT error level
                         $severity = 'E_STRICT';
                         break;
 
@@ -1619,15 +1616,7 @@ class FirePHP {
                     if (array_key_exists($rawName, $members) && !$property->isStatic()) {
                         $return[$name] = $this->encodeObject($members[$rawName], $objectDepth + 1, 1, $maxDepth + 1);
                     } else {
-                        if (method_exists($property, 'setAccessible')) {
-                            $property->setAccessible(true);
-                            $return[$name] = $this->encodeObject($property->getValue($object), $objectDepth + 1, 1, $maxDepth + 1);
-                        } else
-                        if ($property->isPublic()) {
-                            $return[$name] = $this->encodeObject($property->getValue($object), $objectDepth + 1, 1, $maxDepth + 1);
-                        } else {
-                            $return[$name] = '** Need PHP 5.3 to get value **';
-                        }
+                        $return[$name] = $this->encodeObject($property->getValue($object), $objectDepth + 1, 1, $maxDepth + 1);
                     }
                 } else {
                     $return[$name] = '** Excluded by Filter **';
@@ -1682,7 +1671,8 @@ class FirePHP {
                 }
 
                 if (!$this->is_utf8($key)) {
-                    $key = utf8_encode($key);
+                    require_code('character_sets');
+                    $key = cms_latin1_to_utf8($key);
                 }
 
                 $return[$key] = $this->encodeObject($val, 1, $arrayDepth + 1, $maxDepth + 1);
@@ -1697,7 +1687,8 @@ class FirePHP {
             if ($this->is_utf8($object)) {
                 return $object;
             } else {
-                return utf8_encode($object);
+                require_code('character_sets');
+                return cms_latin1_to_utf8($object);
             }
         }
         return $return;
