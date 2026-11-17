@@ -25,6 +25,9 @@ EOD;
      */
     const DEFAULT_STRINGS_COUNT_PART = 'count="9999999999999" uniqueCount="9999999999999"';
 
+    /** @var resource|false File handle for the shared strings XML */
+    protected $sharedStringsFilePointer;
+
     /** @var int Number of shared strings already written */
     protected $numSharedStrings = 0;
 
