@@ -29,7 +29,6 @@ imagesavealpha($img, true);
 $color = imagecolorallocatealpha($img, 0, 0, 0, 127);
 imagefill($img, 0, 0, $color);
 imagepng($img);
-imagedestroy($img);
 
 /**
  * Get the session cookie's name.
