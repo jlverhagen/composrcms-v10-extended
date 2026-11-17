@@ -1494,7 +1494,7 @@ class Module_admin_newsletter extends Standard_crud_module
                 $myfile = fopen($_FILES['file']['tmp_name'], GOOGLE_APPENGINE ? 'rb' : 'rt');
                 $del = ',';
                 $csv_test_line = fgetcsv($myfile, 4096, $del, escape: '\\');
-                if ((count($csv_test_line) == 1) && (strpos($csv_test_line[0], ';') !== false)) {
+                if (isset($csv_test_line[0]) && (count($csv_test_line) == 1) && (strpos($csv_test_line[0], ';') !== false)) {
                     $del = ';';
                 }
                 rewind($myfile);

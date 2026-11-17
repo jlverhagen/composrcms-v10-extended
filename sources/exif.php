@@ -128,7 +128,7 @@ function get_exif_image_caption($path, $filename)
         safe_ini_set('auto_detect_line_endings', '1');
         $csv_file_handle = fopen($csv_path, 'rt');
         $csv_test_line = fgetcsv($csv_file_handle, 10240, $del, escape: '\\');
-        if ((count($csv_test_line) == 1) && (strpos($csv_test_line[0], ';') !== false)) {
+        if (isset($csv_test_line[0]) && (count($csv_test_line) == 1) && (strpos($csv_test_line[0], ';') !== false)) {
             $del = ';';
         }
         rewind($csv_file_handle);

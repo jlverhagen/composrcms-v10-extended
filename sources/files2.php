@@ -520,13 +520,14 @@ function delete_csv_column($in_path, $column_name)
     flock($in_file, LOCK_SH);
     $header_row = fgetcsv($in_file, escape: '\\');
     $column_i = null;
-    foreach ($header_row as $i => $h) {
+    foreach ((array) $header_row as $i => $h) {
         if ($h == $column_name) {
             $column_i = $i;
             break;
         }
     }
     if (is_null($column_i)) {
+        fclose($in_file);
         return;
     }
 

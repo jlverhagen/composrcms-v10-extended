@@ -54,7 +54,7 @@ class Hook_task_import_newsletter_subscribers
         $myfile = fopen($path, 'rt');
         $del = ',';
         $csv_test_line = fgetcsv($myfile, 4096, $del, escape: '\\');
-        if ((count($csv_test_line) == 1) && (strpos($csv_test_line[0], ';') !== false)) {
+        if (isset($csv_test_line[0]) && (count($csv_test_line) == 1) && (strpos($csv_test_line[0], ';') !== false)) {
             $del = ';';
         }
         rewind($myfile);

@@ -81,7 +81,7 @@ class Hook_task_import_member_csv
             sync_file($path);
             return array(null, do_lang_tempcode('NO_DATA_IMPORTED'));
         }
-        if ((count($csv_header) == 1) && (strpos($csv_header[0], ';') !== false)) {
+        if (isset($csv_header[0]) && (count($csv_header) == 1) && (strpos($csv_header[0], ';') !== false)) {
             $del = ';';
             rewind($myfile);
             $csv_header = fgetcsv($myfile, 102400, $del, escape: '\\');
