@@ -272,7 +272,7 @@ function rows_header($download)
 function row_header($download, $out, $header_row)
 {
     if ($download) {
-        fputcsv($out, $header_row);
+        fputcsv($out, $header_row, escape: '\\');
         return;
     }
 
@@ -289,7 +289,7 @@ function row_header($download, $out, $header_row)
 function row($download, $out, $row, $even)
 {
     if ($download) {
-        fputcsv($out, $row);
+        fputcsv($out, $row, escape: '\\');
         return;
     }
 
