@@ -245,6 +245,20 @@ function usertime_to_utctime($timestamp = null, $member = null)
 }
 
 /**
+ * Get a timestamp for displaying a birthday without its birth year.
+ *
+ * @param  integer $month Birth month
+ * @param  integer $day Birth day
+ * @return TIME Timestamp for the month and day
+ */
+function birthday_without_year_timestamp($month, $day)
+{
+    // Use a leap year when the current year would roll February 29 into March.
+    $year = ($month == 2 && $day == 29 && date('L') === '0') ? 2000 : null;
+    return mktime(12, 0, 0, $month, $day, $year);
+}
+
+/**
  * Format a local time/date according to locale settings. Combines best features of 'strftime' and 'date'.
  * %l is 'g' in date
  * %o is 'S' in date
@@ -257,6 +271,24 @@ function cms_strftime($format, $timestamp = null)
 {
     if ($timestamp === null) {
         $timestamp = time();
+    }
+
+    // Use the active LC_TIME locale for the date formats shipped with Composr.
+    // Keep the legacy formatter for custom directives and other platforms.
+    if (PHP_OS_FAMILY === 'Linux' && function_exists('nl_langinfo') && preg_match('#\A(?:[^%]*%[abBeolMYp])*[^%]*\z#D', $format)) {
+        $parts = getdate($timestamp);
+        $replacements = array(
+            '%a' => nl_langinfo(constant('ABDAY_' . ($parts['wday'] + 1))),
+            '%b' => nl_langinfo(constant('ABMON_' . $parts['mon'])),
+            '%B' => nl_langinfo(constant('MON_' . $parts['mon'])),
+            '%e' => strval($parts['mday']),
+            '%o' => date('S', $timestamp),
+            '%l' => date('g', $timestamp),
+            '%M' => date('i', $timestamp),
+            '%Y' => strval($parts['year']),
+            '%p' => nl_langinfo($parts['hours'] < 12 ? AM_STR : PM_STR),
+        );
+        return trim(locale_filter(strtr($format, $replacements)));
     }
 
     static $is_windows = null;
@@ -298,6 +330,18 @@ function get_timezoned_date_tempcode($timestamp, $include_time = true)
     }
 
     return symbol_tempcode('DATE_AND_TIME', array('0', '0', '0', strval($timestamp)));
+}
+
+/**
+ * Identify a calendar week starting on Sunday, within its calendar year.
+ *
+ * @param  TIME $timestamp Input timestamp
+ * @return array Calendar year and week number (the days before the first Sunday are week zero)
+ */
+function get_sunday_based_week($timestamp)
+{
+    $parts = getdate($timestamp);
+    return array($parts['year'], intdiv($parts['yday'] + 7 - $parts['wday'], 7));
 }
 
 /**
@@ -356,9 +400,7 @@ function get_timezoned_date($timestamp, $include_time = true, $verbose = false, 
             if ($ret1 == $yesterday) { // It is/was yesterday
                 $ret = do_lang('YESTERDAY') . (($ret2 == '') ? '' : ($joiner . $ret2));
             } else {
-                $week = cms_strftime('%U %Y', $usered_timestamp);
-                $now_week = cms_strftime('%U %Y', $usered_now_timestamp);
-                if ($week == $now_week) { // It is/was this week
+                if (get_sunday_based_week($usered_timestamp) === get_sunday_based_week($usered_now_timestamp)) { // It is/was this week
                     $date_string1 = do_lang('date_withinweek_date'); // The date renderer string
                     $joiner = do_lang('date_withinweek_joiner');
                     $date_string2 = ($include_time) ? do_lang('date_regular_time') : ''; // The time renderer string

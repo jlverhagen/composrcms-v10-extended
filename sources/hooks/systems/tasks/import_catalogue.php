@@ -73,11 +73,16 @@ class Hook_task_import_catalogue
 
         // Read column names
         $del = ',';
-        $csv_field_titles = fgetcsv($handle, 1000, $del);
-        if ((count($csv_field_titles) == 1) && (strpos($csv_field_titles[0], ';') !== false)) {
+        $csv_field_titles = fgetcsv($handle, 1000, $del, escape: '\\');
+        if (isset($csv_field_titles[0]) && (count($csv_field_titles) == 1) && (strpos($csv_field_titles[0], ';') !== false)) {
             $del = ';';
             rewind($handle);
-            $csv_field_titles = fgetcsv($handle, 1000, $del);
+            $csv_field_titles = fgetcsv($handle, 1000, $del, escape: '\\');
+        }
+        if ($csv_field_titles === false || $csv_field_titles === array(null)) {
+            fclose($handle);
+            @unlink($csv_path);
+            return array(null, do_lang_tempcode('IMPROPERLY_FILLED_IN_UPLOAD'));
         }
         $csv_field_titles = array_flip($csv_field_titles);
 
@@ -124,7 +129,7 @@ class Hook_task_import_catalogue
 
         // Import, line by line
         $matched_ids = array();
-        while (($data = fgetcsv($handle, 100000, $del)) !== false) {
+        while (($data = fgetcsv($handle, 100000, $del, escape: '\\')) !== false) {
             if ($data === array(null)) {
                 continue; // blank line
             }

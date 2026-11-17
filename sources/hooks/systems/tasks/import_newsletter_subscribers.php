@@ -53,8 +53,8 @@ class Hook_task_import_newsletter_subscribers
         safe_ini_set('auto_detect_line_endings', '1');
         $myfile = fopen($path, 'rt');
         $del = ',';
-        $csv_test_line = fgetcsv($myfile, 4096, $del);
-        if ((count($csv_test_line) == 1) && (strpos($csv_test_line[0], ';') !== false)) {
+        $csv_test_line = fgetcsv($myfile, 4096, $del, escape: '\\');
+        if (isset($csv_test_line[0]) && (count($csv_test_line) == 1) && (strpos($csv_test_line[0], ';') !== false)) {
             $del = ';';
         }
         rewind($myfile);
@@ -82,7 +82,7 @@ class Hook_task_import_newsletter_subscribers
         do {
             $i = 0;
             $_csv_data = array();
-            while (($csv_line = fgetcsv($myfile, 4096, $del)) !== false) {
+            while (($csv_line = fgetcsv($myfile, 4096, $del, escape: '\\')) !== false) {
                 $_csv_data[] = $csv_line;
                 $i++;
                 if ($i == 500) {

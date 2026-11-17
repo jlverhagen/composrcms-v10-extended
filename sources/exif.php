@@ -127,12 +127,12 @@ function get_exif_image_caption($path, $filename)
 
         safe_ini_set('auto_detect_line_endings', '1');
         $csv_file_handle = fopen($csv_path, 'rt');
-        $csv_test_line = fgetcsv($csv_file_handle, 10240, $del);
-        if ((count($csv_test_line) == 1) && (strpos($csv_test_line[0], ';') !== false)) {
+        $csv_test_line = fgetcsv($csv_file_handle, 10240, $del, escape: '\\');
+        if (isset($csv_test_line[0]) && (count($csv_test_line) == 1) && (strpos($csv_test_line[0], ';') !== false)) {
             $del = ';';
         }
         rewind($csv_file_handle);
-        while (($csv_line = fgetcsv($csv_file_handle, 10240, $del)) !== false) {
+        while (($csv_line = fgetcsv($csv_file_handle, 10240, $del, escape: '\\')) !== false) {
             if (preg_match('#(^|/|\\\\)' . preg_quote(trim($csv_line[0]), '#') . '#', $filename) != 0) {
                 $comments = trim($csv_line[1]);
                 break;

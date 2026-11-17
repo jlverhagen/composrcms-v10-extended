@@ -238,7 +238,7 @@ function render_member_box($poster_details, $preview = false, $hooks = null, $ho
                 $age--;
             }
         } else {
-            $dob = cms_strftime(do_lang('date_no_year'), mktime(12, 0, 0, $month, $day));
+            $dob = cms_strftime(do_lang('date_no_year'), birthday_without_year_timestamp($month, $day));
         }
     }
 

@@ -75,7 +75,7 @@ function import_menu_csv($file_path = null)
         $file_path = get_custom_file_base() . '/uploads/website_specific/cms_menu_items.csv';
     }
     $myfile = fopen($file_path, 'rt');
-    while (($record = fgetcsv($myfile, 8192)) !== false) {
+    while (($record = fgetcsv($myfile, 8192, escape: '\\')) !== false) {
         if (!isset($record[12])) {
             continue;
         }

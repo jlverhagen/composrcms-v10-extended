@@ -518,15 +518,16 @@ function delete_csv_column($in_path, $column_name)
     // Find which field index this named column is
     $in_file = fopen($in_path, 'rb');
     flock($in_file, LOCK_SH);
-    $header_row = fgetcsv($in_file);
+    $header_row = fgetcsv($in_file, escape: '\\');
     $column_i = null;
-    foreach ($header_row as $i => $h) {
+    foreach ((array) $header_row as $i => $h) {
         if ($h == $column_name) {
             $column_i = $i;
             break;
         }
     }
     if (is_null($column_i)) {
+        fclose($in_file);
         return;
     }
 
@@ -545,7 +546,7 @@ function delete_csv_column($in_path, $column_name)
     fwrite($tmp_file, "\n");
 
     // Write out each row
-    while (($row = fgetcsv($in_file)) !== false) {
+    while (($row = fgetcsv($in_file, escape: '\\')) !== false) {
         unset($row[$column_i]);
 
         foreach ($row as $i => $c) {

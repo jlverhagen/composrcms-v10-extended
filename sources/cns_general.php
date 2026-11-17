@@ -137,7 +137,7 @@ function cns_read_in_member_profile($member_id, $lite = true)
                     $dob = get_timezoned_date(mktime(12, 0, 0, $month, $day, $year), false, false, true);
                 }
             } else {
-                $dob = cms_strftime(do_lang('date_no_year'), mktime(12, 0, 0, $month, $day));
+                $dob = cms_strftime(do_lang('date_no_year'), birthday_without_year_timestamp($month, $day));
             }
         }
         $out['birthdate'] = $dob;

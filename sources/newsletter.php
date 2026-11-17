@@ -420,7 +420,7 @@ function newsletter_block_list()
     if (is_file($block_path)) {
         safe_ini_set('auto_detect_line_endings', '1');
         $myfile = fopen($block_path, 'rt');
-        while (($row = fgetcsv($myfile, 1024)) !== false) {
+        while (($row = fgetcsv($myfile, 1024, escape: '\\')) !== false) {
             if ($row[0] != '') {
                 $blocked[$row[0]] = true;
             }
