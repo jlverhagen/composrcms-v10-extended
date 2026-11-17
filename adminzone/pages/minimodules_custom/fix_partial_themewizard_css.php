@@ -163,7 +163,6 @@ if (function_exists('imagecolorallocatealpha')) {
                     }
                     require_code('images');
                     cms_imagesave($image, $saveat) or intelligent_write_error($saveat);
-                    imagedestroy($image);
                     actual_edit_theme_image($image_code, $theme, 'EN', $image_code, $saveat_url, true);
 
                     echo '<li>' . escape_html($image_code) . '</li>';
