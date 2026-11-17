@@ -96,7 +96,7 @@ window.onscroll=function() {
         }
         $wasWriteSuccessful = $wasWriteSuccessful && fwrite($this->filePointer, "<tr>\n");
         foreach ($dataRow as $i => $cell) {
-            $cell = nl2br(htmlentities($cell));
+            $cell = nl2br(htmlentities($cell ?? ''));
 
             if (isset($metaData[$i]['url']))
             {
