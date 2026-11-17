@@ -72,10 +72,13 @@ class Database_Static_mysql_pdo extends Database_super_mysql
         }
         try {
             $dsn = 'mysql:host=' . $db_host . ';port=' . strval($db_port) . ';dbname=' . $db_name;
+            $init_command_option = defined('Pdo\\Mysql::ATTR_INIT_COMMAND')
+                ? constant('Pdo\\Mysql::ATTR_INIT_COMMAND')
+                : constant('PDO::MYSQL_ATTR_INIT_COMMAND');
             $db = new PDO($dsn, $db_user, $db_password, array(
                 PDO::ATTR_PERSISTENT => $persistent,
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . $SITE_INFO['database_charset'],
+                $init_command_option => 'SET NAMES ' . $SITE_INFO['database_charset'],
             ));
         }
         catch (PDOException $e) {
