@@ -785,7 +785,6 @@ function GetXMLTree($data) {
 	xml_parser_set_option($p,XML_OPTION_CASE_FOLDING,0);
 
 	xml_parse_into_struct($p, $data, $vals, $index);
-	xml_parser_free($p);
 
 	$tree = array();
 	$i = 0;

@@ -28,9 +28,9 @@ function install_location_data()
 
     // Open WorldGazetteer.csv
     $myfile = fopen(get_file_base() . '/data_custom/locations/WorldGazetteer.csv', 'rb');
-    $header = fgetcsv($myfile, 4096);
+    $header = fgetcsv($myfile, 4096, escape: '\\');
     $locations = array();
-    while (($line = fgetcsv($myfile, 4096)) !== false) {
+    while (($line = fgetcsv($myfile, 4096, escape: '\\')) !== false) {
         $newline = array();
         foreach ($header as $i => $h) {
             $newline[$h] = isset($line[$i]) ? $line[$i] : '';
@@ -56,9 +56,9 @@ function install_location_data()
     // Load US locations using CivicSpace-zipcodes.csv
     require_code('locations/us');
     $myfile = fopen(get_file_base() . '/data_custom/locations/CivicSpace-zipcodes.csv', 'rb');
-    $header = fgetcsv($myfile, 4096);
+    $header = fgetcsv($myfile, 4096, escape: '\\');
     $us_locations = array();
-    while (($line = fgetcsv($myfile, 4096)) !== false) {
+    while (($line = fgetcsv($myfile, 4096, escape: '\\')) !== false) {
         $newline = array();
         foreach ($header as $i => $h) {
             $newline[$h] = isset($line[$i]) ? $line[$i] : '';
@@ -71,9 +71,9 @@ function install_location_data()
     // Load World locations using World_Cities_Location_table.csv
     require_code('locations/us');
     $myfile = fopen(get_file_base() . '/data_custom/locations/World_Cities_Location_table.csv', 'rb');
-    $header = fgetcsv($myfile, 4096);
+    $header = fgetcsv($myfile, 4096, escape: '\\');
     $world_locations = array();
-    while (($line = fgetcsv($myfile, 4096)) !== false) {
+    while (($line = fgetcsv($myfile, 4096, escape: '\\')) !== false) {
         $newline = array();
         foreach ($header as $i => $h) {
             $newline[$h] = isset($line[$i]) ? $line[$i] : '';
@@ -254,9 +254,9 @@ function _worldcities_remaining_locations()
 
     // Load US locations using worldcitiespop.csv
     $myfile = fopen(get_file_base() . '/data_custom/locations/worldcitiespop.csv', 'rb');
-    $header = fgetcsv($myfile, 4096);
+    $header = fgetcsv($myfile, 4096, escape: '\\');
     $many_locations = array();
-    while (($line = fgetcsv($myfile, 4096)) !== false) {
+    while (($line = fgetcsv($myfile, 4096, escape: '\\')) !== false) {
         $country_name = find_country_name_from_iso(strtoupper($line[0]));
         $many_locations[$country_name][$line[1]] = $line[5] . ',' . $line[6];
         $many_locations[$country_name][strtolower($line[2])] = $line[5] . ',' . $line[6];

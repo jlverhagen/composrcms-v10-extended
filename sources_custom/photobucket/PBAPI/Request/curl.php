@@ -64,7 +64,6 @@ class PBAPI_Request_curl extends PBAPI_Request {
         @curl_setopt_array($ch, $curl_opts);
 
         $data = $this->curl_request($ch, $url);
-        curl_close($ch);
         return $data;
     }
 

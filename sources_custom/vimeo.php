@@ -240,7 +240,6 @@ class phpVimeo
         curl_setopt_array($curl, $curl_opts);
         $response = curl_exec($curl);
         $curl_info = curl_getinfo($curl);
-        curl_close($curl);
 
         // Cache the response
         if ($this->_cache_enabled && $cache) {
@@ -498,7 +497,6 @@ class phpVimeo
             curl_setopt($curl, CURLOPT_POST, 1);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
             $rsp = curl_exec($curl);
-            curl_close($curl);
         }
 
         // Verify

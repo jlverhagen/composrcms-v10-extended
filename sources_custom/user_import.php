@@ -62,7 +62,7 @@ function do_user_import()
     require_code('cns_members');
 
     global $USER_IMPORT_WANTED;
-    $header_row = fgetcsv($infile, 0, USER_IMPORT_DELIM);
+    $header_row = fgetcsv($infile, 0, USER_IMPORT_DELIM, escape: '\\');
     foreach ($USER_IMPORT_WANTED as $local_key => $remote_key) {
         $remote_index = array_search($remote_key, $header_row);
         if ($remote_index !== false) {
@@ -79,7 +79,7 @@ function do_user_import()
     }
 
     do {
-        $row = fgetcsv($infile, 0, USER_IMPORT_DELIM);
+        $row = fgetcsv($infile, 0, USER_IMPORT_DELIM, escape: '\\');
         if ($row !== false) {
             // Match to ID
             $remote_match_key_value = $row[$USER_IMPORT_WANTED[USER_IMPORT_MATCH_KEY]];
