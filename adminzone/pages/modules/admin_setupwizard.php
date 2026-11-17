@@ -915,12 +915,10 @@ class Module_admin_setupwizard
                 if (addon_installed('collaboration_zone')) {
                     actual_edit_theme_image('logo/collaboration-logo', $logo_save_theme, get_site_default_lang(), 'logo/collaboration-logo', $path, true);
                 }
-                imagedestroy($logo);
                 $logo = generate_logo($name, $font, $logo_theme_image, $background_theme_image, false, $logo_save_theme, true);
                 $path = 'themes/' . $logo_save_theme . '/images_custom/standalone_logo.png';
                 cms_imagesave($logo, get_custom_file_base() . '/' . $path) or intelligent_write_error($path);
                 actual_edit_theme_image('logo/standalone_logo', $logo_save_theme, get_site_default_lang(), 'logo/standalone_logo', $path, true);
-                imagedestroy($logo);
             }
             $contents = '';
             $contents .= 'title=' . $name . "\n";
