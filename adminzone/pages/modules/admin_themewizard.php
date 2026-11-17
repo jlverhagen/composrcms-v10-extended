@@ -494,7 +494,6 @@ class Module_admin_themewizard
                 cms_imagesave($img, get_custom_file_base() . '/' . $path) or intelligent_write_error($path);
                 actual_edit_theme_image('logo/-logo', $logo_save_theme, $lang, 'logo/-logo', $path);
             }
-            imagedestroy($img);
 
             // Save standalone_logo
             $img = generate_logo(post_param_string('name'), $font, $logo_theme_image, $background_theme_image, false, null, true);
@@ -508,7 +507,6 @@ class Module_admin_themewizard
                 cms_imagesave($img, get_custom_file_base() . '/' . $path) or intelligent_write_error($path);
                 actual_edit_theme_image('logo/standalone_logo', $logo_save_theme, $lang, 'logo/standalone_logo', $path);
             }
-            imagedestroy($img);
         }
         Self_learning_cache::erase_smart_cache();
 
