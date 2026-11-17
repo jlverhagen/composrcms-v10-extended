@@ -354,45 +354,28 @@ function foxy_utf8_to_nce($data = '')
  */
 function utf8tohtml($utf8)
 {
-    $result = '';
-    for ($i = 0; $i < strlen($utf8); $i++) {
-        $char = $utf8[$i];
-        $ascii = ord($char);
-        if ($ascii < 128) {
-            // one-byte character
-            $result .= $char;
-        } elseif ($ascii < 192) {
-            // non-utf8 character or not a start byte
-        } elseif ($ascii < 224) {
-            // two-byte character
-            $ascii1 = ord($utf8[$i + 1]);
-            $unicode = (63 & $ascii) * 64 +
-                       (63 & $ascii1);
-            $result .= '&#' . strval($unicode) . ';';
-            $i += 1;
-        } elseif ($ascii < 240) {
-            // three-byte character
-            $ascii1 = ord($utf8[$i + 1]);
-            $ascii2 = ord($utf8[$i + 2]);
-            $unicode = (15 & $ascii) * 4096 +
-                       (63 & $ascii1) * 64 +
-                       (63 & $ascii2);
-            $result .= '&#' . strval($unicode) . ';';
-            $i += 2;
-        } elseif ($ascii < 248) {
-            // four-byte character
-            $ascii1 = ord($utf8[$i + 1]);
-            $ascii2 = ord($utf8[$i + 2]);
-            $ascii3 = ord($utf8[$i + 3]);
-            $unicode = (15 & $ascii) * 262144 +
-                       (63 & $ascii1) * 4096 +
-                       (63 & $ascii2) * 64 +
-                       (63 & $ascii3);
-            $result .= '&#' . strval($unicode) . ';';
-            $i += 3;
+    // Match complete UTF-8 code points. Replace invalid bytes individually.
+    $pattern = '#[\xC2-\xDF][\x80-\xBF]'
+        . '|\xE0[\xA0-\xBF][\x80-\xBF]'
+        . '|[\xE1-\xEC\xEE-\xEF][\x80-\xBF]{2}'
+        . '|\xED[\x80-\x9F][\x80-\xBF]'
+        . '|\xF0[\x90-\xBF][\x80-\xBF]{2}'
+        . '|[\xF1-\xF3][\x80-\xBF]{3}'
+        . '|\xF4[\x80-\x8F][\x80-\xBF]{2}'
+        . '|[\x80-\xFF]#';
+    return preg_replace_callback($pattern, function ($matches) {
+        $sequence = $matches[0];
+        $length = strlen($sequence);
+        if ($length === 1) {
+            return '&#65533;';
         }
-    }
-    return $result;
+
+        $codepoint = ord($sequence[0]) & (0x7F >> $length);
+        for ($i = 1; $i < $length; $i++) {
+            $codepoint = ($codepoint << 6) | (ord($sequence[$i]) & 0x3F);
+        }
+        return '&#' . strval($codepoint) . ';';
+    }, $utf8);
 }
 
 /**
