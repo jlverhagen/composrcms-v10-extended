@@ -427,11 +427,11 @@ class Module_recommend
 
                     $del = ',';
 
-                    $csv_header_line_fields = fgetcsv($myfile, 10240, $del);
+                    $csv_header_line_fields = fgetcsv($myfile, 10240, $del, escape: '\\');
                     if ((count($csv_header_line_fields) == 1) && (strpos($csv_header_line_fields[0], ';') !== false)) {
                         $del = ';';
                         rewind($myfile);
-                        $csv_header_line_fields = fgetcsv($myfile, 10240, $del);
+                        $csv_header_line_fields = fgetcsv($myfile, 10240, $del, escape: '\\');
                     }
 
                     $skip_next_process = false;
@@ -461,7 +461,7 @@ class Module_recommend
                                         }
                                     }
 
-                                    while (($csv_line = fgetcsv($myfile, 10240, $del)) !== false) { // Reading a CSV record
+                                    while (($csv_line = fgetcsv($myfile, 10240, $del, escape: '\\')) !== false) { // Reading a CSV record
                                         foreach ($csv_line as $key2 => $value2) {
                                             $csv_line[$key2] = convert_to_internal_encoding(mb_convert_encoding($value2, "UTF-8", "UTF-16"), 'utf-8', 'ISO-8859-1');
                                         }
@@ -513,7 +513,7 @@ class Module_recommend
                                 }
                             }
 
-                            while (($csv_line = fgetcsv($myfile, 10240, $del)) !== false) { // Reading a CSV record
+                            while (($csv_line = fgetcsv($myfile, 10240, $del, escape: '\\')) !== false) { // Reading a CSV record
                                 $row_exploded = (array_key_exists(0, $csv_line) && strlen($csv_line['0']) > 0) ? explode(';', $csv_line[0]) : array('', '');
 
                                 $found_email_address = (strlen($row_exploded[$email_index]) > 0) ? $row_exploded[$email_index] : '';
@@ -573,7 +573,7 @@ class Module_recommend
                                 }
 
                                 // Go through all records
-                                while (($csv_line = fgetcsv($myfile, 10240, $del)) !== false) { // Reading a CSV record
+                                while (($csv_line = fgetcsv($myfile, 10240, $del, escape: '\\')) !== false) { // Reading a CSV record
                                     if (empty($csv_line[$email_field_index])) {
                                         continue;
                                     }
