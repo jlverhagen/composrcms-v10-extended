@@ -273,6 +273,24 @@ function cms_strftime($format, $timestamp = null)
         $timestamp = time();
     }
 
+    // Use the active LC_TIME locale for the date formats shipped with Composr.
+    // Keep the legacy formatter for custom directives and other platforms.
+    if (PHP_OS_FAMILY === 'Linux' && function_exists('nl_langinfo') && preg_match('#\A(?:[^%]*%[abBeolMYp])*[^%]*\z#D', $format)) {
+        $parts = getdate($timestamp);
+        $replacements = array(
+            '%a' => nl_langinfo(constant('ABDAY_' . ($parts['wday'] + 1))),
+            '%b' => nl_langinfo(constant('ABMON_' . $parts['mon'])),
+            '%B' => nl_langinfo(constant('MON_' . $parts['mon'])),
+            '%e' => strval($parts['mday']),
+            '%o' => date('S', $timestamp),
+            '%l' => date('g', $timestamp),
+            '%M' => date('i', $timestamp),
+            '%Y' => strval($parts['year']),
+            '%p' => nl_langinfo($parts['hours'] < 12 ? AM_STR : PM_STR),
+        );
+        return trim(locale_filter(strtr($format, $replacements)));
+    }
+
     static $is_windows = null;
     if ($is_windows === null) {
         $is_windows = (stripos(PHP_OS, 'WIN') === 0);
