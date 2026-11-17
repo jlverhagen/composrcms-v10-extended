@@ -961,7 +961,6 @@ function loadstartupinc($fileid){
 						xml_get_current_line_number($xml_parser)));
 		}
 	}
-	xml_parser_free($xml_parser);
 
 	# For each of the bots learn all of the files
 
@@ -1042,7 +1041,6 @@ function loadstartup()
                         xml_get_current_line_number($xml_parser)));
         }
     }
-    xml_parser_free($xml_parser);
 
 	# For each of the bots learn all of the files
 	foreach ($allbots as $bot){
@@ -1114,7 +1112,6 @@ function learnstring($xmlstring)
                     xml_get_current_line_number($xml_parser)));
     }
 
-    xml_parser_free($xml_parser);
 }
 
 
@@ -1161,7 +1158,6 @@ function learn($file)
         }
     }
     fclose($fp);
-    xml_parser_free($xml_parser);
 }
 
 /**

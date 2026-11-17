@@ -57,7 +57,7 @@ function get_nested_csv_structure()
                 warn_exit('The CSV file "' . $csv_filename . '" could not be opened.');
             }
 
-            $header_row = fgetcsv($myfile, 10000);
+            $header_row = fgetcsv($myfile, 10000, escape: '\\');
 
             if ($header_row !== false) {
                 // Initialise data for this forthcoming $csv_files entry
@@ -69,7 +69,7 @@ function get_nested_csv_structure()
                 $csv_file['headings'] = $header_row;
 
                 // Fill out 'data' and 'lists'
-                $vl_temp = fgetcsv($myfile, 10000);
+                $vl_temp = fgetcsv($myfile, 10000, escape: '\\');
                 if ($vl_temp !== false) {
                     $vl_temp = array_map('trim', $vl_temp);
                 }
@@ -84,7 +84,7 @@ function get_nested_csv_structure()
                     }
                     $csv_file['data'][] = $new_entry;
 
-                    $vl_temp = fgetcsv($myfile, 10000);
+                    $vl_temp = fgetcsv($myfile, 10000, escape: '\\');
                     if ($vl_temp !== false) {
                         $vl_temp = array_map('trim', $vl_temp);
                     }

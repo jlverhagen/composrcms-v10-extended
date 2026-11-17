@@ -18,8 +18,8 @@ function get_patreons_on_minimum_level($level)
     $patreons = array();
 
     $myfile = fopen(get_custom_file_base() . '/data_custom/patreons.csv', 'rb');
-    fgetcsv($myfile); // Skip header
-    while (($row = fgetcsv($myfile)) !== false) {
+    fgetcsv($myfile, escape: '\\'); // Skip header
+    while (($row = fgetcsv($myfile, escape: '\\')) !== false) {
         if (!isset($row[2])) {
             continue;
         }

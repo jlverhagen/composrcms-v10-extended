@@ -40,8 +40,8 @@ function get_problem_match_nearest($error_message)
     // Find matches. Stored in a CSV file.
     $matches = array();
     $myfile = fopen(get_custom_file_base() . '/uploads/website_specific/compo.sr/errorservice.csv', 'rb');
-    fgetcsv($myfile); // Skip header row
-    while (($row = fgetcsv($myfile)) !== false) {
+    fgetcsv($myfile, escape: '\\'); // Skip header row
+    while (($row = fgetcsv($myfile, escape: '\\')) !== false) {
         list($message, $summary, $how, $solution) = $row;
 
         $assembled = $summary . "\n\n[title=\"2\"]How did this happen?[/title]\n\n" . $how . "\n\n[title=\"2\"]How do I fix it?[/title]\n\n" . $solution;

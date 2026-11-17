@@ -100,7 +100,7 @@ class Twitter
      */
     public function __destruct()
     {
-        if($this->curl != null) curl_close($this->curl);
+        // CurlHandle objects are released automatically.
     }
 
     /**

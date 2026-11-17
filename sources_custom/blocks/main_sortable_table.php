@@ -163,7 +163,7 @@ class Block_main_sortable_table
             $i = 0;
             $myfile = fopen($path, 'rt');
             $full_header_row = mixed();
-            while (($row = fgetcsv($myfile, 8192)) !== false) {
+            while (($row = fgetcsv($myfile, 8192, escape: '\\')) !== false) {
                 // Fix any bad unicode
                 if (get_charset() == 'utf-8') {
                     foreach ($row as $j => $val) {

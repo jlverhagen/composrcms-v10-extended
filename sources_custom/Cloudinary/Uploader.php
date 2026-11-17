@@ -288,7 +288,6 @@ namespace Cloudinary {
             $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             $response_data = $response;
 
-            curl_close($ch);
             if ($curl_error != NULL) {
                 throw new \Cloudinary\Error("Error in sending request to server - " . $curl_error);
             }
