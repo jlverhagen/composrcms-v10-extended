@@ -314,9 +314,6 @@ class FB
 /**
  * @see http://code.google.com/p/firephp/issues/detail?id=112
  */
-if (!defined('E_STRICT')) {
-    define('E_STRICT', 2048);
-}
 if (!defined('E_RECOVERABLE_ERROR')) {
     define('E_RECOVERABLE_ERROR', 4096);
 }
@@ -1174,7 +1171,7 @@ class FirePHP {
                         $severity = 'E_USER_NOTICE';
                         break;
 
-                    case E_STRICT:
+                    case 2048: // Historical E_STRICT error level
                         $severity = 'E_STRICT';
                         break;
 
