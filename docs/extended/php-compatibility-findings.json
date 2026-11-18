@@ -1007,18 +1007,20 @@
       "startup_probe": "removed; numeric minute is not a locale encoding test",
       "production_calls_remaining": 1,
       "regression_test": "_tests/tests/unit_tests/temporal_format_compatibility.php",
-      "assertions_per_runtime": 83267,
+      "assertions_per_runtime": 192156,
       "runtimes": [
         "8.2.35",
         "8.3.36",
         "8.5.12"
       ],
       "remaining": [
-        "locale composites and modifiers",
+        "E/O and width/case/padding modifiers, including nested locale directives",
         "remaining platform extensions",
         "non-Linux behavior",
         "PHP 8.4 and full CMS workflows"
-      ]
+      ],
+      "formats": 45,
+      "locale_composites": "LC_TIME patterns, internal padding, empty twelve-hour fallback and bounded recursion"
     }
   }
 }

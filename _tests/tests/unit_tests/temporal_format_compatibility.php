@@ -24,7 +24,7 @@ class temporal_format_compatibility_test_set extends cms_test_case
             return true;
         });
         try {
-            $formats = array('%a', '%A', '%b', '%B', '%d', '%D', '%e', '%F', '%g', '%G', '%h', '%H', '%I', '%j', '%l', '%m', '%M', '%n', '%o', '%p', '%R', '%S', '%t', '%T', '%u', '%U', '%V', '%w', '%W', '%y', '%Y', '%z', '%Z', '%%', '%e%o %B %Y', '%a %e%o %B %Y', '%l:%M %p', '%Y-%m-%d %H:%M:%S %z', '%%Y %%B %Y');
+            $formats = array('%c', '%x', '%X', '%r', '%C', '%k', '%a', '%A', '%b', '%B', '%d', '%D', '%e', '%F', '%g', '%G', '%h', '%H', '%I', '%j', '%l', '%m', '%M', '%n', '%o', '%p', '%R', '%S', '%t', '%T', '%u', '%U', '%V', '%w', '%W', '%y', '%Y', '%z', '%Z', '%%', '%e%o %B %Y', '%a %e%o %B %Y', '%l:%M %p', '%Y-%m-%d %H:%M:%S %z', '%%Y %%B %Y');
             $timestamps = array(-315619200, 0, 951782400, 2147483648, 4107542400, 1772951400, 1772955000, 1793511000, 1793514600);
             for ($year = 2015; $year <= 2027; $year++) {
                 foreach (array('01-01', '01-04', '12-28', '12-31') as $day) {
@@ -42,12 +42,18 @@ class temporal_format_compatibility_test_set extends cms_test_case
                             // Suppress only the known deprecation in the reference implementation.
                             $legacy_format = str_replace(array('%e', '%l', '%o'), array('%-d', '%-I', date('S', $timestamp)), $format);
                             $expected = trim(@strftime($legacy_format, $timestamp));
+                            $raw = _cms_strftime_linux($format, $timestamp);
+                            $this->assertTrue($raw !== null, 'Expected native replacement for ' . $locale . ' / ' . $format);
                             $actual = cms_strftime($format, $timestamp);
                             $this->assertTrue($actual === $expected, $locale . ' / ' . $timezone . ' / ' . $timestamp . ' / ' . $format . ': ' . var_export(array($expected, $actual), true));
                         }
                     }
                 }
             }
+            $this->assertTrue(_cms_strftime_linux('%EY', 0) === null, 'Unsupported era modifiers must use the fallback');
+            $this->assertTrue(_cms_strftime_linux('%_d', 0) === null, 'Unsupported padding modifiers must use the fallback');
+            $this->assertTrue(_cms_strftime_linux('%c', 0, 9) === null, 'Composite recursion must be bounded');
+            $this->assertTrue(_cms_strftime_linux('%%c', 0) === '%c', 'Escaped composite must stay literal');
             date_default_timezone_set('UTC');
             setlocale(LC_TIME, 'C');
             $this->assertTrue(cms_strftime('%%o %%e %%l', 0) === '%o %e %l', 'Escaped directives must stay literal');
