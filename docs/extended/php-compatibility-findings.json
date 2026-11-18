@@ -1083,6 +1083,36 @@
       ],
       "evidence": "php-addon-scope-2026-11-18.json",
       "remaining": "Supported-addon/publication policy and final package acceptance"
+    },
+    "R02": {
+      "status": "partially_resolved",
+      "date": "2026-11-18",
+      "candidate_classes_reviewed": 6,
+      "dynamic_properties_fixed": 2,
+      "fixed_files": [
+        "sources_custom/photobucket/PBAPI.php",
+        "sources_custom/sabredav/lib/Sabre/DAVACL/AbstractPrincipalCollection.php"
+      ],
+      "evidence": "php-inheritance-review-2026-11-18.json",
+      "runtimes": [
+        "8.2.35",
+        "8.3.36",
+        "8.4.27",
+        "8.5.12"
+      ],
+      "assertions_per_runtime": 36,
+      "remaining": "Broader class graph, multi-class files, traits, computed properties and additional class-load probes"
+    },
+    "R03": {
+      "status": "partially_resolved",
+      "date": "2026-11-18",
+      "nullable_calls_fixed": [
+        "ILess default exception message",
+        "Photobucket response parsing trim",
+        "Photobucket token-response trim"
+      ],
+      "evidence": "php-inheritance-review-2026-11-18.json",
+      "remaining": "Other null/scalar, numeric, text/byte, callable and output-handler boundaries"
     }
   }
 }
