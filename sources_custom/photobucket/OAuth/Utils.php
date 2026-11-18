@@ -112,7 +112,7 @@ class OAuth_Utils {
                 }
             }
             return '?';
-    }, $string);
+        }, $string);
     }
     
     /**
