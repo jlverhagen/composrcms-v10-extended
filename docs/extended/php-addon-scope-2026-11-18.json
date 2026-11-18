@@ -1,0 +1,678 @@
+{
+  "registry_counts": {
+    "bundled": 119,
+    "optional": 118
+  },
+  "registry_errors": [],
+  "installer_inventory_entries": 6245,
+  "installer_inventory_sha256": "88eb8b68d087df067a6494f77ac8f271b5261e733db9303533dd4f1a7f9ae6ca",
+  "groups": {
+    "F01": [
+      {
+        "path": "pages/modules/recommend.php",
+        "owners": [
+          "bundled:recommend"
+        ],
+        "installer_inventory": true,
+        "exists": true
+      }
+    ],
+    "F02": [
+      {
+        "path": "adminzone/pages/minimodules_custom/fix_partial_themewizard_css.php",
+        "owners": [
+          "optional:theme_debug"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "adminzone/pages/modules/admin_setupwizard.php",
+        "owners": [
+          "bundled:setupwizard"
+        ],
+        "installer_inventory": true,
+        "exists": true
+      },
+      {
+        "path": "adminzone/pages/modules/admin_themewizard.php",
+        "owners": [
+          "bundled:themewizard"
+        ],
+        "installer_inventory": true,
+        "exists": true
+      },
+      {
+        "path": "data_custom/multi_domain_login.php",
+        "owners": [
+          "optional:multi_domain_login"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      }
+    ],
+    "F03": [
+      {
+        "path": "sources/global2.php",
+        "owners": [
+          "bundled:core"
+        ],
+        "installer_inventory": true,
+        "exists": true
+      },
+      {
+        "path": "sources/temporal.php",
+        "owners": [
+          "bundled:core"
+        ],
+        "installer_inventory": true,
+        "exists": true
+      }
+    ],
+    "F04": [
+      {
+        "path": "sources/firephp.php",
+        "owners": [
+          "bundled:core"
+        ],
+        "installer_inventory": true,
+        "exists": true
+      }
+    ],
+    "F05": [
+      {
+        "path": "data_custom/free_article_import.php",
+        "owners": [
+          "optional:free_article_import"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "sources_custom/blocks/main_sortable_table.php",
+        "owners": [
+          "optional:sortable_tables"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "sources_custom/errorservice.php",
+        "owners": [
+          "optional:composr_homesite"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "sources_custom/locations_catalogues_install.php",
+        "owners": [
+          "optional:locations_catalogues"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "sources_custom/nested_csv.php",
+        "owners": [
+          "optional:nested_cpf_csv_lists"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "sources_custom/patreons.php",
+        "owners": [
+          "optional:composr_homesite"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "sources_custom/user_import.php",
+        "owners": [
+          "optional:user_simple_csv_sync"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      }
+    ],
+    "F06": [
+      {
+        "path": "sources_custom/getid3/getid3.lib.php",
+        "owners": [
+          "optional:getid3"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "sources_custom/photobucket/OAuth/Utils.php",
+        "owners": [
+          "optional:image_syndication"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "sources_custom/sabredav/lib/Sabre/DAV/StringUtil.php",
+        "owners": [
+          "optional:webdav"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "sources_custom/sabredav/lib/Sabre/DAV/URLUtil.php",
+        "owners": [
+          "optional:webdav"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/StringUtil.php",
+        "owners": [
+          "optional:webdav"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "sources_custom/spout/src/Spout/Writer/XLS.php",
+        "owners": [
+          "optional:excel_support"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "sources_custom/twitter.php",
+        "owners": [
+          "optional:twitter_support"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      }
+    ],
+    "F07": [
+      {
+        "path": "sources_custom/Cloudinary/Uploader.php",
+        "owners": [
+          "optional:cloudinary"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "sources_custom/facebook/facebook.php",
+        "owners": [
+          "optional:facebook_support"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "sources_custom/photobucket/PBAPI/Request/curl.php",
+        "owners": [
+          "optional:image_syndication"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "sources_custom/twitter.php",
+        "owners": [
+          "optional:twitter_support"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "sources_custom/vimeo.php",
+        "owners": [
+          "optional:gallery_syndication"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      }
+    ],
+    "F08": [
+      {
+        "path": "sources_custom/getid3/module.graphic.bmp.php",
+        "owners": [
+          "optional:getid3"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "sources_custom/getid3/module.tag.xmp.php",
+        "owners": [
+          "optional:getid3"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      }
+    ],
+    "F09": [
+      {
+        "path": "sources_custom/programe/botloaderfuncs.php",
+        "owners": [
+          "optional:trickstr"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "sources_custom/programe/util.php",
+        "owners": [
+          "optional:trickstr"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      }
+    ],
+    "F10": [
+      {
+        "path": "sources_custom/swift_mailer/lib/classes/Swift/Transport/EsmtpTransport.php",
+        "owners": [
+          "optional:better_mail"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      }
+    ],
+    "F11": [
+      {
+        "path": "sources/database/mysql_pdo.php",
+        "owners": [
+          "bundled:core_database_drivers"
+        ],
+        "installer_inventory": true,
+        "exists": true
+      }
+    ],
+    "F12": [
+      {
+        "path": "sources_custom/ILess/Output.php",
+        "owners": [
+          "optional:less"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/ElementList.php",
+        "owners": [
+          "optional:webdav"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Node.php",
+        "owners": [
+          "optional:webdav"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/RecurrenceIterator.php",
+        "owners": [
+          "optional:webdav"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      }
+    ],
+    "F13": [
+      {
+        "path": "tracker/api/soap/mantisconnect.php",
+        "owners": [
+          "optional:composr_homesite_support_credits"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "tracker/core/error_api.php",
+        "owners": [
+          "optional:composr_homesite_support_credits"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "tracker/core/url_api.php",
+        "owners": [
+          "optional:composr_homesite_support_credits"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "tracker/plugins/MantisGraph/core/Period.php",
+        "owners": [
+          "optional:composr_homesite_support_credits"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "tracker/vendor/adodb/adodb-php/adodb-csvlib.inc.php",
+        "owners": [
+          "optional:composr_homesite_support_credits"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "tracker/vendor/adodb/adodb-php/adodb-time.inc.php",
+        "owners": [
+          "optional:composr_homesite_support_credits"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "tracker/vendor/adodb/adodb-php/adodb-xmlschema.inc.php",
+        "owners": [
+          "optional:composr_homesite_support_credits"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "tracker/vendor/adodb/adodb-php/adodb-xmlschema03.inc.php",
+        "owners": [
+          "optional:composr_homesite_support_credits"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "tracker/vendor/adodb/adodb-php/drivers/adodb-ldap.inc.php",
+        "owners": [
+          "optional:composr_homesite_support_credits"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "tracker/vendor/adodb/adodb-php/session/adodb-session.php",
+        "owners": [
+          "optional:composr_homesite_support_credits"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "tracker/vendor/adodb/adodb-php/session/adodb-session2.php",
+        "owners": [
+          "optional:composr_homesite_support_credits"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "tracker/vendor/adodb/adodb-php/session/old/adodb-cryptsession.php",
+        "owners": [
+          "optional:composr_homesite_support_credits"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "tracker/vendor/adodb/adodb-php/session/old/adodb-session-clob.php",
+        "owners": [
+          "optional:composr_homesite_support_credits"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "tracker/vendor/adodb/adodb-php/session/old/adodb-session.php",
+        "owners": [
+          "optional:composr_homesite_support_credits"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "tracker/vendor/dapphp/securimage/securimage.php",
+        "owners": [
+          "optional:composr_homesite_support_credits"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "tracker/vendor/guzzlehttp/guzzle/src/Handler/CurlFactory.php",
+        "owners": [
+          "optional:composr_homesite_support_credits"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "tracker/vendor/guzzlehttp/guzzle/src/Handler/CurlMultiHandler.php",
+        "owners": [
+          "optional:composr_homesite_support_credits"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "tracker/vendor/sebastian/global-state/src/Restorer.php",
+        "owners": [
+          "optional:composr_homesite_support_credits"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "tracker/vendor/sebastian/global-state/src/Snapshot.php",
+        "owners": [
+          "optional:composr_homesite_support_credits"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      }
+    ],
+    "F14": [
+      {
+        "path": "_tests/libs/mf_parse.php",
+        "owners": [
+          "optional:testing_platform"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "_tests/simpletest/compatibility.php",
+        "owners": [
+          "optional:testing_platform"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "_tests/simpletest/errors.php",
+        "owners": [
+          "optional:testing_platform"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "_tests/simpletest/xml.php",
+        "owners": [
+          "optional:testing_platform"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "sources_custom/spout/tests/Spout/ReflectionHelper.php",
+        "owners": [
+          "optional:excel_support"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      },
+      {
+        "path": "tracker/vendor/pimple/pimple/src/Pimple/Tests/PimpleTest.php",
+        "owners": [
+          "optional:composr_homesite_support_credits"
+        ],
+        "installer_inventory": false,
+        "exists": true
+      }
+    ]
+  },
+  "relevant_addons": {
+    "bundled:core": {
+      "registry": "sources/hooks/systems/addon_registry/core.php",
+      "file_count": 1353
+    },
+    "bundled:core_database_drivers": {
+      "registry": "sources/hooks/systems/addon_registry/core_database_drivers.php",
+      "file_count": 21
+    },
+    "bundled:recommend": {
+      "registry": "sources/hooks/systems/addon_registry/recommend.php",
+      "file_count": 19
+    },
+    "bundled:setupwizard": {
+      "registry": "sources/hooks/systems/addon_registry/setupwizard.php",
+      "file_count": 25
+    },
+    "bundled:themewizard": {
+      "registry": "sources/hooks/systems/addon_registry/themewizard.php",
+      "file_count": 49
+    },
+    "optional:better_mail": {
+      "registry": "sources_custom/hooks/systems/addon_registry/better_mail.php",
+      "file_count": 229
+    },
+    "optional:cloudinary": {
+      "registry": "sources_custom/hooks/systems/addon_registry/cloudinary.php",
+      "file_count": 14
+    },
+    "optional:composr_homesite": {
+      "registry": "sources_custom/hooks/systems/addon_registry/composr_homesite.php",
+      "file_count": 63
+    },
+    "optional:composr_homesite_support_credits": {
+      "registry": "sources_custom/hooks/systems/addon_registry/composr_homesite_support_credits.php",
+      "file_count": 1602
+    },
+    "optional:excel_support": {
+      "registry": "sources_custom/hooks/systems/addon_registry/excel_support.php",
+      "file_count": 89
+    },
+    "optional:facebook_support": {
+      "registry": "sources_custom/hooks/systems/addon_registry/facebook_support.php",
+      "file_count": 51
+    },
+    "optional:free_article_import": {
+      "registry": "sources_custom/hooks/systems/addon_registry/free_article_import.php",
+      "file_count": 3
+    },
+    "optional:gallery_syndication": {
+      "registry": "sources_custom/hooks/systems/addon_registry/gallery_syndication.php",
+      "file_count": 22
+    },
+    "optional:getid3": {
+      "registry": "sources_custom/hooks/systems/addon_registry/getid3.php",
+      "file_count": 86
+    },
+    "optional:image_syndication": {
+      "registry": "sources_custom/hooks/systems/addon_registry/image_syndication.php",
+      "file_count": 39
+    },
+    "optional:less": {
+      "registry": "sources_custom/hooks/systems/addon_registry/less.php",
+      "file_count": 87
+    },
+    "optional:locations_catalogues": {
+      "registry": "sources_custom/hooks/systems/addon_registry/locations_catalogues.php",
+      "file_count": 7
+    },
+    "optional:multi_domain_login": {
+      "registry": "sources_custom/hooks/systems/addon_registry/multi_domain_login.php",
+      "file_count": 3
+    },
+    "optional:nested_cpf_csv_lists": {
+      "registry": "sources_custom/hooks/systems/addon_registry/nested_cpf_csv_lists.php",
+      "file_count": 5
+    },
+    "optional:sortable_tables": {
+      "registry": "sources_custom/hooks/systems/addon_registry/sortable_tables.php",
+      "file_count": 13
+    },
+    "optional:testing_platform": {
+      "registry": "sources_custom/hooks/systems/addon_registry/testing_platform.php",
+      "file_count": 449
+    },
+    "optional:theme_debug": {
+      "registry": "sources_custom/hooks/systems/addon_registry/theme_debug.php",
+      "file_count": 5
+    },
+    "optional:trickstr": {
+      "registry": "sources_custom/hooks/systems/addon_registry/trickstr.php",
+      "file_count": 17
+    },
+    "optional:twitter_support": {
+      "registry": "sources_custom/hooks/systems/addon_registry/twitter_support.php",
+      "file_count": 10
+    },
+    "optional:user_simple_csv_sync": {
+      "registry": "sources_custom/hooks/systems/addon_registry/user_simple_csv_sync.php",
+      "file_count": 9
+    },
+    "optional:webdav": {
+      "registry": "sources_custom/hooks/systems/addon_registry/webdav.php",
+      "file_count": 170
+    }
+  },
+  "tracker": {
+    "php_files": 852,
+    "installer_php_files": 0,
+    "owners": {
+      "optional:composr_homesite_support_credits": 852
+    },
+    "unowned_php": [],
+    "upstream_version": "2.18.0"
+  },
+  "limitation": "Registry ownership and installer membership are evidence of packaging scope, not a compatibility or maintenance approval.",
+  "audit_date": "2026-11-18",
+  "core_ref": "234ce0f77a5bddec2b6a08876fa8e1a41222f050",
+  "registry_provenance": "Registry hooks and data/files.bin are unchanged between syntax baseline ec0f8a7b8c1459f31bd10b0f3c1f3810bc174b14 and core_ref.",
+  "tested_runtimes": [
+    "8.2.35",
+    "8.3.36",
+    "8.4.27",
+    "8.5.12"
+  ],
+  "assertion_checks_per_runtime": 8,
+  "registry_report_identical_on_all_runtimes": true,
+  "published_hub_release_checks": [
+    {
+      "tag": "addons-2026.11.1-alpha.1",
+      "draft": false,
+      "published_at": "2026-11-15T07:41:37Z",
+      "asset_count": 3,
+      "tracker_assets": []
+    },
+    {
+      "tag": "addons-2026.11.1-alpha.2",
+      "draft": false,
+      "published_at": "2026-11-17T23:08:50Z",
+      "asset_count": 3,
+      "tracker_assets": []
+    }
+  ]
+}

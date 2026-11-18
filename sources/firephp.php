@@ -780,7 +780,7 @@ class FirePHP {
     {
         if ($this->convertAssertionErrorsToExceptions) {
 
-          $exception = new ErrorException('Assertion Failed - Code[ ' . $code . ' ]', 0, null, $file, $line);
+          $exception = new ErrorException('Assertion Failed - Code[ ' . $code . ' ]', 0, 0, $file, $line);
 
           if ($this->throwAssertionExceptions) {
               throw $exception;

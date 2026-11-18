@@ -1044,6 +1044,45 @@
       ],
       "evidence": "php84-validation-2026-11-18.json",
       "limitation": "Full CMS workflows, broader runtime review and final packages remain open"
+    },
+    "F04": {
+      "status": "partially_resolved",
+      "assertion_severity": "explicit zero preserves the legacy value without null coercion",
+      "assertion_checks_per_runtime": 8,
+      "runtimes": [
+        "8.2.35",
+        "8.3.36",
+        "8.4.27",
+        "8.5.12"
+      ],
+      "registration_callers_in_repository": 0,
+      "remaining": "Public assertion registration still uses deprecated assert_options/ASSERT_CALLBACK; migration changes callback behavior"
+    },
+    "F13": {
+      "status": "classified_optional_unresolved",
+      "addon": "composr_homesite_support_credits",
+      "upstream": "MantisBT 2.18.0",
+      "tracker_php_files": 852,
+      "installer_php_files": 0,
+      "published_tracker_assets_in_checked_addon_releases": 0,
+      "evidence": "php-addon-scope-2026-11-18.json",
+      "remaining": "Optional maintenance policy and reachable tracker/dependency compatibility"
+    },
+    "R04": {
+      "status": "partially_resolved",
+      "registry_hooks": {
+        "bundled": 119,
+        "optional": 118
+      },
+      "all_finding_paths_owned": true,
+      "runtimes": [
+        "8.2.35",
+        "8.3.36",
+        "8.4.27",
+        "8.5.12"
+      ],
+      "evidence": "php-addon-scope-2026-11-18.json",
+      "remaining": "Supported-addon/publication policy and final package acceptance"
     }
   }
 }

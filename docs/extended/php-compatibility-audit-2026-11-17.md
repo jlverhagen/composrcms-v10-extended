@@ -100,7 +100,9 @@ F03 remains open for locale-specific E/O rules, case/combined flags and remainin
 
 ### F04 FirePHP assertion registration
 
-Status open. Assertion registration still calls assert_options with ASSERT_CALLBACK. The earlier FirePHP compatibility work did not remove this path. Test diagnostics enabled and disabled.
+Status partially resolved. The assertion callback now passes severity 0 explicitly to ErrorException, preserving its former null-to-zero conversion without a deprecated nullable argument. Eight focused assertions passed on PHP 8.2.35, 8.3.36, 8.4.27 and 8.5.12, covering converted logging, throw mode, raw logging, message/source locations and severity. The FirePHP file, committed regression test and ownership-inventory tool passed lint on all four runtimes.
+
+Assertion registration still calls assert_options with ASSERT_CALLBACK. A whole-tree search found no callers of registerAssertionHandler outside its definition. The CMS administrator debug path loads FirePHP without registering it. The API remains available to custom callers, so it cannot be silently removed or replaced with a different global handler. A native AssertionError exception handler observes uncaught failures only, while the old callback can also observe failures caught by application code. F04 remains open for that behavior-changing API migration; the severity fix does not resolve registration.
 
 - `assert_options` at [sources/firephp.php, line 767](https://github.com/jlverhagen/composrcms-v10-extended/blob/ec0f8a7b8c1459f31bd10b0f3c1f3810bc174b14/sources/firephp.php#L767).
 
@@ -199,6 +201,8 @@ Status open. Class-load probes on 8.2.35 and 8.5.12 produced 22 return-type diag
 
 ### F13 Tracker and its supplied dependencies
 
+Packaging scope classified on 2026-11-18; compatibility work remains open. All 852 tracker PHP files are owned by optional addon composr_homesite_support_credits (MantisBT 2.18.0). None appear in the standard installer data/files.bin inventory. Neither published hub addon release checked (addons-2026.11.1-alpha.1 and alpha.2) contains its TAR asset. These facts do not remove the tracker from the repository/source archives or establish its compatibility. The original support-credits addon is a separate optional maintenance scope, not an installed-core dependency. See the ownership evidence below.
+
 Status open. 57 token matches in 19 files include MantisGraph date formatting, E_STRICT, SOAP_FUNCTIONS_ALL, ADOdb CSV/XML/session/LDAP paths, Guzzle cleanup and reflection access. Additional source review found FILTER_SANITIZE_STRING in tracker/config_defaults_inc.php:219, PDO::MYSQL_ATTR_USE_BUFFERED_QUERY in tracker/vendor/adodb/adodb-php/drivers/adodb-pdo_mysql.inc.php:34, and E_USER_ERROR calls in tracker error paths. Establish which tracker components are shipped and maintained, then validate and fix the reachable set. These matches are not a claim that every tracker path was exercised.
 
 - `SOAP_FUNCTIONS_ALL` at [tracker/api/soap/mantisconnect.php, line 88](https://github.com/jlverhagen/composrcms-v10-extended/blob/ec0f8a7b8c1459f31bd10b0f3c1f3810bc174b14/tracker/api/soap/mantisconnect.php#L88).
@@ -283,6 +287,25 @@ The whole-tree lint pass found no compile-time diagnostics for implicit nullable
 The recent spreadsheet batch is merged in core PRs #31–#35. It covers explicit CSV escaping, blank XLS/HTML cells, the XLSX shared-string stream declaration, and multiline XLSX cache records. Focused PHP 8.2.35/8.5.12 export/import validation and addon TAR publication were completed earlier. Excel Support and nuSearch are available in hub release `addons-2026.11.1-alpha.2`. F06 records the still-deprecated suppressed XLS conversion. Completing the earlier batch does not close that remaining conversion path.
 
 Previously updated areas include main CSV import paths, Linux date formatting for common formats, core image cleanup, HTTP header retrieval, database reconnect behavior and diagnostic conversion/reflection paths. Their remaining or alternate paths appear in F01–F14 where found. Preserve the tested behavior when extending those fixes.
+
+## Addon ownership follow-up on 2026-11-18
+
+The CLI-only tool `_tests/libs/addon_scope_inventory.php` evaluates get_file_list on a trusted checkout and maps every finding path to its registry owner and standard installer membership. It loaded all 119 bundled and 118 optional hooks without errors, producing identical reports on PHP 8.2.35, 8.3.36, 8.4.27 and 8.5.12. The [recorded JSON](php-addon-scope-2026-11-18.json) identifies its source revision and installer inventory hash. Registry hooks and data/files.bin are unchanged between the original syntax baseline and that revision.
+
+| Findings | Shipping ownership |
+|---|---|
+| F01 | Bundled recommend |
+| F02 | Bundled setupwizard/themewizard; optional theme_debug/multi_domain_login |
+| F03, F04 | Bundled core |
+| F05 | Optional CSV/content/homesite addons, exact owners in JSON |
+| F06–F10, F12 | Optional libraries and their owning addons, exact owners in JSON |
+| F11 | Bundled core_database_drivers |
+| F13 | Optional composr_homesite_support_credits, all 852 tracker PHP files |
+| F14 | Optional testing_platform, excel_support and support-credits test dependencies |
+
+All audited source paths have registry owners. The standard installer inventory contains 6,245 entries and no tracker PHP files. The tracker addon declares 1,602 payload entries overall. Publication checks cover the two explicitly named hub addon releases, not every source distribution or future release. R04 remains open for final supported-addon/publication policy and package acceptance; ownership alone does not grant maintenance approval.
+
+The three new compatibility/inventory files are added to the testing_platform registry hook, including the temporal regression test introduced earlier. They remain optional tooling files and can be included in a future testing_platform package. The recorded ownership snapshot precedes those three additions; its 449-entry testing_platform count describes the pinned source revision.
 
 ## Remaining review and runtime checklist
 
