@@ -319,7 +319,62 @@ function _cms_strftime_linux($format, $timestamp, $depth = 0)
 {
     // Validate the whole format before replacing anything. Unknown modifiers must
     // reach the unchanged fallback, including when they occur inside a locale.
-    if ($depth > 8 || !preg_match('#\A(?:[^%]*%[%aAbBcCdeDFgGhHIjklmMnopRrSTuUVwWxXyYzZt])*[^%]*\z#D', $format)) {
+    if ($depth > 8) {
+        return null;
+    }
+    $supported_modifiers = true;
+    $format = preg_replace_callback('#%%|%([EO])([cCxXyYdeHImMSuUVwW])|%([-_0]?)([0-9]*)([CdeHIjklmMSuUVwWyY])#', function ($match) use ($timestamp, $depth, &$supported_modifiers) {
+        if ($match[0] === '%%') {
+            return '%%';
+        }
+        if (isset($match[1]) && $match[1] !== '') {
+            $modifier = $match[1];
+            $directive = $match[2];
+            $allowed = ($modifier === 'E') ? 'cCxXyY' : 'deHImMSuUVwWy';
+            $locale_item = ($modifier === 'E') ? ERA : ALT_DIGITS;
+            if (strpos($allowed, $directive) === false || nl_langinfo($locale_item) !== '') {
+                $supported_modifiers = false;
+                return $match[0];
+            }
+            // When the locale defines no era/alternative digits, libc uses the
+            // ordinary directive. Do not guess replacements for other locales.
+            return '%' . $directive;
+        }
+        $flag = $match[3];
+        $width_string = $match[4];
+        $directive = $match[5];
+        if ($flag === '' && $width_string === '') {
+            return $match[0];
+        }
+        if (strlen($width_string) > 3 || (int) $width_string > 128) {
+            $supported_modifiers = false;
+            return $match[0];
+        }
+        $value = _cms_strftime_linux('%' . $directive, $timestamp, $depth + 1);
+        if ($value === null || !preg_match('#\A[ 0-9]+\z#D', $value)) {
+            $supported_modifiers = false;
+            return $match[0];
+        }
+        $digits = ltrim($value, ' 0');
+        if ($digits === '') {
+            $digits = '0';
+        }
+        $default_width = 2;
+        if ($directive === 'j') {
+            $default_width = 3;
+        } elseif ($directive === 'Y') {
+            $default_width = 4;
+        } elseif (strpos('uw', $directive) !== false) {
+            $default_width = 1;
+        }
+        $width = max(($flag === '-') ? 1 : $default_width, (int) $width_string);
+        $padding = ($flag === '_' || $flag === '-' || ($flag === '' && strpos('ekl', $directive) !== false)) ? ' ' : '0';
+        return str_pad($digits, $width, $padding, STR_PAD_LEFT);
+    }, $format);
+    if (!$supported_modifiers) {
+        return null;
+    }
+    if (!preg_match('#\A(?:[^%]*%[%aAbBcCdeDFgGhHIjklmMnopRrSTuUVwWxXyYzZt])*[^%]*\z#D', $format)) {
         return null;
     }
     $parts = getdate($timestamp);
