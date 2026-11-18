@@ -387,9 +387,8 @@ function init__global2()
     // Register Internationalisation settings
     @header('Content-type: text/html; charset=' . get_charset());
     setlocale(LC_ALL, explode(',', do_lang('locale')));
-    if (substr(@strftime('%M'), 0, 2) == '??') { // Windows may do this because it can't output a utf-8 character set, so gets mangled to question marks by PHP
-        setlocale(LC_ALL, explode(',', do_lang('locale', null, null, null, fallback_lang()))); // The user will have to define locale_subst correctly
-    }
+    // %M is a numeric minute, so the former strftime check could not validate locale text.
+    // Keep the selected locale and apply the explicit language-pack workarounds below.
     if (do_lang('locale_ctype_hack') == '1') {
         setlocale(LC_CTYPE, explode(',', do_lang('locale', null, null, null, fallback_lang())));
     }

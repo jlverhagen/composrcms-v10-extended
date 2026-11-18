@@ -71,7 +71,13 @@ Status open. Six imagedestroy calls remain across four files. Four calls belong 
 
 ### F03 Locale formatting fallback and startup check
 
-Status open. Two strftime calls remain. The common Linux formatter has a replacement path, but custom directives and other platforms can still reach the legacy fallback. The global locale check also calls strftime. Preserve locale, timezone and custom format behavior.
+Status partially resolved on 2026-11-18. The startup strftime('%M') probe has been removed: numeric minutes cannot validate locale text encoding. Locale selection and explicit language-pack locale_ctype_hack/locale_subst settings are preserved. One production strftime call remains in the compatibility fallback.
+
+The Linux/nl_langinfo path now supports common numeric custom formats, full weekday names, ISO week dates, Sunday/Monday week numbers, timezones, newline/tab directives and literal percent escapes. Month/day names still come from LC_TIME, and locale_filter still runs. Escaped %%o, %%e and %%l are now treated as literals instead of being rewritten by the fallback's placeholder substitutions.
+
+A committed regression test, `_tests/tests/unit_tests/temporal_format_compatibility.php`, compares 39 formats over 61 timestamps, seven installed locales and five timezones with the legacy Linux formatter. It also checks escaped custom directives and language-pack substitutions. Each of PHP 8.2.35, 8.3.36 and 8.5.12 passed 83,267 assertions with unsuppressed diagnostics promoted to exceptions. Three changed PHP files passed lint on each runtime. The reference strftime call is suppressed only inside the regression test; replacement calls run without suppression. Coverage includes pre-1970/post-2038 timestamps, leap years, ISO year boundaries, DST changes and fractional-hour offsets.
+
+F03 remains open for locale composites (%c/%x/%X/%r), E/O and width/case/padding modifiers, remaining platform extensions, and non-Linux behavior. Those formats retain the legacy fallback pending behavior-preserving migration. PHP 8.4 and full CMS startup/date-display workflows remain under R01/R05. The locations below describe the original audit baseline, not the current source lines.
 
 - `strftime` at [sources/global2.php, line 390](https://github.com/jlverhagen/composrcms-v10-extended/blob/ec0f8a7b8c1459f31bd10b0f3c1f3810bc174b14/sources/global2.php#L390).
 - `strftime` at [sources/temporal.php, line 309](https://github.com/jlverhagen/composrcms-v10-extended/blob/ec0f8a7b8c1459f31bd10b0f3c1f3810bc174b14/sources/temporal.php#L309).
