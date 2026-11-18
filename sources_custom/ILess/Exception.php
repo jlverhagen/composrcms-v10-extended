@@ -78,7 +78,7 @@ class ILess_Exception extends Exception
      */
     public function __construct($message = null, $index = null, $currentFile = null, ?Exception $previous = null, $code = 0)
     {
-        $message = $this->formatMessage($message, $previous);
+        $message = $this->formatMessage($message ?? '', $previous);
 
         if (PHP_VERSION_ID < 50300) {
             $this->previous = $previous;

@@ -18,6 +18,13 @@ use Sabre\DAV;
 abstract class AbstractPrincipalCollection extends DAV\Collection implements IPrincipalCollection {
 
     /**
+     * Principal prefix, public to preserve the former dynamic property access.
+     *
+     * @var string
+     */
+    public $principalPrefix;
+
+    /**
      * Node or 'directory' name.
      *
      * @var string

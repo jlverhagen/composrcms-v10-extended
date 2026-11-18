@@ -390,6 +390,7 @@ class Hook_addon_registry_testing_platform
             '_tests/tests/unit_tests/overused_globals.php',
             '_tests/tests/unit_tests/firephp.php',
             '_tests/tests/unit_tests/firephp_assertion_compatibility.php',
+            '_tests/tests/unit_tests/optional_property_compatibility.php',
             '_tests/tests/unit_tests/temporal_format_compatibility.php',
             '_tests/tests/unit_tests/auth.php',
             '_tests/tests/unit_tests/api_classes_documented.php',

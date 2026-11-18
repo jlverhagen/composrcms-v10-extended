@@ -26,6 +26,12 @@ require_once(dirname(__FILE__).'/PBAPI/Exception/Response.php');
  * @package PBAPI
  */
 class PBAPI {
+    /**
+     * Raw response, public to preserve access to the former dynamic property.
+     *
+     * @var string|null
+     */
+    public $response_string = null;
     
     /**
      * Request object holder
@@ -278,7 +284,7 @@ class PBAPI {
         if (!$this->response) throw new PBAPI_Exception('No response parser set up', $this); 
         
         try {
-            return $this->response->parse(trim($this->response_string), $onlycontent);
+            return $this->response->parse(trim($this->response_string ?? ''), $onlycontent);
         } catch (PBAPI_Exception_Response $e) {
             //set core into exception
             throw new PBAPI_Exception_Response($e->getMessage(), $e->getCode(), $this); 
@@ -332,7 +338,7 @@ class PBAPI {
      * @return PBAPI $this Fluent reference to self
      */
     public function loadTokenFromResponse($subdomain = true) {
-        $string = trim($this->response_string);
+        $string = trim($this->response_string ?? '');
         $params = array();
         parse_str($string, $params);
         if (empty($params) || empty($params['oauth_token']) || empty($params['oauth_token_secret'])) {
