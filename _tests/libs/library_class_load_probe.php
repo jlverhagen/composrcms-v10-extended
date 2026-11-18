@@ -24,6 +24,17 @@ if ($argc !== 3 || $source === false || !isset($groups[$group])) {
     exit(2);
 }
 $files = array();
+$cms_dependencies = array();
+function require_code($name)
+{
+    global $source, $group, $cms_dependencies;
+    if ($group !== 'facebook' || $name !== 'json') {
+        throw new RuntimeException('Unreviewed CMS dependency: ' . $name);
+    }
+    // Match the SDK's real Composr dependency without bootstrapping the site.
+    require_once $source . '/sources/json.php';
+    $cms_dependencies['sources/json.php'] = hash_file('sha256', $source . '/sources/json.php');
+}
 foreach ($groups[$group] as $relative) {
     $path = $source . '/' . $relative;
     if (is_file($path)) {
@@ -132,7 +143,7 @@ foreach (array_keys($files) as $file) {
 echo json_encode(array(
     'php' => PHP_VERSION, 'group' => $group, 'php_files' => count($files),
     'discovered' => count($symbols), 'loaded' => count($loaded), 'failures' => $failures,
-    'declarations' => $loaded, 'inventory' => $inventory,
+    'declarations' => $loaded, 'inventory' => $inventory, 'cms_dependencies' => $cms_dependencies,
     'scope' => 'Declaration loading/reflection only; no constructors or library workflows invoked by the probe'
 ), JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES), "\n";
 exit($failures === array() ? 0 : 1);

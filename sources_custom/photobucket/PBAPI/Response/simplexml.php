@@ -55,9 +55,13 @@ class PBAPI_Response_simplexml extends PBAPI_Response {
     /**
      * Detect an exception using xml element
      *
-     * @param SimpleXMLElement $obj
+     * @param array|SimpleXMLElement $obj
      */
-    protected function detectException(SimpleXMLElement $obj) {
+    protected function detectException(array|SimpleXMLElement $obj) {
+        if (is_array($obj)) {
+            parent::detectException($obj);
+            return;
+        }
         $status = (string) $obj->status;
         if ($status != 'OK') {
             $message = (string) $obj->message;

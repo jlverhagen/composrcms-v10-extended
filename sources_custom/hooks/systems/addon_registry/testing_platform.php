@@ -142,6 +142,7 @@ class Hook_addon_registry_testing_platform
             '_tests/libs/addon_scope_inventory.php',
             '_tests/libs/property_graph_probe.php',
             '_tests/libs/library_class_load_probe.php',
+            '_tests/libs/photobucket_response_probe.php',
             '_tests/libs/mf_parse.php',
             'lang_custom/EN/phpdoc.ini',
             'sources_custom/php.php',
