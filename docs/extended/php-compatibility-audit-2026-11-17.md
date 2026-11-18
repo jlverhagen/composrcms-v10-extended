@@ -14,10 +14,18 @@ Each available binary checked every PHP file with `php -n -d error_reporting=-1 
 |---|---:|---:|---:|---|
 | PHP 8.2.35 | 5,116 | 5,112 | 4 | Same intentional non-runtime files below |
 | PHP 8.3.36 | 5,116 | 5,112 | 4 | Same intentional non-runtime files below |
-| PHP 8.4 | — | — | — | Binary unavailable on techie75 |
+| PHP 8.4.27 | 5,116 | 5,112 | 4 | Follow-up on 2026-11-18, same four non-runtime files |
 | PHP 8.5.12 | 5,116 | 5,112 | 4 | Same intentional non-runtime files below |
 
 The four diagnostic files are `sources_custom/phpstub.php:607`, a developer symbol stub declaring an exit function, and three Hack fixtures under `tracker/vendor/nikic/fast-route/test/HackTypechecker/fixtures/` named `all_options.php`, `empty_options.php`, and `no_options.php`. Preserve them as explicit lint exclusions when using PHP syntax results as a gate. No executable CMS syntax failure was found in this pass.
+
+## PHP 8.4 follow-up on 2026-11-18
+
+Installed the side-by-side Remi PHP 8.4.27 CLI runtime with mbstring, XML, GD, mysqlnd/PDO and intl support. This did not install a PHP-FPM service or change the website's selected PHP version. The [validation evidence](php84-validation-2026-11-18.json) records the loaded module list, raw diagnostics, probe results and staged fixture inventory hashes.
+
+Before the 5,116-file syntax scan, every PHP path and Git blob hash was compared with the original audit baseline. The aggregate SHA256 matched `3bacdf708df5eefcaf82be153d132d0c281ed950271dbd744abe44753a3aeac9`. PHP 8.4.27 parsed 5,112 files successfully and reported exactly the same developer stub and three Hack fixtures as the other runtimes, with no additional diagnostic files.
+
+Five retained focused suites passed with empty stderr: developer/test helpers (F14), ILess/Sabre interfaces and calendar behavior (F12), Latin-1 conversion (F06), Swift method dispatch/error behavior (F10), and the expanded date formatter (F03, 799,735 assertions). These fixtures exercise the merged fixes rather than the older syntax baseline. The evidence records hashes for each probe and its staged PHP inventory. This completes R01's baseline syntax and representative-probe requirement. It does not complete R02–R06, the unresolved F03/F04/F13 findings, full CMS/browser workflows or final combined package acceptance.
 
 ## Scan scope and limitations
 
@@ -85,7 +93,7 @@ A further migration supports numeric -, _ and 0 padding flags and field widths t
 
 The expanded test covers 126 numeric modifier forms plus the original 45 formats. It adds six E forms and thirteen O forms where the locale metadata permits, and explicitly verifies fallback where locale-specific rules exist. Both changed PHP files passed lint, and the regression test passed 799,735 assertions per runtime on PHP 8.2.35, 8.3.36 and 8.5.12. Fixtures still cover seven locales, five timezones and 61 timestamps. Replacement calls run with diagnostics promoted to exceptions; only the deprecated reference is suppressed.
 
-F03 remains open for locale-specific E/O rules, case/combined flags and remaining platform extensions, plus non-Linux behavior. Formats using unsupported nested locale directives retain the legacy fallback pending behavior-preserving migration. PHP 8.4 and full CMS startup/date-display workflows remain under R01/R05. The locations below describe the original audit baseline, not the current source lines.
+F03 remains open for locale-specific E/O rules, case/combined flags and remaining platform extensions, plus non-Linux behavior. Formats using unsupported nested locale directives retain the legacy fallback pending behavior-preserving migration. PHP 8.4 focused results are recorded below; full CMS startup/date-display workflows remain under R05. The locations below describe the original audit baseline, not the current source lines.
 
 - `strftime` at [sources/global2.php, line 390](https://github.com/jlverhagen/composrcms-v10-extended/blob/ec0f8a7b8c1459f31bd10b0f3c1f3810bc174b14/sources/global2.php#L390).
 - `strftime` at [sources/temporal.php, line 309](https://github.com/jlverhagen/composrcms-v10-extended/blob/ec0f8a7b8c1459f31bd10b0f3c1f3810bc174b14/sources/temporal.php#L309).
@@ -278,7 +286,7 @@ Previously updated areas include main CSV import paths, Linux date formatting fo
 
 ## Remaining review and runtime checklist
 
-- [ ] R01 Run the full syntax scan and representative probes on PHP 8.4, with the same baseline and recorded extension configuration.
+- [x] R01 Full baseline syntax scan and representative probes completed on PHP 8.4.27; extension configuration and fixture hashes recorded in the follow-up evidence.
 - [ ] R02 Review class property assignments across inheritance and load maintained optional libraries to catch dynamic property warnings and additional interface signature issues.
 - [ ] R03 Exercise null/scalar boundaries, invalid text/byte input, numeric truncation, null keys, string increments, relative callables and output handlers with meaningful fixtures. A clean syntax scan cannot close this item.
 - [ ] R04 Record the supported optional addon and tracker scope from registry hooks and published packages, linking every open source group to that scope. Exclude aps and mobiquo as already decided.
