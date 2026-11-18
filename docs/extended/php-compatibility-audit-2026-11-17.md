@@ -307,6 +307,25 @@ All audited source paths have registry owners. The standard installer inventory 
 
 The three new compatibility/inventory files are added to the testing_platform registry hook, including the temporal regression test introduced earlier. They remain optional tooling files and can be included in a future testing_platform package. The recorded ownership snapshot precedes those three additions; its 449-entry testing_platform count describes the pinned source revision.
 
+## Inheritance and runtime-boundary follow-up on 2026-11-18
+
+A lexer-assisted shortlist examined literal $this property writes in single-class files outside tracker and tests, followed by manual source/inheritance review. The [recorded evidence](php-inheritance-review-2026-11-18.json) contains six candidate dispositions, source hashes, negative-control diagnostics and fixed results. This shortlist is not a complete class graph or dataflow audit. Multi-class/anonymous-class files, traits, ambiguous or external parent resolution and computed property names still need review.
+
+| Candidate | Disposition |
+|---|---|
+| Photobucket PBAPI::$response_string | Confirmed dynamic property; declared public with null default to preserve existing access/state |
+| Sabre AbstractPrincipalCollection::$principalPrefix | Confirmed dynamic property; declared public on the parent class to preserve existing access |
+| MySQL base cache_db/last_select_db writes | All three concrete MySQL drivers declare these properties; verified reflection and inherited cache resets without opening connections |
+| ILess_Exception::$previous write | Guarded by PHP_VERSION_ID < 50300, so unreachable on PHP 8.2–8.5; retained |
+| PBAPI_Exception code/message writes | Inherited protected Exception properties; verified by reflection and retained |
+| Sabre lock exception message write | Inherited protected Exception property; verified by reflection and retained |
+
+Runtime probes reproduced both dynamic-property deprecations and ILess's default null exception-message deprecation on PHP 8.2.35, 8.3.36, 8.4.27 and 8.5.12. The corresponding three source files are unchanged between the original syntax baseline and the pre-fix revision. ILess now supplies an empty string for its default/null message before formatting; explicit messages, exception codes and previous-exception links are preserved. Photobucket's two trim calls likewise supply empty text for an absent response while retaining its public null response state, raw bytes, parsed trimming, token fields and existing missing-token exception.
+
+All five changed PHP files passed lint on each runtime. The committed `_tests/tests/unit_tests/optional_property_compatibility.php` test passed 36 assertions per runtime with unsuppressed diagnostics promoted to exceptions and empty stderr. Checks include property declaration/visibility, inherited exception state, three MySQL cache resets, WebDAV default/custom prefixes, listing/lookup/search and disabled-listing behavior, Photobucket raw/parsed/token behavior, and ILess default/explicit/chained exceptions. External database, HTTP and API connections were not opened. The test is registered to testing_platform.
+
+These fixes belong to optional image_syndication, webdav and less addons and await combined addon publication. R02 and R03 remain open for the broader inheritance, class-load and runtime-boundary review. Full CMS integration and final package acceptance remain under R05/R06.
+
 ## Remaining review and runtime checklist
 
 - [x] R01 Full baseline syntax scan and representative probes completed on PHP 8.4.27; extension configuration and fixture hashes recorded in the follow-up evidence.

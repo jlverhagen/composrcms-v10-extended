@@ -1,0 +1,136 @@
+{
+  "date": "2026-11-18",
+  "base_ref": "8cd59beeb8b39f3a62ddca79017b5f60a649d99e",
+  "tested_ref": "e423d005aa27793e6cf9319a328f5099d8f259d5",
+  "baseline_source": "ec0f8a7b8c1459f31bd10b0f3c1f3810bc174b14",
+  "source_files_unchanged_since_baseline_before_fix": true,
+  "files_sha256": {
+    "sources_custom/photobucket/PBAPI.php": "ec4f981bc85fb1ec7bb1795d6eed4b6a053a9903ae61aa6be735e30f718b92f1",
+    "sources_custom/sabredav/lib/Sabre/DAVACL/AbstractPrincipalCollection.php": "3958c3dd7f533e1e9d3282a77e427a275a749cbdf20ddead30303a5f58782058",
+    "sources_custom/ILess/Exception.php": "2912ffc79599efb7f7fdd05123a5d46ea8d5e7eccc8c19f0011574f78106f530",
+    "_tests/tests/unit_tests/optional_property_compatibility.php": "1e836e332c3b7ca1cf4b1f2e4249c0f390a263f523a61acd9474b0af68885bb5",
+    "sources_custom/hooks/systems/addon_registry/testing_platform.php": "32b8e5c85435a8eb364c44ef44d3cbcebfa127e416c693fada09f1f325425cd8"
+  },
+  "results": [
+    {
+      "php": "8.2.35",
+      "baseline_diagnostics": [
+        {
+          "severity": 8192,
+          "message": "Creation of dynamic property PBAPI::$response_string is deprecated"
+        },
+        {
+          "severity": 8192,
+          "message": "Creation of dynamic property Sabre\\DAVACL\\PrincipalCollection::$principalPrefix is deprecated"
+        },
+        {
+          "severity": 8192,
+          "message": "Exception::__construct(): Passing null to parameter #1 ($message) of type string is deprecated"
+        }
+      ],
+      "fixed_stdout": "8.2.35 INHERITANCE_BOUNDARY_CHECKS_OK 36\n",
+      "fixed_stderr": "",
+      "changed_php_files_linted": 5
+    },
+    {
+      "php": "8.3.36",
+      "baseline_diagnostics": [
+        {
+          "severity": 8192,
+          "message": "Creation of dynamic property PBAPI::$response_string is deprecated"
+        },
+        {
+          "severity": 8192,
+          "message": "Creation of dynamic property Sabre\\DAVACL\\PrincipalCollection::$principalPrefix is deprecated"
+        },
+        {
+          "severity": 8192,
+          "message": "Exception::__construct(): Passing null to parameter #1 ($message) of type string is deprecated"
+        }
+      ],
+      "fixed_stdout": "8.3.36 INHERITANCE_BOUNDARY_CHECKS_OK 36\n",
+      "fixed_stderr": "",
+      "changed_php_files_linted": 5
+    },
+    {
+      "php": "8.4.27",
+      "baseline_diagnostics": [
+        {
+          "severity": 8192,
+          "message": "Creation of dynamic property PBAPI::$response_string is deprecated"
+        },
+        {
+          "severity": 8192,
+          "message": "Creation of dynamic property Sabre\\DAVACL\\PrincipalCollection::$principalPrefix is deprecated"
+        },
+        {
+          "severity": 8192,
+          "message": "Exception::__construct(): Passing null to parameter #1 ($message) of type string is deprecated"
+        }
+      ],
+      "fixed_stdout": "8.4.27 INHERITANCE_BOUNDARY_CHECKS_OK 36\n",
+      "fixed_stderr": "",
+      "changed_php_files_linted": 5
+    },
+    {
+      "php": "8.5.12",
+      "baseline_diagnostics": [
+        {
+          "severity": 8192,
+          "message": "Creation of dynamic property PBAPI::$response_string is deprecated"
+        },
+        {
+          "severity": 8192,
+          "message": "Creation of dynamic property Sabre\\DAVACL\\PrincipalCollection::$principalPrefix is deprecated"
+        },
+        {
+          "severity": 8192,
+          "message": "Exception::__construct(): Passing null to parameter #1 ($message) of type string is deprecated"
+        }
+      ],
+      "fixed_stdout": "8.5.12 INHERITANCE_BOUNDARY_CHECKS_OK 36\n",
+      "fixed_stderr": "",
+      "changed_php_files_linted": 5
+    }
+  ],
+  "scope": "Focused optional-library state, null inputs, and three inherited MySQL driver cache resets; no database, HTTP or API connection opened",
+  "review_method": "Lexer-assisted shortlist of literal $this property writes in single-class files outside tracker and tests, followed by manual inheritance/source review and focused runtime reproduction. This is not a complete class/dataflow audit.",
+  "triage": [
+    {
+      "file": "sources_custom/photobucket/PBAPI.php",
+      "candidate": "response_string",
+      "disposition": "confirmed dynamic property; explicitly declared public with null default",
+      "addon": "image_syndication"
+    },
+    {
+      "file": "sources_custom/sabredav/lib/Sabre/DAVACL/AbstractPrincipalCollection.php",
+      "candidate": "principalPrefix",
+      "disposition": "confirmed dynamic property; explicitly declared public on the parent class",
+      "addon": "webdav"
+    },
+    {
+      "file": "sources/database/shared/mysql.php",
+      "candidate": "cache_db, last_select_db",
+      "disposition": "supplied by all three concrete MySQL driver classes; no declaration change",
+      "runtime_check": "reflection and inherited cache reset without a database connection"
+    },
+    {
+      "file": "sources_custom/ILess/Exception.php",
+      "candidate": "previous",
+      "disposition": "literal write is guarded by PHP_VERSION_ID < 50300 and cannot execute on supported PHP; default null message was separately fixed",
+      "addon": "less"
+    },
+    {
+      "file": "sources_custom/photobucket/PBAPI/Exception.php",
+      "candidate": "code, message",
+      "disposition": "inherited protected Exception properties; no declaration change",
+      "runtime_check": "reflection"
+    },
+    {
+      "file": "sources_custom/sabredav/lib/Sabre/DAV/Exception/LockTokenMatchesRequestUri.php",
+      "candidate": "message",
+      "disposition": "inherited protected Exception property; no declaration change",
+      "runtime_check": "reflection"
+    }
+  ]
+}
