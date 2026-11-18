@@ -121,6 +121,9 @@ try {
                 graph_expect(count((new ReflectionClass($class))->getAttributes(AllowDynamicProperties::class)) === 1, 'Only intentional property bags opt in');
             }
         }
+        graph_expect((new ILess_Node_Combinator())->value === '', 'Default combinator remains empty');
+        graph_expect((new ILess_Node_Combinator(' '))->value === ' ', 'Descendant combinator retains its space');
+        graph_expect((new ILess_Node_Combinator(' > '))->value === '>', 'Explicit combinator retains trimming');
         $parser = new ILess_Parser();
         $parser->parseString('@width: 2px; .sample { width: @width; }');
         $css = $parser->getCSS();
