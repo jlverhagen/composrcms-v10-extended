@@ -856,19 +856,16 @@ class getid3_lib
 	 * @return string
 	 */
 	public static function iconv_fallback_iso88591_utf8($string, $bom=false) {
-		if (function_exists('utf8_encode')) {
-			return utf8_encode($string);
+		// Preserve the legacy conversion without adding a BOM.
+		static $map = null;
+		if ($map === null) {
+			$map = array();
+			for ($byte = 0x80; $byte <= 0xFF; $byte++) {
+				$map[chr($byte)] = chr(0xC0 | ($byte >> 6)) . chr(0x80 | ($byte & 0x3F));
+			}
 		}
-		// utf8_encode() unavailable, use getID3()'s iconv_fallback() conversions (possibly PHP is compiled without XML support)
-		$newcharstring = '';
-		if ($bom) {
-			$newcharstring .= "\xEF\xBB\xBF";
-		}
-		for ($i = 0; $i < strlen($string); $i++) {
-			$charval = ord($string[$i]);
-			$newcharstring .= self::iconv_fallback_int_utf8($charval);
-		}
-		return $newcharstring;
+		return strtr($string, $map);
+
 	}
 
 	/**
@@ -928,46 +925,22 @@ class getid3_lib
 	 * @return string
 	 */
 	public static function iconv_fallback_utf8_iso88591($string) {
-		if (function_exists('utf8_decode')) {
-			return utf8_decode($string);
-		}
-		// utf8_decode() unavailable, use getID3()'s iconv_fallback() conversions (possibly PHP is compiled without XML support)
-		$newcharstring = '';
-		$offset = 0;
-		$stringlength = strlen($string);
-		while ($offset < $stringlength) {
-			if ((ord($string[$offset]) | 0x07) == 0xF7) {
-				// 11110bbb 10bbbbbb 10bbbbbb 10bbbbbb
-				$charval = ((ord($string[($offset + 0)]) & 0x07) << 18) &
-						   ((ord($string[($offset + 1)]) & 0x3F) << 12) &
-						   ((ord($string[($offset + 2)]) & 0x3F) <<  6) &
-							(ord($string[($offset + 3)]) & 0x3F);
-				$offset += 4;
-			} elseif ((ord($string[$offset]) | 0x0F) == 0xEF) {
-				// 1110bbbb 10bbbbbb 10bbbbbb
-				$charval = ((ord($string[($offset + 0)]) & 0x0F) << 12) &
-						   ((ord($string[($offset + 1)]) & 0x3F) <<  6) &
-							(ord($string[($offset + 2)]) & 0x3F);
-				$offset += 3;
-			} elseif ((ord($string[$offset]) | 0x1F) == 0xDF) {
-				// 110bbbbb 10bbbbbb
-				$charval = ((ord($string[($offset + 0)]) & 0x1F) <<  6) &
-							(ord($string[($offset + 1)]) & 0x3F);
-				$offset += 2;
-			} elseif ((ord($string[$offset]) | 0x7F) == 0x7F) {
-				// 0bbbbbbb
-				$charval = ord($string[$offset]);
-				$offset += 1;
-			} else {
-				// error? throw some kind of warning here?
-				$charval = false;
-				$offset += 1;
+		// Group malformed sequences up to their expected length, stopping before
+		// ASCII or a byte that can start a new UTF-8 sequence.
+		$invalid_or_trailing = '[\x80-\xC1\xF5-\xFF]';
+		$pattern = '#[\xC2-\xDF]' . $invalid_or_trailing . '?|[\xE0-\xEF]' . $invalid_or_trailing . '{0,2}|[\xF0-\xF4]' . $invalid_or_trailing . '{0,3}|[\x80-\xFF]#';
+		return preg_replace_callback($pattern, function ($matches) {
+			$sequence = $matches[0];
+			if (strlen($sequence) === 2) {
+				$first = ord($sequence[0]);
+				$second = ord($sequence[1]);
+				if (($first === 0xC2 || $first === 0xC3) && $second >= 0x80 && $second <= 0xBF) {
+					return chr((($first & 3) << 6) | ($second & 0x3F));
+				}
 			}
-			if ($charval !== false) {
-				$newcharstring .= (($charval < 256) ? chr($charval) : '?');
-			}
-		}
-		return $newcharstring;
+			return '?';
+		}, $string);
+
 	}
 
 	/**

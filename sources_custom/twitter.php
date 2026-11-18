@@ -1014,7 +1014,10 @@ class Twitter
     {
         // build parameters
         $parameters['status'] = (string) $status;
-        $parameters['status'] = utf8_encode($parameters['status']);
+        $parameters['status'] = preg_replace_callback('/[\x80-\xFF]/', static function ($matches) {
+            $byte = ord($matches[0]);
+            return chr(0xC0 | ($byte >> 6)) . chr(0x80 | ($byte & 0x3F));
+        }, $parameters['status']);
         if ($inReplyToStatusId != null) {
             $parameters['in_reply_to_status_id'] = (string) $inReplyToStatusId;
         }

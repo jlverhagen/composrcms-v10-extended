@@ -73,7 +73,10 @@ class OAuth_Utils {
      * @return string
      */
     public static function urlencodeRFC3986_UTF8($string) {
-        return self::urlencodeRFC3986(utf8_encode($string));
+        return self::urlencodeRFC3986(preg_replace_callback('/[\x80-\xFF]/', static function ($matches) {
+            $byte = ord($matches[0]);
+            return chr(0xC0 | ($byte >> 6)) . chr(0x80 | ($byte & 0x3F));
+        }, $string));
     }
     
     /**
@@ -94,7 +97,22 @@ class OAuth_Utils {
      * @return string
      */
     public static function urldecodeRFC3986_UTF8($string) {
-        return utf8_decode(self::urldecodeRFC3986($string));
+        $string = self::urldecodeRFC3986($string);
+        // Group malformed sequences up to their expected length, stopping before
+        // ASCII or a byte that can start a new UTF-8 sequence.
+        $invalid_or_trailing = '[\x80-\xC1\xF5-\xFF]';
+        $pattern = '#[\xC2-\xDF]' . $invalid_or_trailing . '?|[\xE0-\xEF]' . $invalid_or_trailing . '{0,2}|[\xF0-\xF4]' . $invalid_or_trailing . '{0,3}|[\x80-\xFF]#';
+        return preg_replace_callback($pattern, function ($matches) {
+            $sequence = $matches[0];
+            if (strlen($sequence) === 2) {
+                $first = ord($sequence[0]);
+                $second = ord($sequence[1]);
+                if (($first === 0xC2 || $first === 0xC3) && $second >= 0x80 && $second <= 0xBF) {
+                    return chr((($first & 3) << 6) | ($second & 0x3F));
+                }
+            }
+            return '?';
+    }, $string);
     }
     
     /**
