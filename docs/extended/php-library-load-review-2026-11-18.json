@@ -1,0 +1,525 @@
+{
+  "date": "2026-11-18",
+  "base_ref": "8147782f7e492ec2e564cfd2186f6f07b7dc4ec7",
+  "tested_ref": "b57a41f48b6610a8630ae0f586fc00dd1a88610e",
+  "overlaid_dependencies": [
+    "sources_custom/ILess/Exception.php",
+    "sources_custom/ILess/FileInfo.php",
+    "sources_custom/ILess/Node/Combinator.php",
+    "sources_custom/ILess/Output.php",
+    "sources_custom/ILess/Visitor/Arguments.php",
+    "sources_custom/facebook/facebook.php",
+    "sources_custom/facebook/jsonwrapper/JSON/JSON.php",
+    "sources_custom/getid3/getid3.lib.php",
+    "sources_custom/getid3/module.graphic.bmp.php",
+    "sources_custom/getid3/module.tag.xmp.php",
+    "sources_custom/hooks/systems/addon_registry/testing_platform.php",
+    "sources_custom/photobucket/OAuth/Utils.php",
+    "sources_custom/photobucket/PBAPI.php",
+    "sources_custom/photobucket/PBAPI/Request/curl.php",
+    "sources_custom/sabredav/lib/Sabre/DAV/StringUtil.php",
+    "sources_custom/sabredav/lib/Sabre/DAV/URLUtil.php",
+    "sources_custom/sabredav/lib/Sabre/DAVACL/AbstractPrincipalCollection.php",
+    "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Document.php",
+    "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/ElementList.php",
+    "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Node.php",
+    "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Property.php",
+    "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/RecurrenceIterator.php",
+    "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/StringUtil.php",
+    "sources_custom/spout/src/Spout/Writer/XLS.php",
+    "sources_custom/spout/tests/Spout/ReflectionHelper.php",
+    "sources_custom/swift_mailer/lib/classes/Swift/Transport/EsmtpTransport.php",
+    "_tests/libs/library_class_load_probe.php",
+    "sources_custom/photobucket/PBAPI/Response/simplexml.php",
+    "_tests/libs/photobucket_response_probe.php"
+  ],
+  "probe_sha256": "71fc31bbbe6fa82c17f0e114ea080931ad7863e2febce12f1391b81d33393843",
+  "results": [
+    {
+      "runtime": "82",
+      "groups": [
+        {
+          "php": "8.2.35",
+          "group": "less",
+          "php_files": 86,
+          "discovered": 86,
+          "loaded": 86,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.2.35",
+          "group": "sabre",
+          "php_files": 139,
+          "discovered": 137,
+          "loaded": 137,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.2.35",
+          "group": "swift",
+          "php_files": 161,
+          "discovered": 161,
+          "loaded": 161,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.2.35",
+          "group": "spout",
+          "php_files": 43,
+          "discovered": 43,
+          "loaded": 43,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.2.35",
+          "group": "getid3",
+          "php_files": 81,
+          "discovered": 86,
+          "loaded": 86,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.2.35",
+          "group": "photobucket",
+          "php_files": 32,
+          "discovered": 31,
+          "loaded": 31,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.2.35",
+          "group": "facebook",
+          "php_files": 1,
+          "discovered": 3,
+          "loaded": 3,
+          "failures": [],
+          "cms_dependencies": {
+            "sources/json.php": "a2cbbe15fc48a11a078ecba60671fc9fa2716d5dd38cbafb99f4333c12eea957"
+          },
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        }
+      ],
+      "changed_php_files_linted": 4,
+      "response_probe": {
+        "php": "8.2.35",
+        "checks": 16,
+        "result": "response strategies passed"
+      }
+    },
+    {
+      "runtime": "83",
+      "groups": [
+        {
+          "php": "8.3.36",
+          "group": "less",
+          "php_files": 86,
+          "discovered": 86,
+          "loaded": 86,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.3.36",
+          "group": "sabre",
+          "php_files": 139,
+          "discovered": 137,
+          "loaded": 137,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.3.36",
+          "group": "swift",
+          "php_files": 161,
+          "discovered": 161,
+          "loaded": 161,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.3.36",
+          "group": "spout",
+          "php_files": 43,
+          "discovered": 43,
+          "loaded": 43,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.3.36",
+          "group": "getid3",
+          "php_files": 81,
+          "discovered": 86,
+          "loaded": 86,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.3.36",
+          "group": "photobucket",
+          "php_files": 32,
+          "discovered": 31,
+          "loaded": 31,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.3.36",
+          "group": "facebook",
+          "php_files": 1,
+          "discovered": 3,
+          "loaded": 3,
+          "failures": [],
+          "cms_dependencies": {
+            "sources/json.php": "a2cbbe15fc48a11a078ecba60671fc9fa2716d5dd38cbafb99f4333c12eea957"
+          },
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        }
+      ],
+      "changed_php_files_linted": 4,
+      "response_probe": {
+        "php": "8.3.36",
+        "checks": 16,
+        "result": "response strategies passed"
+      }
+    },
+    {
+      "runtime": "84",
+      "groups": [
+        {
+          "php": "8.4.27",
+          "group": "less",
+          "php_files": 86,
+          "discovered": 86,
+          "loaded": 86,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.4.27",
+          "group": "sabre",
+          "php_files": 139,
+          "discovered": 137,
+          "loaded": 137,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.4.27",
+          "group": "swift",
+          "php_files": 161,
+          "discovered": 161,
+          "loaded": 161,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.4.27",
+          "group": "spout",
+          "php_files": 43,
+          "discovered": 43,
+          "loaded": 43,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.4.27",
+          "group": "getid3",
+          "php_files": 81,
+          "discovered": 86,
+          "loaded": 86,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.4.27",
+          "group": "photobucket",
+          "php_files": 32,
+          "discovered": 31,
+          "loaded": 31,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.4.27",
+          "group": "facebook",
+          "php_files": 1,
+          "discovered": 3,
+          "loaded": 3,
+          "failures": [],
+          "cms_dependencies": {
+            "sources/json.php": "a2cbbe15fc48a11a078ecba60671fc9fa2716d5dd38cbafb99f4333c12eea957"
+          },
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        }
+      ],
+      "changed_php_files_linted": 4,
+      "response_probe": {
+        "php": "8.4.27",
+        "checks": 16,
+        "result": "response strategies passed"
+      }
+    },
+    {
+      "runtime": "85",
+      "groups": [
+        {
+          "php": "8.5.12",
+          "group": "less",
+          "php_files": 86,
+          "discovered": 86,
+          "loaded": 86,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.5.12",
+          "group": "sabre",
+          "php_files": 139,
+          "discovered": 137,
+          "loaded": 137,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.5.12",
+          "group": "swift",
+          "php_files": 161,
+          "discovered": 161,
+          "loaded": 161,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.5.12",
+          "group": "spout",
+          "php_files": 43,
+          "discovered": 43,
+          "loaded": 43,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.5.12",
+          "group": "getid3",
+          "php_files": 81,
+          "discovered": 86,
+          "loaded": 86,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.5.12",
+          "group": "photobucket",
+          "php_files": 32,
+          "discovered": 31,
+          "loaded": 31,
+          "failures": [],
+          "cms_dependencies": [],
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        },
+        {
+          "php": "8.5.12",
+          "group": "facebook",
+          "php_files": 1,
+          "discovered": 3,
+          "loaded": 3,
+          "failures": [],
+          "cms_dependencies": {
+            "sources/json.php": "a2cbbe15fc48a11a078ecba60671fc9fa2716d5dd38cbafb99f4333c12eea957"
+          },
+          "scope": "Declaration loading/reflection only; no constructors or library workflows invoked by the probe",
+          "exit": 0,
+          "stderr": ""
+        }
+      ],
+      "changed_php_files_linted": 4,
+      "response_probe": {
+        "php": "8.5.12",
+        "checks": 16,
+        "result": "response strategies passed"
+      }
+    }
+  ],
+  "scope": "Named declaration loading and reflection only; selected production directories; no object constructors or library operations invoked by the probe",
+  "group_evidence": {
+    "less": {
+      "php_files": 86,
+      "declarations": 86,
+      "kinds": {
+        "T_CLASS": 79,
+        "T_INTERFACE": 7
+      },
+      "inventory_sha256": "7ecd34f1cb2f98635bad12c00a528b2a4d6c501ab3d721ce9714d993c511855e",
+      "declarations_sha256": "a41c8040dbc41afb72a54f9405b57409abc4946307d912d7d613e575412703b8"
+    },
+    "sabre": {
+      "php_files": 139,
+      "declarations": 137,
+      "kinds": {
+        "T_CLASS": 121,
+        "T_INTERFACE": 16
+      },
+      "inventory_sha256": "e22f2aec6498e820836063c5d71bd89f2d772459cb507a27f3380b678aca0fd7",
+      "declarations_sha256": "9c0f5e086987a6ab4b7abf6abe0ef1f1841a64cb8a3d7751d2da2920da64914b"
+    },
+    "swift": {
+      "php_files": 161,
+      "declarations": 161,
+      "kinds": {
+        "T_CLASS": 114,
+        "T_INTERFACE": 47
+      },
+      "inventory_sha256": "584361018f96c22c1fa2b26f81721921ce08444e40b147371b4a79551f8c45d3",
+      "declarations_sha256": "3efe3062e92360de12c31749738c5ddc7b7dbc59c1f3a1d0f86f19f82932ca38"
+    },
+    "spout": {
+      "php_files": 43,
+      "declarations": 43,
+      "kinds": {
+        "T_CLASS": 40,
+        "T_INTERFACE": 3
+      },
+      "inventory_sha256": "73479e4e38fbd7a17ec42d0b7fe42b735c4867bbb2a89b8deedb0bc734931366",
+      "declarations_sha256": "cf3639dcc432d993202a88b1e81864304c1a310c426f51df3ed60ae7149082d4"
+    },
+    "getid3": {
+      "php_files": 81,
+      "declarations": 86,
+      "kinds": {
+        "T_CLASS": 86
+      },
+      "inventory_sha256": "3a9dac5ea4dbd85001bbc775618c6074b0358253e8855b58c43aad620fe31323",
+      "declarations_sha256": "a096363b66fa7f6ee8f0f97e3a250448425a909b248260dab0ba35ecb75713f3"
+    },
+    "photobucket": {
+      "php_files": 32,
+      "declarations": 31,
+      "kinds": {
+        "T_CLASS": 30,
+        "T_INTERFACE": 1
+      },
+      "inventory_sha256": "dbcea4a3332c719415510e814c286443bcc10551b159bbdf60e05adf0f9047cb",
+      "declarations_sha256": "e99054a5e229d889848faca78ff0f159d3ac48ae2a495322830daf45ecab0f2e"
+    },
+    "facebook": {
+      "php_files": 1,
+      "declarations": 3,
+      "kinds": {
+        "T_CLASS": 3
+      },
+      "inventory_sha256": "24ee58619ee66b9cf3e46de50d4d3287c4d8159da5562144fc63ada8c2cd2d9f",
+      "declarations_sha256": "834cc9f4d6e66f4c8a99b97039443f5a4f8450090ed9371279611ee93cc06fa7"
+    }
+  },
+  "evidence_hash_method": "SHA256 of compact JSON with sorted object keys; declaration list retains sorted case-insensitive symbol order",
+  "changed_files_sha256": {
+    "_tests/libs/library_class_load_probe.php": "71fc31bbbe6fa82c17f0e114ea080931ad7863e2febce12f1391b81d33393843",
+    "sources_custom/hooks/systems/addon_registry/testing_platform.php": "9a9bf6d1da9912388f005606fc0ecddf11635ee4c359df47f9af8f9da1d19fbc",
+    "sources_custom/photobucket/PBAPI/Response/simplexml.php": "9a8f8856010f0b7804bae41db5738d1acf7cc572454e316776db2f5581b62d2a",
+    "_tests/libs/photobucket_response_probe.php": "663580d9e7bd6d3f2dbcb7cebefe2e2f94084623dc3ad0ca711366d49adfe976"
+  },
+  "before_fix_photobucket_fatal": [
+    {
+      "runtime": "82",
+      "stderr": "PHP Fatal error:  Declaration of PBAPI_Response_simplexml::detectException(SimpleXMLElement $obj) must be compatible with PBAPI_Response::detectException(array $data) in /var/tmp/composr-library-load-review/sources_custom/photobucket/PBAPI/Response/simplexml.php on line 60\n"
+    },
+    {
+      "runtime": "83",
+      "stderr": "PHP Fatal error:  Declaration of PBAPI_Response_simplexml::detectException(SimpleXMLElement $obj) must be compatible with PBAPI_Response::detectException(array $data) in /var/tmp/composr-library-load-review/sources_custom/photobucket/PBAPI/Response/simplexml.php on line 60\n"
+    },
+    {
+      "runtime": "84",
+      "stderr": "PHP Fatal error:  Declaration of PBAPI_Response_simplexml::detectException(SimpleXMLElement $obj) must be compatible with PBAPI_Response::detectException(array $data) in /var/tmp/composr-library-load-review/sources_custom/photobucket/PBAPI/Response/simplexml.php on line 60\n"
+    },
+    {
+      "runtime": "85",
+      "stderr": "PHP Fatal error:  Declaration of PBAPI_Response_simplexml::detectException(SimpleXMLElement $obj) must be compatible with PBAPI_Response::detectException(array $data) in /var/tmp/composr-library-load-review/sources_custom/photobucket/PBAPI/Response/simplexml.php on line 60\nStack trace:\n#0 [internal function]: {closure:/var/tmp/composr-library-load-review/_tests/libs/library_class_load_probe.php:90}()\n#1 /var/tmp/composr-library-load-review/_tests/libs/library_class_load_probe.php(114): class_exists()\n#2 {main}\n"
+    }
+  ],
+  "harness_dependency_note": "An initial Facebook probe lacked Composr require_code('json'); the final probe loads actual sources/json.php through a narrowly scoped adapter. No SDK code was changed for this harness gap.",
+  "total_named_declarations_per_runtime": 547
+}
