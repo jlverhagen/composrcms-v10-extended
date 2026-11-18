@@ -270,7 +270,11 @@ class Swift_Transport_EsmtpTransport extends Swift_Transport_AbstractSmtpTranspo
         return parent::executeCommand($command, $codes, $failures);
     }
 
-    /** Mixin handling method for ESMTP handlers */
+    /**
+     * Mixin handling method for ESMTP handlers.
+     *
+     * @throws Error If no extension handler exposes the requested method.
+     */
     public function __call($method, $args)
     {
         foreach ($this->_handlers as $handler) {
@@ -286,7 +290,7 @@ class Swift_Transport_EsmtpTransport extends Swift_Transport_AbstractSmtpTranspo
                 }
             }
         }
-        trigger_error('Call to undefined method '.$method, E_USER_ERROR);
+        throw new Error('Call to undefined method '.$method);
     }
 
     /** Get the params to initialize the buffer */
