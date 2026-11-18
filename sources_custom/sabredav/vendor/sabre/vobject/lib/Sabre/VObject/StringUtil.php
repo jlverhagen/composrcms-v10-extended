@@ -47,7 +47,7 @@ class StringUtil {
         $encoding = mb_detect_encoding($str , array('UTF-8','ISO-8859-1'), true);
 
         if ($encoding === 'ISO-8859-1') {
-            $newStr = utf8_encode($str);
+            $newStr = mb_convert_encoding($str, 'UTF-8', 'ISO-8859-1');
         } else {
             $newStr = $str;
         }

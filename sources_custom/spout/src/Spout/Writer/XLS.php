@@ -120,24 +120,21 @@ class XLS extends AbstractWriter
         }
 
         // We are doing simple Western European encoding (utf-8 storage in BIFF-5 is very complex)
-        if (function_exists('utf8_decode')) {
-            $test = @utf8_decode($value);
-            if (is_string($test)) {
-                $value = $test;
+        // Group malformed sequences up to their expected length, stopping before
+        // ASCII or a byte that can start a new UTF-8 sequence.
+        $invalid_or_trailing = '[\x80-\xC1\xF5-\xFF]';
+        $pattern = '#[\xC2-\xDF]' . $invalid_or_trailing . '?|[\xE0-\xEF]' . $invalid_or_trailing . '{0,2}|[\xF0-\xF4]' . $invalid_or_trailing . '{0,3}|[\x80-\xFF]#';
+        $value = preg_replace_callback($pattern, function ($matches) {
+            $sequence = $matches[0];
+            if (strlen($sequence) === 2) {
+                $first = ord($sequence[0]);
+                $second = ord($sequence[1]);
+                if (($first === 0xC2 || $first === 0xC3) && $second >= 0x80 && $second <= 0xBF) {
+                    return chr((($first & 3) << 6) | ($second & 0x3F));
+                }
             }
-        }
-        elseif (function_exists('iconv')) {
-    		$test = @iconv('utf-8', 'iso-8859-1' . '//TRANSLIT', $value);
-            if (is_string($test)) {
-                $value = $test;
-            }
-        }
-        elseif (function_exists('mb_convert_encoding')) {
-            $test = @mb_convert_encoding($value, 'iso-8859-1', 'utf-8');
-            if (is_string($test)) {
-                $value = $test;
-            }
-        }
+            return '?';
+        }, $value);
 
         $length = strlen($value);
         $wasWriteSuccessful = true;
