@@ -13,6 +13,8 @@
  * @package ILess
  * @subpackage parser
  */
+// Plugin metadata intentionally becomes public fields; preserve this open record.
+#[AllowDynamicProperties]
 class ILess_FileInfo
 {
     /**

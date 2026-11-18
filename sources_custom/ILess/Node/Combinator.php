@@ -62,7 +62,7 @@ class ILess_Node_Combinator extends ILess_Node
         if ($value == ' ') {
             $value = ' ';
         } else {
-            $value = trim($value);
+            $value = trim($value ?? '');
         }
         parent::__construct($value);
     }

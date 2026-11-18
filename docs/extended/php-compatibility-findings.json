@@ -1101,7 +1101,23 @@
         "8.5.12"
       ],
       "assertions_per_runtime": 36,
-      "remaining": "Broader class graph, multi-class files, traits, computed properties and additional class-load probes"
+      "remaining": "Broader class loading, anonymous classes, external-object and computed-write paths, runtime reachability",
+      "followup_property_graph": {
+        "date": "2026-11-18",
+        "multi_class_files_lexed": 24,
+        "additional_explicit_state_properties": 9,
+        "intentional_plugin_record_classes": 2,
+        "guarded_setters_checked": 5,
+        "trait_consumers_checked": 1,
+        "runtimes": [
+          "8.2.35",
+          "8.3.36",
+          "8.4.27",
+          "8.5.12"
+        ],
+        "checks_per_runtime": 54,
+        "evidence": "php-property-graph-review-2026-11-18.json"
+      }
     },
     "R03": {
       "status": "partially_resolved",
@@ -1109,10 +1125,12 @@
       "nullable_calls_fixed": [
         "ILess default exception message",
         "Photobucket response parsing trim",
-        "Photobucket token-response trim"
+        "Photobucket token-response trim",
+        "ILess default combinator trim"
       ],
       "evidence": "php-inheritance-review-2026-11-18.json",
-      "remaining": "Other null/scalar, numeric, text/byte, callable and output-handler boundaries"
+      "remaining": "Other null/scalar, numeric, text/byte, callable and output-handler boundaries",
+      "followup_evidence": "php-property-graph-review-2026-11-18.json"
     }
   }
 }

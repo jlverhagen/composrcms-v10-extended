@@ -118,6 +118,9 @@ define('SERVICES_JSON_SUPPRESS_ERRORS', 32);
  */
 class Services_JSON
 {
+    /** @var integer Encoding/decoding behavior flags, historically public. */
+    public $use = 0;
+
    /**
     * constructs a new JSON instance
     *

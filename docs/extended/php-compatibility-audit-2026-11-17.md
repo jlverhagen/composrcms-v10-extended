@@ -326,6 +326,25 @@ All five changed PHP files passed lint on each runtime. The committed `_tests/te
 
 These fixes belong to optional image_syndication, webdav and less addons and await combined addon publication. R02 and R03 remain open for the broader inheritance, class-load and runtime-boundary review. Full CMS integration and final package acceptance remain under R05/R06.
 
+## Multi-class, trait and computed-write follow-up on 2026-11-18
+
+The next lexer-assisted pass separated brace-delimited class bodies in 24 multi-class files outside the top-level tracker and _tests directories. Manual review checked candidate writes against parent declarations. Standard CRUD module state is supplied by Standard_crud_module, content API state by CMS_API_object, diff operation state by Text_Diff_Op/Text_Diff, and Facebook state by BaseFacebook. Those inherited declarations were retained. This is bounded source review, not a complete inheritance or dataflow proof.
+
+| Confirmed area | Change and behavior preserved |
+|---|---|
+| Bundled and Facebook-copy Services_JSON | Public use flag declared in both copies; constructor flags and direct flag changes preserved |
+| Bundled three-way diff operations and block builder | Seven public state fields declared; cached merge references, copy aliases, builder resets and conflict output preserved |
+| ILess_FileInfo and ILess_Visitor_Arguments | These constructors deliberately accept arbitrary public plugin fields; targeted AllowDynamicProperties attributes preserve that existing record contract, including null fields, references, cloning and serialization |
+| ILess_Node_Combinator | Default/null value normalized to empty text before trim; descendant-space and explicit combinators retain their output |
+
+The ILess attributes apply only to the two intentionally open records, not the library or site generally. Guarded computed writes in ILess_Environment, getID3, Sabre DAV Client, LightOpenID and Text_Diff_Renderer were retained and tested. The one trait identified under sources/sources_custom is the Spout resource-test helper; its private properties and a path-only consumer were verified without filesystem writes.
+
+The registered CLI-only `_tests/libs/property_graph_probe.php` has six isolated modes: bundled JSON, Facebook JSON, three-way diff, LESS, computed-write guards and trait state. It passed 54 checks per runtime on PHP 8.2.35, 8.3.36, 8.4.27 and 8.5.12 with no diagnostics or stderr. All eight changed PHP files passed lint on each runtime. Functional observations matched the old baseline and matched across all four runtimes, including JSON bytes, conflict markers, reference updates, plugin metadata and actual compiled CSS. The two JSON copies run in separate processes because they declare the same class name.
+
+The [machine-readable evidence](php-property-graph-review-2026-11-18.json) includes source hashes, dependency overlays, per-mode checks, repeated baseline diagnostics summarized by message, normalized observations and their hashes. The negative checkout also emits the previously fixed ILess_Output return-type diagnostic; that diagnostic is not attributed to this batch. The fixed checkout overlays the current reviewed dependencies before testing. The default combinator warning was discovered by exercising the real parser and is now fixed alongside the property work.
+
+JSON/three-way diff fixes belong to bundled core. Facebook's JSON copy belongs to facebook_support, and ILess fixes belong to less. The new probe is owned by testing_platform. Core fixes await the combined core release; optional fixes await combined addon publication. R02 remains open for broader class-loading, anonymous/external-object/computed-write paths and runtime reachability. R03 retains other boundary categories. Complete CMS and upgrade/package validation remain under R05/R06.
+
 ## Remaining review and runtime checklist
 
 - [x] R01 Full baseline syntax scan and representative probes completed on PHP 8.4.27; extension configuration and fixture hashes recorded in the follow-up evidence.

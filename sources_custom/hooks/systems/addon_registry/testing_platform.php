@@ -140,6 +140,7 @@ class Hook_addon_registry_testing_platform
         return array(
             'sources_custom/hooks/systems/addon_registry/testing_platform.php',
             '_tests/libs/addon_scope_inventory.php',
+            '_tests/libs/property_graph_probe.php',
             '_tests/libs/mf_parse.php',
             'lang_custom/EN/phpdoc.ini',
             'sources_custom/php.php',

@@ -162,6 +162,8 @@ class Text_Diff_ThreeWay extends Text_Diff
  */
 class Text_Diff_ThreeWay_Op
 {
+    public $orig, $final1, $final2;
+    public $_merged = null;
 
     public function __construct($orig = false, $final1 = false, $final2 = false)
     {
@@ -227,6 +229,8 @@ class Text_Diff_ThreeWay_Op_copy extends Text_Diff_ThreeWay_Op
  */
 class Text_Diff_ThreeWay_BlockBuilder
 {
+    public $orig, $final1, $final2;
+
     public function __construct()
     {
         $this->_init();

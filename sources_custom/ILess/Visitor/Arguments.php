@@ -13,6 +13,8 @@
  * @package ILess
  * @subpackage visitor
  */
+// Visitors may attach their own public arguments in addition to visitDeeper.
+#[AllowDynamicProperties]
 class ILess_Visitor_Arguments
 {
     /**
