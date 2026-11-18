@@ -1,0 +1,427 @@
+{
+  "date": "2026-11-18",
+  "base_ref": "e84c7f530244da2e7bf3485936aae1d56a7bafd5",
+  "tested_ref": "1add2e5430d9581d11926301776246eec8b676ea",
+  "negative_source": "ec0f8a7b8c1459f31bd10b0f3c1f3810bc174b14",
+  "changed_files_sha256": {
+    "sources/json_inner.php": "4c4452df15529930afed5f2619e6fe170cb27c145d2e9e00a829b6251a42a967",
+    "sources_custom/facebook/jsonwrapper/JSON/JSON.php": "680adc1a234476efa8fddf3c9b5966ac11459b70d3b49b422b10eb2588caaf5e",
+    "sources/diff/Diff/ThreeWay.php": "c6247bae4cfe2fdd7ba5263224e1e4aaf6fb040f988ca8c2237c997c93d05b71",
+    "sources_custom/ILess/FileInfo.php": "2df77e2e3e584f9bfe10dbe3ee1aec17e1f665bd7368a6fc7d28044531bcbf9b",
+    "sources_custom/ILess/Visitor/Arguments.php": "1a384f4ec0d062a1cb1334ffb1087a7b026d7b85b0f210870800bc51fa6edbfa",
+    "sources_custom/hooks/systems/addon_registry/testing_platform.php": "059311654b60efed873158cf4120933afd469ac7dca3975dae16607c9a2674ad",
+    "_tests/libs/property_graph_probe.php": "91f06ebf404cdaf4a2f7d3340926ec629f5bdecc410f7c27fa84867164c5468c",
+    "sources_custom/ILess/Node/Combinator.php": "2c29aabf3d93aeec884edac64f944ca32f23048f52e49a78658fc03bc8222b28"
+  },
+  "dependency_overlay_files": [
+    "sources/database/mysql_pdo.php",
+    "sources/firephp.php",
+    "sources/global2.php",
+    "sources/temporal.php",
+    "sources_custom/ILess/Exception.php",
+    "sources_custom/ILess/Output.php",
+    "sources_custom/facebook/facebook.php",
+    "sources_custom/getid3/getid3.lib.php",
+    "sources_custom/getid3/module.graphic.bmp.php",
+    "sources_custom/getid3/module.tag.xmp.php",
+    "sources_custom/sabredav/lib/Sabre/DAV/StringUtil.php",
+    "sources_custom/sabredav/lib/Sabre/DAV/URLUtil.php",
+    "sources_custom/sabredav/lib/Sabre/DAVACL/AbstractPrincipalCollection.php",
+    "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Document.php",
+    "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/ElementList.php",
+    "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Node.php",
+    "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Property.php",
+    "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/RecurrenceIterator.php",
+    "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/StringUtil.php",
+    "sources/json_inner.php",
+    "sources_custom/facebook/jsonwrapper/JSON/JSON.php",
+    "sources/diff/Diff/ThreeWay.php",
+    "sources_custom/ILess/FileInfo.php",
+    "sources_custom/ILess/Visitor/Arguments.php",
+    "sources_custom/hooks/systems/addon_registry/testing_platform.php",
+    "_tests/libs/property_graph_probe.php",
+    "sources_custom/ILess/Node/Combinator.php"
+  ],
+  "results": [
+    {
+      "php": "8.2.35",
+      "checks": 54,
+      "files_linted": 8,
+      "modes": [
+        {
+          "mode": "json-core",
+          "checks": 6,
+          "fixed_diagnostics": [],
+          "observations_sha256": "2ec328163e885ceae23234800ca1ae9687cefb957d0ab060336c45c7f78f6f41",
+          "baseline_diagnostic_counts": {
+            "Creation of dynamic property Services_JSON::$use is deprecated": 2
+          }
+        },
+        {
+          "mode": "json-facebook",
+          "checks": 6,
+          "fixed_diagnostics": [],
+          "observations_sha256": "2ec328163e885ceae23234800ca1ae9687cefb957d0ab060336c45c7f78f6f41",
+          "baseline_diagnostic_counts": {
+            "Creation of dynamic property Services_JSON::$use is deprecated": 2
+          }
+        },
+        {
+          "mode": "diff",
+          "checks": 12,
+          "fixed_diagnostics": [],
+          "observations_sha256": "f8b5565479df1578fc30835b310f6d5d5b02173dd0fa20812febac71e011ee03",
+          "baseline_diagnostic_counts": {
+            "Creation of dynamic property Text_Diff_ThreeWay_BlockBuilder::$final1 is deprecated": 3,
+            "Creation of dynamic property Text_Diff_ThreeWay_BlockBuilder::$final2 is deprecated": 3,
+            "Creation of dynamic property Text_Diff_ThreeWay_BlockBuilder::$orig is deprecated": 3,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op::$_merged is deprecated": 6,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op::$final1 is deprecated": 6,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op::$final2 is deprecated": 6,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op::$orig is deprecated": 6,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op_copy::$final1 is deprecated": 3,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op_copy::$final2 is deprecated": 3,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op_copy::$orig is deprecated": 3
+          }
+        },
+        {
+          "mode": "less",
+          "checks": 14,
+          "fixed_diagnostics": [],
+          "observations_sha256": "6cdf8323b38139dfe6349bd4067fa5ee407868ca8e8aba186c56eb95d7784fb4",
+          "baseline_diagnostic_counts": {
+            "Creation of dynamic property ILess_FileInfo::$pluginNull is deprecated": 2,
+            "Creation of dynamic property ILess_FileInfo::$pluginTag is deprecated": 2,
+            "Creation of dynamic property ILess_Visitor_Arguments::$nullable is deprecated": 2,
+            "Creation of dynamic property ILess_Visitor_Arguments::$pluginValue is deprecated": 2,
+            "Return type of ILess_Output::count() should either be compatible with Countable::count(): int, or the #[\\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice": 1,
+            "trim(): Passing null to parameter #1 ($string) of type string is deprecated": 2
+          }
+        },
+        {
+          "mode": "computed-guards",
+          "checks": 12,
+          "fixed_diagnostics": [],
+          "observations_sha256": "07cb408bce8c300e24854d1c8b3fafe70ad7d79d8716c7cce961355201ce1c0c",
+          "baseline_diagnostic_counts": {}
+        },
+        {
+          "mode": "trait",
+          "checks": 4,
+          "fixed_diagnostics": [],
+          "observations_sha256": "5286cde4877832d25945763c9298f94081b15303bd98c10c642786b23a40b4cb",
+          "baseline_diagnostic_counts": {}
+        }
+      ]
+    },
+    {
+      "php": "8.3.36",
+      "checks": 54,
+      "files_linted": 8,
+      "modes": [
+        {
+          "mode": "json-core",
+          "checks": 6,
+          "fixed_diagnostics": [],
+          "observations_sha256": "2ec328163e885ceae23234800ca1ae9687cefb957d0ab060336c45c7f78f6f41",
+          "baseline_diagnostic_counts": {
+            "Creation of dynamic property Services_JSON::$use is deprecated": 2
+          }
+        },
+        {
+          "mode": "json-facebook",
+          "checks": 6,
+          "fixed_diagnostics": [],
+          "observations_sha256": "2ec328163e885ceae23234800ca1ae9687cefb957d0ab060336c45c7f78f6f41",
+          "baseline_diagnostic_counts": {
+            "Creation of dynamic property Services_JSON::$use is deprecated": 2
+          }
+        },
+        {
+          "mode": "diff",
+          "checks": 12,
+          "fixed_diagnostics": [],
+          "observations_sha256": "f8b5565479df1578fc30835b310f6d5d5b02173dd0fa20812febac71e011ee03",
+          "baseline_diagnostic_counts": {
+            "Creation of dynamic property Text_Diff_ThreeWay_BlockBuilder::$final1 is deprecated": 3,
+            "Creation of dynamic property Text_Diff_ThreeWay_BlockBuilder::$final2 is deprecated": 3,
+            "Creation of dynamic property Text_Diff_ThreeWay_BlockBuilder::$orig is deprecated": 3,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op::$_merged is deprecated": 6,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op::$final1 is deprecated": 6,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op::$final2 is deprecated": 6,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op::$orig is deprecated": 6,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op_copy::$final1 is deprecated": 3,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op_copy::$final2 is deprecated": 3,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op_copy::$orig is deprecated": 3
+          }
+        },
+        {
+          "mode": "less",
+          "checks": 14,
+          "fixed_diagnostics": [],
+          "observations_sha256": "6cdf8323b38139dfe6349bd4067fa5ee407868ca8e8aba186c56eb95d7784fb4",
+          "baseline_diagnostic_counts": {
+            "Creation of dynamic property ILess_FileInfo::$pluginNull is deprecated": 2,
+            "Creation of dynamic property ILess_FileInfo::$pluginTag is deprecated": 2,
+            "Creation of dynamic property ILess_Visitor_Arguments::$nullable is deprecated": 2,
+            "Creation of dynamic property ILess_Visitor_Arguments::$pluginValue is deprecated": 2,
+            "Return type of ILess_Output::count() should either be compatible with Countable::count(): int, or the #[\\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice": 1,
+            "trim(): Passing null to parameter #1 ($string) of type string is deprecated": 2
+          }
+        },
+        {
+          "mode": "computed-guards",
+          "checks": 12,
+          "fixed_diagnostics": [],
+          "observations_sha256": "07cb408bce8c300e24854d1c8b3fafe70ad7d79d8716c7cce961355201ce1c0c",
+          "baseline_diagnostic_counts": {}
+        },
+        {
+          "mode": "trait",
+          "checks": 4,
+          "fixed_diagnostics": [],
+          "observations_sha256": "5286cde4877832d25945763c9298f94081b15303bd98c10c642786b23a40b4cb",
+          "baseline_diagnostic_counts": {}
+        }
+      ]
+    },
+    {
+      "php": "8.4.27",
+      "checks": 54,
+      "files_linted": 8,
+      "modes": [
+        {
+          "mode": "json-core",
+          "checks": 6,
+          "fixed_diagnostics": [],
+          "observations_sha256": "2ec328163e885ceae23234800ca1ae9687cefb957d0ab060336c45c7f78f6f41",
+          "baseline_diagnostic_counts": {
+            "Creation of dynamic property Services_JSON::$use is deprecated": 2
+          }
+        },
+        {
+          "mode": "json-facebook",
+          "checks": 6,
+          "fixed_diagnostics": [],
+          "observations_sha256": "2ec328163e885ceae23234800ca1ae9687cefb957d0ab060336c45c7f78f6f41",
+          "baseline_diagnostic_counts": {
+            "Creation of dynamic property Services_JSON::$use is deprecated": 2
+          }
+        },
+        {
+          "mode": "diff",
+          "checks": 12,
+          "fixed_diagnostics": [],
+          "observations_sha256": "f8b5565479df1578fc30835b310f6d5d5b02173dd0fa20812febac71e011ee03",
+          "baseline_diagnostic_counts": {
+            "Creation of dynamic property Text_Diff_ThreeWay_BlockBuilder::$final1 is deprecated": 3,
+            "Creation of dynamic property Text_Diff_ThreeWay_BlockBuilder::$final2 is deprecated": 3,
+            "Creation of dynamic property Text_Diff_ThreeWay_BlockBuilder::$orig is deprecated": 3,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op::$_merged is deprecated": 6,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op::$final1 is deprecated": 6,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op::$final2 is deprecated": 6,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op::$orig is deprecated": 6,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op_copy::$final1 is deprecated": 3,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op_copy::$final2 is deprecated": 3,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op_copy::$orig is deprecated": 3
+          }
+        },
+        {
+          "mode": "less",
+          "checks": 14,
+          "fixed_diagnostics": [],
+          "observations_sha256": "6cdf8323b38139dfe6349bd4067fa5ee407868ca8e8aba186c56eb95d7784fb4",
+          "baseline_diagnostic_counts": {
+            "Creation of dynamic property ILess_FileInfo::$pluginNull is deprecated": 2,
+            "Creation of dynamic property ILess_FileInfo::$pluginTag is deprecated": 2,
+            "Creation of dynamic property ILess_Visitor_Arguments::$nullable is deprecated": 2,
+            "Creation of dynamic property ILess_Visitor_Arguments::$pluginValue is deprecated": 2,
+            "Return type of ILess_Output::count() should either be compatible with Countable::count(): int, or the #[\\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice": 1,
+            "trim(): Passing null to parameter #1 ($string) of type string is deprecated": 2
+          }
+        },
+        {
+          "mode": "computed-guards",
+          "checks": 12,
+          "fixed_diagnostics": [],
+          "observations_sha256": "07cb408bce8c300e24854d1c8b3fafe70ad7d79d8716c7cce961355201ce1c0c",
+          "baseline_diagnostic_counts": {}
+        },
+        {
+          "mode": "trait",
+          "checks": 4,
+          "fixed_diagnostics": [],
+          "observations_sha256": "5286cde4877832d25945763c9298f94081b15303bd98c10c642786b23a40b4cb",
+          "baseline_diagnostic_counts": {}
+        }
+      ]
+    },
+    {
+      "php": "8.5.12",
+      "checks": 54,
+      "files_linted": 8,
+      "modes": [
+        {
+          "mode": "json-core",
+          "checks": 6,
+          "fixed_diagnostics": [],
+          "observations_sha256": "2ec328163e885ceae23234800ca1ae9687cefb957d0ab060336c45c7f78f6f41",
+          "baseline_diagnostic_counts": {
+            "Creation of dynamic property Services_JSON::$use is deprecated": 2
+          }
+        },
+        {
+          "mode": "json-facebook",
+          "checks": 6,
+          "fixed_diagnostics": [],
+          "observations_sha256": "2ec328163e885ceae23234800ca1ae9687cefb957d0ab060336c45c7f78f6f41",
+          "baseline_diagnostic_counts": {
+            "Creation of dynamic property Services_JSON::$use is deprecated": 2
+          }
+        },
+        {
+          "mode": "diff",
+          "checks": 12,
+          "fixed_diagnostics": [],
+          "observations_sha256": "f8b5565479df1578fc30835b310f6d5d5b02173dd0fa20812febac71e011ee03",
+          "baseline_diagnostic_counts": {
+            "Creation of dynamic property Text_Diff_ThreeWay_BlockBuilder::$final1 is deprecated": 3,
+            "Creation of dynamic property Text_Diff_ThreeWay_BlockBuilder::$final2 is deprecated": 3,
+            "Creation of dynamic property Text_Diff_ThreeWay_BlockBuilder::$orig is deprecated": 3,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op::$_merged is deprecated": 6,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op::$final1 is deprecated": 6,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op::$final2 is deprecated": 6,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op::$orig is deprecated": 6,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op_copy::$final1 is deprecated": 3,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op_copy::$final2 is deprecated": 3,
+            "Creation of dynamic property Text_Diff_ThreeWay_Op_copy::$orig is deprecated": 3
+          }
+        },
+        {
+          "mode": "less",
+          "checks": 14,
+          "fixed_diagnostics": [],
+          "observations_sha256": "6cdf8323b38139dfe6349bd4067fa5ee407868ca8e8aba186c56eb95d7784fb4",
+          "baseline_diagnostic_counts": {
+            "Creation of dynamic property ILess_FileInfo::$pluginNull is deprecated": 2,
+            "Creation of dynamic property ILess_FileInfo::$pluginTag is deprecated": 2,
+            "Creation of dynamic property ILess_Visitor_Arguments::$nullable is deprecated": 2,
+            "Creation of dynamic property ILess_Visitor_Arguments::$pluginValue is deprecated": 2,
+            "Return type of ILess_Output::count() should either be compatible with Countable::count(): int, or the #[\\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice": 1,
+            "trim(): Passing null to parameter #1 ($string) of type string is deprecated": 2
+          }
+        },
+        {
+          "mode": "computed-guards",
+          "checks": 12,
+          "fixed_diagnostics": [],
+          "observations_sha256": "07cb408bce8c300e24854d1c8b3fafe70ad7d79d8716c7cce961355201ce1c0c",
+          "baseline_diagnostic_counts": {}
+        },
+        {
+          "mode": "trait",
+          "checks": 4,
+          "fixed_diagnostics": [],
+          "observations_sha256": "5286cde4877832d25945763c9298f94081b15303bd98c10c642786b23a40b4cb",
+          "baseline_diagnostic_counts": {}
+        }
+      ]
+    }
+  ],
+  "scope": "Isolated CLI fixtures; JSON copies run in separate processes; no CMS writes or external-service calls; negative checkout may emit previously fixed library diagnostics",
+  "observations": {
+    "json-core": {
+      "encoded": "{\"text\":\"quote \\\" and newline\\n\",\"unicode\":\"\\u00e9\",\"values\":[null,true,false,0,1.5]}",
+      "decoded": {
+        "value": 1,
+        "empty": null
+      },
+      "loose": {
+        "value": 1
+      }
+    },
+    "json-facebook": {
+      "encoded": "{\"text\":\"quote \\\" and newline\\n\",\"unicode\":\"\\u00e9\",\"values\":[null,true,false,0,1.5]}",
+      "decoded": {
+        "value": 1,
+        "empty": null
+      },
+      "loose": {
+        "value": 1
+      }
+    },
+    "diff": {
+      "copy": [
+        "copy",
+        "shared"
+      ],
+      "cached": [
+        "new",
+        "reference"
+      ],
+      "block": [
+        "left"
+      ],
+      "merged": [
+        "a",
+        "B"
+      ],
+      "conflict": [
+        "a",
+        "<<<<<<< ours",
+        "LEFT",
+        "=======",
+        "RIGHT",
+        ">>>>>>> theirs"
+      ]
+    },
+    "less": {
+      "info": {
+        "filename": "input.less",
+        "rootPath": null,
+        "currentDirectory": null,
+        "rootFilename": null,
+        "entryPath": null,
+        "reference": false,
+        "importedFile": null,
+        "pluginTag": "updated",
+        "pluginNull": null
+      },
+      "arguments": {
+        "visitDeeper": false,
+        "pluginValue": [
+          1,
+          2
+        ],
+        "nullable": null
+      },
+      "css": ".sample {\n  width: 2px;\n}\n"
+    },
+    "computed-guards": {
+      "renderer": {
+        "leading_context_lines": 7,
+        "trailing_context_lines": 0
+      },
+      "compress": true,
+      "id3": false,
+      "identity": "http://example.invalid/"
+    },
+    "trait": {
+      "generated": "tests/resources/generated/csv/example.CSV"
+    }
+  },
+  "review_scope": {
+    "multi_class_files_lexed": 24,
+    "method": "Lexer-assisted brace-delimited class review followed by manual parent/trait/guard checks; not a complete runtime or dataflow proof",
+    "trait_files_in_sources_and_sources_custom": 1,
+    "literal_this_computed_write_sites_triaged": [
+      "ILess_FileInfo constructor",
+      "ILess_Visitor_Arguments constructor",
+      "ILess_Environment option setter",
+      "getID3 setOption",
+      "Sabre DAV Client constructor",
+      "LightOpenID identity setter",
+      "Text_Diff_Renderer constructor"
+    ]
+  }
+}
