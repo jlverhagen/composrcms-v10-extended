@@ -273,47 +273,12 @@ function cms_strftime($format, $timestamp = null)
         $timestamp = time();
     }
 
-    // Preserve LC_TIME names while formatting common numeric directives without strftime.
-    // Keep the legacy formatter for locale composites, modifiers and other platforms.
-    if (PHP_OS_FAMILY === 'Linux' && function_exists('nl_langinfo') && preg_match('#\A(?:[^%]*%[%aAbBdeDFgGhHIjlmMnopRSTuUVwWyYzZt])*[^%]*\z#D', $format)) {
-        $parts = getdate($timestamp);
-        $replacements = array(
-            '%%' => '%',
-            '%A' => nl_langinfo(constant('DAY_' . ($parts['wday'] + 1))),
-            '%a' => nl_langinfo(constant('ABDAY_' . ($parts['wday'] + 1))),
-            '%b' => nl_langinfo(constant('ABMON_' . $parts['mon'])),
-            '%B' => nl_langinfo(constant('MON_' . $parts['mon'])),
-            '%d' => date('d', $timestamp),
-            '%D' => date('m/d/y', $timestamp),
-            '%e' => strval($parts['mday']),
-            '%F' => date('Y-m-d', $timestamp),
-            '%g' => substr(date('o', $timestamp), -2),
-            '%G' => date('o', $timestamp),
-            '%h' => nl_langinfo(constant('ABMON_' . $parts['mon'])),
-            '%H' => date('H', $timestamp),
-            '%I' => date('h', $timestamp),
-            '%j' => str_pad(strval($parts['yday'] + 1), 3, '0', STR_PAD_LEFT),
-            '%m' => date('m', $timestamp),
-            '%n' => "\n",
-            '%o' => date('S', $timestamp),
-            '%l' => date('g', $timestamp),
-            '%M' => date('i', $timestamp),
-            '%R' => date('H:i', $timestamp),
-            '%S' => date('s', $timestamp),
-            '%t' => "\t",
-            '%T' => date('H:i:s', $timestamp),
-            '%u' => date('N', $timestamp),
-            '%U' => str_pad(strval(intdiv($parts['yday'] + 7 - $parts['wday'], 7)), 2, '0', STR_PAD_LEFT),
-            '%V' => date('W', $timestamp),
-            '%w' => strval($parts['wday']),
-            '%W' => str_pad(strval(intdiv($parts['yday'] + 7 - (($parts['wday'] + 6) % 7), 7)), 2, '0', STR_PAD_LEFT),
-            '%y' => date('y', $timestamp),
-            '%Y' => strval($parts['year']),
-            '%z' => date('O', $timestamp),
-            '%Z' => date('T', $timestamp),
-            '%p' => nl_langinfo($parts['hours'] < 12 ? AM_STR : PM_STR),
-        );
-        return trim(locale_filter(strtr($format, $replacements)));
+    // Keep LC_TIME names and locale-defined composite formats without strftime.
+    if (PHP_OS_FAMILY === 'Linux' && function_exists('nl_langinfo')) {
+        $ret = _cms_strftime_linux($format, $timestamp);
+        if ($ret !== null) {
+            return trim(locale_filter($ret));
+        }
     }
 
     static $is_windows = null;
@@ -339,6 +304,78 @@ function cms_strftime($format, $timestamp = null)
         $ret = preg_replace('#\{\{[ 0]?([^\{\}]+)\}\}#', '${1}', $ret);
     }
     return trim(locale_filter($ret)); // Needed as %e comes with a leading space
+}
+
+/**
+ * Format supported Linux locale directives without changing their encoded text.
+ *
+ * @param  string $format Date format
+ * @param  TIME $timestamp Input timestamp
+ * @param  integer $depth Locale composite nesting depth
+ * @return ?string Formatted time (null: unsupported format; use platform fallback)
+ * @ignore
+ */
+function _cms_strftime_linux($format, $timestamp, $depth = 0)
+{
+    // Validate the whole format before replacing anything. Unknown modifiers must
+    // reach the unchanged fallback, including when they occur inside a locale.
+    if ($depth > 8 || !preg_match('#\A(?:[^%]*%[%aAbBcCdeDFgGhHIjklmMnopRrSTuUVwWxXyYzZt])*[^%]*\z#D', $format)) {
+        return null;
+    }
+    $parts = getdate($timestamp);
+    $replacements = array(
+        '%%' => '%',
+        '%A' => nl_langinfo(constant('DAY_' . ($parts['wday'] + 1))),
+        '%a' => nl_langinfo(constant('ABDAY_' . ($parts['wday'] + 1))),
+        '%b' => nl_langinfo(constant('ABMON_' . $parts['mon'])),
+        '%B' => nl_langinfo(constant('MON_' . $parts['mon'])),
+        '%C' => str_pad(strval(intdiv($parts['year'], 100)), 2, '0', STR_PAD_LEFT),
+        '%d' => date('d', $timestamp),
+        '%D' => date('m/d/y', $timestamp),
+        '%e' => ($depth === 0) ? strval($parts['mday']) : str_pad(strval($parts['mday']), 2, ' ', STR_PAD_LEFT),
+        '%F' => date('Y-m-d', $timestamp),
+        '%g' => substr(date('o', $timestamp), -2),
+        '%G' => date('o', $timestamp),
+        '%h' => nl_langinfo(constant('ABMON_' . $parts['mon'])),
+        '%H' => date('H', $timestamp),
+        '%I' => date('h', $timestamp),
+        '%k' => str_pad(strval($parts['hours']), 2, ' ', STR_PAD_LEFT),
+        '%j' => str_pad(strval($parts['yday'] + 1), 3, '0', STR_PAD_LEFT),
+        '%m' => date('m', $timestamp),
+        '%n' => "\n",
+        '%o' => date('S', $timestamp),
+        '%l' => ($depth === 0) ? date('g', $timestamp) : str_pad(date('g', $timestamp), 2, ' ', STR_PAD_LEFT),
+        '%M' => date('i', $timestamp),
+        '%R' => date('H:i', $timestamp),
+        '%S' => date('s', $timestamp),
+        '%t' => "\t",
+        '%T' => date('H:i:s', $timestamp),
+        '%u' => date('N', $timestamp),
+        '%U' => str_pad(strval(intdiv($parts['yday'] + 7 - $parts['wday'], 7)), 2, '0', STR_PAD_LEFT),
+        '%V' => date('W', $timestamp),
+        '%w' => strval($parts['wday']),
+        '%W' => str_pad(strval(intdiv($parts['yday'] + 7 - (($parts['wday'] + 6) % 7), 7)), 2, '0', STR_PAD_LEFT),
+        '%y' => date('y', $timestamp),
+        '%Y' => strval($parts['year']),
+        '%z' => date('O', $timestamp),
+        '%Z' => date('T', $timestamp),
+        '%p' => nl_langinfo($parts['hours'] < 12 ? AM_STR : PM_STR),
+    );
+
+    $composites = array('%c' => D_T_FMT, '%x' => D_FMT, '%X' => T_FMT, '%r' => T_FMT_AMPM);
+    preg_match_all('#%[%aAbBcCdeDFgGhHIjklmMnopRrSTuUVwWxXyYzZt]#', $format, $directives);
+    foreach (array_unique($directives[0]) as $directive) {
+        if (isset($composites[$directive])) {
+            $replacement = _cms_strftime_linux(nl_langinfo($composites[$directive]), $timestamp, $depth + 1);
+            if ($replacement === null) {
+                return null;
+            }
+            $replacements[$directive] = $replacement;
+        }
+    }
+    // strtr does not process replacement values again: percent signs in locale
+    // text and escaped directives remain literal. Trim/filter only at the caller.
+    return strtr($format, $replacements);
 }
 
 /**
