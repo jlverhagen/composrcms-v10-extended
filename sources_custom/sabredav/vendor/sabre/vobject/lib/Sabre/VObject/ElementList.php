@@ -46,7 +46,7 @@ class ElementList implements \Iterator, \Countable, \ArrayAccess {
      *
      * @return Element
      */
-    public function current() {
+    public function current(): mixed {
 
         return $this->elements[$this->key];
 
@@ -57,7 +57,7 @@ class ElementList implements \Iterator, \Countable, \ArrayAccess {
      *
      * @return void
      */
-    public function next() {
+    public function next(): void {
 
         $this->key++;
 
@@ -68,7 +68,7 @@ class ElementList implements \Iterator, \Countable, \ArrayAccess {
      *
      * @return int
      */
-    public function key() {
+    public function key(): mixed {
 
         return $this->key;
 
@@ -79,7 +79,7 @@ class ElementList implements \Iterator, \Countable, \ArrayAccess {
      *
      * @return bool
      */
-    public function valid() {
+    public function valid(): bool {
 
         return isset($this->elements[$this->key]);
 
@@ -90,7 +90,7 @@ class ElementList implements \Iterator, \Countable, \ArrayAccess {
      *
      * @return void
      */
-    public function rewind() {
+    public function rewind(): void {
 
         $this->key = 0;
 
@@ -105,7 +105,7 @@ class ElementList implements \Iterator, \Countable, \ArrayAccess {
      *
      * @return int
      */
-    public function count() {
+    public function count(): int {
 
         return count($this->elements);
 
@@ -122,7 +122,7 @@ class ElementList implements \Iterator, \Countable, \ArrayAccess {
      * @param int $offset
      * @return bool
      */
-    public function offsetExists($offset) {
+    public function offsetExists($offset): bool {
 
         return isset($this->elements[$offset]);
 
@@ -134,7 +134,7 @@ class ElementList implements \Iterator, \Countable, \ArrayAccess {
      * @param int $offset
      * @return mixed
      */
-    public function offsetGet($offset) {
+    public function offsetGet($offset): mixed {
 
         return $this->elements[$offset];
 
@@ -147,7 +147,7 @@ class ElementList implements \Iterator, \Countable, \ArrayAccess {
      * @param mixed $value
      * @return void
      */
-    public function offsetSet($offset,$value) {
+    public function offsetSet($offset,$value): void {
 
         throw new \LogicException('You can not add new objects to an ElementList');
 
@@ -161,7 +161,7 @@ class ElementList implements \Iterator, \Countable, \ArrayAccess {
      * @param int $offset
      * @return void
      */
-    public function offsetUnset($offset) {
+    public function offsetUnset($offset): void {
 
         throw new \LogicException('You can not remove objects from an ElementList');
 

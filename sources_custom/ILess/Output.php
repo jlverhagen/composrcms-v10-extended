@@ -55,7 +55,7 @@ class ILess_Output implements Countable
      *
      * @return integer
      */
-    public function count()
+    public function count(): int
     {
         return count($this->output);
     }

@@ -463,7 +463,7 @@ class RecurrenceIterator implements \Iterator {
      *
      * @return DateTime
      */
-    public function current() {
+    public function current(): mixed {
 
         if (!$this->valid()) return null;
         return clone $this->currentDate;
@@ -536,7 +536,7 @@ class RecurrenceIterator implements \Iterator {
      *
      * @return int
      */
-    public function key() {
+    public function key(): mixed {
 
         return $this->counter;
 
@@ -547,7 +547,7 @@ class RecurrenceIterator implements \Iterator {
      *
      * @return bool
      */
-    public function valid() {
+    public function valid(): bool {
 
         if (!is_null($this->count)) {
             return $this->counter < $this->count;
@@ -564,7 +564,7 @@ class RecurrenceIterator implements \Iterator {
      *
      * @return void
      */
-    public function rewind() {
+    public function rewind(): void {
 
         $this->currentDate = clone $this->startDate;
         $this->counter = 0;
@@ -606,7 +606,7 @@ class RecurrenceIterator implements \Iterator {
      *
      * @return void
      */
-    public function next() {
+    public function next(): void {
 
         /*
         if (!is_null($this->count) && $this->counter >= $this->count) {

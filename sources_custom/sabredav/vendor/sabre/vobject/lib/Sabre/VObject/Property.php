@@ -256,7 +256,7 @@ class Property extends Node {
      * @param mixed $name
      * @return bool
      */
-    public function offsetExists($name) {
+    public function offsetExists($name): bool {
 
         if (is_int($name)) return parent::offsetExists($name);
 
@@ -275,7 +275,7 @@ class Property extends Node {
      * @param string $name
      * @return Node
      */
-    public function offsetGet($name) {
+    public function offsetGet($name): mixed {
 
         if (is_int($name)) return parent::offsetGet($name);
         $name = strtoupper($name);
@@ -304,7 +304,7 @@ class Property extends Node {
      * @param mixed $value
      * @return void
      */
-    public function offsetSet($name, $value) {
+    public function offsetSet($name, $value): void {
 
         if (is_int($name)) parent::offsetSet($name, $value);
 
@@ -335,7 +335,7 @@ class Property extends Node {
      * @param string $name
      * @return void
      */
-    public function offsetUnset($name) {
+    public function offsetUnset($name): void {
 
         if (is_int($name)) parent::offsetUnset($name);
         $name = strtoupper($name);
