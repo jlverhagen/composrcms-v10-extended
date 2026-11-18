@@ -273,19 +273,44 @@ function cms_strftime($format, $timestamp = null)
         $timestamp = time();
     }
 
-    // Use the active LC_TIME locale for the date formats shipped with Composr.
-    // Keep the legacy formatter for custom directives and other platforms.
-    if (PHP_OS_FAMILY === 'Linux' && function_exists('nl_langinfo') && preg_match('#\A(?:[^%]*%[abBeolMYp])*[^%]*\z#D', $format)) {
+    // Preserve LC_TIME names while formatting common numeric directives without strftime.
+    // Keep the legacy formatter for locale composites, modifiers and other platforms.
+    if (PHP_OS_FAMILY === 'Linux' && function_exists('nl_langinfo') && preg_match('#\A(?:[^%]*%[%aAbBdeDFgGhHIjlmMnopRSTuUVwWyYzZt])*[^%]*\z#D', $format)) {
         $parts = getdate($timestamp);
         $replacements = array(
+            '%%' => '%',
+            '%A' => nl_langinfo(constant('DAY_' . ($parts['wday'] + 1))),
             '%a' => nl_langinfo(constant('ABDAY_' . ($parts['wday'] + 1))),
             '%b' => nl_langinfo(constant('ABMON_' . $parts['mon'])),
             '%B' => nl_langinfo(constant('MON_' . $parts['mon'])),
+            '%d' => date('d', $timestamp),
+            '%D' => date('m/d/y', $timestamp),
             '%e' => strval($parts['mday']),
+            '%F' => date('Y-m-d', $timestamp),
+            '%g' => substr(date('o', $timestamp), -2),
+            '%G' => date('o', $timestamp),
+            '%h' => nl_langinfo(constant('ABMON_' . $parts['mon'])),
+            '%H' => date('H', $timestamp),
+            '%I' => date('h', $timestamp),
+            '%j' => str_pad(strval($parts['yday'] + 1), 3, '0', STR_PAD_LEFT),
+            '%m' => date('m', $timestamp),
+            '%n' => "\n",
             '%o' => date('S', $timestamp),
             '%l' => date('g', $timestamp),
             '%M' => date('i', $timestamp),
+            '%R' => date('H:i', $timestamp),
+            '%S' => date('s', $timestamp),
+            '%t' => "\t",
+            '%T' => date('H:i:s', $timestamp),
+            '%u' => date('N', $timestamp),
+            '%U' => str_pad(strval(intdiv($parts['yday'] + 7 - $parts['wday'], 7)), 2, '0', STR_PAD_LEFT),
+            '%V' => date('W', $timestamp),
+            '%w' => strval($parts['wday']),
+            '%W' => str_pad(strval(intdiv($parts['yday'] + 7 - (($parts['wday'] + 6) % 7), 7)), 2, '0', STR_PAD_LEFT),
+            '%y' => date('y', $timestamp),
             '%Y' => strval($parts['year']),
+            '%z' => date('O', $timestamp),
+            '%Z' => date('T', $timestamp),
             '%p' => nl_langinfo($parts['hours'] < 12 ? AM_STR : PM_STR),
         );
         return trim(locale_filter(strtr($format, $replacements)));
