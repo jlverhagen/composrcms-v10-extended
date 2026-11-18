@@ -1117,6 +1117,23 @@
         ],
         "checks_per_runtime": 54,
         "evidence": "php-property-graph-review-2026-11-18.json"
+      },
+      "followup_library_loading": {
+        "date": "2026-11-18",
+        "phase_status": "completed for seven selected library groups",
+        "named_declarations_per_runtime": 547,
+        "php_files_inventoried": 543,
+        "runtimes": [
+          "8.2.35",
+          "8.3.36",
+          "8.4.27",
+          "8.5.12"
+        ],
+        "failures": 0,
+        "confirmed_fix": "Photobucket SimpleXML override accepts the parent array contract and SimpleXMLElement",
+        "parser_checks_per_runtime": 16,
+        "evidence": "php-library-load-review-2026-11-18.json",
+        "limitations": "No object constructors or library workflows in the declaration probe; separate response fixtures exercise parser objects only"
       }
     },
     "R03": {

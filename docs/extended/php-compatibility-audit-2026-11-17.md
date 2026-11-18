@@ -345,6 +345,29 @@ The [machine-readable evidence](php-property-graph-review-2026-11-18.json) inclu
 
 JSON/three-way diff fixes belong to bundled core. Facebook's JSON copy belongs to facebook_support, and ILess fixes belong to less. The new probe is owned by testing_platform. Core fixes await the combined core release; optional fixes await combined addon publication. R02 remains open for broader class-loading, anonymous/external-object/computed-write paths and runtime reachability. R03 retains other boundary categories. Complete CMS and upgrade/package validation remain under R05/R06.
 
+## Library declaration loading follow-up on 2026-11-18
+
+The registered CLI-only `_tests/libs/library_class_load_probe.php` uses PHP tokens to discover named classes/interfaces/traits in explicitly selected production-library directories, builds an isolated autoload map, and loads each declaration with strict diagnostics. Tests/examples/demos are excluded. Duplicate symbols in different files and bracketed namespaces require explicit review rather than being silently skipped. Anonymous declarations, object construction and library workflows are outside this probe.
+
+| Library group | PHP files inventoried | Named declarations loaded per runtime |
+|---|---:|---:|
+| ILess | 86 | 86 |
+| Sabre DAV and VObject | 139 | 137 |
+| Swift Mailer | 161 | 161 |
+| Spout production source | 43 | 43 |
+| getID3 | 81 | 86 |
+| Photobucket/OAuth | 32 | 31 |
+| Facebook SDK | 1 | 3 |
+| Total | 543 | 547 |
+
+All 547 declarations loaded on PHP 8.2.35, 8.3.36, 8.4.27 and 8.5.12 with no diagnostics, missing declarations, load failures or stderr. Inventories and reflected declaration lists matched across runtimes. Facebook's source explicitly requires Composr's json loader; the probe supplies a narrowly scoped adapter that loads the actual sources/json.php and records its hash. The initial missing-adapter failure was a harness limitation, not an SDK defect.
+
+Loading Photobucket's SimpleXML strategy exposed a real fatal signature conflict on every runtime: the child accepted SimpleXMLElement while its parent accepted array. The override now accepts array|SimpleXMLElement, delegating arrays to the parent and preserving the existing XML branch. This satisfies the parent's input contract without removing type validation. Unsupported objects still throw TypeError.
+
+The registered `_tests/libs/photobucket_response_probe.php` passed 16 checks on each runtime: full/content-only XML, attributes, XML error message/code, parent-array success/error handling, invalid-type rejection, and unchanged JSON/PHP-serialized response strategies. All four changed PHP files passed lint on all four runtimes. The [evidence](php-library-load-review-2026-11-18.json) records pre-fix fatal diagnostics, exact source hashes, dependency overlays, inventory/declaration hashes, load counts and parser results.
+
+This completes the selected seven-library declaration-loading phase. It does not establish every constructor, method, provider integration or CMS workflow as compatible, and it does not close all of R02/R03. The production fix belongs to image_syndication and awaits combined addon publication. Both probes belong to testing_platform. The test site was not deployed or changed.
+
 ## Remaining review and runtime checklist
 
 - [x] R01 Full baseline syntax scan and representative probes completed on PHP 8.4.27; extension configuration and fixture hashes recorded in the follow-up evidence.
