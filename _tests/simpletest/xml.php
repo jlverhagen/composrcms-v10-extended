@@ -517,10 +517,9 @@ class SimpleTestXmlParser {
      */
     function &_createParser() {
         $expat = xml_parser_create();
-        xml_set_object($expat, $this);
-        xml_set_element_handler($expat, '_startElement', '_endElement');
-        xml_set_character_data_handler($expat, '_addContent');
-        xml_set_default_handler($expat, '_default');
+        xml_set_element_handler($expat, array($this, '_startElement'), array($this, '_endElement'));
+        xml_set_character_data_handler($expat, array($this, '_addContent'));
+        xml_set_default_handler($expat, array($this, '_default'));
         return $expat;
     }
 

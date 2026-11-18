@@ -236,7 +236,7 @@ class SimpleErrorQueue {
      */
     static function getSeverityAsString($severity) {
         static $map = array(
-                E_STRICT => 'E_STRICT',
+                2048 => 'E_STRICT', // Historical error level, retained for old reports.
                 E_ERROR => 'E_ERROR',
                 E_WARNING => 'E_WARNING',
                 E_PARSE => 'E_PARSE',
