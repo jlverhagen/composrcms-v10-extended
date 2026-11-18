@@ -12,12 +12,15 @@
       "examined": 5116,
       "failures": 4
     },
-    "8.4": {
-      "status": "unavailable on test host"
-    },
     "8.5.12": {
       "examined": 5116,
       "failures": 4
+    },
+    "8.4.27": {
+      "examined": 5116,
+      "failures": 4,
+      "followup_date": "2026-11-18",
+      "evidence": "php84-validation-2026-11-18.json"
     }
   },
   "findings": {
@@ -1011,18 +1014,36 @@
       "runtimes": [
         "8.2.35",
         "8.3.36",
+        "8.4.27",
         "8.5.12"
       ],
       "remaining": [
         "locale-specific E/O rules, case and combined flags, oversized fields",
         "remaining platform extensions",
         "non-Linux behavior",
-        "PHP 8.4 and full CMS workflows"
+        "full CMS workflows"
       ],
       "formats": "171 base and numeric-modifier forms, plus up to 19 E/O forms per locale",
       "locale_composites": "LC_TIME patterns, internal padding, empty twelve-hour fallback and bounded recursion",
       "numeric_modifiers": "single -, _ and 0 flags; widths through 128 characters",
       "locale_modifiers": "E/O use ordinary directives only when ERA/ALT_DIGITS metadata are empty"
+    },
+    "R01": {
+      "status": "completed",
+      "date": "2026-11-18",
+      "runtime": "8.4.27",
+      "baseline": "ec0f8a7b8c1459f31bd10b0f3c1f3810bc174b14",
+      "syntax_examined": 5116,
+      "known_non_runtime_failures": 4,
+      "focused_suites": [
+        "F03 dates",
+        "F06 Latin-1",
+        "F10 Swift methods",
+        "F12 interfaces",
+        "F14 test helpers"
+      ],
+      "evidence": "php84-validation-2026-11-18.json",
+      "limitation": "Full CMS workflows, broader runtime review and final packages remain open"
     }
   }
 }

@@ -1,0 +1,125 @@
+{
+  "date": "2026-11-18",
+  "php_version": "8.4.27",
+  "binary": "/opt/remi/php84/root/usr/bin/php",
+  "modules": [
+    "bz2",
+    "calendar",
+    "Core",
+    "ctype",
+    "curl",
+    "date",
+    "dom",
+    "exif",
+    "fileinfo",
+    "filter",
+    "ftp",
+    "gd",
+    "gettext",
+    "hash",
+    "iconv",
+    "intl",
+    "json",
+    "libxml",
+    "mbstring",
+    "mysqli",
+    "mysqlnd",
+    "openssl",
+    "pcntl",
+    "pcre",
+    "PDO",
+    "pdo_mysql",
+    "pdo_sqlite",
+    "Phar",
+    "random",
+    "readline",
+    "Reflection",
+    "session",
+    "SimpleXML",
+    "sockets",
+    "SPL",
+    "sqlite3",
+    "standard",
+    "tokenizer",
+    "xml",
+    "xmlreader",
+    "xmlwriter",
+    "xsl",
+    "zlib"
+  ],
+  "syntax_baseline": "ec0f8a7b8c1459f31bd10b0f3c1f3810bc174b14",
+  "inventory_hash_method": "SHA256 of sorted relative PHP paths, NUL, Git blob SHA1, newline",
+  "php_inventory_sha256": "3bacdf708df5eefcaf82be153d132d0c281ed950271dbd744abe44753a3aeac9",
+  "examined": 5116,
+  "syntax_failures": [
+    {
+      "path": "sources_custom/phpstub.php",
+      "exit": 255,
+      "output": "\nParse error: syntax error, unexpected token \"exit\", expecting \"(\" in /var/tmp/composr-alpha21.34cpuC/core/sources_custom/phpstub.php on line 607\nErrors parsing /var/tmp/composr-alpha21.34cpuC/core/sources_custom/phpstub.php\n"
+    },
+    {
+      "path": "tracker/vendor/nikic/fast-route/test/HackTypechecker/fixtures/all_options.php",
+      "exit": 255,
+      "output": "\nParse error: syntax error, unexpected token \"namespace\" in /var/tmp/composr-alpha21.34cpuC/core/tracker/vendor/nikic/fast-route/test/HackTypechecker/fixtures/all_options.php on line 3\nErrors parsing /var/tmp/composr-alpha21.34cpuC/core/tracker/vendor/nikic/fast-route/test/HackTypechecker/fixtures/all_options.php\n"
+    },
+    {
+      "path": "tracker/vendor/nikic/fast-route/test/HackTypechecker/fixtures/empty_options.php",
+      "exit": 255,
+      "output": "\nParse error: syntax error, unexpected token \"namespace\" in /var/tmp/composr-alpha21.34cpuC/core/tracker/vendor/nikic/fast-route/test/HackTypechecker/fixtures/empty_options.php on line 3\nErrors parsing /var/tmp/composr-alpha21.34cpuC/core/tracker/vendor/nikic/fast-route/test/HackTypechecker/fixtures/empty_options.php\n"
+    },
+    {
+      "path": "tracker/vendor/nikic/fast-route/test/HackTypechecker/fixtures/no_options.php",
+      "exit": 255,
+      "output": "\nParse error: syntax error, unexpected token \"namespace\" in /var/tmp/composr-alpha21.34cpuC/core/tracker/vendor/nikic/fast-route/test/HackTypechecker/fixtures/no_options.php on line 3\nErrors parsing /var/tmp/composr-alpha21.34cpuC/core/tracker/vendor/nikic/fast-route/test/HackTypechecker/fixtures/no_options.php\n"
+    }
+  ],
+  "probes": [
+    {
+      "stage": "composr-test-helper-fixes",
+      "exit": 0,
+      "stdout": "8.4.27 TEST_HELPER_CHECKS_OK\n",
+      "stderr": "",
+      "staged_php_files": 46,
+      "staged_php_inventory_sha256": "c05041ac53a7dd33d71fd0bfa98d34a3ebe1ae970fb552c7b59ad75c1deeb1af",
+      "probe_sha256": "097a585248783c353752fdd6401ca6aede725825750af1911c6ba8a06160b78b"
+    },
+    {
+      "stage": "composr-interface-fixes",
+      "exit": 0,
+      "stdout": "8.4.27 INTERFACE_BEHAVIOR_OK\n",
+      "stderr": "",
+      "staged_php_files": 115,
+      "staged_php_inventory_sha256": "a288f48bb8a2bf16f29c7eb876ef4ae5b1381b6c789ffdd8c936fe97a5cd89ea",
+      "probe_sha256": "3d0189ab4234f4e5b6cf584387d63cac7505460cb1df78e3e23fcddcfbb2a36e"
+    },
+    {
+      "stage": "composr-latin1-fixes",
+      "exit": 0,
+      "stdout": "8.4.27 LATIN1_ALL_CHECKS_OK\n",
+      "stderr": "",
+      "staged_php_files": 8,
+      "staged_php_inventory_sha256": "9cbb72143da727e643118aea2ee831ed4db046d6317c08cc44784507f32f3988",
+      "probe_sha256": "d69d9cd1922fb72cfeeb0df4a4baee297f9279f90aba5af173bc4bf0d29bf454"
+    },
+    {
+      "stage": "composr-swift-method-fix",
+      "exit": 0,
+      "stdout": "8.4.27 SWIFT_METHOD_CHECKS_OK\n",
+      "stderr": "",
+      "staged_php_files": 172,
+      "staged_php_inventory_sha256": "beade752b1caa1fd6648bfdacb7b2542917d56fc7618d1902131cd7bd22636a9",
+      "probe_sha256": "bd41564b9e7458295178dcfcb267a1818d2560b24ad215d2b9fb773a13fca474"
+    },
+    {
+      "stage": "composr-date-modifiers",
+      "exit": 0,
+      "stdout": "8.4.27 MODIFIER_CHECKS_OK 799735\n",
+      "stderr": "",
+      "staged_php_files": 3,
+      "staged_php_inventory_sha256": "aa1d85cd9c61eb1cccf51cb632aff10d1ab94de83dae20e000533414f2240479",
+      "probe_sha256": "942fbf7c01c2deff2b05396d43502dcc9e6f625d7de7252bfff7aa40a328f962"
+    }
+  ],
+  "probe_inventory_hash_method": "SHA256 of sorted relative PHP paths, NUL, file SHA256, newline",
+  "scope": "CLI syntax and focused regression only; site PHP and services unchanged; full CMS workflows remain open"
+}
