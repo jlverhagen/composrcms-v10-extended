@@ -35,11 +35,7 @@ class ReflectionHelper
     {
         $reflectionClass = new ReflectionClass($class);
         $reflectionProperty = $reflectionClass->getProperty($valueName);
-        $reflectionProperty->setAccessible(true);
         $value = $reflectionProperty->getValue();
-
-        // clean up
-        $reflectionProperty->setAccessible(false);
 
         return $value;
     }
@@ -58,17 +54,15 @@ class ReflectionHelper
     {
         $reflectionClass = new ReflectionClass($class);
         $reflectionProperty = $reflectionClass->getProperty($valueName);
-        $reflectionProperty->setAccessible(true);
 
         // to prevent side-effects in later tests, we need to remember the original value and reset it on tear down
         // @NOTE: we need to check isset in case the original value was null or array()
-        if ($saveOriginalValue && (!isset(self::$privateVarsToReset[$class]) || !isset(self::$privateVarsToReset[$class][$name]))) {
+        if ($saveOriginalValue && (!isset(self::$privateVarsToReset[$class]) || !isset(self::$privateVarsToReset[$class][$valueName]))) {
             self::$privateVarsToReset[$class][$valueName] = $reflectionProperty->getValue();
         }
-        $reflectionProperty->setValue($value);
+        $reflectionProperty->setValue(null, $value);
 
         // clean up
-        $reflectionProperty->setAccessible(false);
     }
 
     /**
@@ -81,11 +75,7 @@ class ReflectionHelper
     {
         $reflectionObject = new ReflectionObject($object);
         $reflectionProperty = $reflectionObject->getProperty($valueName);
-        $reflectionProperty->setAccessible(true);
         $value = $reflectionProperty->getValue($object);
-
-        // clean up
-        $reflectionProperty->setAccessible(false);
 
         return $value;
     }

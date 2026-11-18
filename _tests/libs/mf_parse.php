@@ -74,7 +74,6 @@ function fetch($url, $convertClassic = true, &$curlInfo=null) {
 	));
 	$html = curl_exec($ch);
 	$info = $curlInfo = curl_getinfo($ch);
-	curl_close($ch);
 
 	if (strpos(strtolower($info['content_type']), 'html') === false) {
 		// The content was not delivered as HTML, do not attempt to parse it.
@@ -93,7 +92,10 @@ function fetch($url, $convertClassic = true, &$curlInfo=null) {
  * @return string
  */
 function unicodeToHtmlEntities($input) {
-	return mb_convert_encoding($input, 'HTML-ENTITIES', mb_detect_encoding($input));
+	$utf8 = mb_convert_encoding($input, 'UTF-8', mb_detect_encoding($input));
+	$entities = htmlentities($utf8, ENT_NOQUOTES, 'UTF-8');
+	$entities = strtr($entities, array('&amp;' => '&', '&lt;' => '<', '&gt;' => '>'));
+	return mb_encode_numericentity($entities, array(0x80, 0x10FFFF, 0, 0x1FFFFF), 'UTF-8');
 }
 
 /**
@@ -112,7 +114,7 @@ function collapseWhitespace($str) {
 
 function unicodeTrim($str) {
 	// this is cheating. TODO: find a better way if this causes any problems
-	$str = str_replace(mb_convert_encoding('&nbsp;', 'UTF-8', 'HTML-ENTITIES'), ' ', $str);
+	$str = str_replace(html_entity_decode('&nbsp;', ENT_NOQUOTES, 'UTF-8'), ' ', $str);
 	$str = preg_replace('/^\s+/', '', $str);
 	return preg_replace('/\s+$/', '', $str);
 }

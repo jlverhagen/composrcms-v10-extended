@@ -264,11 +264,9 @@ class PimpleTest extends \PHPUnit_Framework_TestCase
         unset($pimple['foo']);
 
         $p = new \ReflectionProperty($pimple, 'values');
-        $p->setAccessible(true);
         $this->assertEmpty($p->getValue($pimple));
 
         $p = new \ReflectionProperty($pimple, 'factories');
-        $p->setAccessible(true);
         $this->assertCount(0, $p->getValue($pimple));
     }
 
