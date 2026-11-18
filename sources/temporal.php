@@ -366,7 +366,12 @@ function _cms_strftime_linux($format, $timestamp, $depth = 0)
     preg_match_all('#%[%aAbBcCdeDFgGhHIjklmMnopRrSTuUVwWxXyYzZt]#', $format, $directives);
     foreach (array_unique($directives[0]) as $directive) {
         if (isset($composites[$directive])) {
-            $replacement = _cms_strftime_linux(nl_langinfo($composites[$directive]), $timestamp, $depth + 1);
+            $locale_format = nl_langinfo($composites[$directive]);
+            if ($directive === '%r' && $locale_format === '') {
+                // glibc uses the conventional 12-hour form when the locale omits it.
+                $locale_format = '%I:%M:%S %p';
+            }
+            $replacement = _cms_strftime_linux($locale_format, $timestamp, $depth + 1);
             if ($replacement === null) {
                 return null;
             }
