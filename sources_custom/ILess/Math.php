@@ -305,7 +305,8 @@ class ILess_Math
                 // Retain the legacy signed infinity without deprecated zero-to-negative power.
                 return strval(fdiv(1.0, pow($base, -$exponent)));
             }
-            return strval(pow($base, $exponent));
+            $result = pow($base, $exponent);
+            return is_nan($result) ? 'NAN' : strval($result);
         }
 
         return is_null($precision) ? bcpow($left_operand, $right_operand) : bcpow($left_operand, $right_operand, $precision);
