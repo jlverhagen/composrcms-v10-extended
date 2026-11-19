@@ -263,12 +263,34 @@ class ILess_Math
     public static function modulus($left_operand, $modulus)
     {
         if (!function_exists('bcmod')) {
-            $ret = strval(floatval($left_operand) % floatval($modulus));
+            $ret = strval(self::integerForModulus(floatval($left_operand)) % self::integerForModulus(floatval($modulus)));
             if ($ret == '0') return NULL;
             return $ret;
         }
 
         return bcmod($left_operand, $modulus);
+    }
+
+    /** Preserve native integer-modulus conversion, including float wraparound. */
+    protected static function integerForModulus($value)
+    {
+        $number = $value + 0;
+        if (is_int($number)) {
+            return $number;
+        }
+        if (!is_finite($number)) {
+            return 0;
+        }
+        $limit = PHP_INT_MAX + 1.0;
+        if ($number >= $limit || $number < -$limit) {
+            $number = fmod($number, 2.0 * $limit);
+            if ($number >= $limit) {
+                $number -= 2.0 * $limit;
+            } elseif ($number < -$limit) {
+                $number += 2.0 * $limit;
+            }
+        }
+        return (int)$number;
     }
 
     /**
@@ -299,7 +321,14 @@ class ILess_Math
     public static function power($left_operand, $right_operand, $precision = null)
     {
         if (!function_exists('bcpow')) {
-            return strval(pow(floatval($left_operand), floatval($right_operand)));
+            $base = floatval($left_operand);
+            $exponent = floatval($right_operand);
+            if ($base == 0.0 && $exponent < 0.0) {
+                // Retain the legacy signed infinity without deprecated zero-to-negative power.
+                return strval(fdiv(1.0, pow($base, -$exponent)));
+            }
+            $result = pow($base, $exponent);
+            return is_nan($result) ? 'NAN' : strval($result);
         }
 
         return is_null($precision) ? bcpow($left_operand, $right_operand) : bcpow($left_operand, $right_operand, $precision);

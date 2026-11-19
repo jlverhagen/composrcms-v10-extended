@@ -401,6 +401,22 @@ The character helpers belong to bundled core; WordPress compatibility belongs to
 
 F01, F02, F03, F04 and F11 form the first bundled-code batch. F05–F10 and F12 form the optional/library batch. F13–F14 need an explicit shipping/tooling scope before they contribute to the core acceptance result. R01–R06 define the remaining compatibility verification. Check off a finding only after the fix is merged and its relevant regression check is recorded.
 
+## Numeric and null-key follow-up on 2026-11-19
+
+The registered CLI probe `_tests/libs/numeric_boundary_probe.php` passed 992 checks on each of PHP 8.2.35, 8.3.36, 8.4.27 and 8.5.12. All five changed PHP files passed lint on all four. Fixed-path diagnostics and stderr were empty; observations matched the legacy baseline and one another across runtimes. Exact source hashes and diagnostic negative controls are in `php-numeric-boundary-review-2026-11-19.json`.
+
+- LESS native-number modulus now explicitly retains integer truncation and out-of-range float wraparound. The function registry retains the distinct numeric-string saturation behavior. Zero-divisor exception classes/messages, units and the helper's historical null zero-remainder result remain unchanged.
+- LESS zero-base negative powers retain signed infinity using a reciprocal of the positive power. NAN retains the historical text without PHP 8.5's conversion warning. Ordinary power results and the bcmath path are retained.
+- Self-learning cache null entry keys are explicitly normalized to the historical empty-string key. In-memory deduplication, null stored values and paused mutation behavior are covered with persistence disabled.
+
+Fixtures cover 323 power combinations, 264 seeded/boundary float conversions, 196 native modulus pairs, 196 registry modulus pairs and additional explicit assertions. The float-wrap fixtures ran on the 64-bit VPS; no 32-bit runtime was available. The tests intentionally disable extensions for the native fallback and do not establish complete bcmath, LESS compiler, theme or CMS workflow compatibility.
+
+A bounded direct-call review of sources and sources_custom found 25 output-buffer text candidates excluding phpstub.php. Removing two diagnostic strings and three commented-out calls leaves 20 active ob_start calls, all with zero arguments, and no ob_implicit_flush calls. These sites need no flags/argument conversion. Computed calls, tracker and full response-buffer workflows remain outside this check.
+
+The prior substring variation is also isolated: all 16,506 fixtures were compared individually; 2,730 differing cases involve 129 malformed UTF-8 inputs, with zero valid UTF-8 fixture differences. Direct mb_substr calls reproduce the difference despite identical substitution settings. Preserve native malformed-input behavior; issue #36 records the exact reproduction. This does not change the existing Unicode-validation policy.
+
+R03 remains open for other input/key/numeric/string-increment and computed callback paths. R05/R06 remain open for full CMS workflows and combined publication/package acceptance. No site deployment or new prerelease was performed.
+
 ## Acceptance criteria
 
 Close the compatibility work when all maintained-scope confirmed findings are resolved, remaining source candidates have documented dispositions, the four-version matrix has passed with deprecations captured, and the final packages contain the reviewed code. Suppression of diagnostics is insufficient evidence of API compatibility. PHP 8.6 requires a separate audit against its final behavior.
