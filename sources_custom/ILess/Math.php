@@ -272,7 +272,7 @@ class ILess_Math
     }
 
     /** Preserve native integer-modulus conversion, including float wraparound. */
-    public static function integerForModulus($value)
+    protected static function integerForModulus($value)
     {
         $number = $value + 0;
         if (is_int($number)) {
