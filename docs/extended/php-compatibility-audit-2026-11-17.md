@@ -368,6 +368,28 @@ The registered `_tests/libs/photobucket_response_probe.php` passed 16 checks on 
 
 This completes the selected seven-library declaration-loading phase. It does not establish every constructor, method, provider integration or CMS workflow as compatible, and it does not close all of R02/R03. The production fix belongs to image_syndication and awaits combined addon publication. Both probes belong to testing_platform. The test site was not deployed or changed.
 
+## Byte, numeric and callback boundaries follow-up on 2026-11-18
+
+Five confirmed sites were made explicit without changing their observed legacy results:
+
+| Site | Change and compatibility boundary |
+|---|---|
+| unichr | Mask the low byte before chr, preserving negative-integer wrap and the existing non-ASCII result format |
+| cms_mb_substr fallback | Return an empty substring before ord; zero-length/past-end results remain empty |
+| foxy_utf8_to_nce | Supply a zero byte when a truncated sequence lacks a byte, preserving the legacy zero-bit contribution without an out-of-range read; no new Unicode-validation or replacement policy |
+| WordPress PasswordHash::gensalt_blowfish | Use integer division for the tens digit, preserving all tested cost/salt bytes; password algorithms, formats and costs are unchanged |
+| ILess_DebugInfo callback | Replace the context-dependent self callback with __CLASS__, retaining declaring-class binding and filename/debug formatting |
+
+The registered CLI-only `_tests/libs/input_boundary_probe.php` compares the real baseline files against the fixes. All six changed PHP files passed lint on PHP 8.2.35, 8.3.36, 8.4.27 and 8.5.12. Each runtime passed 2,401 explicit checks across extension-free characters, normal-extension characters, password fixtures and callbacks, with no fixed-path diagnostics or stderr. Every observation matched its own runtime's baseline.
+
+Each character configuration covers 67,851 font-text fixtures, including every one-/two-byte combination, 2,048 seeded longer inputs and named valid/truncated/invalid samples; 16,506 substring cases; integer codepoints including negatives and integer extremes; and Latin-1 conversion behavior. Binary observations are compared through length-prefixed byte-stream hashes. The normal configuration uses available extensions; php -n explicitly verifies that neither mbstring nor iconv is present for the fallback run. Existing utf8tohtml replacement behavior is tested separately from the legacy font converter.
+
+Password fixtures cover all integer bcrypt costs 4–31, deterministic salts and hashes, correct/wrong portable and bcrypt password verification. They use public test data and no accounts, sessions, imports or login requests. Callback checks cover filenames, comments, media queries, custom formats and a subclass override that must not change declaring-class binding. The bounded literal callback search excluded GeSHI language keyword lists; the remaining self callback was in ILess_DebugInfo. zones.php's parent:: check examines generated source rather than registering a callback. Computed/generated callback paths remain outside that search.
+
+The [evidence](php-input-boundary-review-2026-11-18.json) records pre-fix diagnostics, source hashes, fixture digests and per-version/configuration results. It also records a pre-existing variation: the extension-backed substring fixture digest differs between PHP 8.2 and PHP 8.3–8.5, both before and after these changes. The exact differing calls/cause were not isolated here and remain a tracked R03 follow-up. This batch preserves each version's baseline and does not claim identical substring results across PHP versions. Password, callback and extension-free observations match across versions.
+
+The character helpers belong to bundled core; WordPress compatibility belongs to bundled import; the debug callback belongs to optional less; and the probe belongs to testing_platform. Fixes await combined core/addon publication. R03 remains open for the native substring variation and other numeric, key, string-increment, dynamic-callback and output-handler boundaries. Full CMS and package/upgrade acceptance remain under R05/R06.
+
 ## Remaining review and runtime checklist
 
 - [x] R01 Full baseline syntax scan and representative probes completed on PHP 8.4.27; extension configuration and fixture hashes recorded in the follow-up evidence.
