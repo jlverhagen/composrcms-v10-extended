@@ -20,6 +20,7 @@ spl_autoload_register(function ($class) use ($source) {
         require_once $source . '/sources_custom/' . str_replace('_', '/', $class) . '.php';
     }
 });
+function mixed() { return false; } // Disable persistence in the isolated cache probe.
 function numeric_result($call)
 {
     try { return array('result' => $call()); }
@@ -64,5 +65,16 @@ try {
     }
     numeric_expect(ILess_Math::modulus('4', '2') === null, 'Legacy zero remainder remains null');
     numeric_expect(ILess_Math::modulus('5.75', '2.5') === '1', 'Legacy fractional operands truncate toward zero');
+    require_once $source . '/sources/caches.php';
+    $cache = (new ReflectionClass(Self_learning_cache::class))->newInstanceWithoutConstructor();
+    numeric_expect($cache->append('fixture', null, null), 'Null key initially appended');
+    numeric_expect(!$cache->append('fixture', null, null), 'Null value/key deduplicates');
+    numeric_expect($cache->append('fixture', '', 'changed'), 'Empty-string key addresses the same entry');
+    numeric_expect(!$cache->append('fixture', null, 'changed'), 'Null and empty-string keys remain equivalent');
+    numeric_expect($cache->get('fixture') === array('' => 'changed'), 'Null key retains historical stored state');
+    $cache->paused = true;
+    numeric_expect($cache->append('fixture', null, 'paused'), 'Paused append retains return value');
+    numeric_expect($cache->get('fixture') === array('' => 'changed'), 'Paused append leaves stored state unchanged');
+    $observations['cache'] = $cache->get('fixture');
 } finally { restore_error_handler(); }
 echo json_encode(array('php' => PHP_VERSION, 'checks' => $checks, 'observations' => $observations, 'diagnostics' => $diagnostics), JSON_THROW_ON_ERROR), "\n";

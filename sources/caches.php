@@ -268,6 +268,10 @@ class Self_learning_cache
      */
     public function append($key, $value, $value_2 = true)
     {
+        // Null array keys have always addressed the empty-string entry.
+        if ($value === null) {
+            $value = '';
+        }
         if (!isset($this->data[$key])) {
             $this->data[$key] = array();
         }
