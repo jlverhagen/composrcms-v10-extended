@@ -263,12 +263,34 @@ class ILess_Math
     public static function modulus($left_operand, $modulus)
     {
         if (!function_exists('bcmod')) {
-            $ret = strval((int)floatval($left_operand) % (int)floatval($modulus));
+            $ret = strval(self::integerForModulus(floatval($left_operand)) % self::integerForModulus(floatval($modulus)));
             if ($ret == '0') return NULL;
             return $ret;
         }
 
         return bcmod($left_operand, $modulus);
+    }
+
+    /** Preserve native integer-modulus conversion, including float wraparound. */
+    public static function integerForModulus($value)
+    {
+        $number = $value + 0;
+        if (is_int($number)) {
+            return $number;
+        }
+        if (!is_finite($number)) {
+            return 0;
+        }
+        $limit = PHP_INT_MAX + 1.0;
+        if ($number >= $limit || $number < -$limit) {
+            $number = fmod($number, 2.0 * $limit);
+            if ($number >= $limit) {
+                $number -= 2.0 * $limit;
+            } elseif ($number < -$limit) {
+                $number += 2.0 * $limit;
+            }
+        }
+        return (int)$number;
     }
 
     /**
