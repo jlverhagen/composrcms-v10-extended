@@ -1,0 +1,605 @@
+{
+  "date": "2026-11-18",
+  "base_ref": "7d7dc3e352b8d4ee5311c6f1b775663d61619869",
+  "tested_ref": "d2c2a8f5288da735aa344da4209a094b4a89aac7",
+  "negative_source": "ec0f8a7b8c1459f31bd10b0f3c1f3810bc174b14",
+  "changed_sources_unchanged_since_negative_before_fix": true,
+  "files_sha256": {
+    "sources/character_sets.php": "02683726bf8c753a0b4bc82f87a88218e122df2de2210bf4704e0e545df236f1",
+    "sources/global3.php": "9f6010ad4d236e2b2a23bf113996e4eef4b16df47240d9d2d57470dcd7910b9a",
+    "sources/hooks/systems/cns_auth/wordpress.php": "fc008003781bfd5cc508c453afa1072ed446da005170d703fe07a1c79cf91216",
+    "_tests/libs/input_boundary_probe.php": "97fe4283e6262ed58118a9a4f1c080863159d3d696bab495c4fd99e6e73b3ac6",
+    "sources_custom/hooks/systems/addon_registry/testing_platform.php": "c3eed4b74edc9b44813cf4bf4584ded6515bc1190bf2732df161aa244367a40a",
+    "sources_custom/ILess/DebugInfo.php": "9d147264b439c95dadf79bdfa2a8f8d778e7a1777b2c46875f043b3526c3f1e1"
+  },
+  "results": [
+    {
+      "runtime": "82",
+      "files_linted": 6,
+      "modes": [
+        {
+          "mode": "characters",
+          "configuration": "fallback",
+          "php": "8.2.35",
+          "checks": 1164,
+          "capabilities": {
+            "mbstring": false,
+            "iconv": false
+          },
+          "baseline_diagnostics": {
+            "Uninitialized string offset 10": 7,
+            "Uninitialized string offset 11": 4,
+            "Uninitialized string offset 12": 12,
+            "Uninitialized string offset 13": 1,
+            "Uninitialized string offset 2": 1538,
+            "Uninitialized string offset 3": 520,
+            "Uninitialized string offset 4": 6,
+            "Uninitialized string offset 5": 9,
+            "Uninitialized string offset 6": 3,
+            "Uninitialized string offset 7": 7,
+            "Uninitialized string offset 8": 9,
+            "Uninitialized string offset 9": 6
+          },
+          "fixed_diagnostics": [],
+          "observations_sha256": "3efb499574e735b6801b25916febe43739079338aad11c8abb5adbfb3748a635"
+        },
+        {
+          "mode": "characters",
+          "configuration": "extensions",
+          "php": "8.2.35",
+          "checks": 1164,
+          "capabilities": {
+            "mbstring": true,
+            "iconv": true
+          },
+          "baseline_diagnostics": {
+            "Uninitialized string offset 10": 7,
+            "Uninitialized string offset 11": 4,
+            "Uninitialized string offset 12": 12,
+            "Uninitialized string offset 13": 1,
+            "Uninitialized string offset 2": 1538,
+            "Uninitialized string offset 3": 520,
+            "Uninitialized string offset 4": 6,
+            "Uninitialized string offset 5": 9,
+            "Uninitialized string offset 6": 3,
+            "Uninitialized string offset 7": 7,
+            "Uninitialized string offset 8": 9,
+            "Uninitialized string offset 9": 6
+          },
+          "fixed_diagnostics": [],
+          "observations_sha256": "ce7ff2c4c8033684b82b21c419ceba1bbae954ee1a556105c4cd454728a6c716"
+        },
+        {
+          "mode": "password",
+          "configuration": "extensions",
+          "php": "8.2.35",
+          "checks": 63,
+          "capabilities": {
+            "mbstring": true,
+            "iconv": true
+          },
+          "baseline_diagnostics": {
+            "Implicit conversion from float 48.4 to int loses precision": 2,
+            "Implicit conversion from float 48.5 to int loses precision": 1,
+            "Implicit conversion from float 48.6 to int loses precision": 1,
+            "Implicit conversion from float 48.7 to int loses precision": 1,
+            "Implicit conversion from float 48.8 to int loses precision": 1,
+            "Implicit conversion from float 48.9 to int loses precision": 1,
+            "Implicit conversion from float 49.1 to int loses precision": 1,
+            "Implicit conversion from float 49.2 to int loses precision": 1,
+            "Implicit conversion from float 49.3 to int loses precision": 1,
+            "Implicit conversion from float 49.4 to int loses precision": 1,
+            "Implicit conversion from float 49.5 to int loses precision": 1,
+            "Implicit conversion from float 49.6 to int loses precision": 1,
+            "Implicit conversion from float 49.7 to int loses precision": 1,
+            "Implicit conversion from float 49.8 to int loses precision": 1,
+            "Implicit conversion from float 49.9 to int loses precision": 1,
+            "Implicit conversion from float 50.1 to int loses precision": 1,
+            "Implicit conversion from float 50.2 to int loses precision": 1,
+            "Implicit conversion from float 50.3 to int loses precision": 1,
+            "Implicit conversion from float 50.4 to int loses precision": 1,
+            "Implicit conversion from float 50.5 to int loses precision": 1,
+            "Implicit conversion from float 50.6 to int loses precision": 1,
+            "Implicit conversion from float 50.7 to int loses precision": 1,
+            "Implicit conversion from float 50.8 to int loses precision": 1,
+            "Implicit conversion from float 50.9 to int loses precision": 1,
+            "Implicit conversion from float 51.1 to int loses precision": 1
+          },
+          "fixed_diagnostics": [],
+          "observations_sha256": "a1b50e9c147ff8b83d1d3976c9e1cab4df061fffd1278a4b8c4f4544e2e24b71"
+        },
+        {
+          "mode": "callbacks",
+          "configuration": "extensions",
+          "php": "8.2.35",
+          "checks": 10,
+          "capabilities": {
+            "mbstring": true,
+            "iconv": true
+          },
+          "baseline_diagnostics": {
+            "Use of \"self\" in callables is deprecated": 10
+          },
+          "fixed_diagnostics": [],
+          "observations_sha256": "97ff600f48f481e9bec3ac09954b1ea35343ee71733ab68e40e7f6e789441e25"
+        }
+      ]
+    },
+    {
+      "runtime": "83",
+      "files_linted": 6,
+      "modes": [
+        {
+          "mode": "characters",
+          "configuration": "fallback",
+          "php": "8.3.36",
+          "checks": 1164,
+          "capabilities": {
+            "mbstring": false,
+            "iconv": false
+          },
+          "baseline_diagnostics": {
+            "Uninitialized string offset 10": 7,
+            "Uninitialized string offset 11": 4,
+            "Uninitialized string offset 12": 12,
+            "Uninitialized string offset 13": 1,
+            "Uninitialized string offset 2": 1538,
+            "Uninitialized string offset 3": 520,
+            "Uninitialized string offset 4": 6,
+            "Uninitialized string offset 5": 9,
+            "Uninitialized string offset 6": 3,
+            "Uninitialized string offset 7": 7,
+            "Uninitialized string offset 8": 9,
+            "Uninitialized string offset 9": 6
+          },
+          "fixed_diagnostics": [],
+          "observations_sha256": "3efb499574e735b6801b25916febe43739079338aad11c8abb5adbfb3748a635"
+        },
+        {
+          "mode": "characters",
+          "configuration": "extensions",
+          "php": "8.3.36",
+          "checks": 1164,
+          "capabilities": {
+            "mbstring": true,
+            "iconv": true
+          },
+          "baseline_diagnostics": {
+            "Uninitialized string offset 10": 7,
+            "Uninitialized string offset 11": 4,
+            "Uninitialized string offset 12": 12,
+            "Uninitialized string offset 13": 1,
+            "Uninitialized string offset 2": 1538,
+            "Uninitialized string offset 3": 520,
+            "Uninitialized string offset 4": 6,
+            "Uninitialized string offset 5": 9,
+            "Uninitialized string offset 6": 3,
+            "Uninitialized string offset 7": 7,
+            "Uninitialized string offset 8": 9,
+            "Uninitialized string offset 9": 6
+          },
+          "fixed_diagnostics": [],
+          "observations_sha256": "f3e92735c31b300c234ca5a044d00cef37a2999c2343a66b0c30fbf1dbe4f46f"
+        },
+        {
+          "mode": "password",
+          "configuration": "extensions",
+          "php": "8.3.36",
+          "checks": 63,
+          "capabilities": {
+            "mbstring": true,
+            "iconv": true
+          },
+          "baseline_diagnostics": {
+            "Implicit conversion from float 48.4 to int loses precision": 2,
+            "Implicit conversion from float 48.5 to int loses precision": 1,
+            "Implicit conversion from float 48.6 to int loses precision": 1,
+            "Implicit conversion from float 48.7 to int loses precision": 1,
+            "Implicit conversion from float 48.8 to int loses precision": 1,
+            "Implicit conversion from float 48.9 to int loses precision": 1,
+            "Implicit conversion from float 49.1 to int loses precision": 1,
+            "Implicit conversion from float 49.2 to int loses precision": 1,
+            "Implicit conversion from float 49.3 to int loses precision": 1,
+            "Implicit conversion from float 49.4 to int loses precision": 1,
+            "Implicit conversion from float 49.5 to int loses precision": 1,
+            "Implicit conversion from float 49.6 to int loses precision": 1,
+            "Implicit conversion from float 49.7 to int loses precision": 1,
+            "Implicit conversion from float 49.8 to int loses precision": 1,
+            "Implicit conversion from float 49.9 to int loses precision": 1,
+            "Implicit conversion from float 50.1 to int loses precision": 1,
+            "Implicit conversion from float 50.2 to int loses precision": 1,
+            "Implicit conversion from float 50.3 to int loses precision": 1,
+            "Implicit conversion from float 50.4 to int loses precision": 1,
+            "Implicit conversion from float 50.5 to int loses precision": 1,
+            "Implicit conversion from float 50.6 to int loses precision": 1,
+            "Implicit conversion from float 50.7 to int loses precision": 1,
+            "Implicit conversion from float 50.8 to int loses precision": 1,
+            "Implicit conversion from float 50.9 to int loses precision": 1,
+            "Implicit conversion from float 51.1 to int loses precision": 1
+          },
+          "fixed_diagnostics": [],
+          "observations_sha256": "a1b50e9c147ff8b83d1d3976c9e1cab4df061fffd1278a4b8c4f4544e2e24b71"
+        },
+        {
+          "mode": "callbacks",
+          "configuration": "extensions",
+          "php": "8.3.36",
+          "checks": 10,
+          "capabilities": {
+            "mbstring": true,
+            "iconv": true
+          },
+          "baseline_diagnostics": {
+            "Use of \"self\" in callables is deprecated": 10
+          },
+          "fixed_diagnostics": [],
+          "observations_sha256": "97ff600f48f481e9bec3ac09954b1ea35343ee71733ab68e40e7f6e789441e25"
+        }
+      ]
+    },
+    {
+      "runtime": "84",
+      "files_linted": 6,
+      "modes": [
+        {
+          "mode": "characters",
+          "configuration": "fallback",
+          "php": "8.4.27",
+          "checks": 1164,
+          "capabilities": {
+            "mbstring": false,
+            "iconv": false
+          },
+          "baseline_diagnostics": {
+            "Uninitialized string offset 10": 7,
+            "Uninitialized string offset 11": 4,
+            "Uninitialized string offset 12": 12,
+            "Uninitialized string offset 13": 1,
+            "Uninitialized string offset 2": 1538,
+            "Uninitialized string offset 3": 520,
+            "Uninitialized string offset 4": 6,
+            "Uninitialized string offset 5": 9,
+            "Uninitialized string offset 6": 3,
+            "Uninitialized string offset 7": 7,
+            "Uninitialized string offset 8": 9,
+            "Uninitialized string offset 9": 6
+          },
+          "fixed_diagnostics": [],
+          "observations_sha256": "3efb499574e735b6801b25916febe43739079338aad11c8abb5adbfb3748a635"
+        },
+        {
+          "mode": "characters",
+          "configuration": "extensions",
+          "php": "8.4.27",
+          "checks": 1164,
+          "capabilities": {
+            "mbstring": true,
+            "iconv": true
+          },
+          "baseline_diagnostics": {
+            "Uninitialized string offset 10": 7,
+            "Uninitialized string offset 11": 4,
+            "Uninitialized string offset 12": 12,
+            "Uninitialized string offset 13": 1,
+            "Uninitialized string offset 2": 1538,
+            "Uninitialized string offset 3": 520,
+            "Uninitialized string offset 4": 6,
+            "Uninitialized string offset 5": 9,
+            "Uninitialized string offset 6": 3,
+            "Uninitialized string offset 7": 7,
+            "Uninitialized string offset 8": 9,
+            "Uninitialized string offset 9": 6
+          },
+          "fixed_diagnostics": [],
+          "observations_sha256": "f3e92735c31b300c234ca5a044d00cef37a2999c2343a66b0c30fbf1dbe4f46f"
+        },
+        {
+          "mode": "password",
+          "configuration": "extensions",
+          "php": "8.4.27",
+          "checks": 63,
+          "capabilities": {
+            "mbstring": true,
+            "iconv": true
+          },
+          "baseline_diagnostics": {
+            "Implicit conversion from float 48.4 to int loses precision": 2,
+            "Implicit conversion from float 48.5 to int loses precision": 1,
+            "Implicit conversion from float 48.6 to int loses precision": 1,
+            "Implicit conversion from float 48.7 to int loses precision": 1,
+            "Implicit conversion from float 48.8 to int loses precision": 1,
+            "Implicit conversion from float 48.9 to int loses precision": 1,
+            "Implicit conversion from float 49.1 to int loses precision": 1,
+            "Implicit conversion from float 49.2 to int loses precision": 1,
+            "Implicit conversion from float 49.3 to int loses precision": 1,
+            "Implicit conversion from float 49.4 to int loses precision": 1,
+            "Implicit conversion from float 49.5 to int loses precision": 1,
+            "Implicit conversion from float 49.6 to int loses precision": 1,
+            "Implicit conversion from float 49.7 to int loses precision": 1,
+            "Implicit conversion from float 49.8 to int loses precision": 1,
+            "Implicit conversion from float 49.9 to int loses precision": 1,
+            "Implicit conversion from float 50.1 to int loses precision": 1,
+            "Implicit conversion from float 50.2 to int loses precision": 1,
+            "Implicit conversion from float 50.3 to int loses precision": 1,
+            "Implicit conversion from float 50.4 to int loses precision": 1,
+            "Implicit conversion from float 50.5 to int loses precision": 1,
+            "Implicit conversion from float 50.6 to int loses precision": 1,
+            "Implicit conversion from float 50.7 to int loses precision": 1,
+            "Implicit conversion from float 50.8 to int loses precision": 1,
+            "Implicit conversion from float 50.9 to int loses precision": 1,
+            "Implicit conversion from float 51.1 to int loses precision": 1
+          },
+          "fixed_diagnostics": [],
+          "observations_sha256": "a1b50e9c147ff8b83d1d3976c9e1cab4df061fffd1278a4b8c4f4544e2e24b71"
+        },
+        {
+          "mode": "callbacks",
+          "configuration": "extensions",
+          "php": "8.4.27",
+          "checks": 10,
+          "capabilities": {
+            "mbstring": true,
+            "iconv": true
+          },
+          "baseline_diagnostics": {
+            "Use of \"self\" in callables is deprecated": 10
+          },
+          "fixed_diagnostics": [],
+          "observations_sha256": "97ff600f48f481e9bec3ac09954b1ea35343ee71733ab68e40e7f6e789441e25"
+        }
+      ]
+    },
+    {
+      "runtime": "85",
+      "files_linted": 6,
+      "modes": [
+        {
+          "mode": "characters",
+          "configuration": "fallback",
+          "php": "8.5.12",
+          "checks": 1164,
+          "capabilities": {
+            "mbstring": false,
+            "iconv": false
+          },
+          "baseline_diagnostics": {
+            "Uninitialized string offset 10": 7,
+            "Uninitialized string offset 11": 4,
+            "Uninitialized string offset 12": 12,
+            "Uninitialized string offset 13": 1,
+            "Uninitialized string offset 2": 1538,
+            "Uninitialized string offset 3": 520,
+            "Uninitialized string offset 4": 6,
+            "Uninitialized string offset 5": 9,
+            "Uninitialized string offset 6": 3,
+            "Uninitialized string offset 7": 7,
+            "Uninitialized string offset 8": 9,
+            "Uninitialized string offset 9": 6,
+            "chr(): Providing a value not in-between 0 and 255 is deprecated, this is because a byte value must be in the [0, 255] interval. The value used will be constrained using % 256": 1025,
+            "ord(): Providing an empty string is deprecated": 16180
+          },
+          "fixed_diagnostics": [],
+          "observations_sha256": "3efb499574e735b6801b25916febe43739079338aad11c8abb5adbfb3748a635"
+        },
+        {
+          "mode": "characters",
+          "configuration": "extensions",
+          "php": "8.5.12",
+          "checks": 1164,
+          "capabilities": {
+            "mbstring": true,
+            "iconv": true
+          },
+          "baseline_diagnostics": {
+            "Uninitialized string offset 10": 7,
+            "Uninitialized string offset 11": 4,
+            "Uninitialized string offset 12": 12,
+            "Uninitialized string offset 13": 1,
+            "Uninitialized string offset 2": 1538,
+            "Uninitialized string offset 3": 520,
+            "Uninitialized string offset 4": 6,
+            "Uninitialized string offset 5": 9,
+            "Uninitialized string offset 6": 3,
+            "Uninitialized string offset 7": 7,
+            "Uninitialized string offset 8": 9,
+            "Uninitialized string offset 9": 6,
+            "chr(): Providing a value not in-between 0 and 255 is deprecated, this is because a byte value must be in the [0, 255] interval. The value used will be constrained using % 256": 1025,
+            "ord(): Providing an empty string is deprecated": 2122
+          },
+          "fixed_diagnostics": [],
+          "observations_sha256": "f3e92735c31b300c234ca5a044d00cef37a2999c2343a66b0c30fbf1dbe4f46f"
+        },
+        {
+          "mode": "password",
+          "configuration": "extensions",
+          "php": "8.5.12",
+          "checks": 63,
+          "capabilities": {
+            "mbstring": true,
+            "iconv": true
+          },
+          "baseline_diagnostics": {
+            "Implicit conversion from float 48.4 to int loses precision": 2,
+            "Implicit conversion from float 48.5 to int loses precision": 1,
+            "Implicit conversion from float 48.6 to int loses precision": 1,
+            "Implicit conversion from float 48.7 to int loses precision": 1,
+            "Implicit conversion from float 48.8 to int loses precision": 1,
+            "Implicit conversion from float 48.9 to int loses precision": 1,
+            "Implicit conversion from float 49.1 to int loses precision": 1,
+            "Implicit conversion from float 49.2 to int loses precision": 1,
+            "Implicit conversion from float 49.3 to int loses precision": 1,
+            "Implicit conversion from float 49.4 to int loses precision": 1,
+            "Implicit conversion from float 49.5 to int loses precision": 1,
+            "Implicit conversion from float 49.6 to int loses precision": 1,
+            "Implicit conversion from float 49.7 to int loses precision": 1,
+            "Implicit conversion from float 49.8 to int loses precision": 1,
+            "Implicit conversion from float 49.9 to int loses precision": 1,
+            "Implicit conversion from float 50.1 to int loses precision": 1,
+            "Implicit conversion from float 50.2 to int loses precision": 1,
+            "Implicit conversion from float 50.3 to int loses precision": 1,
+            "Implicit conversion from float 50.4 to int loses precision": 1,
+            "Implicit conversion from float 50.5 to int loses precision": 1,
+            "Implicit conversion from float 50.6 to int loses precision": 1,
+            "Implicit conversion from float 50.7 to int loses precision": 1,
+            "Implicit conversion from float 50.8 to int loses precision": 1,
+            "Implicit conversion from float 50.9 to int loses precision": 1,
+            "Implicit conversion from float 51.1 to int loses precision": 1
+          },
+          "fixed_diagnostics": [],
+          "observations_sha256": "a1b50e9c147ff8b83d1d3976c9e1cab4df061fffd1278a4b8c4f4544e2e24b71"
+        },
+        {
+          "mode": "callbacks",
+          "configuration": "extensions",
+          "php": "8.5.12",
+          "checks": 10,
+          "capabilities": {
+            "mbstring": true,
+            "iconv": true
+          },
+          "baseline_diagnostics": {
+            "Use of \"self\" in callables is deprecated": 10
+          },
+          "fixed_diagnostics": [],
+          "observations_sha256": "97ff600f48f481e9bec3ac09954b1ea35343ee71733ab68e40e7f6e789441e25"
+        }
+      ]
+    }
+  ],
+  "scope": "Byte-exact legacy comparisons, extension-free substring fallback, normal extension paths, deterministic password fixtures and LESS debug callback formatting; no CMS bootstrap, accounts, sessions or service connections",
+  "observation_sets": {
+    "3efb499574e735b6801b25916febe43739079338aad11c8abb5adbfb3748a635": {
+      "unichr_sha256": "5575676ec1bd2c19a35362ff239b9634798e4f81b5cb6d1b90fce201044e95a8",
+      "font_text": {
+        "cases": 67851,
+        "sha256": "3e913ae9792a4a3a1a160a40dc00697357f367dc5a804101e111e5f466833631",
+        "named_hex": {
+          "": "",
+          "706c61696e": "706c61696e",
+          "c3a9": "26233233333b",
+          "e282ac": "2623383336343b",
+          "f09f9880": "26233132383531323b",
+          "e282": "2623383332303b",
+          "f09f": "26233132363937363b",
+          "f09f92": "26233132383132383b",
+          "e28241": "2623383332313b",
+          "ff": "ff",
+          "00": "00"
+        }
+      },
+      "latin1_font_text_sha256": "40aff2e9d2d8922e47afd4648e6967497158785fbd1da870e7110266bf944880",
+      "substring": {
+        "cases": 16506,
+        "sha256": "ae4cf01404bab95168c0e6db599a4e5c5cfccb7fe1c005164e27a85b34ba3184"
+      }
+    },
+    "ce7ff2c4c8033684b82b21c419ceba1bbae954ee1a556105c4cd454728a6c716": {
+      "unichr_sha256": "5575676ec1bd2c19a35362ff239b9634798e4f81b5cb6d1b90fce201044e95a8",
+      "font_text": {
+        "cases": 67851,
+        "sha256": "3e913ae9792a4a3a1a160a40dc00697357f367dc5a804101e111e5f466833631",
+        "named_hex": {
+          "": "",
+          "706c61696e": "706c61696e",
+          "c3a9": "26233233333b",
+          "e282ac": "2623383336343b",
+          "f09f9880": "26233132383531323b",
+          "e282": "2623383332303b",
+          "f09f": "26233132363937363b",
+          "f09f92": "26233132383132383b",
+          "e28241": "2623383332313b",
+          "ff": "ff",
+          "00": "00"
+        }
+      },
+      "latin1_font_text_sha256": "7fe3ebdedfed2252f141611e3c741ed4754c045ecbe35fe657dc96eb0999615c",
+      "substring": {
+        "cases": 16506,
+        "sha256": "3edd0bb8c0d47401f49bf046dd199ef371fead940a6374fcfb50b16af2c64935"
+      }
+    },
+    "a1b50e9c147ff8b83d1d3976c9e1cab4df061fffd1278a4b8c4f4544e2e24b71": {
+      "salts": {
+        "4": "$2a$04$..CA.uOD/eaGAOmJB.yMBu",
+        "5": "$2a$05$..CA.uOD/eaGAOmJB.yMBu",
+        "6": "$2a$06$..CA.uOD/eaGAOmJB.yMBu",
+        "7": "$2a$07$..CA.uOD/eaGAOmJB.yMBu",
+        "8": "$2a$08$..CA.uOD/eaGAOmJB.yMBu",
+        "9": "$2a$09$..CA.uOD/eaGAOmJB.yMBu",
+        "10": "$2a$10$..CA.uOD/eaGAOmJB.yMBu",
+        "11": "$2a$11$..CA.uOD/eaGAOmJB.yMBu",
+        "12": "$2a$12$..CA.uOD/eaGAOmJB.yMBu",
+        "13": "$2a$13$..CA.uOD/eaGAOmJB.yMBu",
+        "14": "$2a$14$..CA.uOD/eaGAOmJB.yMBu",
+        "15": "$2a$15$..CA.uOD/eaGAOmJB.yMBu",
+        "16": "$2a$16$..CA.uOD/eaGAOmJB.yMBu",
+        "17": "$2a$17$..CA.uOD/eaGAOmJB.yMBu",
+        "18": "$2a$18$..CA.uOD/eaGAOmJB.yMBu",
+        "19": "$2a$19$..CA.uOD/eaGAOmJB.yMBu",
+        "20": "$2a$20$..CA.uOD/eaGAOmJB.yMBu",
+        "21": "$2a$21$..CA.uOD/eaGAOmJB.yMBu",
+        "22": "$2a$22$..CA.uOD/eaGAOmJB.yMBu",
+        "23": "$2a$23$..CA.uOD/eaGAOmJB.yMBu",
+        "24": "$2a$24$..CA.uOD/eaGAOmJB.yMBu",
+        "25": "$2a$25$..CA.uOD/eaGAOmJB.yMBu",
+        "26": "$2a$26$..CA.uOD/eaGAOmJB.yMBu",
+        "27": "$2a$27$..CA.uOD/eaGAOmJB.yMBu",
+        "28": "$2a$28$..CA.uOD/eaGAOmJB.yMBu",
+        "29": "$2a$29$..CA.uOD/eaGAOmJB.yMBu",
+        "30": "$2a$30$..CA.uOD/eaGAOmJB.yMBu",
+        "31": "$2a$31$..CA.uOD/eaGAOmJB.yMBu"
+      },
+      "portable_setting": "$P$Bl6nAoIXB",
+      "portable_fixture_hash": "$P$Bl6nAoIXB4g/m68GeQophTbvB22/ia.",
+      "bcrypt_fixture_hash": "$2a$04$..CA.uOD/eaGAOmJB.yMBuA12MMQ0CH693jpHj4l.l5VbT3/GZrBG"
+    },
+    "97ff600f48f481e9bec3ac09954b1ea35343ee71733ab68e40e7f6e789441e25": {
+      "escaped": {
+        "/fixtures/file.less": "\\/fixtures\\/file\\.less",
+        "C:\\theme\\file.less": "C\\:\\\\/theme\\\\/file\\.less",
+        "relative/path(1).less": "relative\\/path\\(1\\)\\.less",
+        "": "",
+        "file name.less": "file name\\.less",
+        "https://example.invalid/a.less": "https\\:\\/\\/example\\.invalid\\/a\\.less"
+      },
+      "comment": "/* line 7, /fixtures/file.less */\n",
+      "media": "@media -sass-debug-info{filename{font-family:file\\:\\/\\/\\/fixtures\\/file\\.less}line{font-family:\\000037}}\n",
+      "custom": "file\\:\\/\\/\\/fixtures\\/file\\.less @ 7"
+    },
+    "f3e92735c31b300c234ca5a044d00cef37a2999c2343a66b0c30fbf1dbe4f46f": {
+      "unichr_sha256": "5575676ec1bd2c19a35362ff239b9634798e4f81b5cb6d1b90fce201044e95a8",
+      "font_text": {
+        "cases": 67851,
+        "sha256": "3e913ae9792a4a3a1a160a40dc00697357f367dc5a804101e111e5f466833631",
+        "named_hex": {
+          "": "",
+          "706c61696e": "706c61696e",
+          "c3a9": "26233233333b",
+          "e282ac": "2623383336343b",
+          "f09f9880": "26233132383531323b",
+          "e282": "2623383332303b",
+          "f09f": "26233132363937363b",
+          "f09f92": "26233132383132383b",
+          "e28241": "2623383332313b",
+          "ff": "ff",
+          "00": "00"
+        }
+      },
+      "latin1_font_text_sha256": "7fe3ebdedfed2252f141611e3c741ed4754c045ecbe35fe657dc96eb0999615c",
+      "substring": {
+        "cases": 16506,
+        "sha256": "35691ff6ed6605dd5e127299f9ba481459765dffc226fc33f41c2efd0107bf2c"
+      }
+    }
+  },
+  "observations_hash_method": "SHA256 of compact JSON with sorted keys; binary helper digests cover length-prefixed byte streams",
+  "same_observations_across_runtimes_per_configuration": false,
+  "callback_review": "One relative-class array callback was found in ILess_DebugInfo after distinguishing GeSHI keyword arrays. It now names __CLASS__ explicitly. A bounded search found no remaining quoted relative-method or relative-class array callbacks outside grammar keyword lists. zones.php's parent:: string check examines generated source. Dynamic/generated callbacks remain outside this search.",
+  "preexisting_runtime_variation": {
+    "profile": "characters/extensions",
+    "component": "cms_mb_substr fixture-stream digest",
+    "runtimes": "PHP 8.2 differs from PHP 8.3–8.5",
+    "disposition": "Observed before and after these fixes; exact differing inputs/cause not isolated in this batch. Keep under R03.",
+    "per_runtime_baseline_preserved": true
+  }
+}

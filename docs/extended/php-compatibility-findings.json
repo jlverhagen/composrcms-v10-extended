@@ -1146,8 +1146,30 @@
         "ILess default combinator trim"
       ],
       "evidence": "php-inheritance-review-2026-11-18.json",
-      "remaining": "Other null/scalar, numeric, text/byte, callable and output-handler boundaries",
-      "followup_evidence": "php-property-graph-review-2026-11-18.json"
+      "remaining": "Native substring variation, other null/scalar/numeric/key/string-increment boundaries, computed/generated callbacks and output handlers",
+      "followup_evidence": "php-property-graph-review-2026-11-18.json",
+      "followup_input_boundaries": {
+        "date": "2026-11-18",
+        "sites_fixed": [
+          "unichr negative-integer chr",
+          "cms_mb_substr empty fallback ord",
+          "foxy_utf8_to_nce truncated-byte ord",
+          "WordPress bcrypt salt tens digit",
+          "ILess debug relative-class callback"
+        ],
+        "runtimes": [
+          "8.2.35",
+          "8.3.36",
+          "8.4.27",
+          "8.5.12"
+        ],
+        "explicit_checks_per_runtime": 2401,
+        "font_fixtures_per_character_configuration": 67851,
+        "substring_fixtures_per_character_configuration": 16506,
+        "evidence": "php-input-boundary-review-2026-11-18.json",
+        "per_runtime_legacy_observations_preserved": true,
+        "open_variation": "Extension-backed substring fixture digest differs in PHP 8.2 versus 8.3\u20138.5; already present in baseline, cause not isolated"
+      }
     }
   }
 }
