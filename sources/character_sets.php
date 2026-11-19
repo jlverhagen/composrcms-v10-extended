@@ -226,7 +226,7 @@ function unichrm($matches)
 function unichr($c)
 {
     if ($c <= 0x7F) {
-        return chr($c);
+        return chr($c & 0xFF); // Preserve the legacy low-byte wrap for negative integers.
     } else {
         return '#&' . strval($c) . ';';
     }
@@ -326,7 +326,8 @@ function foxy_utf8_to_nce($data = '')
                     $str_off++;
                     // no need for Addition, bitwise OR is sufficient
                     // 63: more UTF8-bytes; 0011 1111
-                    $new_val = $new_val | (ord($data[$str_pos + $str_off]) & 63);
+                    // Legacy ord('') contributed zero bits for a truncated sequence.
+                    $new_val = $new_val | (ord($data[$str_pos + $str_off] ?? "\0") & 63);
                 }
                 // no UTF8, but ord() > 127
                 // nevertheless convert first char to NCE

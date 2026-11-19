@@ -1002,6 +1002,9 @@ function cms_mb_substr($in, $from, $amount = null, $force = false)
     }
 
     $ret = substr($in, $from, $amount);
+    if ($ret === '') {
+        return '';
+    }
     $end = ord(substr($ret, -1));
     if (($end >= 192) && ($end <= 223)) {
         $ret .= substr($in, $from + $amount, 1);
