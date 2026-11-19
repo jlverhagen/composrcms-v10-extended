@@ -263,7 +263,7 @@ class ILess_Math
     public static function modulus($left_operand, $modulus)
     {
         if (!function_exists('bcmod')) {
-            $ret = strval(floatval($left_operand) % floatval($modulus));
+            $ret = strval((int)floatval($left_operand) % (int)floatval($modulus));
             if ($ret == '0') return NULL;
             return $ret;
         }
@@ -299,7 +299,13 @@ class ILess_Math
     public static function power($left_operand, $right_operand, $precision = null)
     {
         if (!function_exists('bcpow')) {
-            return strval(pow(floatval($left_operand), floatval($right_operand)));
+            $base = floatval($left_operand);
+            $exponent = floatval($right_operand);
+            if ($base == 0.0 && $exponent < 0.0) {
+                // Retain the legacy signed infinity without deprecated zero-to-negative power.
+                return strval(fdiv(1.0, pow($base, -$exponent)));
+            }
+            return strval(pow($base, $exponent));
         }
 
         return is_null($precision) ? bcpow($left_operand, $right_operand) : bcpow($left_operand, $right_operand, $precision);

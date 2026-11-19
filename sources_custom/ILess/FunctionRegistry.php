@@ -716,7 +716,7 @@ class ILess_FunctionRegistry
      */
     public function mod(ILess_Node_Dimension $number1, ILess_Node_Dimension $number2)
     {
-        return new ILess_Node_Dimension($number1->value % $number2->value, $number1->unit);
+        return new ILess_Node_Dimension((int)$number1->value % (int)$number2->value, $number1->unit);
     }
 
     /**
