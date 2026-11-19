@@ -9,7 +9,7 @@ $observations = array();
 $checks = 0;
 set_error_handler(function ($severity, $message, $file, $line) use ($baseline, &$diagnostics) {
     if (!(error_reporting() & $severity)) { return true; }
-    if ($baseline && ($severity === E_DEPRECATED || ($severity === E_WARNING && $message === 'unexpected NAN value was coerced to string'))) {
+    if ($baseline && ($severity === E_DEPRECATED || ($severity === E_WARNING && ($message === 'unexpected NAN value was coerced to string' || preg_match('/^The float .* is not representable as an int, cast occurred$/', $message))))) {
         $diagnostics[$message] = ($diagnostics[$message] ?? 0) + 1;
         return true;
     }
