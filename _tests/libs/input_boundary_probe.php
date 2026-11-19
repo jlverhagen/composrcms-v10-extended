@@ -1,7 +1,7 @@
 <?php
 /**
  * CLI-only byte, substring and legacy-password compatibility regressions.
- * Usage: php [-n] input_boundary_probe.php TRUSTED_SOURCE characters|password [--baseline]
+ * Usage: php [-n] input_boundary_probe.php TRUSTED_SOURCE characters|password|callbacks [--baseline]
  * Baseline mode records old warnings/deprecations for output comparison.
  */
 if (PHP_SAPI !== 'cli') {
@@ -11,9 +11,9 @@ if (PHP_SAPI !== 'cli') {
 $source = isset($argv[1]) ? realpath($argv[1]) : false;
 $mode = $argv[2] ?? '';
 $baseline = ($argv[3] ?? '') === '--baseline';
-if ($source === false || !in_array($mode, array('characters', 'password'), true)
+if ($source === false || !in_array($mode, array('characters', 'password', 'callbacks'), true)
     || $argc < 3 || $argc > 4 || ($argc === 4 && !$baseline)) {
-    fwrite(STDERR, "Usage: php [-n] input_boundary_probe.php SOURCE characters|password [--baseline]\n");
+    fwrite(STDERR, "Usage: php [-n] input_boundary_probe.php SOURCE characters|password|callbacks [--baseline]\n");
     exit(2);
 }
 $checks = 0;
@@ -112,7 +112,7 @@ try {
         boundary_expect(cms_mb_substr('abc', 0, 0, true) === '', 'Zero-length substring remains empty');
         boundary_expect(cms_mb_substr('abc', 99, 1, true) === '', 'Past-end substring remains empty');
         $observations['substring'] = array('cases' => $substring_cases, 'sha256' => hash_final($hash));
-    } else {
+    } elseif ($mode === 'password') {
         require_once $source . '/sources/hooks/systems/cns_auth/wordpress.php';
         $salt_input = pack('C*', ...range(0, 15));
         $salts = array();
@@ -136,6 +136,28 @@ try {
         boundary_expect($bcrypt->CheckPassword('fixture-password', $bcrypt_hash), 'Existing bcrypt password verifies');
         boundary_expect(!$bcrypt->CheckPassword('wrong-password', $bcrypt_hash), 'Wrong bcrypt password is rejected');
         $observations = array('salts' => $salts, 'portable_setting' => $setting, 'portable_fixture_hash' => $portable_hash, 'bcrypt_fixture_hash' => $bcrypt_hash);
+    } else {
+        require_once $source . '/sources_custom/ILess/DebugInfo.php';
+        $escaped = array();
+        foreach (array('/fixtures/file.less', 'C:\theme\file.less', 'relative/path(1).less', '', 'file name.less', 'https://example.invalid/a.less') as $filename) {
+            $value = ILess_DebugInfo::escapeFilenameForMediaQuery($filename);
+            boundary_expect(is_string($value), 'Debug filename callback returns text');
+            $escaped[$filename] = $value;
+        }
+        $debug = new ILess_DebugInfo('/fixtures/file.less', 7);
+        $comment = $debug->getAsComment();
+        boundary_expect($comment === "/* line 7, /fixtures/file.less */\n", 'Debug comment format');
+        $media = $debug->getAsMediaQuery();
+        boundary_expect(strpos($media, '\000037') !== false, 'Debug media-query line number');
+        ILess_DebugInfo::setMediaQueryFormat('%file% @ %line%');
+        $custom = $debug->getAsMediaQuery();
+        boundary_expect(substr($custom, -4) === ' @ 7', 'Custom media-query format');
+        class BoundaryDebugInfoChild extends ILess_DebugInfo
+        {
+            protected static function replaceCallback($match) { return 'override'; }
+        }
+        boundary_expect(BoundaryDebugInfoChild::escapeFilenameForMediaQuery('a.b') === ILess_DebugInfo::escapeFilenameForMediaQuery('a.b'), 'Callback retains declaring-class binding');
+        $observations = array('escaped' => $escaped, 'comment' => $comment, 'media' => $media, 'custom' => $custom);
     }
 } finally {
     restore_error_handler();

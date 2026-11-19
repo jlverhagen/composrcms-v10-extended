@@ -122,7 +122,7 @@ class ILess_DebugInfo
     public static function escapeFilenameForMediaQuery($filename)
     {
         return preg_replace_callback('/([\.|:|\/|(\\\\)])/',
-                array('self', 'replaceCallback'), $filename);
+                array(__CLASS__, 'replaceCallback'), $filename);
     }
 
 }
