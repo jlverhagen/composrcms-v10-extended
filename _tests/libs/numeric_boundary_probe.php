@@ -48,6 +48,17 @@ try {
     numeric_expect(ILess_Math::power('-0', '-3') === '-INF', 'Odd negative power retains negative infinity');
     numeric_expect(ILess_Math::power('-0', '-2') === 'INF', 'Even negative power retains positive infinity');
     numeric_expect(ILess_Math::power('0', '-0.5') === 'INF', 'Fractional negative power retains positive infinity');
+    $conversion = $baseline ? null : new ReflectionMethod(ILess_Math::class, 'integerForModulus');
+    $floats = array(INF, -INF, NAN, 0.0, -0.0, PHP_INT_MAX + 1.0, -(PHP_INT_MAX + 1.0), 2.0 * (PHP_INT_MAX + 1.0));
+    mt_srand(1729);
+    for ($case = 0; $case < 256; $case++) {
+        $floats[] = mt_rand(-1000000, 1000000) * pow(10.0, mt_rand(-300, 300));
+    }
+    foreach ($floats as $value) {
+        $integer = $baseline ? (int)$value : $conversion->invoke(null, $value);
+        numeric_expect(is_int($integer), 'Float conversion retains integer result');
+        $observations['float_conversion'][] = $integer;
+    }
     $registry = (new ReflectionClass(ILess_FunctionRegistry::class))->newInstanceWithoutConstructor();
     $operands = array('-9.75', '-5', '-2.5', '-1', '-0.5', '-0', '0', '0.5', '1', '2.5', '5', '9.75', '1e30', '-1e30');
     foreach ($operands as $left) {
