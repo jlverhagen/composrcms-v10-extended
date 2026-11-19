@@ -1146,7 +1146,7 @@
         "ILess default combinator trim"
       ],
       "evidence": "php-inheritance-review-2026-11-18.json",
-      "remaining": "Native substring variation, other null/scalar/numeric/key/string-increment boundaries, computed/generated callbacks and output handlers",
+      "remaining": "Other null/scalar/numeric/key/string-increment boundaries, computed/generated callbacks and broader output-handler/workflow coverage",
       "followup_evidence": "php-property-graph-review-2026-11-18.json",
       "followup_input_boundaries": {
         "date": "2026-11-18",
@@ -1168,7 +1168,25 @@
         "substring_fixtures_per_character_configuration": 16506,
         "evidence": "php-input-boundary-review-2026-11-18.json",
         "per_runtime_legacy_observations_preserved": true,
-        "open_variation": "Extension-backed substring fixture digest differs in PHP 8.2 versus 8.3\u20138.5; already present in baseline, cause not isolated"
+        "open_variation": "Isolated 2026-11-19: mb_substr differs only for malformed UTF-8 in the 16,506 fixtures; no valid UTF-8 fixture differences; preserve native runtime behavior (issue #36)"
+      },
+      "followup_numeric_and_cache": {
+        "date": "2026-11-19",
+        "sites_fixed": [
+          "LESS fractional/native-float modulus conversion",
+          "LESS numeric-string modulus conversion",
+          "LESS zero-base negative powers and NAN text",
+          "Self_learning_cache null entry keys"
+        ],
+        "runtimes": [
+          "8.2.35",
+          "8.3.36",
+          "8.4.27",
+          "8.5.12"
+        ],
+        "checks_per_runtime": 992,
+        "legacy_and_cross_runtime_observations_match": true,
+        "evidence": "php-numeric-boundary-review-2026-11-19.json"
       }
     }
   }
