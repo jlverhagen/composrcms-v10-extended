@@ -1,0 +1,636 @@
+{
+  "schema_version": 1,
+  "prepared_date": "2026-11-19",
+  "source_checkpoint": "a20c4ed50570477cf8e6aac713a5e69e9fb3f078",
+  "audit_issue": 36,
+  "status": "prepared_not_executed",
+  "candidate": {
+    "source_commit": null,
+    "core_package_sha256": null,
+    "addon_packages": [],
+    "guard_manifest_sha256": null,
+    "installed_inventory_sha256": null
+  },
+  "environment": {
+    "site": null,
+    "php_versions": {
+      "8.2": null,
+      "8.3": null,
+      "8.4": null,
+      "8.5": null
+    },
+    "database": null,
+    "sapi": null,
+    "extensions": null,
+    "backup_reference": null,
+    "restore_verified": null
+  },
+  "status_values": [
+    "not_run",
+    "pass",
+    "fail",
+    "blocked",
+    "not_applicable"
+  ],
+  "pass_rule": "Record the exact package/environment, executed procedure, expected and actual outcome, fixture identifiers, diagnostic capture and durable evidence. CLI probes do not mark a full CMS workflow passed.",
+  "scope_gates": {
+    "F03": "Locale/platform formatter fallback remains open.",
+    "F04": "Public FirePHP assertion-registration migration remains open.",
+    "F13_R04": "Optional tracker maintenance/publication scope remains open; do not infer approval from its presence in source.",
+    "R02_R03": "Broader runtime reachability and input review remain open."
+  },
+  "cases": [
+    {
+      "id": "W01",
+      "name": "Fresh install",
+      "procedure": "Install quick and manual packages into disposable directories/databases; verify startup, schema and version.",
+      "legacy_test": "_tests/tests/unit_tests/_installer.php",
+      "caution": "Disposable installation only; legacy helper can generate installer artifacts.",
+      "results": {
+        "8.2": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.3": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.4": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.5": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        }
+      }
+    },
+    {
+      "id": "W02",
+      "name": "Session and authentication",
+      "procedure": "Guest browsing, successful login, failed login, logout and session expiry; confirm redirects and session state.",
+      "legacy_test": null,
+      "caution": "Use dedicated test account and retain the administrator recovery session.",
+      "results": {
+        "8.2": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.3": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.4": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.5": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        }
+      }
+    },
+    {
+      "id": "W03",
+      "name": "Permissions",
+      "procedure": "Verify guest, ordinary-member and administrator access to representative front-end/Admin Zone actions.",
+      "legacy_test": "_tests/tests/unit_tests/permissions.php",
+      "caution": "Existing test checks privilege language strings; it does not establish authorization behavior.",
+      "results": {
+        "8.2": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.3": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.4": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.5": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        }
+      }
+    },
+    {
+      "id": "W04",
+      "name": "Admin Zone and update check",
+      "procedure": "Open dashboard, navigate modules, verify Extended version/source, no compo.sr update request, and correct upgrade link.",
+      "legacy_test": null,
+      "caution": "Record browser requests and PHP/webserver diagnostics.",
+      "results": {
+        "8.2": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.3": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.4": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.5": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        }
+      }
+    },
+    {
+      "id": "W05",
+      "name": "Content and rendering",
+      "procedure": "Create/edit a fixture article and Comcode page; verify omitted fields, nested markup, Tempcode and clean-cache rendering.",
+      "legacy_test": "_tests/tests/unit_tests/comcode.php",
+      "caution": "Use fixture content with recorded IDs; restore or remove only the recorded fixtures.",
+      "results": {
+        "8.2": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.3": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.4": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.5": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        }
+      }
+    },
+    {
+      "id": "W06",
+      "name": "Uploads and GD",
+      "procedure": "Upload fixture PNG/JPEG/GIF, resize/crop/thumbnail, download and compare dimensions/content.",
+      "legacy_test": "_tests/tests/unit_tests/images.php",
+      "caution": "Use test-only media; inspect actual helper behavior before execution.",
+      "results": {
+        "8.2": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.3": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.4": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.5": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        }
+      }
+    },
+    {
+      "id": "W07",
+      "name": "Search and indexing",
+      "procedure": "Index fixture content, search ordinary/empty/Unicode terms, edit it and verify updated results.",
+      "legacy_test": "_tests/tests/unit_tests/search.php",
+      "caution": "Legacy search setup can run the full-text indexer; isolate the fixture dataset.",
+      "results": {
+        "8.2": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.3": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.4": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.5": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        }
+      }
+    },
+    {
+      "id": "W08",
+      "name": "Scheduled tasks",
+      "procedure": "Execute a selected test task once, verify state, repeat safely and check failure reporting.",
+      "legacy_test": null,
+      "caution": "Select a task with bounded effects; do not run every cron hook indiscriminately.",
+      "results": {
+        "8.2": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.3": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.4": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.5": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        }
+      }
+    },
+    {
+      "id": "W09",
+      "name": "Mail handling",
+      "procedure": "Verify message composition, attachment cleanup, queued failure and local Postfix handoff.",
+      "legacy_test": "_tests/tests/unit_tests/mail.php",
+      "caution": "Helper disables email output and is not delivery proof; do not send another external message without a current need.",
+      "results": {
+        "8.2": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.3": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.4": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.5": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        }
+      }
+    },
+    {
+      "id": "W10",
+      "name": "Addon lifecycle",
+      "procedure": "Browse verified catalogue, download/install a fixture addon, confirm/reject trust cases, uninstall and verify preservation.",
+      "legacy_test": "_tests/tests/unit_tests/addon_guards.php",
+      "caution": "Static guard helper is supplementary; record installed-addon list before and after.",
+      "results": {
+        "8.2": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.3": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.4": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.5": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        }
+      }
+    },
+    {
+      "id": "W11",
+      "name": "Themes and caches",
+      "procedure": "Compile LESS, render front-end/Admin Zone, clear relevant caches, verify first request and refresh.",
+      "legacy_test": "_tests/tests/unit_tests/theme_images.php",
+      "caution": "Include awards/realtime_rain absent-addon warning reproduction as a tracked finding, not a hidden pass.",
+      "results": {
+        "8.2": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.3": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.4": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.5": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        }
+      }
+    },
+    {
+      "id": "W12",
+      "name": "Integrity inventory",
+      "procedure": "Run upgrader integrity scan; verify bundled Extended files recognized and custom fixtures preserved.",
+      "legacy_test": null,
+      "caution": "Record exact unknown/modified paths; do not bulk-delete reported files.",
+      "results": {
+        "8.2": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.3": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.4": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.5": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        }
+      }
+    },
+    {
+      "id": "W13",
+      "name": "Upgrade preservation",
+      "procedure": "Apply full .cms to a disposable supported baseline; verify closed-site handling, selected files, settings and installed addons.",
+      "legacy_test": null,
+      "caution": "Requires package hash, before/after inventory, database backup and tested restore path.",
+      "results": {
+        "8.2": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.3": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.4": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.5": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        }
+      }
+    },
+    {
+      "id": "W14",
+      "name": "Database behavior",
+      "procedure": "Exercise representative create/read/edit/delete and failure handling using fixture records; verify no duplicate replay.",
+      "legacy_test": null,
+      "caution": "Use the configured database driver and record server/extension versions.",
+      "results": {
+        "8.2": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.3": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.4": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.5": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        }
+      }
+    },
+    {
+      "id": "W15",
+      "name": "Optional maintained addons",
+      "procedure": "Execute workflows for each optional addon included in the release candidate, including LESS and touched integrations.",
+      "legacy_test": null,
+      "caution": "Maintain per-addon evidence; unavailable provider integrations remain not tested, not passed.",
+      "results": {
+        "8.2": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.3": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.4": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.5": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        }
+      }
+    },
+    {
+      "id": "W16",
+      "name": "Final package acceptance",
+      "procedure": "Build combined packages and addon TARs; verify hashes, inventory, mirror/GitHub contents and rollback artifacts.",
+      "legacy_test": null,
+      "caution": "Freeze source/package hashes; testing a different artifact does not qualify the published package.",
+      "results": {
+        "8.2": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.3": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.4": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        },
+        "8.5": {
+          "status": "not_run",
+          "evidence": null,
+          "diagnostics": null,
+          "fixture_ids": [],
+          "notes": null
+        }
+      }
+    }
+  ]
+}
