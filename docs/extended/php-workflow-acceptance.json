@@ -35,8 +35,8 @@
   "pass_rule": "Record the exact package/environment, executed procedure, expected and actual outcome, fixture identifiers, diagnostic capture and durable evidence. CLI probes do not mark a full CMS workflow passed.",
   "scope_gates": {
     "F03": "Locale/platform formatter fallback remains open.",
-    "F04": "Public FirePHP assertion-registration migration remains open.",
-    "F13_R04": "Optional tracker maintenance/publication scope remains open; do not infer approval from its presence in source.",
+    "F04": "Approved deprecation exception for legacy assertion registration; normal logging/CMS acceptance remains required.",
+    "F13_R04": "Tracker/support-credits excluded from maintained publication by approved policy; source retained. Local core and 20 audit-owned addon inventories verified; final signed/catalogue acceptance remains under R06.",
     "R02_R03": "Broader runtime reachability and input review remain open."
   },
   "cases": [

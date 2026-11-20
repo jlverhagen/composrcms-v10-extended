@@ -1087,7 +1087,7 @@
         "8.5.12"
       ],
       "evidence": "php-addon-scope-2026-11-18.json",
-      "remaining": "Final combined package/catalogue inventory acceptance under R06",
+      "remaining": "Local core and 20 audit-owned addon package inventories verified; final signed/published catalogue and candidate acceptance remain under R06.",
       "decision_date": "2026-11-20",
       "policy_implementation": "https://github.com/jlverhagen/composrcms-v10-extended-hub/pull/8"
     },
@@ -1250,6 +1250,19 @@
       "completed_result_cells": 0,
       "candidate_package": null,
       "remaining": "Freeze combined candidate, record environment/backup and execute full CMS workflows; focused CLI probes do not close workflow cells"
+    },
+    "R06": {
+      "status": "local_package_inventory_verified_final_acceptance_pending",
+      "date": "2026-11-20",
+      "evidence": "php-package-inventory-review-2026-11-20.json",
+      "runtime": "8.4.27",
+      "core_payload_files": 6265,
+      "integrity_entries": 6264,
+      "guarded_files": 7,
+      "audit_owned_addons_built": 20,
+      "addon_payloads_compared": 1382,
+      "reproducible_core_builds": true,
+      "remaining": "Freeze final release candidate; signed/published catalogue inventory, CMS installation/upgrade/restore workflows and final package acceptance remain open."
     }
   }
 }

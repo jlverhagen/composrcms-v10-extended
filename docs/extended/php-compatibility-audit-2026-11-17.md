@@ -472,3 +472,14 @@ This decision supersedes the earlier unresolved policy language for F04, F13 and
 - R04: policy is approved. Hub PR #8 implements automatic omission and rejects explicit or mixed requests before source loading or partial output. See https://github.com/jlverhagen/composrcms-v10-extended-hub/pull/8 and `hub/publisher/maintenance-scope.md` in that repository.
 
 The standard installer inventory and addon selection are distinct checks. GitHub source archives can still contain the retained tracker tree. Final generated packages and catalogues still require inventory acceptance under R06. All 64 CMS workflow cells remain unexecuted; no new release or website deployment is implied.
+
+
+## Local combined package inventory verification, 2026-11-20
+
+At core commit c661ad575dcf14c40fb830f9376221723d74d767, PHP 8.4.27 CLI built the quick installer, manual installer, core TAR.GZ and upgrader CMS using the hub builder at 3189addf321f642fce43a23b734a3f58a2773ad0. The historical alpha.1 label was reused strictly for local validation; these artifacts were not published and are not a frozen deployment candidate.
+
+All four formats agree on 6,265 core payload files. The regenerated integrity map has 6,264 verified CRC entries, and all seven enforcement checksums match. Quick installer index offsets and the stock installer suffix match their payloads. Two independent builds produced identical SHA256SUMS. No excluded tracker/support-credits, aps or mobiquo paths were present.
+
+All 20 maintained optional addons owning audited paths built successfully. Their 1,382 payload files match source bytes, with zero excluded members or mismatches. This covers the audit-owned selection, not every optional addon. Four real-builder verifier tests, four addon-selection tests and nine existing release tests passed. Hub PR #9 adds the reusable verifier and corruption/exclusion negative controls.
+
+See `php-package-inventory-review-2026-11-20.json` for exact hashes, runtime and commands. R04 has local package evidence; R06 remains open for final candidate/signing/catalogue inventory and installation/upgrade/restore acceptance. All 64 R05 workflow cells remain not_run. The test website and database were unchanged.
