@@ -1402,7 +1402,7 @@ function _strlen_sort($a, $b)
     }
     if (!is_string($a)) {
         global $M_SORT_KEY;
-        return (strlen($a[$M_SORT_KEY]) < strlen($b[$M_SORT_KEY])) ? -1 : 1;
+        return (strlen($a[$M_SORT_KEY] === null ? '' : $a[$M_SORT_KEY]) < strlen($b[$M_SORT_KEY] === null ? '' : $b[$M_SORT_KEY])) ? -1 : 1;
     }
     return (strlen($a) < strlen($b)) ? -1 : 1;
 }
@@ -1571,6 +1571,14 @@ function _multi_sort($a, $b)
             }
             if (is_object($bv)) {
                 $bv = $bv->evaluate();
+            }
+
+            // Internal string comparisons historically treated null as empty text.
+            if ($av === null) {
+                $av = '';
+            }
+            if ($bv === null) {
+                $bv = '';
             }
 
             if ($backwards) { // Flip around
