@@ -145,6 +145,7 @@ class Hook_addon_registry_testing_platform
             '_tests/libs/photobucket_response_probe.php',
             '_tests/libs/input_boundary_probe.php',
             '_tests/libs/numeric_boundary_probe.php',
+            '_tests/libs/callback_boundary_probe.php',
             '_tests/libs/mf_parse.php',
             'lang_custom/EN/phpdoc.ini',
             'sources_custom/php.php',

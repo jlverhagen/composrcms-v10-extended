@@ -222,7 +222,7 @@ class ILess_FunctionRegistry
     {
         $functionLower = strtolower($function);
         if (!isset($this->functions[$functionLower])) {
-            throw new InvalidArgumentException(sprintf('Invalid alias "%s" for "%s" given. The "%s" does not exist.', $alias, $function));
+            throw new InvalidArgumentException(sprintf('Invalid alias "%s" for "%s" given. The "%s" does not exist.', $alias, $function, $function));
         }
         $this->aliases[strtolower($alias)] = $functionLower;
 
