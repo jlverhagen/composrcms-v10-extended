@@ -441,6 +441,14 @@ The registered CLI probe `_tests/libs/sort_boundary_probe.php` passed 1,048 chec
 
 Fixtures cover 144 length-comparison pairs, 870 map-comparison cases, 32 whole-sort runs and two explicit null-ordering checks. They include null/empty/case/numeric text, finite scalar values, evaluated nullable text, ascending/descending and secondary keys, associative/indexed rows, empty/single-row inputs and both sort modes. Exact hashes and limits are in `php-sort-boundary-review-2026-11-19.json`. Full CMS list-screen acceptance remains under R05; all workflow ledger cells remain not_run. The fix awaits the combined core release and no site deployment was performed.
 
+## Guarded date-case formats follow-up on 2026-11-19
+
+F03's native Linux formatter now handles %P and selected uppercase forms (%^a/%^A/%^b/%^B/%^h/%^p/%^P/%^Z) only with C/POSIX LC_CTYPE and ASCII output. Other character-type locales, non-ASCII text, combined flags/widths and unsupported directives retain the whole-format legacy fallback. The implementation only reads LC_CTYPE; it does not change application locale state. Percent escapes remain literal. Libc's unusual lowercase %^P result is preserved.
+
+The expanded committed temporal regression test passed 819,867 assertions per runtime on PHP 8.2.35, 8.3.36, 8.4.27 and 8.5.12, adding 20,132 assertions to the previous suite. All seven time locales, five timezones and 61 timestamps ran. Both changed PHP files passed lint; strict fixed-path diagnostics and stderr were empty. Accepted formats explicitly require native replacement before comparison with libc. The test saves/restores LC_TIME, LC_CTYPE, timezone and language substitutions. Evidence: `php-date-modifier-review-2026-11-19.json`.
+
+A proposed %s replacement was rejected: for timestamp -315619200 in the runner's PHP UTC timezone, libc returned -315597600 while date('U') returned -315619200. Do not replace this directive without accounting for the legacy libc/process-timezone interpretation. It remains on the existing fallback. Locale-specific E/O rules, other modifiers/extensions, non-Linux behavior and full CMS workflows remain open. No prerelease or website deployment was performed.
+
 ## Acceptance criteria
 
 Close the compatibility work when all maintained-scope confirmed findings are resolved, remaining source candidates have documented dispositions, the four-version matrix has passed with deprecations captured, and the final packages contain the reviewed code. Suppression of diagnostics is insufficient evidence of API compatibility. PHP 8.6 requires a separate audit against its final behavior.

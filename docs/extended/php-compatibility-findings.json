@@ -1006,11 +1006,11 @@
   "progress": {
     "F03": {
       "status": "partially_resolved",
-      "date": "2026-11-18",
+      "date": "2026-11-19",
       "startup_probe": "removed; numeric minute is not a locale encoding test",
       "production_calls_remaining": 1,
       "regression_test": "_tests/tests/unit_tests/temporal_format_compatibility.php",
-      "assertions_per_runtime": 799735,
+      "assertions_per_runtime": 819867,
       "runtimes": [
         "8.2.35",
         "8.3.36",
@@ -1018,15 +1018,17 @@
         "8.5.12"
       ],
       "remaining": [
-        "locale-specific E/O rules, case and combined flags, oversized fields",
-        "remaining platform extensions",
+        "locale-specific E/O rules, unverified character-type/non-ASCII casing and combined flags, oversized fields",
+        "epoch %s process/libc timezone semantics and other platform extensions",
         "non-Linux behavior",
         "full CMS workflows"
       ],
       "formats": "171 base and numeric-modifier forms, plus up to 19 E/O forms per locale",
       "locale_composites": "LC_TIME patterns, internal padding, empty twelve-hour fallback and bounded recursion",
       "numeric_modifiers": "single -, _ and 0 flags; widths through 128 characters",
-      "locale_modifiers": "E/O use ordinary directives only when ERA/ALT_DIGITS metadata are empty"
+      "locale_modifiers": "E/O use ordinary directives only when ERA/ALT_DIGITS metadata are empty",
+      "case_modifiers": "Selected ASCII %P and uppercase a/A/b/B/h/p/P/Z forms under C/POSIX LC_CTYPE; unsupported casing/combined flags retain fallback",
+      "followup_evidence": "php-date-modifier-review-2026-11-19.json"
     },
     "R01": {
       "status": "completed",

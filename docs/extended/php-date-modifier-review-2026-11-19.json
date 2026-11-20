@@ -1,0 +1,101 @@
+{
+  "source_ref": "6982cb7660e578d058f0f468f6ac6b44cc7fce03",
+  "results": [
+    {
+      "php": "8.2.35",
+      "checks": 819867,
+      "locales": [
+        "C",
+        "en_US.utf8",
+        "fr_FR.utf8",
+        "de_DE.utf8",
+        "tr_TR.utf8",
+        "ja_JP.utf8",
+        "ar_EG.utf8"
+      ],
+      "stderr": ""
+    },
+    {
+      "php": "8.3.36",
+      "checks": 819867,
+      "locales": [
+        "C",
+        "en_US.utf8",
+        "fr_FR.utf8",
+        "de_DE.utf8",
+        "tr_TR.utf8",
+        "ja_JP.utf8",
+        "ar_EG.utf8"
+      ],
+      "stderr": ""
+    },
+    {
+      "php": "8.4.27",
+      "checks": 819867,
+      "locales": [
+        "C",
+        "en_US.utf8",
+        "fr_FR.utf8",
+        "de_DE.utf8",
+        "tr_TR.utf8",
+        "ja_JP.utf8",
+        "ar_EG.utf8"
+      ],
+      "stderr": ""
+    },
+    {
+      "php": "8.5.12",
+      "checks": 819867,
+      "locales": [
+        "C",
+        "en_US.utf8",
+        "fr_FR.utf8",
+        "de_DE.utf8",
+        "tr_TR.utf8",
+        "ja_JP.utf8",
+        "ar_EG.utf8"
+      ],
+      "stderr": ""
+    }
+  ],
+  "source_sha256": {
+    "sources/temporal.php": "9fb99ca91a1c123ca2c4f0392a42a5e02895d62ae736eb90a90fcf9be332f395",
+    "_tests/tests/unit_tests/temporal_format_compatibility.php": "c98d07033ecf915f95bf4051b640c45e75cd90852cf4634a7167072e943cf447"
+  },
+  "runner_sha256": "1453cbf9f96ad8bfd1a217fe0bee0893018195ca42e72c8df37781e0d476d1ed",
+  "date": "2026-11-19",
+  "release_parent": "45f9249a9b87b1981385932fb46753ea3f65db62",
+  "lint": {
+    "changed_php_files": 2,
+    "all_four_runtimes_passed": true
+  },
+  "coverage": {
+    "time_locales": 7,
+    "timezones": [
+      "UTC",
+      "America/Chicago",
+      "Europe/Paris",
+      "Asia/Kathmandu",
+      "Australia/Lord_Howe"
+    ],
+    "timestamps": 61,
+    "ctype": "C",
+    "additional_assertions_per_runtime": 20132,
+    "reference": "libc strftime, suppressing only its known deprecation; supported-path assertions require a non-null native replacement"
+  },
+  "limitations": [
+    "Production case replacement requires C or POSIX LC_CTYPE and ASCII output text. Other casing retains the legacy fallback.",
+    "Selected directives only: %P, %^a/%^A/%^b/%^B/%^h/%^p/%^P/%^Z; combined flags/widths and other directives remain outside this extension.",
+    "Epoch %s proposal rejected after libc/PHP timezone mismatch; no Unix timestamp replacement was merged.",
+    "Locale-specific E/O rules, non-Linux behavior and full CMS workflows remain open under F03/R05/R06."
+  ],
+  "rejected_epoch_example": {
+    "php": "8.2.35",
+    "LC_TIME": "C",
+    "php_timezone": "UTC",
+    "timestamp": -315619200,
+    "legacy": "-315597600",
+    "date_U": "-315619200",
+    "disposition": "Keep legacy fallback; differing process/libc timezone interpretation requires separate investigation."
+  }
+}
