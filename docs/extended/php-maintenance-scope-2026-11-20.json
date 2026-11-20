@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-20",
+  "core_commit": "fa3dc87a41b57dfb3b490621785f146d4a1c849f",
+  "hub_commit": "3189add",
+  "method": "Read serialized inventory string keys followed by array values; no PHP runtime available in this workspace. Cross-check historical ownership evidence separately.",
+  "installer_inventory_entries": 6245,
+  "inventory_sha256": "88eb8b68d087df067a6494f77ac8f271b5261e733db9303533dd4f1a7f9ae6ca",
+  "excluded_tracker_or_registry_entries": [],
+  "limitations": [
+    "Static source-inventory check only; not generated package acceptance",
+    "Hub PHP selection tests not rerun in this workspace; prior four-runtime evidence is documented in hub maintenance-scope.md",
+    "R05/R06 remain open"
+  ]
+}

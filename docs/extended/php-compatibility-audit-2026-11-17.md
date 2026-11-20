@@ -461,3 +461,14 @@ Close the compatibility work when all maintained-scope confirmed findings are re
 - PHP 8.4 deprecated features. https://www.php.net/manual/en/migration84.deprecated.php
 - PHP 8.5 deprecated features. https://www.php.net/manual/en/migration85.deprecated.php
 - XML parser cleanup deprecation. https://www.php.net/manual/en/function.xml-parser-free.php
+
+
+## Approved maintenance scope, 2026-11-20
+
+This decision supersedes the earlier unresolved policy language for F04, F13 and R04 above; it does not turn an excluded or excepted API into a compatibility fix.
+
+- F04: retain FirePHP's public assertion-registration behavior as an accepted deprecation exception. No repository caller was found; custom callers remain possible. Normal FirePHP logging and CMS workflows remain subject to acceptance. Consider eventual removal only after verifying browser-client requirements; that dependency has not been established by this audit.
+- F13: exclude `composr_homesite_support_credits` and its MantisBT dependencies from maintained addon publication. Retain source for reference and preserve existing installations/data. The mirror will not use the tracker/support-credits. Eventual source removal is separate work.
+- R04: policy is approved. Hub PR #8 implements automatic omission and rejects explicit or mixed requests before source loading or partial output. See https://github.com/jlverhagen/composrcms-v10-extended-hub/pull/8 and `hub/publisher/maintenance-scope.md` in that repository.
+
+The standard installer inventory and addon selection are distinct checks. GitHub source archives can still contain the retained tracker tree. Final generated packages and catalogues still require inventory acceptance under R06. All 64 CMS workflow cells remain unexecuted; no new release or website deployment is implied.
