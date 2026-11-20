@@ -1,0 +1,83 @@
+{
+  "source_ref": "e9a89188aa8dca304ec0a12d9f9062bac2e300a5",
+  "results": [
+    {
+      "runtime": "8.2.35",
+      "checks": 24,
+      "unchanged_valid_observations": true,
+      "baseline_alias_failure": {
+        "class": "ArgumentCountError",
+        "message": "4 arguments are required, 3 given"
+      },
+      "fixed_alias_failure": {
+        "class": "InvalidArgumentException",
+        "message": "Invalid alias \"absent_alias\" for \"absent_function\" given. The \"absent_function\" does not exist."
+      },
+      "observation_sha256": "8aa5b3a7a22f3004e028266a967c24a6084649b63dcf250bb3bf229ffa50ce2a",
+      "stderr": ""
+    },
+    {
+      "runtime": "8.3.36",
+      "checks": 24,
+      "unchanged_valid_observations": true,
+      "baseline_alias_failure": {
+        "class": "ArgumentCountError",
+        "message": "4 arguments are required, 3 given"
+      },
+      "fixed_alias_failure": {
+        "class": "InvalidArgumentException",
+        "message": "Invalid alias \"absent_alias\" for \"absent_function\" given. The \"absent_function\" does not exist."
+      },
+      "observation_sha256": "8aa5b3a7a22f3004e028266a967c24a6084649b63dcf250bb3bf229ffa50ce2a",
+      "stderr": ""
+    },
+    {
+      "runtime": "8.4.27",
+      "checks": 24,
+      "unchanged_valid_observations": true,
+      "baseline_alias_failure": {
+        "class": "ArgumentCountError",
+        "message": "4 arguments are required, 3 given"
+      },
+      "fixed_alias_failure": {
+        "class": "InvalidArgumentException",
+        "message": "Invalid alias \"absent_alias\" for \"absent_function\" given. The \"absent_function\" does not exist."
+      },
+      "observation_sha256": "8aa5b3a7a22f3004e028266a967c24a6084649b63dcf250bb3bf229ffa50ce2a",
+      "stderr": ""
+    },
+    {
+      "runtime": "8.5.12",
+      "checks": 24,
+      "unchanged_valid_observations": true,
+      "baseline_alias_failure": {
+        "class": "ArgumentCountError",
+        "message": "4 arguments are required, 3 given"
+      },
+      "fixed_alias_failure": {
+        "class": "InvalidArgumentException",
+        "message": "Invalid alias \"absent_alias\" for \"absent_function\" given. The \"absent_function\" does not exist."
+      },
+      "observation_sha256": "8aa5b3a7a22f3004e028266a967c24a6084649b63dcf250bb3bf229ffa50ce2a",
+      "stderr": ""
+    }
+  ],
+  "source_sha256": {
+    "sources_custom/ILess/FunctionRegistry.php": "1f5872662c9e2a2188ee6e14816b885426f6ca503d1e9cfd870947bbfee5057c",
+    "_tests/libs/callback_boundary_probe.php": "7b2ea4bad9672e704b045d0781d5603ae2ef75ef8460c36089f51bc0f1546d65",
+    "sources_custom/hooks/systems/addon_registry/testing_platform.php": "7a2c90dc68d82d2f3636479fbf9dc13e1dfede401e4f348bb4becaa8084bdb3c"
+  },
+  "cross_runtime_observations_match": true,
+  "date": "2026-11-19",
+  "release_parent": "e1e8b562ad56d1bdd43be9ebfc223ff4f34f5ed7",
+  "dependency_base": "ec0f8a7b8c1459f31bd10b0f3c1f3810bc174b14",
+  "lint": {
+    "changed_php_files": 3,
+    "all_four_runtimes_passed": true
+  },
+  "limitations": [
+    "Bounded callable forms, registry/importer and local DOM property fixtures only; not a complete generated callback or CMS reachability audit.",
+    "Library dependencies loaded from the original isolated audit checkout; the modified FunctionRegistry and test/registry files are pinned by source_ref and hashes.",
+    "No importer filesystem/network fetch, live WebDAV request, theme compilation or site deployment."
+  ]
+}

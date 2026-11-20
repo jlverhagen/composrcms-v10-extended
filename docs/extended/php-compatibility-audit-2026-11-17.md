@@ -417,6 +417,16 @@ The prior substring variation is also isolated: all 16,506 fixtures were compare
 
 R03 remains open for other input/key/numeric/string-increment and computed callback paths. R05/R06 remain open for full CMS workflows and combined publication/package acceptance. No site deployment or new prerelease was performed.
 
+## Computed callback follow-up on 2026-11-19
+
+The registered CLI probe `_tests/libs/callback_boundary_probe.php` passed 24 checks per runtime on PHP 8.2.35, 8.3.36, 8.4.27 and 8.5.12, with strict diagnostics and empty stderr. All three changed PHP files passed lint on all four. Evidence and source/dependency scope are recorded in `php-callback-boundary-review-2026-11-19.json`.
+
+LESS function dispatch retained identical results for named functions, static class methods, object methods, invokable objects and closures, including alias case folding, registry injection and a built-in method. Invalid callback rejection, importer context/return propagation and WebDAV mapped static property callbacks passed without source changes at those sites.
+
+The missing-function alias path exposed a genuine formatting bug: three placeholders received two values. On every supported runtime the baseline throws ArgumentCountError instead of the intended InvalidArgumentException. Supplying the missing function name restores the declared exception and complete diagnostic message. This deliberately changes the broken failure path; valid registrations and callback results remain unchanged.
+
+This bounded review does not close R03 or establish full generated-template, plugin, importer, WebDAV, theme or CMS workflow compatibility. The fix belongs to optional less and awaits combined addon publication. No prerelease or site deployment was performed.
+
 ## Acceptance criteria
 
 Close the compatibility work when all maintained-scope confirmed findings are resolved, remaining source candidates have documented dispositions, the four-version matrix has passed with deprecations captured, and the final packages contain the reviewed code. Suppression of diagnostics is insufficient evidence of API compatibility. PHP 8.6 requires a separate audit against its final behavior.

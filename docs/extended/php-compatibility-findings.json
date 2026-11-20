@@ -1187,6 +1187,25 @@
         "checks_per_runtime": 992,
         "legacy_and_cross_runtime_observations_match": true,
         "evidence": "php-numeric-boundary-review-2026-11-19.json"
+      },
+      "followup_computed_callbacks": {
+        "date": "2026-11-19",
+        "checks_per_runtime": 24,
+        "runtimes": [
+          "8.2.35",
+          "8.3.36",
+          "8.4.27",
+          "8.5.12"
+        ],
+        "sites": [
+          "LESS function registry callback forms and alias rejection",
+          "LESS importer context and return propagation",
+          "WebDAV mapped static property callbacks"
+        ],
+        "confirmed_fix": "Missing LESS alias diagnostic restores intended InvalidArgumentException instead of ArgumentCountError",
+        "valid_callback_observations_preserved": true,
+        "evidence": "php-callback-boundary-review-2026-11-19.json",
+        "limitations": "Bounded fixtures; generated-template/plugin/live-CMS reachability remains open"
       }
     }
   }
