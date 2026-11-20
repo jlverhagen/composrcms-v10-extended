@@ -322,6 +322,28 @@ function _cms_strftime_linux($format, $timestamp, $depth = 0)
     if ($depth > 8) {
         return null;
     }
+    $supported_case = true;
+    $format = preg_replace_callback('#%%|%\^([aAbBhpPZ])|%P#', function ($match) use ($timestamp, $depth, &$supported_case) {
+        if ($match[0] === '%%') {
+            return '%%';
+        }
+        // C/POSIX casing is bytewise ASCII. Other LC_CTYPE rules may differ.
+        if (!in_array(setlocale(LC_CTYPE, 0), array('C', 'POSIX'), true)) {
+            $supported_case = false;
+            return $match[0];
+        }
+        $directive = $match[1] ?? 'P';
+        $value = _cms_strftime_linux('%' . (($directive === 'P') ? 'p' : $directive), $timestamp, $depth + 1);
+        if ($value === null || preg_match('#[^\x00-\x7f]#', $value)) {
+            $supported_case = false;
+            return $match[0];
+        }
+        $value = ($match[0] === '%P') ? strtolower($value) : strtoupper($value);
+        return str_replace('%', '%%', $value);
+    }, $format);
+    if (!$supported_case) {
+        return null;
+    }
     $supported_modifiers = true;
     $format = preg_replace_callback('#%%|%([EO])([cCxXyYdeHImMSuUVwW])|%([-_0]?)([0-9]*)([CdeHIjklmMSuUVwWyY])#', function ($match) use ($timestamp, $depth, &$supported_modifiers) {
         if ($match[0] === '%%') {
@@ -374,7 +396,7 @@ function _cms_strftime_linux($format, $timestamp, $depth = 0)
     if (!$supported_modifiers) {
         return null;
     }
-    if (!preg_match('#\A(?:[^%]*%[%aAbBcCdeDFgGhHIjklmMnopRrSTuUVwWxXyYzZt])*[^%]*\z#D', $format)) {
+    if (!preg_match('#\A(?:[^%]*%[%aAbBcCdeDFgGhHIjklmMnopRrsSTuUVwWxXyYzZt])*[^%]*\z#D', $format)) {
         return null;
     }
     $parts = getdate($timestamp);
@@ -403,6 +425,7 @@ function _cms_strftime_linux($format, $timestamp, $depth = 0)
         '%M' => date('i', $timestamp),
         '%R' => date('H:i', $timestamp),
         '%S' => date('s', $timestamp),
+        '%s' => date('U', $timestamp),
         '%t' => "\t",
         '%T' => date('H:i:s', $timestamp),
         '%u' => date('N', $timestamp),
