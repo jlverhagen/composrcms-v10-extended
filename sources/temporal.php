@@ -338,7 +338,8 @@ function _cms_strftime_linux($format, $timestamp, $depth = 0)
             $supported_case = false;
             return $match[0];
         }
-        $value = ($match[0] === '%P') ? strtolower($value) : strtoupper($value);
+        // glibc keeps %P lowercase even when the uppercase flag is present.
+        $value = ($directive === 'P') ? strtolower($value) : strtoupper($value);
         return str_replace('%', '%%', $value);
     }, $format);
     if (!$supported_case) {
