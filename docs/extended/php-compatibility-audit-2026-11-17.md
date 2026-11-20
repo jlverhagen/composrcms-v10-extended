@@ -427,6 +427,12 @@ The missing-function alias path exposed a genuine formatting bug: three placehol
 
 This bounded review does not close R03 or establish full generated-template, plugin, importer, WebDAV, theme or CMS workflow compatibility. The fix belongs to optional less and awaits combined addon publication. No prerelease or site deployment was performed.
 
+## Workflow acceptance ledger prepared on 2026-11-19
+
+`php-workflow-acceptance.md` defines 16 end-to-end cases and the candidate/environment/backup evidence needed to execute them. `php-workflow-acceptance.json` tracks all 64 PHP-version/workflow cells as not_run; none are inferred passed from syntax or focused CLI probes. Existing test helper paths were checked, and their important scope/side effects are documented. No legacy suite or live-site workflow was executed while preparing the ledger.
+
+The selected calendar, GeSHi, Spout column-length and Comcode code-nesting increment/decrement candidates operate on initialized integer counters. These inspected sites require no production change; the ledger records the exact bounded scope without claiming an exhaustive increment audit. R02/R03 and F03/F04/F13 remain open alongside workflow/package acceptance.
+
 ## Acceptance criteria
 
 Close the compatibility work when all maintained-scope confirmed findings are resolved, remaining source candidates have documented dispositions, the four-version matrix has passed with deprecations captured, and the final packages contain the reviewed code. Suppression of diagnostics is insufficient evidence of API compatibility. PHP 8.6 requires a separate audit against its final behavior.

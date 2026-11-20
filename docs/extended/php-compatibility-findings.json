@@ -1207,6 +1207,23 @@
         "evidence": "php-callback-boundary-review-2026-11-19.json",
         "limitations": "Bounded fixtures; generated-template/plugin/live-CMS reachability remains open"
       }
+    },
+    "R05": {
+      "status": "prepared_not_executed",
+      "date": "2026-11-19",
+      "ledger": "php-workflow-acceptance.json",
+      "procedures": "php-workflow-acceptance.md",
+      "workflow_cases": 16,
+      "php_versions": [
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "result_cells": 64,
+      "completed_result_cells": 0,
+      "candidate_package": null,
+      "remaining": "Freeze combined candidate, record environment/backup and execute full CMS workflows; focused CLI probes do not close workflow cells"
     }
   }
 }
