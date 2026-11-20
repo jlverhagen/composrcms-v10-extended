@@ -1048,7 +1048,7 @@
       "limitation": "Full CMS workflows, broader runtime review and final packages remain open"
     },
     "F04": {
-      "status": "partially_resolved",
+      "status": "accepted_deprecation_exception",
       "assertion_severity": "explicit zero preserves the legacy value without null coercion",
       "assertion_checks_per_runtime": 8,
       "runtimes": [
@@ -1058,20 +1058,23 @@
         "8.5.12"
       ],
       "registration_callers_in_repository": 0,
-      "remaining": "Public assertion registration still uses deprecated assert_options/ASSERT_CALLBACK; migration changes callback behavior"
+      "remaining": "Legacy registration intentionally retained with deprecated assert_options/ASSERT_CALLBACK; ordinary logging and CMS workflows still require acceptance. Eventual removal is conditional on verifying browser-client requirements.",
+      "decision_date": "2026-11-20"
     },
     "F13": {
-      "status": "classified_optional_unresolved",
+      "status": "excluded_from_maintained_publication",
       "addon": "composr_homesite_support_credits",
       "upstream": "MantisBT 2.18.0",
       "tracker_php_files": 852,
       "installer_php_files": 0,
       "published_tracker_assets_in_checked_addon_releases": 0,
       "evidence": "php-addon-scope-2026-11-18.json",
-      "remaining": "Optional maintenance policy and reachable tracker/dependency compatibility"
+      "remaining": "Verify final combined package/catalogue inventory under R06; retained source is not PHP compatibility approved and existing installations/data are preserved.",
+      "decision_date": "2026-11-20",
+      "policy_implementation": "https://github.com/jlverhagen/composrcms-v10-extended-hub/pull/8"
     },
     "R04": {
-      "status": "partially_resolved",
+      "status": "policy_approved_package_acceptance_pending",
       "registry_hooks": {
         "bundled": 119,
         "optional": 118
@@ -1084,7 +1087,9 @@
         "8.5.12"
       ],
       "evidence": "php-addon-scope-2026-11-18.json",
-      "remaining": "Supported-addon/publication policy and final package acceptance"
+      "remaining": "Final combined package/catalogue inventory acceptance under R06",
+      "decision_date": "2026-11-20",
+      "policy_implementation": "https://github.com/jlverhagen/composrcms-v10-extended-hub/pull/8"
     },
     "R02": {
       "status": "partially_resolved",
