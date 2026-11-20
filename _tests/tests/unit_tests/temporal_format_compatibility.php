@@ -43,7 +43,6 @@ class temporal_format_compatibility_test_set extends cms_test_case
                     continue;
                 }
                 $locale_formats = $formats;
-                $locale_formats[] = '%s';
                 foreach (array('a' => array(ABDAY_1, ABDAY_2, ABDAY_3, ABDAY_4, ABDAY_5, ABDAY_6, ABDAY_7), 'A' => array(DAY_1, DAY_2, DAY_3, DAY_4, DAY_5, DAY_6, DAY_7), 'b' => array(ABMON_1, ABMON_2, ABMON_3, ABMON_4, ABMON_5, ABMON_6, ABMON_7, ABMON_8, ABMON_9, ABMON_10, ABMON_11, ABMON_12), 'B' => array(MON_1, MON_2, MON_3, MON_4, MON_5, MON_6, MON_7, MON_8, MON_9, MON_10, MON_11, MON_12), 'p' => array(AM_STR, PM_STR)) as $directive => $items) {
                     $ascii = true;
                     foreach ($items as $item) {

@@ -396,7 +396,7 @@ function _cms_strftime_linux($format, $timestamp, $depth = 0)
     if (!$supported_modifiers) {
         return null;
     }
-    if (!preg_match('#\A(?:[^%]*%[%aAbBcCdeDFgGhHIjklmMnopRrsSTuUVwWxXyYzZt])*[^%]*\z#D', $format)) {
+    if (!preg_match('#\A(?:[^%]*%[%aAbBcCdeDFgGhHIjklmMnopRrSTuUVwWxXyYzZt])*[^%]*\z#D', $format)) {
         return null;
     }
     $parts = getdate($timestamp);
@@ -425,7 +425,6 @@ function _cms_strftime_linux($format, $timestamp, $depth = 0)
         '%M' => date('i', $timestamp),
         '%R' => date('H:i', $timestamp),
         '%S' => date('s', $timestamp),
-        '%s' => date('U', $timestamp),
         '%t' => "\t",
         '%T' => date('H:i:s', $timestamp),
         '%u' => date('N', $timestamp),
