@@ -433,6 +433,14 @@ This bounded review does not close R03 or establish full generated-template, plu
 
 The selected calendar, GeSHi, Spout column-length and Comcode code-nesting increment/decrement candidates operate on initialized integer counters. These inspected sites require no production change; the ledger records the exact bounded scope without claiming an exhaustive increment audit. R02/R03 and F03/F04/F13 remain open alongside workflow/package acceptance.
 
+## Nullable sorting follow-up on 2026-11-19
+
+Core `_strlen_sort` and the string-comparison path of `_multi_sort` implicitly passed null field values to strlen/strcasecmp. Null is now explicitly treated as empty text, including evaluated text objects. Existing numeric branches, direction, tie behavior and key handling are retained; this is not a comparator redesign or support for missing keys/arbitrary invalid values.
+
+The registered CLI probe `_tests/libs/sort_boundary_probe.php` passed 1,048 checks on each of PHP 8.2.35, 8.3.36, 8.4.27 and 8.5.12, with strict diagnostics and empty stderr. All three changed PHP files passed lint. The baseline reproduced 240 nullable-string deprecations per runtime; fixed-path diagnostics were empty. Observation hashes match both the legacy baseline and all four runtimes.
+
+Fixtures cover 144 length-comparison pairs, 870 map-comparison cases, 32 whole-sort runs and two explicit null-ordering checks. They include null/empty/case/numeric text, finite scalar values, evaluated nullable text, ascending/descending and secondary keys, associative/indexed rows, empty/single-row inputs and both sort modes. Exact hashes and limits are in `php-sort-boundary-review-2026-11-19.json`. Full CMS list-screen acceptance remains under R05; all workflow ledger cells remain not_run. The fix awaits the combined core release and no site deployment was performed.
+
 ## Acceptance criteria
 
 Close the compatibility work when all maintained-scope confirmed findings are resolved, remaining source candidates have documented dispositions, the four-version matrix has passed with deprecations captured, and the final packages contain the reviewed code. Suppression of diagnostics is insufficient evidence of API compatibility. PHP 8.6 requires a separate audit against its final behavior.

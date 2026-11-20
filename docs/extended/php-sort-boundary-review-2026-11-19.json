@@ -1,0 +1,88 @@
+{
+  "source_ref": "a4d64c2c5d0a49585dcefeefe9c9f299b14436ed",
+  "results": [
+    {
+      "runtime": "8.2.35",
+      "checks": 1048,
+      "same_legacy_observations": true,
+      "baseline_diagnostics": {
+        "strlen(): Passing null to parameter #1 ($string) of type string is deprecated": 25,
+        "strcasecmp(): Passing null to parameter #2 ($string2) of type string is deprecated": 117,
+        "strcasecmp(): Passing null to parameter #1 ($string1) of type string is deprecated": 98
+      },
+      "fixed_diagnostics": [],
+      "observation_sha256": "17e83cb0d8fe4f9c01a922aceaf1b8f129591eec1fd0a909332a5b77a6e6a991",
+      "stderr": ""
+    },
+    {
+      "runtime": "8.3.36",
+      "checks": 1048,
+      "same_legacy_observations": true,
+      "baseline_diagnostics": {
+        "strlen(): Passing null to parameter #1 ($string) of type string is deprecated": 25,
+        "strcasecmp(): Passing null to parameter #2 ($string2) of type string is deprecated": 117,
+        "strcasecmp(): Passing null to parameter #1 ($string1) of type string is deprecated": 98
+      },
+      "fixed_diagnostics": [],
+      "observation_sha256": "17e83cb0d8fe4f9c01a922aceaf1b8f129591eec1fd0a909332a5b77a6e6a991",
+      "stderr": ""
+    },
+    {
+      "runtime": "8.4.27",
+      "checks": 1048,
+      "same_legacy_observations": true,
+      "baseline_diagnostics": {
+        "strlen(): Passing null to parameter #1 ($string) of type string is deprecated": 25,
+        "strcasecmp(): Passing null to parameter #2 ($string2) of type string is deprecated": 117,
+        "strcasecmp(): Passing null to parameter #1 ($string1) of type string is deprecated": 98
+      },
+      "fixed_diagnostics": [],
+      "observation_sha256": "17e83cb0d8fe4f9c01a922aceaf1b8f129591eec1fd0a909332a5b77a6e6a991",
+      "stderr": ""
+    },
+    {
+      "runtime": "8.5.12",
+      "checks": 1048,
+      "same_legacy_observations": true,
+      "baseline_diagnostics": {
+        "strlen(): Passing null to parameter #1 ($string) of type string is deprecated": 25,
+        "strcasecmp(): Passing null to parameter #2 ($string2) of type string is deprecated": 117,
+        "strcasecmp(): Passing null to parameter #1 ($string1) of type string is deprecated": 98
+      },
+      "fixed_diagnostics": [],
+      "observation_sha256": "17e83cb0d8fe4f9c01a922aceaf1b8f129591eec1fd0a909332a5b77a6e6a991",
+      "stderr": ""
+    }
+  ],
+  "source_sha256": {
+    "sources/global3.php": "801b47d036e22aab94fbd7a8bcc0c94d5dd3ec5a6f73b45bc8aa53fea54f7b57",
+    "_tests/libs/sort_boundary_probe.php": "177368b4352e453780c7f66511e551258da3270ab786e6af8525cd20a16c1f6b",
+    "sources_custom/hooks/systems/addon_registry/testing_platform.php": "64067996ac87f0ec36200eb5a24f092114f82df4c2ef30bdad8b768a2d70765b"
+  },
+  "cross_runtime_observations_match": true,
+  "date": "2026-11-19",
+  "release_parent": "df0feddac754fa05a243615bad5c3895898a968b",
+  "baseline_ref": "ec0f8a7b8c1459f31bd10b0f3c1f3810bc174b14",
+  "lint": {
+    "changed_php_files": 3,
+    "runtimes": [
+      "8.2.35",
+      "8.3.36",
+      "8.4.27",
+      "8.5.12"
+    ],
+    "all_passed": true
+  },
+  "coverage": {
+    "length_pairs": 144,
+    "map_comparisons": 870,
+    "sorted_fixture_runs": 32,
+    "explicit_ordering_assertions": 2
+  },
+  "limitations": [
+    "Bounded sorting input fixtures only; full CMS list screens and workflow matrix remain unexecuted.",
+    "Existing comparator tie behavior and asymmetric scalar branches are preserved, not redesigned.",
+    "Native object-vs-number primary comparisons are excluded from the string-callback fixture contract.",
+    "Missing keys and arbitrary invalid array/object values are not normalized or newly supported."
+  ]
+}

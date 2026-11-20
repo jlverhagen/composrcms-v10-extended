@@ -1206,6 +1206,25 @@
         "valid_callback_observations_preserved": true,
         "evidence": "php-callback-boundary-review-2026-11-19.json",
         "limitations": "Bounded fixtures; generated-template/plugin/live-CMS reachability remains open"
+      },
+      "followup_nullable_sorting": {
+        "date": "2026-11-19",
+        "sites_fixed": [
+          "Core _strlen_sort nullable field strlen",
+          "Core _multi_sort nullable string comparison after evaluation"
+        ],
+        "checks_per_runtime": 1048,
+        "runtimes": [
+          "8.2.35",
+          "8.3.36",
+          "8.4.27",
+          "8.5.12"
+        ],
+        "baseline_diagnostics_per_runtime": 240,
+        "fixed_diagnostics_per_runtime": 0,
+        "legacy_and_cross_runtime_observations_match": true,
+        "evidence": "php-sort-boundary-review-2026-11-19.json",
+        "limitations": "Bounded input fixtures; full list screens, other input paths and R05/R06 remain open"
       }
     },
     "R05": {
