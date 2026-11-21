@@ -1,0 +1,229 @@
+{
+  "date": "2026-11-21",
+  "change": "Enable existing ASCII-only case handling for C.utf8, C.UTF-8 and C.UTF8 LC_CTYPE aliases; keep non-ASCII and other character-type locales on the fallback.",
+  "source_sha256": {
+    "sources/temporal.php": "65c7b9831797bd53f100d46478df24afe4b6419973a9669b65b4051cc6558d6a",
+    "_tests/libs/date_ascii_case_probe.php": "3aebbbaed3c9af0d41e11fcfab6c8263b3e559906dbc9c5b2ca77a1b163dcd94",
+    "_tests/tests/unit_tests/temporal_format_compatibility.php": "a1eda24a01d8c69e5cb2eb5a27b445c9f6233a2591e3af5b21d3f25ed804187f",
+    "sources_custom/hooks/systems/addon_registry/testing_platform.php": "c9ae7ee668ff626059e023950b980b30760ab0bb49c90ef06069d4658ce98f28"
+  },
+  "local_case_probe": {
+    "php": "8.4.27",
+    "checks": 232065,
+    "native_matches": 157386,
+    "non_ascii_fallbacks": 74679,
+    "ctype_aliases": [
+      "C.utf8",
+      "C.UTF-8",
+      "C.UTF8"
+    ],
+    "time_locales": 191,
+    "timezones": [
+      "UTC",
+      "America/Chicago",
+      "Europe/Paris",
+      "Asia/Kathmandu",
+      "Australia/Lord_Howe"
+    ],
+    "timestamps": [
+      -315619200,
+      0,
+      951782400,
+      2147483648,
+      4107542400,
+      1772951400,
+      1772955000,
+      1793511000,
+      1793514600
+    ]
+  },
+  "local_existing_temporal_suite": {
+    "php": "8.4.27",
+    "assertions": 819867
+  },
+  "local_negative_control": [
+    {
+      "source": "/tmp/composr-temporal-case-baseline.php",
+      "observations": {
+        "C.utf8": [
+          null,
+          null
+        ],
+        "C.UTF-8": [
+          null,
+          null
+        ],
+        "C.UTF8": [
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "source": "core/sources/temporal.php",
+      "observations": {
+        "C.utf8": [
+          "JANUARY",
+          "am"
+        ],
+        "C.UTF-8": [
+          "JANUARY",
+          "am"
+        ],
+        "C.UTF8": [
+          "JANUARY",
+          "am"
+        ]
+      }
+    }
+  ],
+  "remaining": [
+    "Non-ASCII case conversion and other character-type locales remain unsupported natively.",
+    "Epoch %s, locale-specific E/O metadata and other custom format/platform gaps remain under F03.",
+    "Full CMS workflows and final packages remain unaccepted."
+  ],
+  "remote": {
+    "date": "2026-11-21",
+    "stage": "/var/tmp/composr-date-ascii-case-cnzzepa7",
+    "sha256": {
+      "sources/temporal.php": "65c7b9831797bd53f100d46478df24afe4b6419973a9669b65b4051cc6558d6a",
+      "probe.php": "3aebbbaed3c9af0d41e11fcfab6c8263b3e559906dbc9c5b2ca77a1b163dcd94"
+    },
+    "results": [
+      {
+        "php": "8.2.36",
+        "checks": 1055835,
+        "native_matches": 720171,
+        "non_ascii_fallbacks": 335664,
+        "ctype_aliases": [
+          "C.utf8",
+          "C.UTF-8",
+          "C.UTF8"
+        ],
+        "time_locales": 869,
+        "timezones": [
+          "UTC",
+          "America/Chicago",
+          "Europe/Paris",
+          "Asia/Kathmandu",
+          "Australia/Lord_Howe"
+        ],
+        "timestamps": [
+          -315619200,
+          0,
+          951782400,
+          2147483648,
+          4107542400,
+          1772951400,
+          1772955000,
+          1793511000,
+          1793514600
+        ],
+        "exit_code": 0,
+        "stderr": "",
+        "lint_exit": 0
+      },
+      {
+        "php": "8.3.37",
+        "checks": 1055835,
+        "native_matches": 720171,
+        "non_ascii_fallbacks": 335664,
+        "ctype_aliases": [
+          "C.utf8",
+          "C.UTF-8",
+          "C.UTF8"
+        ],
+        "time_locales": 869,
+        "timezones": [
+          "UTC",
+          "America/Chicago",
+          "Europe/Paris",
+          "Asia/Kathmandu",
+          "Australia/Lord_Howe"
+        ],
+        "timestamps": [
+          -315619200,
+          0,
+          951782400,
+          2147483648,
+          4107542400,
+          1772951400,
+          1772955000,
+          1793511000,
+          1793514600
+        ],
+        "exit_code": 0,
+        "stderr": "",
+        "lint_exit": 0
+      },
+      {
+        "php": "8.4.28",
+        "checks": 1055835,
+        "native_matches": 720171,
+        "non_ascii_fallbacks": 335664,
+        "ctype_aliases": [
+          "C.utf8",
+          "C.UTF-8",
+          "C.UTF8"
+        ],
+        "time_locales": 869,
+        "timezones": [
+          "UTC",
+          "America/Chicago",
+          "Europe/Paris",
+          "Asia/Kathmandu",
+          "Australia/Lord_Howe"
+        ],
+        "timestamps": [
+          -315619200,
+          0,
+          951782400,
+          2147483648,
+          4107542400,
+          1772951400,
+          1772955000,
+          1793511000,
+          1793514600
+        ],
+        "exit_code": 0,
+        "stderr": "",
+        "lint_exit": 0
+      },
+      {
+        "php": "8.5.13",
+        "checks": 1055835,
+        "native_matches": 720171,
+        "non_ascii_fallbacks": 335664,
+        "ctype_aliases": [
+          "C.utf8",
+          "C.UTF-8",
+          "C.UTF8"
+        ],
+        "time_locales": 869,
+        "timezones": [
+          "UTC",
+          "America/Chicago",
+          "Europe/Paris",
+          "Asia/Kathmandu",
+          "Australia/Lord_Howe"
+        ],
+        "timestamps": [
+          -315619200,
+          0,
+          951782400,
+          2147483648,
+          4107542400,
+          1772951400,
+          1772955000,
+          1793511000,
+          1793514600
+        ],
+        "exit_code": 0,
+        "stderr": "",
+        "lint_exit": 0
+      }
+    ]
+  },
+  "reference_note": "Only reference strftime deprecation is masked; strict native/public checks must pass. False empty reference output is normalized to empty text, preserving the public wrapper behavior.",
+  "test_limits": "Locale names include aliases and encodings, not distinct languages. Case matrix uses nine directives, five timezones and nine timestamps; CMS workflows remain untested."
+}
