@@ -327,8 +327,8 @@ function _cms_strftime_linux($format, $timestamp, $depth = 0)
         if ($match[0] === '%%') {
             return '%%';
         }
-        // C/POSIX casing is bytewise ASCII. Other LC_CTYPE rules may differ.
-        if (!in_array(setlocale(LC_CTYPE, 0), array('C', 'POSIX'), true)) {
+        // C/POSIX and C UTF-8 locales agree on ASCII casing. Other rules may differ.
+        if (!in_array(setlocale(LC_CTYPE, 0), array('C', 'POSIX', 'C.utf8', 'C.UTF-8', 'C.UTF8'), true)) {
             $supported_case = false;
             return $match[0];
         }
