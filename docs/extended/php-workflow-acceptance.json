@@ -567,10 +567,10 @@
       "results": {
         "8.2": {
           "status": "not_run",
-          "evidence": null,
+          "evidence": "php82-integrity-review-2026-11-21.json",
           "diagnostics": null,
           "fixture_ids": [],
-          "notes": null
+          "notes": "Integrity scan executed without merges or cleanup. No bundled Extended files flagged unknown; existing custom float override retained and bundled debug-exit defect fixed in source for next batch. Complete diagnostics/fixture-preservation evidence pending."
         },
         "8.3": {
           "status": "not_run",
