@@ -11,7 +11,7 @@ if (PHP_SAPI !== 'cli') {
 $source = isset($argv[1]) ? realpath($argv[1]) : false;
 $mode = $argv[2] ?? '';
 $baseline = ($argv[3] ?? '') === '--baseline';
-$modes = array('json-core', 'json-facebook', 'diff', 'less', 'computed-guards', 'trait');
+$modes = array('json-core', 'json-facebook', 'diff', 'less', 'computed-guards', 'vobject-setter', 'environment-copy', 'openid-boundary', 'trait');
 if ($source === false || !is_dir($source . '/sources') || !in_array($mode, $modes, true)
     || $argc < 3 || $argc > 4 || ($argc === 4 && !$baseline)) {
     fwrite(STDERR, "Usage: php property_graph_probe.php SOURCE MODE [--baseline]\n");
@@ -45,6 +45,9 @@ $loader = function ($class) use ($source) {
     } elseif (strpos($class, 'Sabre\\') === 0) {
         $path = $source . '/sources_custom/sabredav/lib/' . str_replace('\\', '/', $class) . '.php';
     }
+    if (strpos($class, 'Sabre\\VObject\\') === 0) {
+        $path = $source . '/sources_custom/sabredav/vendor/sabre/vobject/lib/' . str_replace('\\', '/', $class) . '.php';
+    }
     if ($path !== null && is_file($path)) {
         require_once $path;
     }
@@ -67,7 +70,37 @@ try {
         if (!$baseline) {
             graph_expect((new ReflectionProperty(Services_JSON::class, 'use'))->isPublic(), 'JSON flags explicitly declared');
         }
+        $fixtures = array(array(null, null), array('', null), array('null', null),
+            array('true', true), array('false', false), array('0', 0), array('-12', -12),
+            array('1.5', 1.5), array('"hello"', 'hello'), array('[]', array()),
+            array('{}', new stdClass()),
+            array('{"text":"é","values":[null,true,0,"x"]}', (object)array('text' => 'é', 'values' => array(null, true, 0, 'x'))),
+            array('/* comment */ {"value":2} // tail', null), array(0, 0), array(false, null), array(true, 1));
+        $boundaries = array();
+        foreach (array(0, SERVICES_JSON_LOOSE_TYPE) as $flags) {
+            $decoder = new Services_JSON($flags);
+            graph_expect($decoder->reduce_string(null) === '', 'Null source reduces to empty text');
+            foreach ($fixtures as $fixture) {
+                list($input, $expected) = $fixture;
+                if ($flags && $expected instanceof stdClass) {
+                    $expected = (array)$expected;
+                }
+                $actual = $decoder->decode($input);
+                graph_expect(serialize($actual) === serialize($expected), 'Decoder preserves expected values and types');
+                $boundaries[] = array('flags' => $flags, 'input' => $input, 'result' => $actual);
+            }
+            foreach (array(array(), new stdClass()) as $invalid) {
+                $rejected = false;
+                try {
+                    $decoder->decode($invalid);
+                } catch (TypeError $error) {
+                    $rejected = true;
+                }
+                graph_expect($rejected, 'Unsupported decoder input still raises TypeError');
+            }
+        }
         $observations = array('encoded' => $encoded, 'decoded' => $decoded, 'loose' => $loose->decode('{"value":1}'));
+        $observations['boundaries'] = $boundaries;
     } elseif ($mode === 'diff') {
         require_once $source . '/sources/diff/Diff.php';
         require_once $source . '/sources/diff/Diff/Engine/native.php';
@@ -161,6 +194,109 @@ try {
         $openid->realm = ' http://example.invalid/ ';
         graph_expect($openid->realm === 'http://example.invalid/', 'OpenID realm uses declared state');
         $observations = array('renderer' => $renderer->getParams(), 'compress' => $environment->compress, 'id3' => $id3->option_tag_id3v2, 'identity' => $openid->identity);
+    } elseif ($mode === 'vobject-setter') {
+        $calendar = Sabre\VObject\Component::create('VCALENDAR');
+        $calendar->{'X-AUDIT'} = 'first';
+        graph_expect((string)$calendar->{'X-AUDIT'} === 'first', 'Magic scalar setter stores a property');
+        graph_expect(!property_exists($calendar, 'X-AUDIT'), 'Magic setter creates no PHP dynamic property');
+        $calendar->{'X-AUDIT'} = 'replacement';
+        graph_expect(count($calendar->select('X-AUDIT')) === 1, 'Setter replaces matching property');
+        graph_expect((string)$calendar->{'X-AUDIT'} === 'replacement', 'Replacement value retained');
+        graph_expect($calendar->{'X-AUDIT'}->parent === $calendar, 'Property uses declared parent state');
+        $property = Sabre\VObject\Property::create('X-AUDIT', 'object value');
+        $calendar->{'X-AUDIT'} = $property;
+        graph_expect($calendar->{'X-AUDIT'} === $property && $property->parent === $calendar, 'Property setter retains identity and parent');
+        graph_expect(count($calendar->select('X-AUDIT')) === 1, 'Property object replaces rather than duplicates');
+        foreach (array('', 0, false, 1.5) as $scalar) {
+            $calendar->{'X-SCALAR'} = $scalar;
+            graph_expect((string)$calendar->{'X-SCALAR'} === (string)$scalar, 'Scalar setter preserves text conversion');
+        }
+        unset($calendar->{'X-SCALAR'});
+        graph_expect(!isset($calendar->{'X-SCALAR'}), 'Scalar property can be removed');
+        $event = Sabre\VObject\Component::create('VEVENT');
+        $event->SUMMARY = 'Audit event';
+        $calendar->VEVENT = $event;
+        graph_expect($calendar->VEVENT === $event && $event->parent === $calendar, 'Component setter retains identity and parent');
+        $copy = clone $calendar;
+        graph_expect($copy->VEVENT !== $event && $copy->VEVENT->parent === $copy, 'Clone reparents copied component');
+        graph_expect($copy->VEVENT->SUMMARY->parent === $copy->VEVENT, 'Nested clone reparents copied property');
+        foreach (array(null, array(), new stdClass()) as $invalid) {
+            $rejected = false;
+            try {
+                $calendar->{'X-INVALID'} = $invalid;
+            } catch (InvalidArgumentException $error) {
+                $rejected = true;
+            }
+            graph_expect($rejected && !isset($calendar->{'X-INVALID'}), 'Unsupported value rejected without mutation');
+        }
+        $preserved = $calendar->{'X-AUDIT'};
+        try {
+            $calendar->{'X-AUDIT'} = array('invalid replacement');
+        } catch (InvalidArgumentException $error) {
+            // Invalid replacement must leave the original child intact.
+        }
+        graph_expect($calendar->{'X-AUDIT'} === $preserved && $preserved->parent === $calendar, 'Invalid replacement preserves existing child');
+        unset($calendar->VEVENT);
+        graph_expect(!isset($calendar->VEVENT) && $event->parent === null, 'Unset detaches original component');
+        graph_expect(isset($copy->VEVENT), 'Unset leaves cloned component intact');
+        $observations = array('original' => $calendar->serialize(), 'copy' => $copy->serialize());
+    } elseif ($mode === 'environment-copy') {
+        $environment = new ILess_Environment();
+        $registry = new ILess_FunctionRegistry();
+        $environment->setFunctionRegistry($registry);
+        $values = array('compress' => true, 'canShortenColors' => false, 'precision' => 6,
+            'ieCompat' => false, 'strictMath' => true, 'strictUnits' => true,
+            'sourceMap' => false, 'sourceMapOptions' => array('outputSourceFiles' => true),
+            'importMultiple' => true, 'relativeUrls' => false, 'rootPath' => '/fixtures/',
+            'dumpLineNumbers' => false, 'contentsMap' => array('fixture.less' => '.x {}'),
+            'customVariables' => array('width' => '2px'),
+            'currentFileInfo' => new ILess_FileInfo(array('filename' => 'fixture.less')));
+        foreach ($values as $property => $value) {
+            graph_expect((new ReflectionProperty($environment, $property))->isPublic(), 'Copy source/destination property declared: ' . $property);
+            $environment->$property = $value;
+        }
+        $environment->frames = array('original frame');
+        $copy = ILess_Environment::createCopy($environment, array('replacement frame'));
+        foreach ($values as $property => $value) {
+            graph_expect($copy->$property === $value, 'Computed copy preserves field: ' . $property);
+        }
+        graph_expect($copy !== $environment, 'Environment copy is a separate object');
+        graph_expect($copy->frames === array('replacement frame') && $environment->frames === array('original frame'), 'Copy replaces only its own frame list');
+        graph_expect($copy->getFunctionRegistry() === $registry && $environment->getFunctionRegistry() === $registry, 'Copy retains shared function registry');
+        $copy->contentsMap['copy.less'] = '.copy {}';
+        graph_expect(!isset($environment->contentsMap['copy.less']), 'Copied array retains value semantics');
+        graph_expect($copy->currentFileInfo === $environment->currentFileInfo, 'File metadata retains object identity');
+        $observations = array('values' => $values, 'frames' => $copy->frames, 'contents' => $copy->contentsMap);
+    } elseif ($mode === 'openid-boundary') {
+        require_once $source . '/sources_custom/openid.php';
+        $_SERVER['HTTP_HOST'] = 'example.invalid';
+        $_SERVER['REQUEST_URI'] = '/fixture?ignored=1';
+        unset($_SERVER['HTTPS']);
+        $openid = new LightOpenID();
+        graph_expect($openid->realm === 'http://example.invalid' && $openid->returnUrl === 'http://example.invalid/fixture', 'Default realm and return URL');
+        $values = array(null, '', '  ', ' https://example.invalid/path/ ', "\tvalue\r\n", 0, 12, 1.5, false, true);
+        $text = new class {
+            public function __toString() { return ' https://stringable.invalid/ '; }
+        };
+        $values[] = $text;
+        foreach (array('realm', 'trustRoot') as $alias) {
+            foreach ($values as $value) {
+                $openid->$alias = $value;
+                $expected = trim((string)$value);
+                graph_expect($openid->realm === $expected && $openid->trustRoot === $expected, 'Realm aliases retain scalar/stringable conversion');
+                $observations[] = array('alias' => $alias, 'value' => $openid->realm);
+            }
+            foreach (array(array(), new stdClass()) as $invalid) {
+                $openid->$alias = 'preserved';
+                $rejected = false;
+                try {
+                    $openid->$alias = $invalid;
+                } catch (TypeError $error) {
+                    $rejected = true;
+                }
+                graph_expect($rejected && $openid->realm === 'preserved', 'Invalid realm input retains rejection and existing state');
+            }
+        }
     } elseif ($mode === 'trait') {
         require_once $source . '/sources_custom/spout/tests/Spout/TestUsingResource.php';
         $fixture = new class {
