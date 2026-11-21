@@ -122,18 +122,19 @@
   "environment": {
     "site": null,
     "php_versions": {
-      "8.2": null,
+      "8.2": "8.2.36",
       "8.3": null,
       "8.4": null,
       "8.5": null
     },
     "database": null,
-    "sapi": null,
+    "sapi": "FPM/FastCGI (verified for PHP 8.2.36 only)",
     "extensions": null,
     "backup_reference": "server-private-backup-reference-withheld",
     "restore_verified": false,
     "isolated_database_restore_verified": true,
-    "restore_evidence": "php-backup-verification-2026-11-21.json"
+    "restore_evidence": "php-backup-verification-2026-11-21.json",
+    "runtime_evidence": "php82-web-runtime-review-2026-11-21.json"
   },
   "status_values": [
     "not_run",
@@ -270,10 +271,10 @@
       "results": {
         "8.2": {
           "status": "not_run",
-          "evidence": null,
+          "evidence": "php82-web-runtime-review-2026-11-21.json",
           "diagnostics": null,
           "fixture_ids": [],
-          "notes": null
+          "notes": "Partial execution: dashboard, addon page and authenticated homepage rendered with empty application/PHP-FPM/Apache log deltas. Outbound update request trace and upgrade-link check outstanding; full workflow remains not_run."
         },
         "8.3": {
           "status": "not_run",
