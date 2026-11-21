@@ -4,7 +4,7 @@ Prepared 2026-11-19 at source checkpoint `a20c4ed50570477cf8e6aac713a5e69e9fb3f0
 
 ## Execution order
 
-1. Finish the bounded source-audit dispositions and decide the maintained optional publication scope. Keep F03, F04 and F13/R04 visibly open until resolved; do not silently remove APIs or optional tracker code.
+1. Finish the bounded source-audit dispositions and decide the maintained optional publication scope. Record F03/F04 as approved temporary deprecation exceptions and F13/R04 as an approved publication exclusion; retain their follow-ups and do not treat exceptions as fixes. Do not silently remove APIs or optional tracker code.
 2. Freeze one consolidated candidate source revision. Generate the core packages and selected addon TARs, record hashes and validate contents before asking for the user-operated upgrade. Avoid a prerelease for each small source fix.
 3. Record the actual test environment, installed addons, backup/restore evidence and guard manifest. Use disposable installation directories/databases for installer and upgrade tests; a second public domain is not required and domain-dependent configuration must be preserved where needed.
 4. Execute the cases below on each PHP version with diagnostic capture. Restore each version's fixture baseline and clear/rebuild appropriate caches so cached results from another PHP version cannot count as a pass. Record the real SAPI/extensions; a CLI result cannot stand in for the web request.
@@ -78,3 +78,8 @@ No production changes are needed at these inspected sites: `sources/calendar.php
 ## Handoff boundary
 
 When the candidate is concrete and staged, provide its version, exact .cms link/hash and backup/guard status. The user runs the agreed site-close/file-upgrade/cache-clear step. Resume verification and guard activation afterward. Preparation of this ledger did not change the website, its PHP selection, database or caches.
+
+
+## Approved date fallback exception, 2026-11-21
+
+The user approved preserving the remaining legacy date formatter fallback as a temporary deprecation exception. This path alone no longer blocks a test candidate, but it is not a resolved deprecation. Track complete replacement in php-date-fallback-replacement.md. Normal date workflows must still pass; unrelated warnings or failures are not covered by this exception. All 64 workflow cells remain not_run until executed with evidence.
