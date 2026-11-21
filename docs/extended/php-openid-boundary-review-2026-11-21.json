@@ -1,0 +1,1124 @@
+{
+  "date": "2026-11-21",
+  "finding": "R03 OpenID nullable realm/trustRoot trim boundary",
+  "addon_owner": "openid",
+  "status": "fixed_locally_awaiting_combined_addon_publication",
+  "fix": "Normalize only null to empty text before trim; retain scalar/stringable behavior and TypeError for arrays/non-stringable objects.",
+  "remote": {
+    "date": "2026-11-21",
+    "stage": "/var/tmp/composr-openid-boundary-oskv1dg7",
+    "sha256": {
+      "probe": "1f9266f109b30d37e60eaa37059a2ae825b4f61b894c1e6f82e9e89f3dc85411",
+      "baseline": "feaab2fa7a5d884161a128ad966ab9f72b11ea471dfb4ebbf8e49bb07fc22580",
+      "fixed": "64a9cbd4e4e68bcc2383d73347d4f98ffdb4d824f277a4fed574373a179134d8"
+    },
+    "results": [
+      {
+        "version": "82",
+        "lint_exit": 0,
+        "baseline": {
+          "result": {
+            "php": "8.2.36",
+            "mode": "openid-boundary",
+            "checks": 27,
+            "observations": [
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": "https://example.invalid/path/"
+              },
+              {
+                "alias": "realm",
+                "value": "value"
+              },
+              {
+                "alias": "realm",
+                "value": "0"
+              },
+              {
+                "alias": "realm",
+                "value": "12"
+              },
+              {
+                "alias": "realm",
+                "value": "1.5"
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": "1"
+              },
+              {
+                "alias": "realm",
+                "value": "https://stringable.invalid/"
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": "https://example.invalid/path/"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "value"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "0"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "12"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "1.5"
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": "1"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "https://stringable.invalid/"
+              }
+            ],
+            "diagnostics": [
+              "trim(): Passing null to parameter #1 ($string) of type string is deprecated",
+              "trim(): Passing null to parameter #1 ($string) of type string is deprecated"
+            ]
+          },
+          "exit_code": 0,
+          "stderr": ""
+        },
+        "fixed": {
+          "result": {
+            "php": "8.2.36",
+            "mode": "openid-boundary",
+            "checks": 27,
+            "observations": [
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": "https://example.invalid/path/"
+              },
+              {
+                "alias": "realm",
+                "value": "value"
+              },
+              {
+                "alias": "realm",
+                "value": "0"
+              },
+              {
+                "alias": "realm",
+                "value": "12"
+              },
+              {
+                "alias": "realm",
+                "value": "1.5"
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": "1"
+              },
+              {
+                "alias": "realm",
+                "value": "https://stringable.invalid/"
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": "https://example.invalid/path/"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "value"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "0"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "12"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "1.5"
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": "1"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "https://stringable.invalid/"
+              }
+            ],
+            "diagnostics": []
+          },
+          "exit_code": 0,
+          "stderr": ""
+        }
+      },
+      {
+        "version": "83",
+        "lint_exit": 0,
+        "baseline": {
+          "result": {
+            "php": "8.3.37",
+            "mode": "openid-boundary",
+            "checks": 27,
+            "observations": [
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": "https://example.invalid/path/"
+              },
+              {
+                "alias": "realm",
+                "value": "value"
+              },
+              {
+                "alias": "realm",
+                "value": "0"
+              },
+              {
+                "alias": "realm",
+                "value": "12"
+              },
+              {
+                "alias": "realm",
+                "value": "1.5"
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": "1"
+              },
+              {
+                "alias": "realm",
+                "value": "https://stringable.invalid/"
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": "https://example.invalid/path/"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "value"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "0"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "12"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "1.5"
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": "1"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "https://stringable.invalid/"
+              }
+            ],
+            "diagnostics": [
+              "trim(): Passing null to parameter #1 ($string) of type string is deprecated",
+              "trim(): Passing null to parameter #1 ($string) of type string is deprecated"
+            ]
+          },
+          "exit_code": 0,
+          "stderr": ""
+        },
+        "fixed": {
+          "result": {
+            "php": "8.3.37",
+            "mode": "openid-boundary",
+            "checks": 27,
+            "observations": [
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": "https://example.invalid/path/"
+              },
+              {
+                "alias": "realm",
+                "value": "value"
+              },
+              {
+                "alias": "realm",
+                "value": "0"
+              },
+              {
+                "alias": "realm",
+                "value": "12"
+              },
+              {
+                "alias": "realm",
+                "value": "1.5"
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": "1"
+              },
+              {
+                "alias": "realm",
+                "value": "https://stringable.invalid/"
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": "https://example.invalid/path/"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "value"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "0"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "12"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "1.5"
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": "1"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "https://stringable.invalid/"
+              }
+            ],
+            "diagnostics": []
+          },
+          "exit_code": 0,
+          "stderr": ""
+        }
+      },
+      {
+        "version": "84",
+        "lint_exit": 0,
+        "baseline": {
+          "result": {
+            "php": "8.4.28",
+            "mode": "openid-boundary",
+            "checks": 27,
+            "observations": [
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": "https://example.invalid/path/"
+              },
+              {
+                "alias": "realm",
+                "value": "value"
+              },
+              {
+                "alias": "realm",
+                "value": "0"
+              },
+              {
+                "alias": "realm",
+                "value": "12"
+              },
+              {
+                "alias": "realm",
+                "value": "1.5"
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": "1"
+              },
+              {
+                "alias": "realm",
+                "value": "https://stringable.invalid/"
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": "https://example.invalid/path/"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "value"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "0"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "12"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "1.5"
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": "1"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "https://stringable.invalid/"
+              }
+            ],
+            "diagnostics": [
+              "trim(): Passing null to parameter #1 ($string) of type string is deprecated",
+              "trim(): Passing null to parameter #1 ($string) of type string is deprecated"
+            ]
+          },
+          "exit_code": 0,
+          "stderr": ""
+        },
+        "fixed": {
+          "result": {
+            "php": "8.4.28",
+            "mode": "openid-boundary",
+            "checks": 27,
+            "observations": [
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": "https://example.invalid/path/"
+              },
+              {
+                "alias": "realm",
+                "value": "value"
+              },
+              {
+                "alias": "realm",
+                "value": "0"
+              },
+              {
+                "alias": "realm",
+                "value": "12"
+              },
+              {
+                "alias": "realm",
+                "value": "1.5"
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": "1"
+              },
+              {
+                "alias": "realm",
+                "value": "https://stringable.invalid/"
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": "https://example.invalid/path/"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "value"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "0"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "12"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "1.5"
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": "1"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "https://stringable.invalid/"
+              }
+            ],
+            "diagnostics": []
+          },
+          "exit_code": 0,
+          "stderr": ""
+        }
+      },
+      {
+        "version": "85",
+        "lint_exit": 0,
+        "baseline": {
+          "result": {
+            "php": "8.5.13",
+            "mode": "openid-boundary",
+            "checks": 27,
+            "observations": [
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": "https://example.invalid/path/"
+              },
+              {
+                "alias": "realm",
+                "value": "value"
+              },
+              {
+                "alias": "realm",
+                "value": "0"
+              },
+              {
+                "alias": "realm",
+                "value": "12"
+              },
+              {
+                "alias": "realm",
+                "value": "1.5"
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": "1"
+              },
+              {
+                "alias": "realm",
+                "value": "https://stringable.invalid/"
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": "https://example.invalid/path/"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "value"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "0"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "12"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "1.5"
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": "1"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "https://stringable.invalid/"
+              }
+            ],
+            "diagnostics": [
+              "trim(): Passing null to parameter #1 ($string) of type string is deprecated",
+              "trim(): Passing null to parameter #1 ($string) of type string is deprecated"
+            ]
+          },
+          "exit_code": 0,
+          "stderr": ""
+        },
+        "fixed": {
+          "result": {
+            "php": "8.5.13",
+            "mode": "openid-boundary",
+            "checks": 27,
+            "observations": [
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": "https://example.invalid/path/"
+              },
+              {
+                "alias": "realm",
+                "value": "value"
+              },
+              {
+                "alias": "realm",
+                "value": "0"
+              },
+              {
+                "alias": "realm",
+                "value": "12"
+              },
+              {
+                "alias": "realm",
+                "value": "1.5"
+              },
+              {
+                "alias": "realm",
+                "value": ""
+              },
+              {
+                "alias": "realm",
+                "value": "1"
+              },
+              {
+                "alias": "realm",
+                "value": "https://stringable.invalid/"
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": "https://example.invalid/path/"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "value"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "0"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "12"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "1.5"
+              },
+              {
+                "alias": "trustRoot",
+                "value": ""
+              },
+              {
+                "alias": "trustRoot",
+                "value": "1"
+              },
+              {
+                "alias": "trustRoot",
+                "value": "https://stringable.invalid/"
+              }
+            ],
+            "diagnostics": []
+          },
+          "exit_code": 0,
+          "stderr": ""
+        }
+      }
+    ]
+  },
+  "baseline_diagnostics_per_runtime": 2,
+  "fixed_diagnostics_per_runtime": 0,
+  "checks_per_runtime": 27,
+  "observations_preserved": true,
+  "local_suite": [
+    {
+      "php": "8.4.27",
+      "mode": "json-core",
+      "checks": 6,
+      "observations": {
+        "encoded": "{\"text\":\"quote \\\" and newline\\n\",\"unicode\":\"\\u00e9\",\"values\":[null,true,false,0,1.5]}",
+        "decoded": {
+          "value": 1,
+          "empty": null
+        },
+        "loose": {
+          "value": 1
+        }
+      },
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "json-facebook",
+      "checks": 6,
+      "observations": {
+        "encoded": "{\"text\":\"quote \\\" and newline\\n\",\"unicode\":\"\\u00e9\",\"values\":[null,true,false,0,1.5]}",
+        "decoded": {
+          "value": 1,
+          "empty": null
+        },
+        "loose": {
+          "value": 1
+        }
+      },
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "diff",
+      "checks": 12,
+      "observations": {
+        "copy": [
+          "copy",
+          "shared"
+        ],
+        "cached": [
+          "new",
+          "reference"
+        ],
+        "block": [
+          "left"
+        ],
+        "merged": [
+          "a",
+          "B"
+        ],
+        "conflict": [
+          "a",
+          "<<<<<<< ours",
+          "LEFT",
+          "=======",
+          "RIGHT",
+          ">>>>>>> theirs"
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "less",
+      "checks": 14,
+      "observations": {
+        "info": {
+          "filename": "input.less",
+          "rootPath": null,
+          "currentDirectory": null,
+          "rootFilename": null,
+          "entryPath": null,
+          "reference": false,
+          "importedFile": null,
+          "pluginTag": "updated",
+          "pluginNull": null
+        },
+        "arguments": {
+          "visitDeeper": false,
+          "pluginValue": [
+            1,
+            2
+          ],
+          "nullable": null
+        },
+        "css": ".sample {\n  width: 2px;\n}\n"
+      },
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "computed-guards",
+      "checks": 12,
+      "observations": {
+        "renderer": {
+          "leading_context_lines": 7,
+          "trailing_context_lines": 0
+        },
+        "compress": true,
+        "id3": false,
+        "identity": "http://example.invalid/"
+      },
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "vobject-setter",
+      "checks": 21,
+      "observations": {
+        "original": "BEGIN:VCALENDAR\r\nX-AUDIT:object value\r\nEND:VCALENDAR\r\n",
+        "copy": "BEGIN:VCALENDAR\r\nX-AUDIT:object value\r\nBEGIN:VEVENT\r\nSUMMARY:Audit event\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n"
+      },
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "environment-copy",
+      "checks": 35,
+      "observations": {
+        "values": {
+          "compress": true,
+          "canShortenColors": false,
+          "precision": 6,
+          "ieCompat": false,
+          "strictMath": true,
+          "strictUnits": true,
+          "sourceMap": false,
+          "sourceMapOptions": {
+            "outputSourceFiles": true
+          },
+          "importMultiple": true,
+          "relativeUrls": false,
+          "rootPath": "/fixtures/",
+          "dumpLineNumbers": false,
+          "contentsMap": {
+            "fixture.less": ".x {}"
+          },
+          "customVariables": {
+            "width": "2px"
+          },
+          "currentFileInfo": {
+            "filename": "fixture.less",
+            "rootPath": null,
+            "currentDirectory": null,
+            "rootFilename": null,
+            "entryPath": null,
+            "reference": false,
+            "importedFile": null
+          }
+        },
+        "frames": [
+          "replacement frame"
+        ],
+        "contents": {
+          "fixture.less": ".x {}",
+          "copy.less": ".copy {}"
+        }
+      },
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "openid-boundary",
+      "checks": 27,
+      "observations": [
+        {
+          "alias": "realm",
+          "value": ""
+        },
+        {
+          "alias": "realm",
+          "value": ""
+        },
+        {
+          "alias": "realm",
+          "value": ""
+        },
+        {
+          "alias": "realm",
+          "value": "https://example.invalid/path/"
+        },
+        {
+          "alias": "realm",
+          "value": "value"
+        },
+        {
+          "alias": "realm",
+          "value": "0"
+        },
+        {
+          "alias": "realm",
+          "value": "12"
+        },
+        {
+          "alias": "realm",
+          "value": "1.5"
+        },
+        {
+          "alias": "realm",
+          "value": ""
+        },
+        {
+          "alias": "realm",
+          "value": "1"
+        },
+        {
+          "alias": "realm",
+          "value": "https://stringable.invalid/"
+        },
+        {
+          "alias": "trustRoot",
+          "value": ""
+        },
+        {
+          "alias": "trustRoot",
+          "value": ""
+        },
+        {
+          "alias": "trustRoot",
+          "value": ""
+        },
+        {
+          "alias": "trustRoot",
+          "value": "https://example.invalid/path/"
+        },
+        {
+          "alias": "trustRoot",
+          "value": "value"
+        },
+        {
+          "alias": "trustRoot",
+          "value": "0"
+        },
+        {
+          "alias": "trustRoot",
+          "value": "12"
+        },
+        {
+          "alias": "trustRoot",
+          "value": "1.5"
+        },
+        {
+          "alias": "trustRoot",
+          "value": ""
+        },
+        {
+          "alias": "trustRoot",
+          "value": "1"
+        },
+        {
+          "alias": "trustRoot",
+          "value": "https://stringable.invalid/"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "trait",
+      "checks": 4,
+      "observations": {
+        "generated": "tests/resources/generated/csv/example.CSV"
+      },
+      "diagnostics": []
+    }
+  ],
+  "limitations": [
+    "No OpenID provider request, discovery, authentication or CMS login performed.",
+    "Focused fixture coverage does not close R03/R05/R06.",
+    "Production site and published addon packages unchanged."
+  ]
+}
