@@ -2,7 +2,7 @@
   "version": "2026.11.1-alpha.22",
   "source_commit": "6d50a93adb288b0839df05b46f6b28733b08afc8",
   "date": "2026-11-21",
-  "status": "local_test_candidate_not_published_not_installed",
+  "status": "staged_for_user_operated_test_site_upgrade_not_installed",
   "core_verification": {
     "version": "2026.11.1-alpha.22",
     "core_payload_files": 6265,
@@ -158,5 +158,13 @@
     "isolated_database_restore_verified": true,
     "limitation": "Full Virtualmin domain recovery and a quiescent pre-upgrade snapshot are not established."
   },
-  "published_tree_sha": "78ff5321f6a0c692eac4ce30027843478500343d"
+  "published_tree_sha": "78ff5321f6a0c692eac4ce30027843478500343d",
+  "handoff": {
+    "url": "https://composr.duckdns.org/extended-mirror/releases/2026.11.1-alpha.22/composr_upgrader-2026.11.1-alpha.22.cms",
+    "https_sha256": "358a8812dfd1c1d76ef177fa11ac43a3f6aa164c99f33366c79f8f7fe8fb5901",
+    "https_bytes": 55644160,
+    "server_rebuild_matches_local": true,
+    "installed_guard_files_matching": 7,
+    "user_step": "Close site, apply file upgrade, clear caches; report completion for post-upgrade verification."
+  }
 }
