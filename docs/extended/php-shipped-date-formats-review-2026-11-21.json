@@ -1,0 +1,657 @@
+{
+  "date": "2026-11-21",
+  "source_base_commit": "7062f69af0a3d6df0651b30b41ea6be1becef2c2",
+  "scope": "20 selected shipped English date strings and 3 literal format entries; LC_CTYPE C; no language substitution filters; no CMS bootstrap",
+  "local": {
+    "php": "8.4.27",
+    "formats": {
+      "literal:%a": "%a",
+      "literal:%b": "%b",
+      "literal:%B %Y": "%B %Y",
+      "global:date_withinweek_date": "%a",
+      "global:date_withinweek_joiner": " ",
+      "global:date_concise_near_date": "%e %b",
+      "global:date_regular_date": "%e%o %B %Y",
+      "global:date_no_year": "%e%o %B",
+      "global:date_regular_joiner": ", ",
+      "global:date_regular_time": "%l:%M %p",
+      "global:date_verbose_date": "%a %e%o %B %Y",
+      "global:date_verbose_joiner": ", ",
+      "global:date_verbose_time": "%l:%M %p",
+      "calendar:calendar_minute": "%l:%M %p",
+      "calendar:calendar_minute_ampm_known": "%l:%M",
+      "calendar:calendar_date": "%d-%m-%Y",
+      "calendar:calendar_date_verbose": "%a %e%o %B %Y",
+      "calendar:calendar_date_range_single": "%l:%M %p (%e%o)",
+      "calendar:calendar_date_range_single_long": "%l:%M %p (%e%o %b)",
+      "calendar:calendar_day_of_month": "%e%o",
+      "calendar:calendar_day_of_month_verbose": "%a %e%o",
+      "calendar:calendar_month_in_year": "%b %Y",
+      "calendar:calendar_month_in_year_verbose": "%B %Y"
+    },
+    "checks": 197685,
+    "locales_tested": [
+      "C",
+      "C.utf8",
+      "POSIX",
+      "aa_DJ",
+      "aa_DJ.utf8",
+      "aa_ER",
+      "aa_ET",
+      "af_ZA",
+      "af_ZA.utf8",
+      "agr_PE",
+      "am_ET",
+      "an_ES.utf8",
+      "anp_IN",
+      "ar_AE",
+      "ar_AE.utf8",
+      "ar_BH",
+      "ar_BH.utf8",
+      "ar_EG",
+      "ar_EG.utf8",
+      "ar_IN",
+      "as_IN",
+      "az_IR",
+      "be_BY",
+      "be_BY.utf8",
+      "be_BY@latin",
+      "bg_BG",
+      "bg_BG.utf8",
+      "bho_IN",
+      "bi_VU",
+      "bn_BD",
+      "bo_CN",
+      "br_FR",
+      "br_FR.utf8",
+      "bs_BA",
+      "bs_BA.utf8",
+      "ca_AD.utf8",
+      "ca_ES",
+      "ca_ES.utf8",
+      "ca_IT.utf8",
+      "ce_RU",
+      "chr_US",
+      "cmn_TW",
+      "crh_RU",
+      "crh_UA",
+      "cs_CZ",
+      "cs_CZ.utf8",
+      "csb_PL",
+      "da_DK",
+      "da_DK.utf8",
+      "de_AT",
+      "de_AT.utf8",
+      "de_BE",
+      "de_DE",
+      "de_DE.utf8",
+      "de_IT",
+      "el_CY",
+      "el_CY.utf8",
+      "el_GR",
+      "el_GR.utf8",
+      "en_AG",
+      "en_AU",
+      "en_CA",
+      "en_GB",
+      "en_HK.utf8",
+      "en_PH",
+      "en_PH.utf8",
+      "en_US",
+      "en_US.utf8",
+      "es_AR",
+      "es_AR.utf8",
+      "es_ES",
+      "es_ES.utf8",
+      "es_MX",
+      "es_MX.utf8",
+      "et_EE",
+      "et_EE.utf8",
+      "eu_ES",
+      "eu_ES.utf8",
+      "eu_FR",
+      "eu_FR.utf8",
+      "fa_IR",
+      "fi_FI",
+      "fi_FI.utf8",
+      "fil_PH",
+      "fr_CA",
+      "fr_CA.utf8",
+      "fr_FR",
+      "fr_FR.utf8",
+      "fy_NL",
+      "gl_ES",
+      "gu_IN",
+      "hi_IN",
+      "hr_HR",
+      "hr_HR.utf8",
+      "hsb_DE",
+      "hu_HU",
+      "hu_HU.utf8",
+      "hy_AM",
+      "id_ID",
+      "id_ID.utf8",
+      "is_IS",
+      "is_IS.utf8",
+      "it_IT",
+      "it_IT.utf8",
+      "ja_JP.utf8",
+      "ka_GE",
+      "ka_GE.utf8",
+      "kk_KZ",
+      "kk_KZ.utf8",
+      "kn_IN",
+      "ko_KR.utf8",
+      "ku_TR",
+      "ku_TR.utf8",
+      "lt_LT",
+      "lt_LT.utf8",
+      "ltg_LV.utf8",
+      "lv_LV",
+      "lv_LV.utf8",
+      "mk_MK",
+      "mk_MK.utf8",
+      "ml_IN",
+      "mn_MN",
+      "mnw_MM",
+      "mr_IN",
+      "ms_MY",
+      "ms_MY.utf8",
+      "my_MM",
+      "nan_TW@latin",
+      "nb_NO",
+      "nb_NO.utf8",
+      "nl_BE",
+      "nl_NL",
+      "nl_NL.utf8",
+      "om_ET",
+      "om_KE",
+      "om_KE.utf8",
+      "pa_IN",
+      "pa_PK",
+      "pl_PL",
+      "pl_PL.utf8",
+      "pt_BR",
+      "pt_BR.utf8",
+      "pt_PT",
+      "pt_PT.utf8",
+      "ro_RO",
+      "ro_RO.utf8",
+      "ru_RU",
+      "ru_RU.utf8",
+      "ru_UA",
+      "sk_SK",
+      "sk_SK.utf8",
+      "sl_SI",
+      "sl_SI.utf8",
+      "so_DJ",
+      "so_DJ.utf8",
+      "so_KE",
+      "so_KE.utf8",
+      "so_SO",
+      "so_SO.utf8",
+      "sq_AL",
+      "sq_AL.utf8",
+      "sr_ME",
+      "sr_RS",
+      "sv_FI",
+      "sv_FI.utf8",
+      "sv_SE",
+      "sv_SE.utf8",
+      "sw_KE",
+      "sw_TZ",
+      "ta_IN",
+      "te_IN",
+      "th_TH",
+      "th_TH.utf8",
+      "tl_PH",
+      "tl_PH.utf8",
+      "tr_CY",
+      "tr_CY.utf8",
+      "tr_TR",
+      "tr_TR.utf8",
+      "ug_CN",
+      "uk_UA",
+      "uk_UA.utf8",
+      "ur_PK",
+      "vi_VN",
+      "yue_HK",
+      "zh_CN",
+      "zh_CN.utf8",
+      "zh_HK",
+      "zh_HK.utf8",
+      "zh_TW",
+      "zh_TW.utf8"
+    ],
+    "locales_skipped": [],
+    "timezones": [
+      "UTC",
+      "America/Chicago",
+      "Europe/Paris",
+      "Asia/Kathmandu",
+      "Australia/Lord_Howe"
+    ],
+    "timestamps": [
+      -315619200,
+      0,
+      951782400,
+      2147483648,
+      4107542400,
+      1772951400,
+      1772955000,
+      1793511000,
+      1793514600
+    ],
+    "unsupported": [],
+    "mismatches": []
+  },
+  "source_sha256": {
+    "sources/temporal.php": "9fb99ca91a1c123ca2c4f0392a42a5e02895d62ae736eb90a90fcf9be332f395",
+    "_tests/libs/date_format_inventory_probe.php": "6bcccad3bb82f5cf98b2d1455ba210ad00177f1e7ceb9b6929b74262163564a4",
+    "lang/EN/global.ini": "9041fd404d883f32cb0f1520bba5167d585e2de9d244054554c6146190d3c93f",
+    "lang/EN/calendar.ini": "3c83e7146bec591ba0ba846fb93dbfd56ac3ae80b6fb62a6e332f8a03a8e44f5",
+    "sources_custom/hooks/systems/addon_registry/testing_platform.php": "11a83202bbe4c522e4bf587cd05cba7c027b10ed90e5d3ca6863b470bcfce930"
+  },
+  "remote": {
+    "stage": "/var/tmp/composr-date-inventory-xj4aibjo",
+    "fixture_note": "Language inputs project only the shipped date keys from original global/calendar language files.",
+    "run_as": "nobody",
+    "results": [
+      {
+        "php": "8.2.36",
+        "formats": 23,
+        "checks": 899415,
+        "locales_tested": 869,
+        "unsupported": 0,
+        "mismatches": 0,
+        "stderr": "",
+        "exit_code": 0,
+        "lint_exit": 0,
+        "full_result_sha256": "c8948bf21474b3ef7e1fc4fea0b0c178bedaa7f919b46bd5726db6687d2a761f"
+      },
+      {
+        "php": "8.3.37",
+        "formats": 23,
+        "checks": 899415,
+        "locales_tested": 869,
+        "unsupported": 0,
+        "mismatches": 0,
+        "stderr": "",
+        "exit_code": 0,
+        "lint_exit": 0,
+        "full_result_sha256": "17807e0b63e342853a9cd659d06ceda2b08ddd0aebd03f9cc3c34c0c9977830f"
+      },
+      {
+        "php": "8.4.28",
+        "formats": 23,
+        "checks": 899415,
+        "locales_tested": 869,
+        "unsupported": 0,
+        "mismatches": 0,
+        "stderr": "",
+        "exit_code": 0,
+        "lint_exit": 0,
+        "full_result_sha256": "2fe0bfdaed0924e4fdfe06ccd931369f6eeef478223a6f2b7635a789fa138c98"
+      },
+      {
+        "php": "8.5.13",
+        "formats": 23,
+        "checks": 899415,
+        "locales_tested": 869,
+        "unsupported": 0,
+        "mismatches": 0,
+        "stderr": "",
+        "exit_code": 0,
+        "lint_exit": 0,
+        "full_result_sha256": "229566d224d9cd44b4ee733a53c965fe3280cf2268a7d2d6552de0967bf21bdc"
+      }
+    ],
+    "total_comparisons": 3597660
+  },
+  "direct_textual_callsite_inventory": [
+    {
+      "path": "sources/calendar.php",
+      "line": 647,
+      "source": "$date1 = cms_strftime(do_lang('calendar_date_verbose'), $from);"
+    },
+    {
+      "path": "sources/calendar.php",
+      "line": 648,
+      "source": "$date2 = cms_strftime(do_lang('calendar_date_verbose'), $to);"
+    },
+    {
+      "path": "sources/calendar.php",
+      "line": 653,
+      "source": "$date1 = cms_strftime(do_lang(($to - $from > 60 * 60 * 24 * 5) ? 'calendar_date_range_single_long' : 'calendar_date_range_single'), $from);"
+    },
+    {
+      "path": "sources/calendar.php",
+      "line": 654,
+      "source": "$date2 = cms_strftime(do_lang(($to - $from > 60 * 60 * 24 * 5) ? 'calendar_date_range_single_long' : 'calendar_date_range_single'), $to);"
+    },
+    {
+      "path": "sources/calendar.php",
+      "line": 660,
+      "source": "$date1 = cms_strftime(do_lang('calendar_minute_ampm_known'), $from);"
+    },
+    {
+      "path": "sources/calendar.php",
+      "line": 661,
+      "source": "$date2 = cms_strftime(do_lang('calendar_minute'), $to);"
+    },
+    {
+      "path": "sources/calendar.php",
+      "line": 663,
+      "source": "$date1 = cms_strftime(do_lang('calendar_minute'), $from);"
+    },
+    {
+      "path": "sources/calendar.php",
+      "line": 664,
+      "source": "$date2 = cms_strftime(do_lang('calendar_minute'), $to);"
+    },
+    {
+      "path": "sources/calendar.php",
+      "line": 672,
+      "source": "$date = cms_strftime(do_lang('calendar_date_verbose'), $from);"
+    },
+    {
+      "path": "sources/calendar.php",
+      "line": 1506,
+      "source": "$nth = cms_strftime(do_lang('calendar_day_of_month'), mktime(0, 0, 0, 1, intval(floatval($day) / 7.0) + 1, $year)); // Bit of a hack. Uses the date locales nth stuff, even when it's not actually a day-of-month here."
+    },
+    {
+      "path": "sources/calendar.php",
+      "line": 1508,
+      "source": "$nth = cms_strftime(do_lang('calendar_day_of_month'), mktime(0, 0, 0, $month, $day, $year)); // Bit of a hack. Uses the date locales nth stuff, even when it's not actually a day-of-month here."
+    },
+    {
+      "path": "sources/calendar.php",
+      "line": 1510,
+      "source": "$dow = cms_strftime('%a', $timestamp);"
+    },
+    {
+      "path": "sources/calendar.php",
+      "line": 1512,
+      "source": "$month_name = cms_strftime('%b', $timestamp);"
+    },
+    {
+      "path": "sources/calendar.php",
+      "line": 1762,
+      "source": "$written_date = cms_strftime(do_lang('calendar_date_verbose'), $from);"
+    },
+    {
+      "path": "sources/calendar.php",
+      "line": 1764,
+      "source": "$written_date = cms_strftime(do_lang(($to - $from > 60 * 60 * 24 * 5) ? 'calendar_date_range_single_long' : 'calendar_date_range_single'), $from);"
+    },
+    {
+      "path": "sources/temporal.php",
+      "line": 270,
+      "source": "function cms_strftime($format, $timestamp = null)"
+    },
+    {
+      "path": "sources/temporal.php",
+      "line": 527,
+      "source": "$ret1 = cms_strftime($date_string1, $usered_timestamp);"
+    },
+    {
+      "path": "sources/temporal.php",
+      "line": 528,
+      "source": "$ret2 = ($date_string2 == '') ? '' : cms_strftime($date_string2, $usered_timestamp);"
+    },
+    {
+      "path": "sources/temporal.php",
+      "line": 536,
+      "source": "$today = cms_strftime($date_string1, $usered_now_timestamp);"
+    },
+    {
+      "path": "sources/temporal.php",
+      "line": 544,
+      "source": "$yesterday = cms_strftime($date_string1, $usered_now_timestamp - 24 * 60 * 60);"
+    },
+    {
+      "path": "sources/temporal.php",
+      "line": 552,
+      "source": "$ret1 = cms_strftime($date_string1, $usered_timestamp);"
+    },
+    {
+      "path": "sources/temporal.php",
+      "line": 553,
+      "source": "$ret2 = ($date_string2 == '') ? '' : cms_strftime($date_string2, $usered_timestamp);"
+    },
+    {
+      "path": "sources/temporal.php",
+      "line": 605,
+      "source": "return cms_strftime($date_string, $usered_timestamp);"
+    },
+    {
+      "path": "sources/symbols.php",
+      "line": 3661,
+      "source": "$value = cms_strftime($param[0], $timestamp);"
+    },
+    {
+      "path": "sources/cns_general.php",
+      "line": 140,
+      "source": "$dob = cms_strftime(do_lang('date_no_year'), birthday_without_year_timestamp($month, $day));"
+    },
+    {
+      "path": "sources/cns_members2.php",
+      "line": 241,
+      "source": "$dob = cms_strftime(do_lang('date_no_year'), birthday_without_year_timestamp($month, $day));"
+    },
+    {
+      "path": "sources/blocks/side_calendar.php",
+      "line": 119,
+      "source": "$date = cms_strftime(do_lang('calendar_date'), $real_from);"
+    },
+    {
+      "path": "sources/blocks/side_calendar.php",
+      "line": 159,
+      "source": "$date_formatted = cms_strftime(do_lang('calendar_date'), mktime(0, 0, 0, $month, $j, $year));"
+    },
+    {
+      "path": "sources/blocks/side_calendar.php",
+      "line": 207,
+      "source": "return do_template('BLOCK_SIDE_CALENDAR', array('_GUID' => '1324e98b4debf7ebd6d398fae65fe29f', 'CALENDAR_URL' => $calendar_url, 'ENTRIES' => $_entries, '_MONTH' => strval($_period_start), 'MONTH' => cms_strftime(do_lang('calendar_month_in_year'), $_period_start)));"
+    },
+    {
+      "path": "sources/blocks/side_news.php",
+      "line": 204,
+      "source": "$date = cms_strftime(do_lang('date_concise_near_date'), utctime_to_usertime($myrow['date_and_time']));"
+    },
+    {
+      "path": "sources/hooks/systems/profiles_tabs/about.php",
+      "line": 275,
+      "source": "$dob = cms_strftime(do_lang('date_no_year'), $_dob_censored);"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 527,
+      "source": "$title_date = cms_strftime(do_lang('calendar_date_verbose'), $timestamp);"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 554,
+      "source": "$this->title = get_screen_title('CALENDAR_SPECIFIC_WEEK', true, array(escape_html($explode[0]), escape_html($explode[1]), escape_html(cms_strftime('%b', $timestamp))));"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 556,
+      "source": "$this->title = get_screen_title('_CALENDAR_SPECIFIC_WEEK', true, array(escape_html($username), escape_html($explode[0]), escape_html($explode[1]), escape_html(cms_strftime('%b', $timestamp))));"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 589,
+      "source": "$title_date = cms_strftime(do_lang('calendar_month_in_year_verbose'), $timestamp);"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 780,
+      "source": "$date = is_null($event['e_start_hour']) ? '' : cms_strftime(do_lang('calendar_minute'), $from);"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 844,
+      "source": "$hour = cms_strftime(do_lang('date_regular_time'), $i * 60 * 60);"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 941,
+      "source": "$date = is_null($event['e_start_hour']) ? '' : cms_strftime(do_lang('calendar_minute'), $real_from);"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 1011,
+      "source": "$hour = cms_strftime(do_lang('date_regular_time'), $i * 60 * 60);"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 1046,
+      "source": "$sunday_date = cms_strftime(do_lang('calendar_day_of_month_verbose'), $period_start + $offset * 60 * 60 * 24);"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 1052,
+      "source": "$monday_date = cms_strftime(do_lang('calendar_day_of_month_verbose'), $period_start + $offset * 60 * 60 * 24);"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 1057,
+      "source": "$tuesday_date = cms_strftime(do_lang('calendar_day_of_month_verbose'), $period_start + $offset * 60 * 60 * 24);"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 1062,
+      "source": "$wednesday_date = cms_strftime(do_lang('calendar_day_of_month_verbose'), $period_start + $offset * 60 * 60 * 24);"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 1067,
+      "source": "$thursday_date = cms_strftime(do_lang('calendar_day_of_month_verbose'), $period_start + $offset * 60 * 60 * 24);"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 1072,
+      "source": "$friday_date = cms_strftime(do_lang('calendar_day_of_month_verbose'), $period_start + $offset * 60 * 60 * 24);"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 1077,
+      "source": "$saturday_date = cms_strftime(do_lang('calendar_day_of_month_verbose'), $period_start + $offset * 60 * 60 * 24);"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 1083,
+      "source": "$sunday_date = cms_strftime(do_lang('calendar_day_of_month_verbose'), $period_start + $offset * 60 * 60 * 24);"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 1141,
+      "source": "$week_date = cms_strftime(do_lang('calendar_day_of_month'), $period_start);"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 1161,
+      "source": "$week_date = cms_strftime(do_lang('calendar_day_of_month'), $period_start + ($i - 1) * 60 * 60 * 24);"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 1178,
+      "source": "$date = is_null($event['e_start_hour']) ? '' : cms_strftime(do_lang('calendar_minute'), $real_from);"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 1299,
+      "source": "$date = cms_strftime(do_lang('calendar_date'), $real_from);"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 1356,
+      "source": "$date_formatted = cms_strftime(do_lang('calendar_date'), mktime(0, 0, 0, $i, $j, intval($explode[0])));"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 1514,
+      "source": "$day_formatted = cms_strftime(do_lang('calendar_date_verbose'), $from);"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 1518,
+      "source": "$to_day_formatted = cms_strftime(do_lang('calendar_date_verbose'), $to);"
+    },
+    {
+      "path": "site/pages/modules/calendar.php",
+      "line": 1525,
+      "source": "$human_readable_time_range = is_null($event['e_start_hour']) ? '' : cms_strftime(do_lang('calendar_minute'), $from);"
+    },
+    {
+      "path": "site/pages/modules/banners.php",
+      "line": 547,
+      "source": "$period = cms_strftime('%B %Y', $row['c_date_and_time']);"
+    }
+  ],
+  "local_fallback_characterization": {
+    "alternate_digits": [
+      [
+        "az_IR",
+        true
+      ],
+      [
+        "fa_IR",
+        true
+      ],
+      [
+        "ja_JP.utf8",
+        true
+      ],
+      [
+        "mnw_MM",
+        true
+      ],
+      [
+        "my_MM",
+        true
+      ]
+    ],
+    "era": [
+      [
+        "cmn_TW",
+        true
+      ],
+      [
+        "ja_JP.utf8",
+        true
+      ],
+      [
+        "th_TH",
+        true
+      ],
+      [
+        "th_TH.utf8",
+        true
+      ],
+      [
+        "zh_TW",
+        true
+      ],
+      [
+        "zh_TW.utf8",
+        true
+      ]
+    ],
+    "custom_formats": {
+      "%s": true,
+      "%Q": true,
+      "%129Y": true,
+      "%_0d": false
+    }
+  },
+  "production_formatter_changes": false,
+  "limitations": [
+    "Locale names include aliases and encodings; counts do not represent distinct languages.",
+    "Custom language formats, configured date symbol parameters and generated/dynamic consumers are not exhausted.",
+    "Non-Linux behavior, locale-specific E/O/custom directives and final CMS workflows remain open.",
+    "Cross-version results compare each runtime against its own libc reference; no cross-platform identity claim.",
+    "Reference strftime deprecation alone is masked only around the reference call; production formatter runs with strict diagnostics."
+  ]
+}
