@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-21",
+  "candidate": "2026.11.1-alpha.22",
+  "runtime": "PHP 8.2.36 FPM/FastCGI",
+  "scan": "upgrader integrity_scan without allow_merging; no cleanup submission",
+  "bundled_extended_unknown_files": [],
+  "override": "sources_custom/hooks/systems/fields/float.php",
+  "override_disposition": "Preserve: normalized comparison differs only by removal of unconditional fatal_exit in bundled hook.",
+  "custom_file_groups": [
+    "Existing sales_portal code and templates",
+    "Existing news_api backup TAR files",
+    "Existing mirror synchronization lock",
+    "Existing site assets and backup files"
+  ],
+  "mutations_during_scan": false,
+  "follow_up_fix": {
+    "file": "sources/hooks/systems/fields/float.php",
+    "change": "Remove unconditional fatal_exit from get_field_inputter",
+    "baseline_probe": "Reproduced RuntimeException float field via fatal_exit test adapter",
+    "fixed_probe": {
+      "php": "8.4.27 CLI",
+      "checks": 13,
+      "diagnostics": 0,
+      "lint": "pass"
+    },
+    "scope": "Isolated argument/delegation probe; no full CMS form workflow or cross-version acceptance claim",
+    "deployment": "Source branch only; installed site override preserved; batch into next consolidated candidate"
+  },
+  "update_source_review": {
+    "file": "sources/version2.php",
+    "finding": "Extended branch calls GitHub releases API and returns before legacy compo.sr path; upgrade URL derived from selected uploaded CMS asset.",
+    "limitation": "Static source review; no live outbound request trace or newer-release branch exercise captured."
+  },
+  "remaining": [
+    "Request-level outbound update tracing",
+    "Formal workflow diagnostics and fixture preservation checks",
+    "PHP 8.3/8.4/8.5 web execution"
+  ]
+}
