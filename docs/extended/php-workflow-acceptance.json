@@ -5,11 +5,119 @@
   "audit_issue": 36,
   "status": "prepared_not_executed",
   "candidate": {
-    "source_commit": null,
-    "core_package_sha256": null,
-    "addon_packages": [],
-    "guard_manifest_sha256": null,
-    "installed_inventory_sha256": null
+    "source_commit": "6d50a93adb288b0839df05b46f6b28733b08afc8",
+    "core_package_sha256": "358a8812dfd1c1d76ef177fa11ac43a3f6aa164c99f33366c79f8f7fe8fb5901",
+    "addon_packages": [
+      {
+        "archive": "better_mail-10.x.tar",
+        "sha256": "b5c231bcafc3c8fbd6b0b3649f5b18954fb7b2320d71cfc419f676d081f7dcf0",
+        "payload_files": 229
+      },
+      {
+        "archive": "cloudinary-10.x.tar",
+        "sha256": "4fbdb07918203218755af44c26893dd85b6decb64a302d488ba908109fff57f5",
+        "payload_files": 14
+      },
+      {
+        "archive": "composr_homesite-10.x.tar",
+        "sha256": "4d5d003e707418f0fb7d4e5736c606e3bbc1c8ca20af3f9f40f90c538f1768e8",
+        "payload_files": 63
+      },
+      {
+        "archive": "excel_support-10.x.tar",
+        "sha256": "3a73e9ac377413b30bd8cd87c29efcac9c8cd9c35f48ef08cecebba941495bf9",
+        "payload_files": 89
+      },
+      {
+        "archive": "facebook_support-10.x.tar",
+        "sha256": "3e99b57ee39ce8f75f159c8865ab2ddf6a67cda3953fcb1d12e86655dcca2c7e",
+        "payload_files": 51
+      },
+      {
+        "archive": "free_article_import-10.x.tar",
+        "sha256": "8fca5aa2f7655cf6833ec91f02891767e7942a447574f084317de047edcc5f49",
+        "payload_files": 3
+      },
+      {
+        "archive": "gallery_syndication-10.x.tar",
+        "sha256": "af7833d36507a0d233ae6300e5f9e2ad38cf4d94e452a507c52f4fd5b3e3ed67",
+        "payload_files": 22
+      },
+      {
+        "archive": "getid3-10.x.tar",
+        "sha256": "16cb437c32cc8a44d82974ca249d5df75dc5e7e103fbbafbe104cf41811febee",
+        "payload_files": 86
+      },
+      {
+        "archive": "image_syndication-10.x.tar",
+        "sha256": "955901963fc2e780a8404845277d08d463f5e948ed0a64a1bdcbf985b9077653",
+        "payload_files": 39
+      },
+      {
+        "archive": "less-10.x.tar",
+        "sha256": "b0194b7a94478075a909ad789442c2757eae27d291066e520cbb75be5ae342de",
+        "payload_files": 87
+      },
+      {
+        "archive": "locations_catalogues-10.x.tar",
+        "sha256": "bde3e0b925879e569f505193016939aa50e2d7ccd95af32efd079d5777f12b75",
+        "payload_files": 7
+      },
+      {
+        "archive": "multi_domain_login-10.x.tar",
+        "sha256": "0a3b0d9d8a1369a1010566527ceeeec6522684a33db28d5dc0d7057740cd529e",
+        "payload_files": 3
+      },
+      {
+        "archive": "nested_cpf_csv_lists-10.x.tar",
+        "sha256": "c41aff411cd3343e520a9866730a16fd1577f9df38aef0aa9719f40924fc4d3c",
+        "payload_files": 5
+      },
+      {
+        "archive": "openid-10.x.tar",
+        "sha256": "dd9192ba762ef9996d9a99a909526f0744cc5bc172a8d9ead831b061d6ff0003",
+        "payload_files": 12
+      },
+      {
+        "archive": "sortable_tables-10.x.tar",
+        "sha256": "f8cd33efbe4256b88f3d4d59f8d415646e270335cf4bf74cfb367289a1f63569",
+        "payload_files": 13
+      },
+      {
+        "archive": "testing_platform-10.x.tar",
+        "sha256": "5116adbcd249f4321fbdb7f420d72b30979fcbb2e40935d906289ca21c8f7943",
+        "payload_files": 462
+      },
+      {
+        "archive": "theme_debug-10.x.tar",
+        "sha256": "0e1f0b2185ddd389ce680a6c57802d88aef07efe0b2bfce3a698e9c413592d04",
+        "payload_files": 5
+      },
+      {
+        "archive": "trickstr-10.x.tar",
+        "sha256": "e9fc75ba5b0b40e5907b1c32fd89d5e16a5dd0a32bbcca33dd2afddd370383c4",
+        "payload_files": 17
+      },
+      {
+        "archive": "twitter_support-10.x.tar",
+        "sha256": "3ae1bcb501b20aa731591272a5d5c795adf5ede05ed44940a2fbf297471d0c27",
+        "payload_files": 10
+      },
+      {
+        "archive": "user_simple_csv_sync-10.x.tar",
+        "sha256": "910d04a1ee7349121fa6ebcfa4b05cee8267257fdb0e1a4aa3c77be1c40e968f",
+        "payload_files": 9
+      },
+      {
+        "archive": "webdav-10.x.tar",
+        "sha256": "ed88771fa1858d915a27d04ce3a77032da6e902bf277dc83efbc35f8b02a4414",
+        "payload_files": 170
+      }
+    ],
+    "guard_manifest_sha256": "16e4229919635518698054ae988761770d8caa7ffb79a003d5e283b26ecebc28",
+    "installed_inventory_sha256": null,
+    "version": "2026.11.1-alpha.22",
+    "publication_status": "local_only_automatic_push_review_rejected"
   },
   "environment": {
     "site": null,
@@ -22,8 +130,8 @@
     "database": null,
     "sapi": null,
     "extensions": null,
-    "backup_reference": null,
-    "restore_verified": null
+    "backup_reference": "server-private-backup-reference-withheld",
+    "restore_verified": false
   },
   "status_values": [
     "not_run",
@@ -34,9 +142,9 @@
   ],
   "pass_rule": "Record the exact package/environment, executed procedure, expected and actual outcome, fixture identifiers, diagnostic capture and durable evidence. CLI probes do not mark a full CMS workflow passed.",
   "scope_gates": {
-    "F03": "Locale/platform formatter fallback remains open.",
+    "F03": "Approved temporary deprecation exception for remaining locale/platform/custom-format strftime fallback. Preserve legacy output; track full replacement in php-date-fallback-replacement.md. Not a universal deprecation-free claim.",
     "F04": "Approved deprecation exception for legacy assertion registration; normal logging/CMS acceptance remains required.",
-    "F13_R04": "Tracker/support-credits excluded from maintained publication by approved policy; source retained. Local core and 20 audit-owned addon inventories verified; final signed/catalogue acceptance remains under R06.",
+    "F13_R04": "Tracker/support-credits excluded from maintained publication by approved policy; source retained. Candidate inventories verified for core and 21 addons; final signed/catalogue acceptance remains under R06.",
     "R02_R03": "Broader runtime reachability and input review remain open."
   },
   "cases": [
@@ -632,5 +740,13 @@
         }
       }
     }
-  ]
+  ],
+  "preflight": {
+    "date": "2026-11-21",
+    "evidence": "php-cms-preflight-2026-11-21.json",
+    "installed_version": "2026.11.1-alpha.20",
+    "guard_files_verified": 7,
+    "backup_restore_verified": false,
+    "note": "Read-only preflight does not mark any CMS workflow cell passed; candidate and web runtime remain unset."
+  }
 }
