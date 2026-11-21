@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-21",
+  "version": "2026.11.1-alpha.22",
+  "user_report": "Site closed, upgrade applied, caches cleared; initial testing showed no errors or stack traces.",
+  "version_file_matches_package": true,
+  "core_runtime_files": {
+    "sources/json_inner.php": "matches reviewed source",
+    "sources/temporal.php": "matches reviewed source"
+  },
+  "optional_addon_files": {
+    "sources_custom/openid.php": "absent; separate optional addon not installed",
+    "sources_custom/facebook/jsonwrapper/JSON/JSON.php": "absent; separate optional addon not installed"
+  },
+  "guard_files_matching": 7,
+  "guard_manifest_sha256": "16e4229919635518698054ae988761770d8caa7ffb79a003d5e283b26ecebc28",
+  "browser_checks": {
+    "dashboard": "Rendered alpha.22; no newer Extended release reported",
+    "extended_addons": "Rendered; mirror and GitHub pilot catalogues verified with four addons each; three test fixtures unavailable",
+    "authenticated_homepage": "Rendered Welcome to News Site with no visible error or stack trace",
+    "site_closed": true
+  },
+  "limitations": [
+    "Initial installation smoke checks only, not complete workflow acceptance.",
+    "Active web PHP version and request-level diagnostics were not established in this check.",
+    "All 64 formal PHP workflow results remain not_run.",
+    "No guest availability test while site is closed."
+  ]
+}
