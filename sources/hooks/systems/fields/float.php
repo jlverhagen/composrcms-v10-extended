@@ -144,7 +144,6 @@ class Hook_fields_float
      */
     public function get_field_inputter($_cf_name, $_cf_description, $field, $actual_value, $new)
     {
-        fatal_exit('float field');
         if ($actual_value === do_lang('NA')) {
             $actual_value = null;
         }
