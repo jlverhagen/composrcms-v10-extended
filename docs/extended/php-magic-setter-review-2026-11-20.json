@@ -1,0 +1,312 @@
+{
+  "date": "2026-11-20",
+  "source_commit": "c661ad575dcf14c40fb830f9376221723d74d767",
+  "source_scan": {
+    "files": 3668,
+    "anonymous_classes": [],
+    "magic_setters": [
+      {
+        "path": "sources_custom/openid.php",
+        "line": 81
+      },
+      {
+        "path": "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Component.php",
+        "line": 344
+      }
+    ]
+  },
+  "scan_method": "PHP token_get_all over sources and sources_custom PHP files except phpstub.php; comments/whitespace ignored; T_NEW followed by T_CLASS; __set name tokens inspected manually. Tracker, tests and generated code excluded. Attributed anonymous declarations are not covered by the adjacent-token rule.",
+  "vobject_result": {
+    "php": "8.4.27",
+    "mode": "vobject-setter",
+    "checks": 21,
+    "observations": {
+      "original": "BEGIN:VCALENDAR\r\nX-AUDIT:object value\r\nEND:VCALENDAR\r\n",
+      "copy": "BEGIN:VCALENDAR\r\nX-AUDIT:object value\r\nBEGIN:VEVENT\r\nSUMMARY:Audit event\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n"
+    },
+    "diagnostics": []
+  },
+  "existing_guard_result": {
+    "php": "8.4.27",
+    "mode": "computed-guards",
+    "checks": 12,
+    "observations": {
+      "renderer": {
+        "leading_context_lines": 7,
+        "trailing_context_lines": 0
+      },
+      "compress": true,
+      "id3": false,
+      "identity": "http://example.invalid/"
+    },
+    "diagnostics": []
+  },
+  "sha256": {
+    "_tests/libs/property_graph_probe.php": "ea39b4339ca86ddc27b0b4626d0246c192b36894716f0bd7eeb92999ce370f6c",
+    "sources_custom/openid.php": "feaab2fa7a5d884161a128ad966ab9f72b11ea471dfb4ebbf8e49bb07fc22580",
+    "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Component.php": "78fb0aa88599374eb9ec3d1b5c02498ca8ef3ca8a8781cb7a51e04bb9621bdb7",
+    "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Node.php": "5b9496ff1f8cb4337a01655401d7d6f0a582b68f733fd1fa39beacc32046c812"
+  },
+  "production_changes": false,
+  "limitations": [
+    "No full CMS, calendar import/export, external-object writes or live workflows executed.",
+    "R02 remains open; bounded scan does not prove absence of computed/generated anonymous declarations."
+  ],
+  "local_property_suite_followup": {
+    "date": "2026-11-20",
+    "runtime": "8.4.27",
+    "command_template": "runtime/bin/php core/_tests/libs/property_graph_probe.php core MODE",
+    "results": [
+      {
+        "php": "8.4.27",
+        "mode": "json-core",
+        "checks": 6,
+        "observations": {
+          "encoded": "{\"text\":\"quote \\\" and newline\\n\",\"unicode\":\"\\u00e9\",\"values\":[null,true,false,0,1.5]}",
+          "decoded": {
+            "value": 1,
+            "empty": null
+          },
+          "loose": {
+            "value": 1
+          }
+        },
+        "diagnostics": []
+      },
+      {
+        "php": "8.4.27",
+        "mode": "json-facebook",
+        "checks": 6,
+        "observations": {
+          "encoded": "{\"text\":\"quote \\\" and newline\\n\",\"unicode\":\"\\u00e9\",\"values\":[null,true,false,0,1.5]}",
+          "decoded": {
+            "value": 1,
+            "empty": null
+          },
+          "loose": {
+            "value": 1
+          }
+        },
+        "diagnostics": []
+      },
+      {
+        "php": "8.4.27",
+        "mode": "diff",
+        "checks": 12,
+        "observations": {
+          "copy": [
+            "copy",
+            "shared"
+          ],
+          "cached": [
+            "new",
+            "reference"
+          ],
+          "block": [
+            "left"
+          ],
+          "merged": [
+            "a",
+            "B"
+          ],
+          "conflict": [
+            "a",
+            "<<<<<<< ours",
+            "LEFT",
+            "=======",
+            "RIGHT",
+            ">>>>>>> theirs"
+          ]
+        },
+        "diagnostics": []
+      },
+      {
+        "php": "8.4.27",
+        "mode": "less",
+        "checks": 14,
+        "observations": {
+          "info": {
+            "filename": "input.less",
+            "rootPath": null,
+            "currentDirectory": null,
+            "rootFilename": null,
+            "entryPath": null,
+            "reference": false,
+            "importedFile": null,
+            "pluginTag": "updated",
+            "pluginNull": null
+          },
+          "arguments": {
+            "visitDeeper": false,
+            "pluginValue": [
+              1,
+              2
+            ],
+            "nullable": null
+          },
+          "css": ".sample {\n  width: 2px;\n}\n"
+        },
+        "diagnostics": []
+      },
+      {
+        "php": "8.4.27",
+        "mode": "computed-guards",
+        "checks": 12,
+        "observations": {
+          "renderer": {
+            "leading_context_lines": 7,
+            "trailing_context_lines": 0
+          },
+          "compress": true,
+          "id3": false,
+          "identity": "http://example.invalid/"
+        },
+        "diagnostics": []
+      },
+      {
+        "php": "8.4.27",
+        "mode": "vobject-setter",
+        "checks": 21,
+        "observations": {
+          "original": "BEGIN:VCALENDAR\r\nX-AUDIT:object value\r\nEND:VCALENDAR\r\n",
+          "copy": "BEGIN:VCALENDAR\r\nX-AUDIT:object value\r\nBEGIN:VEVENT\r\nSUMMARY:Audit event\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n"
+        },
+        "diagnostics": []
+      },
+      {
+        "php": "8.4.27",
+        "mode": "trait",
+        "checks": 4,
+        "observations": {
+          "generated": "tests/resources/generated/csv/example.CSV"
+        },
+        "diagnostics": []
+      }
+    ],
+    "total_checks": 75,
+    "all_exit_codes": 0,
+    "all_stderr_empty": true,
+    "lint": "passed PHP 8.4.27",
+    "whitespace_check": "git diff --check passed",
+    "added_scope": [
+      "Property-object identity and replacement without duplication",
+      "Empty text, zero, false and fractional scalar conversion",
+      "Scalar child removal",
+      "Invalid replacement preserves existing child and parent link"
+    ]
+  },
+  "remote_matrix_status": {
+    "status": "passed",
+    "date": "2026-11-21",
+    "runtimes": [
+      "8.2.36",
+      "8.3.37",
+      "8.4.28",
+      "8.5.13"
+    ],
+    "checks_per_runtime": 21,
+    "run_as": "nobody",
+    "source_files_verified": 28,
+    "all_observations_match": true,
+    "report": {
+      "stage": "/var/tmp/composr-magic-setter-gmsbgs87",
+      "source_hashes": {
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/DateTimeParser.php": "29c810bc6527956b9f0bfd10cc52457f93c200ffc09557041a47c69a35fc4933",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/ElementList.php": "3884d55c85e9e3d7c603a8d31e1b75c1786b547a3aa38f18c1373223324151c5",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Document.php": "c3ef96a9f70079fb2521c76eea5ecb318e40a507b3b2f55cf003e7cf666a8aef",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Version.php": "aef45342834e0620ee0997ef256252716c03033da7796d442d49863296f9469d",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/FreeBusyGenerator.php": "73c07171073473cd516a9aee2a2dd16f6eb0bc661329636a16241256772a89d0",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Reader.php": "6415ddbb588a85cd4366a934aac9fbfbef7ff898144c32b0e8acabac856e3218",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Parameter.php": "97674ec58961b46da5c9eb28e9c28acb8a09fae513c629748923fce677cadcb6",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/RecurrenceIterator.php": "9343c8c15a9db0a31bbcbdb6122c2457cfed5fbee1350fb95f15f39a159c0b5f",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Property.php": "7fdf2e3e04598a1df975ab5e76a1fa336cdfc217bddcc89dd715b5a60878b186",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Node.php": "5b9496ff1f8cb4337a01655401d7d6f0a582b68f733fd1fa39beacc32046c812",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/ParseException.php": "22993769de87c96507630c945dac451fbf0fd9448fd9442d5e112278592b3745",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/StringUtil.php": "33baff7a7bb9886c8b335116a8af8621b16c62e8d6f32238a294ab29e73cc5dc",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/TimeZoneUtil.php": "dd2caebf7d465d0f1f8cf86ff6d342d384fa71efa702b63602ad2ebaaf37e39a",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/includes.php": "4cc57db1c3361969a4b0a66c04b6a1c537bc18bf007ff25be3d585d831e20e56",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Component.php": "78fb0aa88599374eb9ec3d1b5c02498ca8ef3ca8a8781cb7a51e04bb9621bdb7",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Component/VFreeBusy.php": "d9b01a0678fd9c1a3810ed9e3b03f456fc9b05c57af240140e250a6efc8d8cab",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Component/VCalendar.php": "5fb5ab8af04b6ffc4e4142857240f7636caab82357599e347465d414ed072427",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Component/VCard.php": "cc90d2df1820b3c863d7cb7b818a60af5cf7a924b0f91741eef5162fe0e29358",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Component/VAlarm.php": "5dcfb399f1cd95228d12c4ff1ccefaedd970447ab34611e33f25f4f07c5975ba",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Component/VEvent.php": "bcb453862e1309cff14b4e89f5e52f0f0d4e3791a8dda600df416cf3e1f1756b",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Component/VJournal.php": "ccc519596a3b4a132e083430ad24fd25d4e72f5c3cf4905ba65090b95362f240",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Component/VTodo.php": "2616febd6408a5cab2ebd2e0275982c0268e7d85b3579f59cee0639c43b7feed",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Property/MultiDateTime.php": "9d86dbe9c1a3f1347e0390da7a783522910991ac1b50b0ad22d7df2ba4e25a59",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Property/DateTime.php": "243f3192e4a9cc340140f43da121f8af9c85c205b5b5cb57869cc9e834abef66",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Property/Compound.php": "c129ad334b021b832e7e2d1010ea89fe3741a63cec9f52835e76c93593e3680b",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Splitter/VCard.php": "d983906b6e27776bc446304f8e479d8f58ab76ecd8ba480370f118893b31661f",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Splitter/SplitterInterface.php": "a17ce7242177eb414af41c1f8d3f1238e6d6243e605e071ad6fae16da17f8ecf",
+        "sources_custom/sabredav/vendor/sabre/vobject/lib/Sabre/VObject/Splitter/ICalendar.php": "7872c77c7d12dcae797d211cd23137890b351c5efcdccac6f62a6465070f4851"
+      },
+      "probe_sha256": "ea39b4339ca86ddc27b0b4626d0246c192b36894716f0bd7eeb92999ce370f6c",
+      "results": [
+        {
+          "version": "82",
+          "lint_exit": 0,
+          "exit_code": 0,
+          "stderr": "",
+          "result": {
+            "php": "8.2.36",
+            "mode": "vobject-setter",
+            "checks": 21,
+            "observations": {
+              "original": "BEGIN:VCALENDAR\r\nX-AUDIT:object value\r\nEND:VCALENDAR\r\n",
+              "copy": "BEGIN:VCALENDAR\r\nX-AUDIT:object value\r\nBEGIN:VEVENT\r\nSUMMARY:Audit event\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n"
+            },
+            "diagnostics": []
+          }
+        },
+        {
+          "version": "83",
+          "lint_exit": 0,
+          "exit_code": 0,
+          "stderr": "",
+          "result": {
+            "php": "8.3.37",
+            "mode": "vobject-setter",
+            "checks": 21,
+            "observations": {
+              "original": "BEGIN:VCALENDAR\r\nX-AUDIT:object value\r\nEND:VCALENDAR\r\n",
+              "copy": "BEGIN:VCALENDAR\r\nX-AUDIT:object value\r\nBEGIN:VEVENT\r\nSUMMARY:Audit event\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n"
+            },
+            "diagnostics": []
+          }
+        },
+        {
+          "version": "84",
+          "lint_exit": 0,
+          "exit_code": 0,
+          "stderr": "",
+          "result": {
+            "php": "8.4.28",
+            "mode": "vobject-setter",
+            "checks": 21,
+            "observations": {
+              "original": "BEGIN:VCALENDAR\r\nX-AUDIT:object value\r\nEND:VCALENDAR\r\n",
+              "copy": "BEGIN:VCALENDAR\r\nX-AUDIT:object value\r\nBEGIN:VEVENT\r\nSUMMARY:Audit event\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n"
+            },
+            "diagnostics": []
+          }
+        },
+        {
+          "version": "85",
+          "lint_exit": 0,
+          "exit_code": 0,
+          "stderr": "",
+          "result": {
+            "php": "8.5.13",
+            "mode": "vobject-setter",
+            "checks": 21,
+            "observations": {
+              "original": "BEGIN:VCALENDAR\r\nX-AUDIT:object value\r\nEND:VCALENDAR\r\n",
+              "copy": "BEGIN:VCALENDAR\r\nX-AUDIT:object value\r\nBEGIN:VEVENT\r\nSUMMARY:Audit event\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n"
+            },
+            "diagnostics": []
+          }
+        }
+      ]
+    }
+  }
+}
