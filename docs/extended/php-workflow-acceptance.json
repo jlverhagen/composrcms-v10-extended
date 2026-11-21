@@ -308,10 +308,12 @@
       "results": {
         "8.2": {
           "status": "not_run",
-          "evidence": null,
-          "diagnostics": null,
-          "fixture_ids": [],
-          "notes": null
+          "evidence": "php82-comcode-workflow-2026-11-21.json",
+          "diagnostics": "Application, PHP-FPM and Apache log deltas empty; no rotation.",
+          "fixture_ids": [
+            ":audit-alpha22-php82-fixture"
+          ],
+          "notes": "Comcode preview/save/edit and Unicode/nested formatting passed, including first render and refresh after cache clearing. News article and other procedure coverage remain outstanding; full case status remains not_run."
         },
         "8.3": {
           "status": "not_run",
@@ -530,10 +532,12 @@
       "results": {
         "8.2": {
           "status": "not_run",
-          "evidence": null,
-          "diagnostics": null,
-          "fixture_ids": [],
-          "notes": null
+          "evidence": "php82-comcode-workflow-2026-11-21.json",
+          "diagnostics": "Application, PHP-FPM and Apache log deltas empty; no rotation.",
+          "fixture_ids": [
+            ":audit-alpha22-php82-fixture"
+          ],
+          "notes": "Comcode cache-clear first render and refresh passed; full LESS/theme and absent-addon image warning procedures remain outstanding."
         },
         "8.3": {
           "status": "not_run",
