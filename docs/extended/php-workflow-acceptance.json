@@ -117,7 +117,7 @@
     "guard_manifest_sha256": "16e4229919635518698054ae988761770d8caa7ffb79a003d5e283b26ecebc28",
     "installed_inventory_sha256": null,
     "version": "2026.11.1-alpha.22",
-    "publication_status": "local_only_automatic_push_review_rejected"
+    "publication_status": "sanitized_source_tree_published_on_audit_branch"
   },
   "environment": {
     "site": null,
