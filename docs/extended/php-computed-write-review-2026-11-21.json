@@ -1,0 +1,485 @@
+{
+  "date": "2026-11-21",
+  "method": "Bounded textual search for ->$identifier followed by assignment in sources/sources_custom PHP files excluding phpstub.php; reviewed matches include the Diff generated assignment string. Braced expressions, aliases, concatenated/generated code, reflection and writes outside these trees are not exhaustively covered.",
+  "computed_assignment_sites": [
+    {
+      "path": "sources/json_inner.php",
+      "line": 685,
+      "source": "$obj->$key = $val;",
+      "disposition": "Decoder creates stdClass for intentionally open JSON object records."
+    },
+    {
+      "path": "sources/json_inner.php",
+      "line": 695,
+      "source": "$obj->$key = $val;",
+      "disposition": "Decoder creates stdClass for intentionally open JSON object records."
+    },
+    {
+      "path": "sources/diff/Diff/Renderer.php",
+      "line": 49,
+      "source": "eval('$this->$v = $value;');",
+      "disposition": "Generated assignment string guarded by property_exists."
+    },
+    {
+      "path": "sources_custom/openid.php",
+      "line": 95,
+      "source": "$this->$name = $this->claimed_id = $value;",
+      "disposition": "Identity branch resolves to declared private identity; other setter branches resolve to declared trustRoot."
+    },
+    {
+      "path": "sources_custom/getid3/getid3.php",
+      "line": 406,
+      "source": "$this->$opt = $val;",
+      "disposition": "isset guard rejects unknown fields before assignment."
+    },
+    {
+      "path": "sources_custom/ILess/FileInfo.php",
+      "line": 77,
+      "source": "$this->$property = $value;",
+      "disposition": "Intentional plugin record explicitly allows dynamic properties."
+    },
+    {
+      "path": "sources_custom/ILess/Environment.php",
+      "line": 262,
+      "source": "$this->$option = $value;",
+      "disposition": "Option writes are declared-property guarded; createCopy uses a fixed list of 15 declared fields (new four-version runtime coverage)."
+    },
+    {
+      "path": "sources_custom/ILess/Environment.php",
+      "line": 372,
+      "source": "$copy->$property = $env->$property;",
+      "disposition": "Option writes are declared-property guarded; createCopy uses a fixed list of 15 declared fields (new four-version runtime coverage)."
+    },
+    {
+      "path": "sources_custom/facebook/jsonwrapper/JSON/JSON.php",
+      "line": 685,
+      "source": "$obj->$key = $val;",
+      "disposition": "Decoder creates stdClass for intentionally open JSON object records."
+    },
+    {
+      "path": "sources_custom/facebook/jsonwrapper/JSON/JSON.php",
+      "line": 695,
+      "source": "$obj->$key = $val;",
+      "disposition": "Decoder creates stdClass for intentionally open JSON object records."
+    },
+    {
+      "path": "sources_custom/ILess/Visitor/Arguments.php",
+      "line": 35,
+      "source": "$this->$argument = $value;",
+      "disposition": "Intentional visitor record explicitly allows dynamic properties."
+    },
+    {
+      "path": "sources_custom/sabredav/lib/Sabre/DAV/Client.php",
+      "line": 96,
+      "source": "$this->$validSetting = $settings[$validSetting];",
+      "disposition": "Fixed validSettings allowlist resolves to declared settings."
+    }
+  ],
+  "file_sha256": {
+    "sources/json_inner.php": "4c4452df15529930afed5f2619e6fe170cb27c145d2e9e00a829b6251a42a967",
+    "sources/diff/Diff/Renderer.php": "d19d6f2386a597ea334179bc083ba56a35603ca6e609ed21c99809ef6e4f0912",
+    "sources_custom/openid.php": "feaab2fa7a5d884161a128ad966ab9f72b11ea471dfb4ebbf8e49bb07fc22580",
+    "sources_custom/getid3/getid3.php": "78c64f1d459a1e345fe3f9583ae02ee6a14b7d00e319924d52bae55c294fd6ce",
+    "sources_custom/ILess/FileInfo.php": "2df77e2e3e584f9bfe10dbe3ee1aec17e1f665bd7368a6fc7d28044531bcbf9b",
+    "sources_custom/ILess/Environment.php": "58171933072b524f10a75dc49b91d7a128d03d01c399c396cf06c1158b17aee4",
+    "sources_custom/facebook/jsonwrapper/JSON/JSON.php": "680adc1a234476efa8fddf3c9b5966ac11459b70d3b49b422b10eb2588caaf5e",
+    "sources_custom/ILess/Visitor/Arguments.php": "1a384f4ec0d062a1cb1334ffb1087a7b026d7b85b0f210870800bc51fa6edbfa",
+    "sources_custom/sabredav/lib/Sabre/DAV/Client.php": "cd80a5b4bc61b5d29bc6944122b25d263b1ba20a12012c0871ed4c8c5fb13d0b"
+  },
+  "remote_environment_copy": {
+    "date": "2026-11-21",
+    "stage": "/var/tmp/composr-environment-copy-vtuorw_s",
+    "source_sha256": {
+      "_tests/libs/property_graph_probe.php": "dd556c75734eda7e3171feb10bfb732cc4a4326c6661b580d62bae74bd31f224",
+      "sources_custom/ILess/Environment.php": "58171933072b524f10a75dc49b91d7a128d03d01c399c396cf06c1158b17aee4",
+      "sources_custom/ILess/FunctionRegistry.php": "1f5872662c9e2a2188ee6e14816b885426f6ca503d1e9cfd870947bbfee5057c",
+      "sources_custom/ILess/FileInfo.php": "2df77e2e3e584f9bfe10dbe3ee1aec17e1f665bd7368a6fc7d28044531bcbf9b"
+    },
+    "results": [
+      {
+        "result": {
+          "php": "8.2.36",
+          "mode": "environment-copy",
+          "checks": 35,
+          "observations": {
+            "values": {
+              "compress": true,
+              "canShortenColors": false,
+              "precision": 6,
+              "ieCompat": false,
+              "strictMath": true,
+              "strictUnits": true,
+              "sourceMap": false,
+              "sourceMapOptions": {
+                "outputSourceFiles": true
+              },
+              "importMultiple": true,
+              "relativeUrls": false,
+              "rootPath": "/fixtures/",
+              "dumpLineNumbers": false,
+              "contentsMap": {
+                "fixture.less": ".x {}"
+              },
+              "customVariables": {
+                "width": "2px"
+              },
+              "currentFileInfo": {
+                "filename": "fixture.less",
+                "rootPath": null,
+                "currentDirectory": null,
+                "rootFilename": null,
+                "entryPath": null,
+                "reference": false,
+                "importedFile": null
+              }
+            },
+            "frames": [
+              "replacement frame"
+            ],
+            "contents": {
+              "fixture.less": ".x {}",
+              "copy.less": ".copy {}"
+            }
+          },
+          "diagnostics": []
+        },
+        "exit_code": 0,
+        "stderr": "",
+        "lint_exit": 0
+      },
+      {
+        "result": {
+          "php": "8.3.37",
+          "mode": "environment-copy",
+          "checks": 35,
+          "observations": {
+            "values": {
+              "compress": true,
+              "canShortenColors": false,
+              "precision": 6,
+              "ieCompat": false,
+              "strictMath": true,
+              "strictUnits": true,
+              "sourceMap": false,
+              "sourceMapOptions": {
+                "outputSourceFiles": true
+              },
+              "importMultiple": true,
+              "relativeUrls": false,
+              "rootPath": "/fixtures/",
+              "dumpLineNumbers": false,
+              "contentsMap": {
+                "fixture.less": ".x {}"
+              },
+              "customVariables": {
+                "width": "2px"
+              },
+              "currentFileInfo": {
+                "filename": "fixture.less",
+                "rootPath": null,
+                "currentDirectory": null,
+                "rootFilename": null,
+                "entryPath": null,
+                "reference": false,
+                "importedFile": null
+              }
+            },
+            "frames": [
+              "replacement frame"
+            ],
+            "contents": {
+              "fixture.less": ".x {}",
+              "copy.less": ".copy {}"
+            }
+          },
+          "diagnostics": []
+        },
+        "exit_code": 0,
+        "stderr": "",
+        "lint_exit": 0
+      },
+      {
+        "result": {
+          "php": "8.4.28",
+          "mode": "environment-copy",
+          "checks": 35,
+          "observations": {
+            "values": {
+              "compress": true,
+              "canShortenColors": false,
+              "precision": 6,
+              "ieCompat": false,
+              "strictMath": true,
+              "strictUnits": true,
+              "sourceMap": false,
+              "sourceMapOptions": {
+                "outputSourceFiles": true
+              },
+              "importMultiple": true,
+              "relativeUrls": false,
+              "rootPath": "/fixtures/",
+              "dumpLineNumbers": false,
+              "contentsMap": {
+                "fixture.less": ".x {}"
+              },
+              "customVariables": {
+                "width": "2px"
+              },
+              "currentFileInfo": {
+                "filename": "fixture.less",
+                "rootPath": null,
+                "currentDirectory": null,
+                "rootFilename": null,
+                "entryPath": null,
+                "reference": false,
+                "importedFile": null
+              }
+            },
+            "frames": [
+              "replacement frame"
+            ],
+            "contents": {
+              "fixture.less": ".x {}",
+              "copy.less": ".copy {}"
+            }
+          },
+          "diagnostics": []
+        },
+        "exit_code": 0,
+        "stderr": "",
+        "lint_exit": 0
+      },
+      {
+        "result": {
+          "php": "8.5.13",
+          "mode": "environment-copy",
+          "checks": 35,
+          "observations": {
+            "values": {
+              "compress": true,
+              "canShortenColors": false,
+              "precision": 6,
+              "ieCompat": false,
+              "strictMath": true,
+              "strictUnits": true,
+              "sourceMap": false,
+              "sourceMapOptions": {
+                "outputSourceFiles": true
+              },
+              "importMultiple": true,
+              "relativeUrls": false,
+              "rootPath": "/fixtures/",
+              "dumpLineNumbers": false,
+              "contentsMap": {
+                "fixture.less": ".x {}"
+              },
+              "customVariables": {
+                "width": "2px"
+              },
+              "currentFileInfo": {
+                "filename": "fixture.less",
+                "rootPath": null,
+                "currentDirectory": null,
+                "rootFilename": null,
+                "entryPath": null,
+                "reference": false,
+                "importedFile": null
+              }
+            },
+            "frames": [
+              "replacement frame"
+            ],
+            "contents": {
+              "fixture.less": ".x {}",
+              "copy.less": ".copy {}"
+            }
+          },
+          "diagnostics": []
+        },
+        "exit_code": 0,
+        "stderr": "",
+        "lint_exit": 0
+      }
+    ]
+  },
+  "all_remote_observations_match": true,
+  "local_suite": [
+    {
+      "php": "8.4.27",
+      "mode": "json-core",
+      "checks": 6,
+      "observations": {
+        "encoded": "{\"text\":\"quote \\\" and newline\\n\",\"unicode\":\"\\u00e9\",\"values\":[null,true,false,0,1.5]}",
+        "decoded": {
+          "value": 1,
+          "empty": null
+        },
+        "loose": {
+          "value": 1
+        }
+      },
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "json-facebook",
+      "checks": 6,
+      "observations": {
+        "encoded": "{\"text\":\"quote \\\" and newline\\n\",\"unicode\":\"\\u00e9\",\"values\":[null,true,false,0,1.5]}",
+        "decoded": {
+          "value": 1,
+          "empty": null
+        },
+        "loose": {
+          "value": 1
+        }
+      },
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "diff",
+      "checks": 12,
+      "observations": {
+        "copy": [
+          "copy",
+          "shared"
+        ],
+        "cached": [
+          "new",
+          "reference"
+        ],
+        "block": [
+          "left"
+        ],
+        "merged": [
+          "a",
+          "B"
+        ],
+        "conflict": [
+          "a",
+          "<<<<<<< ours",
+          "LEFT",
+          "=======",
+          "RIGHT",
+          ">>>>>>> theirs"
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "less",
+      "checks": 14,
+      "observations": {
+        "info": {
+          "filename": "input.less",
+          "rootPath": null,
+          "currentDirectory": null,
+          "rootFilename": null,
+          "entryPath": null,
+          "reference": false,
+          "importedFile": null,
+          "pluginTag": "updated",
+          "pluginNull": null
+        },
+        "arguments": {
+          "visitDeeper": false,
+          "pluginValue": [
+            1,
+            2
+          ],
+          "nullable": null
+        },
+        "css": ".sample {\n  width: 2px;\n}\n"
+      },
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "computed-guards",
+      "checks": 12,
+      "observations": {
+        "renderer": {
+          "leading_context_lines": 7,
+          "trailing_context_lines": 0
+        },
+        "compress": true,
+        "id3": false,
+        "identity": "http://example.invalid/"
+      },
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "vobject-setter",
+      "checks": 21,
+      "observations": {
+        "original": "BEGIN:VCALENDAR\r\nX-AUDIT:object value\r\nEND:VCALENDAR\r\n",
+        "copy": "BEGIN:VCALENDAR\r\nX-AUDIT:object value\r\nBEGIN:VEVENT\r\nSUMMARY:Audit event\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n"
+      },
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "environment-copy",
+      "checks": 35,
+      "observations": {
+        "values": {
+          "compress": true,
+          "canShortenColors": false,
+          "precision": 6,
+          "ieCompat": false,
+          "strictMath": true,
+          "strictUnits": true,
+          "sourceMap": false,
+          "sourceMapOptions": {
+            "outputSourceFiles": true
+          },
+          "importMultiple": true,
+          "relativeUrls": false,
+          "rootPath": "/fixtures/",
+          "dumpLineNumbers": false,
+          "contentsMap": {
+            "fixture.less": ".x {}"
+          },
+          "customVariables": {
+            "width": "2px"
+          },
+          "currentFileInfo": {
+            "filename": "fixture.less",
+            "rootPath": null,
+            "currentDirectory": null,
+            "rootFilename": null,
+            "entryPath": null,
+            "reference": false,
+            "importedFile": null
+          }
+        },
+        "frames": [
+          "replacement frame"
+        ],
+        "contents": {
+          "fixture.less": ".x {}",
+          "copy.less": ".copy {}"
+        }
+      },
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "trait",
+      "checks": 4,
+      "observations": {
+        "generated": "tests/resources/generated/csv/example.CSV"
+      },
+      "diagnostics": []
+    }
+  ],
+  "production_changes": false,
+  "limitations": [
+    "Bounded computed-assignment review; R02 broader runtime reachability remains open.",
+    "R03 temporal and other input-boundary work remains open.",
+    "Full CMS workflows and final package acceptance remain unexecuted."
+  ]
+}
