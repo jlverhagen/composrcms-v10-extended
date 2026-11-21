@@ -451,7 +451,7 @@ A proposed %s replacement was rejected: for timestamp -315619200 in the runner's
 
 ## Acceptance criteria
 
-Close the compatibility work when all maintained-scope confirmed findings are resolved, remaining source candidates have documented dispositions, the four-version matrix has passed with deprecations captured, and the final packages contain the reviewed code. Suppression of diagnostics is insufficient evidence of API compatibility. PHP 8.6 requires a separate audit against its final behavior.
+Close the compatibility work when all maintained-scope confirmed findings are resolved or have explicit approved exceptions with tracked follow-ups, remaining source candidates have documented dispositions, the four-version matrix has passed with deprecations captured, and the final packages contain the reviewed code. Suppression of diagnostics is insufficient evidence of API compatibility. PHP 8.6 requires a separate audit against its final behavior.
 
 ## References
 
@@ -483,3 +483,115 @@ All four formats agree on 6,265 core payload files. The regenerated integrity ma
 All 20 maintained optional addons owning audited paths built successfully. Their 1,382 payload files match source bytes, with zero excluded members or mismatches. This covers the audit-owned selection, not every optional addon. Four real-builder verifier tests, four addon-selection tests and nine existing release tests passed. Hub PR #9 adds the reusable verifier and corruption/exclusion negative controls.
 
 See `php-package-inventory-review-2026-11-20.json` for exact hashes, runtime and commands. R04 has local package evidence; R06 remains open for final candidate/signing/catalogue inventory and installation/upgrade/restore acceptance. All 64 R05 workflow cells remain not_run. The test website and database were unchanged.
+
+
+## Magic-setter review, 2026-11-20
+
+A token scan of 3,668 PHP files in sources and sources_custom (excluding phpstub.php) found no direct anonymous class declarations and two magic setters: LightOpenID and VObject Component. Comments and whitespace were ignored; attributed anonymous declarations, generated code, tracker and tests are outside this bounded scan. Both setters route writes into declared state or child collections rather than creating arbitrary PHP properties.
+
+The registered property_graph_probe now includes vobject-setter. On locally available PHP 8.4.27, all 13 checks passed with strict diagnostics and empty stderr: scalar creation/replacement, absence of PHP dynamic properties, component identity, parent links, nested clone independence, rejection of null/array/object values and detach behavior. The existing computed-guards mode also passed its 12 checks after the loader extension. Probe lint and git diff whitespace checks passed. No production fix was needed.
+
+Evidence: php-magic-setter-review-2026-11-20.json. The new mode still requires PHP 8.2, 8.3 and 8.5 execution; previous four-version results are not transferred to this new coverage. R02, R05 and R06 remain open. No release or test-site deployment was performed.
+
+
+### Expanded setter fixtures and local regression, 2026-11-20
+
+The VObject setter mode now passes 21 checks, adding Property-object replacement/identity, empty text/zero/false/fractional scalar conversion, scalar removal and preservation of an existing child after an invalid replacement. All seven property_graph_probe modes passed on PHP 8.4.27 (75 total checks), with strict diagnostics, zero exit codes and empty stderr. Probe lint and git diff --check passed. The updated evidence retains every mode result and the current probe hash.
+
+Remote PHP 8.2/8.3/8.5 follow-up is blocked pending host authorization: automatic approval review denied observation of the authenticated Webmin origin. No remote command, PHP selection, site or database change occurred. These versions remain pending for this new mode; R02 and all unexecuted workflow cells remain open.
+
+
+### Four-version setter follow-up, 2026-11-21
+
+After explicit Webmin host authorization, the current VObject setter probe passed 21 checks on each of PHP 8.2.36, 8.3.37, 8.4.28 and 8.5.13. All four lint checks passed; exit codes were zero, diagnostics and stderr were empty, and serialized observations matched across versions. The probe ran as nobody in a new isolated /var/tmp directory after verifying all 28 VObject PHP files against the local source SHA256 inventory. The probe SHA256 is recorded in the evidence.
+
+This supersedes the pending/blocked matrix status above for this probe only. The first submission failed with Python SyntaxError because Webmin removed command-field newlines; it executed no test code. A single-line encoded submission then completed successfully. No website files, database, web PHP selection, services or release publication were changed. R02 remains open for broader computed/external writes; all 64 CMS workflow cells remain unexecuted. Full remote results are retained in php-magic-setter-review-2026-11-20.json.
+
+
+## Computed property-write follow-up, 2026-11-21
+
+A bounded textual search of sources and sources_custom, excluding phpstub.php, identified 12 ->$identifier assignment sites across nine files, including the generated Diff assignment string. Each site has a recorded disposition: declared or guarded state, intentional stdClass JSON records, or the two already-approved extensible LESS records. No additional production fix was needed. Braced/reflection/generated/aliased and out-of-tree writes are not exhaustively covered.
+
+The new environment-copy property probe verifies all 15 fields copied by ILess_Environment::createCopy, distinct environment identity, replacement frames, an actual shared FunctionRegistry object, shared FileInfo identity and independent array updates. Its 35 checks passed on PHP 8.2.36, 8.3.37, 8.4.28 and 8.5.13 with identical observations, zero diagnostics and empty stderr. Probe lint passed on all four. Runs used nobody in an isolated directory with exact source/probe hashes.
+
+All eight property probe modes also passed locally on PHP 8.4.27 (110 checks). This local total is not a four-version suite result; only the new 35-check mode was run remotely in this batch. Evidence: php-computed-write-review-2026-11-21.json. R02/R03 and full CMS/package acceptance remain open. No release, test-site file/database update or service/PHP setting change occurred.
+
+
+## OpenID nullable realm follow-up, 2026-11-21
+
+LightOpenID::__set passed null realm/trustRoot values into trim, producing PHP deprecations. The optional openid addon now explicitly converts only null to empty text before trimming. Other scalar/stringable conversion and invalid-input TypeError behavior remain unchanged. The property-graph probe adds openid-boundary fixtures for both aliases, default URL construction, null/empty/whitespace, integer/float/boolean/stringable values and invalid array/object assignments that must preserve existing state.
+
+The 27 checks passed against baseline and fixed code on PHP 8.2.36, 8.3.37, 8.4.28 and 8.5.13. Each baseline produced exactly two deprecations; fixed diagnostics and all stderr were empty. Observations match before/after and across runtimes. Both changed PHP files passed lint on all four. Runs were isolated and unprivileged, with no provider request or CMS login. All nine property probe modes passed locally on PHP 8.4.27 (137 checks); that total is not a four-version suite claim. Evidence: php-openid-boundary-review-2026-11-21.json.
+
+The fix awaits combined optional-addon publication. R03, full CMS workflow testing and final package acceptance remain open. No prerelease or live website/database change was made.
+
+
+## Nullable JSON decoder follow-up, 2026-11-21
+
+Both legacy Services_JSON copies passed null into preg_replace in reduce_string. Bundled sources/json_inner.php and optional facebook/jsonwrapper/JSON/JSON.php now normalize only null to empty text before comment stripping. Fixtures explicitly assert expected values/types for null, empty text, JSON scalars, arrays/objects, nested Unicode data, a legacy comment case, scalar coercion and rejected array/object arguments in object and loose-array modes.
+
+Both copies passed 44 fixed checks each (88 per runtime) on PHP 8.2.36, 8.3.37, 8.4.28 and 8.5.13. Each baseline produced four null deprecations per copy; fixed diagnostics and stderr were empty. Baseline/fixed and cross-version observation hashes match. Baseline mode has 43 checks per copy because it skips the previously added explicit-property reflection assertion. Probe and both changed source files passed lint on all four versions. All nine property modes also passed locally on PHP 8.4.27 (213 checks).
+
+Webmin readback timed out, but the initial execution completed; its saved report was recovered through normal Webmin navigation without rerunning the tests or altering security settings. Evidence: php-json-boundary-review-2026-11-21.json. Core and optional facebook changes await combined publication. Full CMS/provider workflows, remaining R03 candidates and R05/R06 acceptance remain open. No prerelease, live website/database or service configuration change was made.
+
+
+## Consolidated post-fix package verification, 2026-11-21
+
+Source commit 1227b4b59ea839076706dd9877680c61889843cb consolidates the reviewed property work and nullable JSON/OpenID fixes. All four rebuilt core formats agree on 6,265 payload files, with 6,264 verified integrity entries and seven matching guard checksums. The core JSON source matches the CMS payload byte-for-byte. All 21 audited optional addons built, including newly added openid; their 1,394 payload files match source bytes with no excluded tracker/support-credits/aps/mobiquo members or mismatches.
+
+The existing alpha.1 label was reused strictly for isolated local package validation. These are not artifacts to publish under that existing tag, and no new prerelease or deployment candidate is declared. Evidence: php-combined-package-review-2026-11-21.json, including package hashes and builder hashes.
+
+Remaining gates are explicit: F03 date fallback/locale/platform behavior; broader R02/R03 runtime/input review; all 64 R05 CMS workflow cells; and R06's uniquely versioned final candidate, signing/catalogue, installation/upgrade/restore and published inventory acceptance. CLI tests and package comparisons do not close these gates. No site or database changes occurred.
+
+
+## Shipped date-format inventory follow-up, 2026-11-21
+
+The registered CLI date_format_inventory_probe reads 20 shipped English global/calendar date keys and checks three direct literal format entries. It requires a native replacement before comparing both the helper and public formatter to the transformed legacy libc reference. LC_CTYPE is C and language substitution filters are empty; only the known deprecation around the reference strftime call is masked. The production path runs with strict diagnostics.
+
+All 899,415 comparisons per runtime passed on PHP 8.2.36, 8.3.37, 8.4.28 and 8.5.13: 23 format entries, 869 installed locale names, five timezones and nine timestamps. No format fell back, no outputs differed and stderr was empty. The probe and formatter passed lint across all four. Total remote comparisons: 3,597,660. Local PHP 8.4.27 separately passed 197,685 comparisons over 191 locale names. Locale names include aliases/encodings and are not counts of distinct languages.
+
+Evidence: php-shipped-date-formats-review-2026-11-21.json, with exact source/probe hashes, full remote result digests, local output and the bounded direct-call inventory. Remote language files contain only the selected original shipped date entries; they are fixture projections, not copies of complete language files. No formatter production change was needed. The testing_platform registry includes the new probe, and its addon rebuilt successfully.
+
+F03 remains open: arbitrary custom formats (including configurable date symbols), locale-specific E/O rules and non-Linux behavior can still use the deprecated fallback. The local characterization records that epoch %s, unknown %Q and oversized %129Y are unsupported natively; it also records that %_0d is supported rather than assuming every combined-looking modifier is rejected. None of this closes full CMS workflows or final package acceptance. No prerelease, live site/database, service or PHP setting was changed.
+
+
+## C UTF-8 ASCII case-format follow-up, 2026-11-21
+
+The native Linux case formatter now accepts LC_CTYPE C.utf8, C.UTF-8 and C.UTF8 for its existing ASCII-only %P and uppercase a/A/b/B/h/p/P/Z forms. It continues rejecting non-ASCII output and unverified character-type locales; it does not change global locale state. Local negative controls show that these formats previously returned null (fallback), while revised ASCII January/AM fixtures return JANUARY/am.
+
+The new registered date_ascii_case_probe passed 1,055,835 comparisons per runtime on PHP 8.2.36, 8.3.37, 8.4.28 and 8.5.13: 720,171 exact native/libc matches and 335,664 verified non-ASCII fallbacks, over 869 installed LC_TIME names, all three C UTF-8 aliases, five timezones and nine timestamps. Reference-only deprecation masking does not apply to the native/public code. Percent escapes and rejection of Turkish LC_CTYPE are also checked. Lint and stderr were clean. Locale counts include aliases/encodings.
+
+Local PHP 8.4.27 separately passed 232,065 case comparisons over 191 locale names and all 819,867 assertions in the existing date regression suite. Its C UTF-8 month assertion now requires native JANUARY rather than fallback. The testing_platform addon rebuilt with the new probe. Evidence: php-c-utf8-case-review-2026-11-21.json.
+
+This narrows F03 but does not close it: non-ASCII locale-specific casing, era/alternative-digit formats, %s/process timezone semantics, other custom formats and non-Linux behavior still require dispositions or implementation. Full CMS/final package acceptance remains open. No prerelease or live-site/database/configuration update occurred.
+
+
+## Remaining date fallback policy review, 2026-11-21
+
+Local PHP 8.4.27 fixtures confirm that remaining era/alternative-digit formats carry real output semantics: Japanese %Od on 2026-01-02 produces 二, Persian %Od produces ۰۲, and Thai %EY produces พ.ศ. 2569. Those native paths return null and correctly retain legacy formatting. This is local characterization only, not new four-version or non-Linux acceptance. The exposed ALT_DIGITS value in the Japanese fixture is the zero symbol; a complete alternate-number replacement was not established from this metadata.
+
+PHP documents strftime as deprecated and names date/IntlDateFormatter alternatives. IntlDateFormatter uses ICU patterns and explicit calendar selection, so a full migration needs pattern/calendar/locale-data decisions and output comparisons; it is not assumed byte-compatible with libc. The local audit runtime has no IntlDateFormatter extension. See php-date-fallback-policy-review-2026-11-21.json for exact hex observations and primary documentation URLs.
+
+Recommendation awaiting user decision: preserve the remaining legacy behavior as a documented temporary deprecation exception and continue the remaining audit/CMS workflow acceptance, while tracking a complete replacement separately. This would not make F03 fixed or justify a universal deprecation-free claim. Keeping F03 as a release blocker until full replacement remains an alternative. No exception is accepted by this report, and no formatter, published package or website was changed.
+
+
+## Date fallback scope approved, 2026-11-21
+
+The user approved retaining the remaining legacy date-format fallback as a documented temporary deprecation exception. This supersedes the pending-decision text above. F03 is now an accepted exception with open replacement work, not a fixed deprecation and not a standalone release blocker. Its scope is limited to formats/platforms outside verified native coverage; ordinary CMS date rendering and unrelated diagnostics still require acceptance.
+
+Complete replacement is tracked in php-date-fallback-replacement.md, with locale/era/digit, timezone, dependency and platform requirements. The findings ledger and workflow scope gate record the approval. Existing evidence and historical package reports are unchanged. All 64 CMS workflow cells remain unexecuted; current final packages still need rebuilding and acceptance after the latest formatter changes. No release, deployment or website/database change was performed while recording approval.
+
+
+## Increment shortlist and CMS preflight, 2026-11-21
+
+A token inventory recorded 1,819 T_INC/T_DEC sites in 3,668 PHP files under sources/sources_custom, excluding phpstub.php. A supplementary same-file literal-initialization shortlist led to six inspected files: calendar, webstandards, sitemap_xml, cns_members2, Swift ByteArrayReplacementFilter and twitter_feed. Null values are replaced/guarded before the inspected arithmetic; Swift resets the reverse-loop operand from count(array)-1. The Twitter match is a comment false positive with no increment/decrement token in that file. No production change was indicated. This is not a type proof for all 1,819 sites or generated/external paths. Evidence: php-increment-shortlist-review-2026-11-21.json. R03 remains open.
+
+Read-only Webmin preflight observed installed Extended version 2026.11.1-alpha.20 and verified all seven guarded files against the current enforcement manifest. Older backup pointers contain site/database archives, but their presence is not current-backup or successful-restore evidence. The limited pointer search is not an exhaustive backup inventory. Evidence: php-cms-preflight-2026-11-21.json.
+
+Before an upgrade: freeze and verify a uniquely versioned combined candidate, record actual web SAPI/extensions and installed-addon state, and establish a current backup/disposable restore. All 64 CMS workflow cells remain not_run. No live website/database/service configuration or release was changed.
+
+### 2026-11-21 - Frozen local alpha.22 candidate
+
+Built `2026.11.1-alpha.22` from source commit `6d50a93adb288b0839df05b46f6b28733b08afc8`. All four core archive payloads match (6,265 files; 6,264 integrity entries; seven guarded files), and a second build produced identical hashes. Verified 21 addon archives containing 1,396 source-matching payload files. Exact hashes are in `php-candidate-alpha22-2026-11-21.json`. These are package checks, not CMS acceptance; all 64 workflow cells remain unrun. F03/F04 exceptions and broader R02/R03 review remain open as previously recorded.
+
+A fresh Virtualmin domain backup was started in a protected root-only staging directory. Final archive readback timed out; recovery readiness and database restore remain unverified. The installed site remains alpha.20. No candidate deployment or release publication occurred. Automatic approval review rejected the audit branch push because explicit authorization to publish project/environment metadata to the GitHub destination was missing. No alternate publication route was attempted.
