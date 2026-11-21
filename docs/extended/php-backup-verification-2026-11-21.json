@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-21",
+  "archive_bytes": 1980413478,
+  "archive_sha256": "0f94a380592b0b0bbb9d33ebe40e056eb0c6fa969254ee74246e951cd9d8cf48",
+  "archive_members": 32,
+  "gzip_integrity": true,
+  "database_restore_performed": false,
+  "site_file_checks": [
+    {
+      "path": "adminzone/pages/modules_custom/admin_extended_addons.php",
+      "matches": true
+    },
+    {
+      "path": "sources_custom/extended_addon_browser.php",
+      "matches": true
+    },
+    {
+      "path": "sources_custom/extended_addon_catalogue.php",
+      "matches": true
+    },
+    {
+      "path": "sources_custom/extended_catalogue_high_water.php",
+      "matches": true
+    },
+    {
+      "path": "sources_custom/extended_manifest_verify.php",
+      "matches": true
+    },
+    {
+      "path": "sources_custom/extended_registry_admin_review.php",
+      "matches": true
+    },
+    {
+      "path": "sources_custom/extended_registry_trust.php",
+      "matches": true
+    },
+    {
+      "path": "sources_custom/extended_version.php",
+      "matches": true
+    }
+  ],
+  "database_dump": {
+    "bytes": 6454508,
+    "sha256": "c74536cd39fb4adca451561f55a1a6e3e9a71c7ab9f5a4e69362a1934c048131",
+    "create_table_statements": 141,
+    "insert_statements": 78
+  },
+  "missing_site_files": [],
+  "all_selected_files_match": true,
+  "limitations": [
+    "Live-site backup; cross-file/database quiescence not established.",
+    "Selected file retrieval and database import are distinct from a complete Virtualmin domain recovery."
+  ],
+  "database_restore_test": {
+    "database_restore_performed": false,
+    "fixture_removed": false,
+    "account_removed": false,
+    "error_type": "CalledProcessError"
+  },
+  "database_restore_status": "blocked_before_fixture_creation_by_admin_command_failure"
+}
