@@ -1,0 +1,198 @@
+{
+  "date": "2026-11-21",
+  "source_commit": "1227b4b59ea839076706dd9877680c61889843cb",
+  "purpose": "Post-fix local combined package verification; not a published release or deployment candidate",
+  "build_label": "2026.11.1-alpha.1",
+  "label_note": "Historical label reused for isolated validation only; never publish these artifacts under that existing release tag.",
+  "core": {
+    "version": "2026.11.1-alpha.1",
+    "core_payload_files": 6265,
+    "integrity_entries": 6264,
+    "guarded_files": 7,
+    "archive_sha256": {
+      "catalogue-enforcement-2026.11.1-alpha.1.sha256": "16e4229919635518698054ae988761770d8caa7ffb79a003d5e283b26ecebc28",
+      "composr-2026.11.1-alpha.1.tar.gz": "b167b4c9dd0c0284fb9286b30e57ccb50be3cc598ecdab3406d76482e497203a",
+      "composr_manualextraction_installer-2026.11.1-alpha.1.zip": "85e922df65dbbcbe0d3f06a69b0b469231d5c29de94ef8c1beaf7ade128392e4",
+      "composr_quick_installer-2026.11.1-alpha.1.zip": "5685e35d9d7dcf9579a03fe6408322da6b2bc052b6c98cf35962248765a5fc35",
+      "composr_upgrader-2026.11.1-alpha.1.cms": "9a67b658a582abbdab6ad61225067e22bf0439f6ebdbb4650546933d7d4e22dd"
+    },
+    "checks": [
+      "excluded paths",
+      "SHA256SUMS",
+      "matching four-format payloads",
+      "quick installer index offsets",
+      "integrity inventory and CRCs",
+      "enforcement checksums",
+      "Extended version stamp"
+    ],
+    "limitation": "Archive consistency only; installer execution and CMS workflows are not tested"
+  },
+  "addons": [
+    {
+      "archive": "better_mail-10.x.tar",
+      "sha256": "5f68e2607a91d7cbbd3615b3a5451637ad3fc17619d8fabceef8f500a827a712",
+      "payloads_compared": 229,
+      "source_mismatches": [],
+      "excluded_members": []
+    },
+    {
+      "archive": "cloudinary-10.x.tar",
+      "sha256": "f0e83d81f43a87e684e3cede90023b617ab848d8987180f3d6667812daea0c4c",
+      "payloads_compared": 14,
+      "source_mismatches": [],
+      "excluded_members": []
+    },
+    {
+      "archive": "composr_homesite-10.x.tar",
+      "sha256": "fd5706a1e772a0ac545d01382df718216c78019117abf7a967ae3935f3886a64",
+      "payloads_compared": 63,
+      "source_mismatches": [],
+      "excluded_members": []
+    },
+    {
+      "archive": "excel_support-10.x.tar",
+      "sha256": "7c49d395abc87af1190a34a8508116ef807cf4b3730d45652b62028caa779292",
+      "payloads_compared": 89,
+      "source_mismatches": [],
+      "excluded_members": []
+    },
+    {
+      "archive": "facebook_support-10.x.tar",
+      "sha256": "ba26a8d5272f3107f1e2987fd0d124e20143ef0e4eb39d8dd78b0aad5e1340e2",
+      "payloads_compared": 51,
+      "source_mismatches": [],
+      "excluded_members": []
+    },
+    {
+      "archive": "free_article_import-10.x.tar",
+      "sha256": "ec56ee8b810eae49799782010c0aa37d67462d4dae5e6c6cb2249e70db1bcc08",
+      "payloads_compared": 3,
+      "source_mismatches": [],
+      "excluded_members": []
+    },
+    {
+      "archive": "gallery_syndication-10.x.tar",
+      "sha256": "be96f89b3b698a2035782101a46a07b366a409800d744939a7fa0f5bf8624b0a",
+      "payloads_compared": 22,
+      "source_mismatches": [],
+      "excluded_members": []
+    },
+    {
+      "archive": "getid3-10.x.tar",
+      "sha256": "f221597f3aa919493f09effc0884208e4fe694fb61f13dc215caaf8799b9378e",
+      "payloads_compared": 86,
+      "source_mismatches": [],
+      "excluded_members": []
+    },
+    {
+      "archive": "image_syndication-10.x.tar",
+      "sha256": "cc40b6fef7768309f6ef97e9ba9d7b8118cb7458dcfd0d4d670b576125640973",
+      "payloads_compared": 39,
+      "source_mismatches": [],
+      "excluded_members": []
+    },
+    {
+      "archive": "less-10.x.tar",
+      "sha256": "3036d4d37e2b982b1f5183ae63c49d58dace54eb616df68db862d90eca9b616d",
+      "payloads_compared": 87,
+      "source_mismatches": [],
+      "excluded_members": []
+    },
+    {
+      "archive": "locations_catalogues-10.x.tar",
+      "sha256": "2ed53a66de3b802ce2ffc18e5a11f0892c22235931cc3443e5c769e456a7faa7",
+      "payloads_compared": 7,
+      "source_mismatches": [],
+      "excluded_members": []
+    },
+    {
+      "archive": "multi_domain_login-10.x.tar",
+      "sha256": "3fc7f1d29230ae2aced6b4506af37eeff6c954be5806ba2a746bc75cb3216802",
+      "payloads_compared": 3,
+      "source_mismatches": [],
+      "excluded_members": []
+    },
+    {
+      "archive": "nested_cpf_csv_lists-10.x.tar",
+      "sha256": "1012930ff0f05fefe96283a0d4700b7cb32830ec4006e4973613d423a021c5c3",
+      "payloads_compared": 5,
+      "source_mismatches": [],
+      "excluded_members": []
+    },
+    {
+      "archive": "openid-10.x.tar",
+      "sha256": "063e2cc3374d0527ff79bc26d3b4ddf710769da33e843a598c4e70c8212d072f",
+      "payloads_compared": 12,
+      "source_mismatches": [],
+      "excluded_members": []
+    },
+    {
+      "archive": "sortable_tables-10.x.tar",
+      "sha256": "bcc50de656f6cf8f04bbe60a2af8d96c88f527d97e9c1eaf4a10f5f38e3e3009",
+      "payloads_compared": 13,
+      "source_mismatches": [],
+      "excluded_members": []
+    },
+    {
+      "archive": "testing_platform-10.x.tar",
+      "sha256": "4f73199b9dcff90ec2f975607aada2f456c7e7cdf76d9c6d50301bad2db33ae5",
+      "payloads_compared": 460,
+      "source_mismatches": [],
+      "excluded_members": []
+    },
+    {
+      "archive": "theme_debug-10.x.tar",
+      "sha256": "f36155c6cfe7acf1bd1f232083413b1abd96f9e5cbe49dae47a2feafb59778c9",
+      "payloads_compared": 5,
+      "source_mismatches": [],
+      "excluded_members": []
+    },
+    {
+      "archive": "trickstr-10.x.tar",
+      "sha256": "04d94dd82a53608e897de8382141fbc5fb349dcf018a59c4bab4d588a9abc0ff",
+      "payloads_compared": 17,
+      "source_mismatches": [],
+      "excluded_members": []
+    },
+    {
+      "archive": "twitter_support-10.x.tar",
+      "sha256": "ec1846002ead592844d861b27488b0c55c2f00f23e62dd425964e30df69470fd",
+      "payloads_compared": 10,
+      "source_mismatches": [],
+      "excluded_members": []
+    },
+    {
+      "archive": "user_simple_csv_sync-10.x.tar",
+      "sha256": "0db822f4195f81f5c917f87a1d54c3fd9aa3d831bd4a85f143ccd64706d518c2",
+      "payloads_compared": 9,
+      "source_mismatches": [],
+      "excluded_members": []
+    },
+    {
+      "archive": "webdav-10.x.tar",
+      "sha256": "6f22078c64a65d2d9ccc029783a7b9b64ea40a412d5c3855bbc461c59f783fe4",
+      "payloads_compared": 170,
+      "source_mismatches": [],
+      "excluded_members": []
+    }
+  ],
+  "addon_payload_files": 1394,
+  "source_fix_in_core_confirmed": "sources/json_inner.php matches source byte-for-byte in CMS; other three core formats verified equal by package verifier.",
+  "builder_sha256": {
+    "hub/hub/publisher/build_composr_installers.py": "609fdd92949c6dc3e2b90596f77d882ff013cc02551b685d56a98ab3d79ee6d9",
+    "hub/hub/publisher/build_addon_tars.php": "850332fb3a50208685f670236614093a36a926ce122ec343fb9a086d6867531a",
+    "hub/hub/publisher/verify_composr_packages.py": "5dffd29f1d90d22995dc2754dd290740485579cb06f9cfd7bf317e2bbb2e0c4c"
+  },
+  "remaining_gates": [
+    "F03 locale/platform date fallback still present and unresolved.",
+    "R02/R03 bounded reviews do not establish all runtime reachability/input paths.",
+    "R05 all 64 CMS workflow cells remain not_run; CLI and inventory checks do not pass them.",
+    "R06 final uniquely versioned candidate, signed catalogue, install/upgrade/restore and exact published inventories remain pending."
+  ],
+  "not_performed": [
+    "No new prerelease or publication",
+    "No website/database modification",
+    "No installer/upgrade execution",
+    "No end-to-end Facebook/OpenID provider authentication"
+  ]
+}
