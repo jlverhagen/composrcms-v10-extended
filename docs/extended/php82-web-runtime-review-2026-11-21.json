@@ -1,0 +1,67 @@
+{
+  "date": "2026-11-21",
+  "candidate": "2026.11.1-alpha.22",
+  "runtime": {
+    "php": "8.2.36",
+    "sapi": "FPM/FastCGI",
+    "mysql_client": "mysqlnd 8.2.36",
+    "pdo_drivers": [
+      "mysql",
+      "sqlite"
+    ],
+    "error_reporting": 32767,
+    "display_errors": true,
+    "log_errors": true
+  },
+  "procedure": "Record log byte offsets; request dashboard, addon repositories and authenticated homepage; inspect newly appended bytes.",
+  "requests": {
+    "dashboard": {
+      "rendered": true,
+      "version": "2026.11.1-alpha.22",
+      "update_result": "No newer ComposrCMS Extended release was found.",
+      "visible_error": false
+    },
+    "extended_addons": {
+      "rendered": true,
+      "verified_pilot_catalogues": 2,
+      "visible_error": false
+    },
+    "authenticated_homepage": {
+      "rendered": true,
+      "visible_error": false,
+      "site_closed": true
+    }
+  },
+  "diagnostics": [
+    {
+      "log_kind": "application",
+      "new_bytes": 0,
+      "php_diagnostic_matches": 0,
+      "rotated": false,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "log_kind": "php_fpm",
+      "new_bytes": 0,
+      "php_diagnostic_matches": 0,
+      "rotated": false,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "log_kind": "apache",
+      "new_bytes": 0,
+      "php_diagnostic_matches": 0,
+      "rotated": false,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "result": "partial_W04_evidence",
+  "remaining": [
+    "Outbound update request trace and correct upgrade link verification",
+    "Other workflow procedures and PHP 8.3/8.4/8.5 web execution"
+  ],
+  "limitations": [
+    "Empty log deltas alone do not prove every error path is logged.",
+    "Cached output may be reused; no cross-version acceptance claimed."
+  ]
+}
