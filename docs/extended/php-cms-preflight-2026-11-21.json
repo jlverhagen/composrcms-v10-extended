@@ -1,0 +1,179 @@
+{
+  "date": "2026-11-21",
+  "extended_version_returns": [
+    "composrcms-v10-extended",
+    "2026.11.1-alpha.20"
+  ],
+  "guard_manifest_sha256": "16e4229919635518698054ae988761770d8caa7ffb79a003d5e283b26ecebc28",
+  "guards": [
+    {
+      "path": "adminzone/pages/modules_custom/admin_extended_addons.php",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "sources_custom/extended_addon_catalogue.php",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "sources_custom/extended_catalogue_high_water.php",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "sources_custom/extended_manifest_verify.php",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "sources_custom/extended_registry_trust.php",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "sources_custom/extended_addon_browser.php",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "path": "sources_custom/extended_registry_admin_review.php",
+      "exists": true,
+      "matches": true
+    }
+  ],
+  "backup_metadata": [
+    {
+      "pointer": "composr-alpha10-backup-path",
+      "files": [
+        {
+          "name": "site.tar.gz",
+          "bytes": 752634336,
+          "mtime": 1794724373.3791535
+        },
+        {
+          "name": "database.sql.gz",
+          "bytes": 426284,
+          "mtime": 1794724346.6656332
+        },
+        {
+          "name": "backup.log",
+          "bytes": 395,
+          "mtime": 1794724379.2392678
+        }
+      ]
+    },
+    {
+      "pointer": "composr-alpha5-backup-path",
+      "files": [
+        {
+          "name": "site.tar.gz",
+          "bytes": 405646760,
+          "mtime": 1794717871.362561
+        },
+        {
+          "name": "database.sql.gz",
+          "bytes": 405950,
+          "mtime": 1794717855.9872618
+        },
+        {
+          "name": "backup.log",
+          "bytes": 394,
+          "mtime": 1794717874.341619
+        }
+      ]
+    },
+    {
+      "pointer": "composr-alpha6-backup-path",
+      "files": [
+        {
+          "name": "site.tar.gz",
+          "bytes": 460950017,
+          "mtime": 1794719638.1869628
+        },
+        {
+          "name": "database.sql.gz",
+          "bytes": 409494,
+          "mtime": 1794719620.9706278
+        },
+        {
+          "name": "backup.log",
+          "bytes": 374,
+          "mtime": 1794719641.7590325
+        }
+      ]
+    },
+    {
+      "pointer": "composr-alpha7-backup-path",
+      "files": [
+        {
+          "name": "site.tar.gz",
+          "bytes": 533851244,
+          "mtime": 1794720535.13242
+        },
+        {
+          "name": "database.sql.gz",
+          "bytes": 439308,
+          "mtime": 1794720515.3850355
+        },
+        {
+          "name": "backup.log",
+          "bytes": 394,
+          "mtime": 1794720539.8225112
+        }
+      ]
+    },
+    {
+      "pointer": "composr-alpha8-backup-path",
+      "files": [
+        {
+          "name": "site.tar.gz",
+          "bytes": 606868295,
+          "mtime": 1794722510.949881
+        },
+        {
+          "name": "database.sql.gz",
+          "bytes": 425821,
+          "mtime": 1794722487.2324193
+        },
+        {
+          "name": "backup.log",
+          "bytes": 394,
+          "mtime": 1794722515.8939774
+        }
+      ]
+    },
+    {
+      "pointer": "composr-alpha9-backup-path",
+      "files": [
+        {
+          "name": "site.tar.gz",
+          "bytes": 679376026,
+          "mtime": 1794723523.3495958
+        },
+        {
+          "name": "database.sql.gz",
+          "bytes": 362575,
+          "mtime": 1794723498.4781113
+        },
+        {
+          "name": "backup.log",
+          "bytes": 394,
+          "mtime": 1794723528.3096924
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "CLI read-only inventory; web PHP version and workflows untested",
+    "Backup existence is not freshness or restore proof"
+  ],
+  "installed_extended_version": "2026.11.1-alpha.20",
+  "scope": "Read-only source version, guard and limited backup-pointer metadata. No web request/PHP runtime acceptance or database access.",
+  "next_prerequisites": [
+    "Freeze a uniquely versioned combined candidate and verify core/addon artifacts.",
+    "Record actual web PHP SAPI/extensions and installed-addon state.",
+    "Create or identify a current backup and verify a disposable restore before upgrade tests.",
+    "Execute the 64-case workflow matrix with exact candidate/environment evidence."
+  ]
+}
