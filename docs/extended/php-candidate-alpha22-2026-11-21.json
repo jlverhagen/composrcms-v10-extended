@@ -2,7 +2,7 @@
   "version": "2026.11.1-alpha.22",
   "source_commit": "6d50a93adb288b0839df05b46f6b28733b08afc8",
   "date": "2026-11-21",
-  "status": "staged_for_user_operated_test_site_upgrade_not_installed",
+  "status": "installed_test_site_initial_smoke_checks_passed_formal_acceptance_pending",
   "core_verification": {
     "version": "2026.11.1-alpha.22",
     "core_payload_files": 6265,
@@ -165,6 +165,8 @@
     "https_bytes": 55644160,
     "server_rebuild_matches_local": true,
     "installed_guard_files_matching": 7,
-    "user_step": "Close site, apply file upgrade, clear caches; report completion for post-upgrade verification."
+    "user_step": "Close site, apply file upgrade, clear caches; report completion for post-upgrade verification.",
+    "installed": true,
+    "postupgrade_evidence": "php-alpha22-postupgrade-2026-11-21.json"
   }
 }
