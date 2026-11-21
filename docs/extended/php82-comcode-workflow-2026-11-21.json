@@ -1,0 +1,85 @@
+{
+  "date": "2026-11-21",
+  "candidate": "2026.11.1-alpha.22",
+  "runtime": "PHP 8.2.36 FPM/FastCGI",
+  "fixture": {
+    "page_link": ":audit-alpha22-php82-fixture",
+    "view_url": "https://composr.duckdns.org/index.php?page=audit-alpha22-php82",
+    "status": "retained_for_cross_version_tests",
+    "content_r1": "AUDIT-CONTENT-R1: café Ω 106.5.",
+    "content_r2": "AUDIT-CONTENT-R2: café Ω 106.5."
+  },
+  "steps": [
+    {
+      "step": "Open supported Comcode page browse/add workflow",
+      "result": "pass"
+    },
+    {
+      "step": "Preview first revision with nested strong/em and Unicode",
+      "result": "pass"
+    },
+    {
+      "step": "Save first revision through CMS",
+      "result": "pass"
+    },
+    {
+      "step": "View first saved revision",
+      "result": "pass"
+    },
+    {
+      "step": "Edit saved fixture and preview replacement content",
+      "result": "pass"
+    },
+    {
+      "step": "Save revision 2; R2 present and R1 absent",
+      "result": "pass"
+    },
+    {
+      "step": "Verify nested italic revised inside strong",
+      "result": "pass"
+    },
+    {
+      "step": "Clear test-site caches through upgrader; success response",
+      "result": "pass"
+    },
+    {
+      "step": "Verify first render after cache clear",
+      "result": "pass"
+    },
+    {
+      "step": "Verify refreshed render after cache rebuild",
+      "result": "pass"
+    }
+  ],
+  "diagnostics": [
+    {
+      "log_kind": "application",
+      "new_bytes": 0,
+      "php_diagnostic_matches": 0,
+      "rotated": false,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "log_kind": "php_fpm",
+      "new_bytes": 0,
+      "php_diagnostic_matches": 0,
+      "rotated": false,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "log_kind": "apache",
+      "new_bytes": 0,
+      "php_diagnostic_matches": 0,
+      "rotated": false,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "site_closed": true,
+  "limitations": [
+    "Comcode portion of W05 and limited W11 cache rendering only.",
+    "News article create/edit, optional-field cases and remaining workflow procedures still need execution.",
+    "WYSIWYG HTML source converted by CMS; this did not exercise every raw Comcode tag.",
+    "Initial unsupported type=add navigation returned no output; corrected to supported browse/add UI before fixture creation. This is a harness routing issue, not a CMS compatibility failure.",
+    "No PHP 8.3/8.4/8.5 web acceptance claimed."
+  ]
+}
