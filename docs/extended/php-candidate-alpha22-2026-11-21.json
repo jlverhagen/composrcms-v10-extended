@@ -152,9 +152,11 @@
   "publication_status": "sanitized_source_tree_published_on_audit_branch",
   "recovery": {
     "reference": "server-private-backup-reference-withheld",
-    "status": "archive_gzip_dump_and_selected_files_verified_database_restore_blocked",
+    "status": "archive_gzip_dump_selected_files_and_isolated_database_import_verified",
     "restore_verified": false,
-    "evidence": "php-backup-verification-2026-11-21.json"
+    "evidence": "php-backup-verification-2026-11-21.json",
+    "isolated_database_restore_verified": true,
+    "limitation": "Full Virtualmin domain recovery and a quiescent pre-upgrade snapshot are not established."
   },
   "published_tree_sha": "78ff5321f6a0c692eac4ce30027843478500343d"
 }
