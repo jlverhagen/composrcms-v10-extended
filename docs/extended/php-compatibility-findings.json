@@ -1001,6 +1001,14 @@
         "name": "Sabre\\VObject\\RecurrenceIterator",
         "diagnostics_per_runtime": 5
       }
+    ],
+    "F15": [
+      {
+        "file": "sources/hooks/systems/fields/float.php",
+        "kind": "unconditional-debug-exit",
+        "name": "Hook_fields_float::get_field_inputter",
+        "evidence": "php82-integrity-review-2026-11-21.json"
+      }
     ]
   },
   "progress": {
@@ -1411,6 +1419,10 @@
         "evidence": "php-combined-package-review-2026-11-21.json",
         "final_acceptance": "pending"
       }
+    },
+    "F15": {
+      "status": "fixed_in_source_pending_consolidated_candidate",
+      "summary": "Existing site override avoids unconditional float field fatal_exit; remove bundled debug exit. Local isolated 13-case probe and lint passed PHP 8.4.27; CMS/cross-version acceptance pending."
     }
   }
 }
