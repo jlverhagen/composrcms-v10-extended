@@ -96,7 +96,7 @@ class LightOpenID
                 break;
             case 'trustRoot':
             case 'realm':
-                $this->trustRoot = trim($value);
+                $this->trustRoot = trim($value === null ? '' : $value);
         }
     }
 
