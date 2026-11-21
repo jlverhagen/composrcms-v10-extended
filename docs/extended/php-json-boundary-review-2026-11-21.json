@@ -1,0 +1,866 @@
+{
+  "date": "2026-11-21",
+  "finding": "R03 legacy JSON nullable input to preg_replace",
+  "status": "fixed_locally_pending_combined_publication",
+  "ownership": {
+    "sources/json_inner.php": "bundled core",
+    "sources_custom/facebook/jsonwrapper/JSON/JSON.php": "optional facebook"
+  },
+  "remote_report": {
+    "date": "2026-11-21",
+    "stage": "/var/tmp/composr-json-boundary-4t71vytt",
+    "sha256": {
+      "probe": "004b3747fc20cfcb1e0a3cd4c28b4341ef1003555f909cec0fc7baffc6667ee0",
+      "baseline/sources/json_inner.php": "4c4452df15529930afed5f2619e6fe170cb27c145d2e9e00a829b6251a42a967",
+      "baseline/sources_custom/facebook/jsonwrapper/JSON/JSON.php": "680adc1a234476efa8fddf3c9b5966ac11459b70d3b49b422b10eb2588caaf5e",
+      "fixed/sources/json_inner.php": "99ebb23ebe5d14fbc394a635ed3b0ea0d6613be954ee43c55b93f5d6b05cec26",
+      "fixed/sources_custom/facebook/jsonwrapper/JSON/JSON.php": "6294b126c70cb3782309d22418522f62a65ece07e4026f0957cba2150046b1c9"
+    },
+    "results": [
+      {
+        "version": "82",
+        "mode": "json-core",
+        "lint_exit": 0,
+        "baseline": {
+          "php": "8.2.36",
+          "checks": 43,
+          "diagnostics": [
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated"
+          ],
+          "observation_sha256": "a3633bd409f07e370fef617b6a7232ee0f1646c5e5aba44e9ed781398fd6fcca",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        "fixed": {
+          "php": "8.2.36",
+          "checks": 44,
+          "diagnostics": [],
+          "observation_sha256": "a3633bd409f07e370fef617b6a7232ee0f1646c5e5aba44e9ed781398fd6fcca",
+          "exit_code": 0,
+          "stderr": ""
+        }
+      },
+      {
+        "version": "82",
+        "mode": "json-facebook",
+        "lint_exit": 0,
+        "baseline": {
+          "php": "8.2.36",
+          "checks": 43,
+          "diagnostics": [
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated"
+          ],
+          "observation_sha256": "a3633bd409f07e370fef617b6a7232ee0f1646c5e5aba44e9ed781398fd6fcca",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        "fixed": {
+          "php": "8.2.36",
+          "checks": 44,
+          "diagnostics": [],
+          "observation_sha256": "a3633bd409f07e370fef617b6a7232ee0f1646c5e5aba44e9ed781398fd6fcca",
+          "exit_code": 0,
+          "stderr": ""
+        }
+      },
+      {
+        "version": "83",
+        "mode": "json-core",
+        "lint_exit": 0,
+        "baseline": {
+          "php": "8.3.37",
+          "checks": 43,
+          "diagnostics": [
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated"
+          ],
+          "observation_sha256": "a3633bd409f07e370fef617b6a7232ee0f1646c5e5aba44e9ed781398fd6fcca",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        "fixed": {
+          "php": "8.3.37",
+          "checks": 44,
+          "diagnostics": [],
+          "observation_sha256": "a3633bd409f07e370fef617b6a7232ee0f1646c5e5aba44e9ed781398fd6fcca",
+          "exit_code": 0,
+          "stderr": ""
+        }
+      },
+      {
+        "version": "83",
+        "mode": "json-facebook",
+        "lint_exit": 0,
+        "baseline": {
+          "php": "8.3.37",
+          "checks": 43,
+          "diagnostics": [
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated"
+          ],
+          "observation_sha256": "a3633bd409f07e370fef617b6a7232ee0f1646c5e5aba44e9ed781398fd6fcca",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        "fixed": {
+          "php": "8.3.37",
+          "checks": 44,
+          "diagnostics": [],
+          "observation_sha256": "a3633bd409f07e370fef617b6a7232ee0f1646c5e5aba44e9ed781398fd6fcca",
+          "exit_code": 0,
+          "stderr": ""
+        }
+      },
+      {
+        "version": "84",
+        "mode": "json-core",
+        "lint_exit": 0,
+        "baseline": {
+          "php": "8.4.28",
+          "checks": 43,
+          "diagnostics": [
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated"
+          ],
+          "observation_sha256": "a3633bd409f07e370fef617b6a7232ee0f1646c5e5aba44e9ed781398fd6fcca",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        "fixed": {
+          "php": "8.4.28",
+          "checks": 44,
+          "diagnostics": [],
+          "observation_sha256": "a3633bd409f07e370fef617b6a7232ee0f1646c5e5aba44e9ed781398fd6fcca",
+          "exit_code": 0,
+          "stderr": ""
+        }
+      },
+      {
+        "version": "84",
+        "mode": "json-facebook",
+        "lint_exit": 0,
+        "baseline": {
+          "php": "8.4.28",
+          "checks": 43,
+          "diagnostics": [
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated"
+          ],
+          "observation_sha256": "a3633bd409f07e370fef617b6a7232ee0f1646c5e5aba44e9ed781398fd6fcca",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        "fixed": {
+          "php": "8.4.28",
+          "checks": 44,
+          "diagnostics": [],
+          "observation_sha256": "a3633bd409f07e370fef617b6a7232ee0f1646c5e5aba44e9ed781398fd6fcca",
+          "exit_code": 0,
+          "stderr": ""
+        }
+      },
+      {
+        "version": "85",
+        "mode": "json-core",
+        "lint_exit": 0,
+        "baseline": {
+          "php": "8.5.13",
+          "checks": 43,
+          "diagnostics": [
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated"
+          ],
+          "observation_sha256": "a3633bd409f07e370fef617b6a7232ee0f1646c5e5aba44e9ed781398fd6fcca",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        "fixed": {
+          "php": "8.5.13",
+          "checks": 44,
+          "diagnostics": [],
+          "observation_sha256": "a3633bd409f07e370fef617b6a7232ee0f1646c5e5aba44e9ed781398fd6fcca",
+          "exit_code": 0,
+          "stderr": ""
+        }
+      },
+      {
+        "version": "85",
+        "mode": "json-facebook",
+        "lint_exit": 0,
+        "baseline": {
+          "php": "8.5.13",
+          "checks": 43,
+          "diagnostics": [
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated",
+            "preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated"
+          ],
+          "observation_sha256": "a3633bd409f07e370fef617b6a7232ee0f1646c5e5aba44e9ed781398fd6fcca",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        "fixed": {
+          "php": "8.5.13",
+          "checks": 44,
+          "diagnostics": [],
+          "observation_sha256": "a3633bd409f07e370fef617b6a7232ee0f1646c5e5aba44e9ed781398fd6fcca",
+          "exit_code": 0,
+          "stderr": ""
+        }
+      }
+    ]
+  },
+  "observations_match_baseline_and_versions": true,
+  "baseline_diagnostics_per_copy_per_runtime": 4,
+  "fixed_diagnostics": 0,
+  "fixed_checks_per_copy_per_runtime": 44,
+  "baseline_checks_per_copy_per_runtime": 43,
+  "count_difference": "Fixed mode additionally checks the previously declared public JSON flags property; baseline mode skips that reflection assertion.",
+  "local_suite": [
+    {
+      "php": "8.4.27",
+      "mode": "json-core",
+      "checks": 44,
+      "observations": {
+        "encoded": "{\"text\":\"quote \\\" and newline\\n\",\"unicode\":\"\\u00e9\",\"values\":[null,true,false,0,1.5]}",
+        "decoded": {
+          "value": 1,
+          "empty": null
+        },
+        "loose": {
+          "value": 1
+        },
+        "boundaries": [
+          {
+            "flags": 0,
+            "input": null,
+            "result": null
+          },
+          {
+            "flags": 0,
+            "input": "",
+            "result": null
+          },
+          {
+            "flags": 0,
+            "input": "null",
+            "result": null
+          },
+          {
+            "flags": 0,
+            "input": "true",
+            "result": true
+          },
+          {
+            "flags": 0,
+            "input": "false",
+            "result": false
+          },
+          {
+            "flags": 0,
+            "input": "0",
+            "result": 0
+          },
+          {
+            "flags": 0,
+            "input": "-12",
+            "result": -12
+          },
+          {
+            "flags": 0,
+            "input": "1.5",
+            "result": 1.5
+          },
+          {
+            "flags": 0,
+            "input": "\"hello\"",
+            "result": "hello"
+          },
+          {
+            "flags": 0,
+            "input": "[]",
+            "result": []
+          },
+          {
+            "flags": 0,
+            "input": "{}",
+            "result": {}
+          },
+          {
+            "flags": 0,
+            "input": "{\"text\":\"\u00e9\",\"values\":[null,true,0,\"x\"]}",
+            "result": {
+              "text": "\u00e9",
+              "values": [
+                null,
+                true,
+                0,
+                "x"
+              ]
+            }
+          },
+          {
+            "flags": 0,
+            "input": "/* comment */ {\"value\":2} // tail",
+            "result": null
+          },
+          {
+            "flags": 0,
+            "input": 0,
+            "result": 0
+          },
+          {
+            "flags": 0,
+            "input": false,
+            "result": null
+          },
+          {
+            "flags": 0,
+            "input": true,
+            "result": 1
+          },
+          {
+            "flags": 16,
+            "input": null,
+            "result": null
+          },
+          {
+            "flags": 16,
+            "input": "",
+            "result": null
+          },
+          {
+            "flags": 16,
+            "input": "null",
+            "result": null
+          },
+          {
+            "flags": 16,
+            "input": "true",
+            "result": true
+          },
+          {
+            "flags": 16,
+            "input": "false",
+            "result": false
+          },
+          {
+            "flags": 16,
+            "input": "0",
+            "result": 0
+          },
+          {
+            "flags": 16,
+            "input": "-12",
+            "result": -12
+          },
+          {
+            "flags": 16,
+            "input": "1.5",
+            "result": 1.5
+          },
+          {
+            "flags": 16,
+            "input": "\"hello\"",
+            "result": "hello"
+          },
+          {
+            "flags": 16,
+            "input": "[]",
+            "result": []
+          },
+          {
+            "flags": 16,
+            "input": "{}",
+            "result": []
+          },
+          {
+            "flags": 16,
+            "input": "{\"text\":\"\u00e9\",\"values\":[null,true,0,\"x\"]}",
+            "result": {
+              "text": "\u00e9",
+              "values": [
+                null,
+                true,
+                0,
+                "x"
+              ]
+            }
+          },
+          {
+            "flags": 16,
+            "input": "/* comment */ {\"value\":2} // tail",
+            "result": null
+          },
+          {
+            "flags": 16,
+            "input": 0,
+            "result": 0
+          },
+          {
+            "flags": 16,
+            "input": false,
+            "result": null
+          },
+          {
+            "flags": 16,
+            "input": true,
+            "result": 1
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "json-facebook",
+      "checks": 44,
+      "observations": {
+        "encoded": "{\"text\":\"quote \\\" and newline\\n\",\"unicode\":\"\\u00e9\",\"values\":[null,true,false,0,1.5]}",
+        "decoded": {
+          "value": 1,
+          "empty": null
+        },
+        "loose": {
+          "value": 1
+        },
+        "boundaries": [
+          {
+            "flags": 0,
+            "input": null,
+            "result": null
+          },
+          {
+            "flags": 0,
+            "input": "",
+            "result": null
+          },
+          {
+            "flags": 0,
+            "input": "null",
+            "result": null
+          },
+          {
+            "flags": 0,
+            "input": "true",
+            "result": true
+          },
+          {
+            "flags": 0,
+            "input": "false",
+            "result": false
+          },
+          {
+            "flags": 0,
+            "input": "0",
+            "result": 0
+          },
+          {
+            "flags": 0,
+            "input": "-12",
+            "result": -12
+          },
+          {
+            "flags": 0,
+            "input": "1.5",
+            "result": 1.5
+          },
+          {
+            "flags": 0,
+            "input": "\"hello\"",
+            "result": "hello"
+          },
+          {
+            "flags": 0,
+            "input": "[]",
+            "result": []
+          },
+          {
+            "flags": 0,
+            "input": "{}",
+            "result": {}
+          },
+          {
+            "flags": 0,
+            "input": "{\"text\":\"\u00e9\",\"values\":[null,true,0,\"x\"]}",
+            "result": {
+              "text": "\u00e9",
+              "values": [
+                null,
+                true,
+                0,
+                "x"
+              ]
+            }
+          },
+          {
+            "flags": 0,
+            "input": "/* comment */ {\"value\":2} // tail",
+            "result": null
+          },
+          {
+            "flags": 0,
+            "input": 0,
+            "result": 0
+          },
+          {
+            "flags": 0,
+            "input": false,
+            "result": null
+          },
+          {
+            "flags": 0,
+            "input": true,
+            "result": 1
+          },
+          {
+            "flags": 16,
+            "input": null,
+            "result": null
+          },
+          {
+            "flags": 16,
+            "input": "",
+            "result": null
+          },
+          {
+            "flags": 16,
+            "input": "null",
+            "result": null
+          },
+          {
+            "flags": 16,
+            "input": "true",
+            "result": true
+          },
+          {
+            "flags": 16,
+            "input": "false",
+            "result": false
+          },
+          {
+            "flags": 16,
+            "input": "0",
+            "result": 0
+          },
+          {
+            "flags": 16,
+            "input": "-12",
+            "result": -12
+          },
+          {
+            "flags": 16,
+            "input": "1.5",
+            "result": 1.5
+          },
+          {
+            "flags": 16,
+            "input": "\"hello\"",
+            "result": "hello"
+          },
+          {
+            "flags": 16,
+            "input": "[]",
+            "result": []
+          },
+          {
+            "flags": 16,
+            "input": "{}",
+            "result": []
+          },
+          {
+            "flags": 16,
+            "input": "{\"text\":\"\u00e9\",\"values\":[null,true,0,\"x\"]}",
+            "result": {
+              "text": "\u00e9",
+              "values": [
+                null,
+                true,
+                0,
+                "x"
+              ]
+            }
+          },
+          {
+            "flags": 16,
+            "input": "/* comment */ {\"value\":2} // tail",
+            "result": null
+          },
+          {
+            "flags": 16,
+            "input": 0,
+            "result": 0
+          },
+          {
+            "flags": 16,
+            "input": false,
+            "result": null
+          },
+          {
+            "flags": 16,
+            "input": true,
+            "result": 1
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "diff",
+      "checks": 12,
+      "observations": {
+        "copy": [
+          "copy",
+          "shared"
+        ],
+        "cached": [
+          "new",
+          "reference"
+        ],
+        "block": [
+          "left"
+        ],
+        "merged": [
+          "a",
+          "B"
+        ],
+        "conflict": [
+          "a",
+          "<<<<<<< ours",
+          "LEFT",
+          "=======",
+          "RIGHT",
+          ">>>>>>> theirs"
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "less",
+      "checks": 14,
+      "observations": {
+        "info": {
+          "filename": "input.less",
+          "rootPath": null,
+          "currentDirectory": null,
+          "rootFilename": null,
+          "entryPath": null,
+          "reference": false,
+          "importedFile": null,
+          "pluginTag": "updated",
+          "pluginNull": null
+        },
+        "arguments": {
+          "visitDeeper": false,
+          "pluginValue": [
+            1,
+            2
+          ],
+          "nullable": null
+        },
+        "css": ".sample {\n  width: 2px;\n}\n"
+      },
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "computed-guards",
+      "checks": 12,
+      "observations": {
+        "renderer": {
+          "leading_context_lines": 7,
+          "trailing_context_lines": 0
+        },
+        "compress": true,
+        "id3": false,
+        "identity": "http://example.invalid/"
+      },
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "vobject-setter",
+      "checks": 21,
+      "observations": {
+        "original": "BEGIN:VCALENDAR\r\nX-AUDIT:object value\r\nEND:VCALENDAR\r\n",
+        "copy": "BEGIN:VCALENDAR\r\nX-AUDIT:object value\r\nBEGIN:VEVENT\r\nSUMMARY:Audit event\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n"
+      },
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "environment-copy",
+      "checks": 35,
+      "observations": {
+        "values": {
+          "compress": true,
+          "canShortenColors": false,
+          "precision": 6,
+          "ieCompat": false,
+          "strictMath": true,
+          "strictUnits": true,
+          "sourceMap": false,
+          "sourceMapOptions": {
+            "outputSourceFiles": true
+          },
+          "importMultiple": true,
+          "relativeUrls": false,
+          "rootPath": "/fixtures/",
+          "dumpLineNumbers": false,
+          "contentsMap": {
+            "fixture.less": ".x {}"
+          },
+          "customVariables": {
+            "width": "2px"
+          },
+          "currentFileInfo": {
+            "filename": "fixture.less",
+            "rootPath": null,
+            "currentDirectory": null,
+            "rootFilename": null,
+            "entryPath": null,
+            "reference": false,
+            "importedFile": null
+          }
+        },
+        "frames": [
+          "replacement frame"
+        ],
+        "contents": {
+          "fixture.less": ".x {}",
+          "copy.less": ".copy {}"
+        }
+      },
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "openid-boundary",
+      "checks": 27,
+      "observations": [
+        {
+          "alias": "realm",
+          "value": ""
+        },
+        {
+          "alias": "realm",
+          "value": ""
+        },
+        {
+          "alias": "realm",
+          "value": ""
+        },
+        {
+          "alias": "realm",
+          "value": "https://example.invalid/path/"
+        },
+        {
+          "alias": "realm",
+          "value": "value"
+        },
+        {
+          "alias": "realm",
+          "value": "0"
+        },
+        {
+          "alias": "realm",
+          "value": "12"
+        },
+        {
+          "alias": "realm",
+          "value": "1.5"
+        },
+        {
+          "alias": "realm",
+          "value": ""
+        },
+        {
+          "alias": "realm",
+          "value": "1"
+        },
+        {
+          "alias": "realm",
+          "value": "https://stringable.invalid/"
+        },
+        {
+          "alias": "trustRoot",
+          "value": ""
+        },
+        {
+          "alias": "trustRoot",
+          "value": ""
+        },
+        {
+          "alias": "trustRoot",
+          "value": ""
+        },
+        {
+          "alias": "trustRoot",
+          "value": "https://example.invalid/path/"
+        },
+        {
+          "alias": "trustRoot",
+          "value": "value"
+        },
+        {
+          "alias": "trustRoot",
+          "value": "0"
+        },
+        {
+          "alias": "trustRoot",
+          "value": "12"
+        },
+        {
+          "alias": "trustRoot",
+          "value": "1.5"
+        },
+        {
+          "alias": "trustRoot",
+          "value": ""
+        },
+        {
+          "alias": "trustRoot",
+          "value": "1"
+        },
+        {
+          "alias": "trustRoot",
+          "value": "https://stringable.invalid/"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "php": "8.4.27",
+      "mode": "trait",
+      "checks": 4,
+      "observations": {
+        "generated": "tests/resources/generated/csv/example.CSV"
+      },
+      "diagnostics": []
+    }
+  ],
+  "limitations": [
+    "No full CMS JSON consumer or Facebook provider workflow executed.",
+    "R03/R05/R06 remain open."
+  ],
+  "browser_recovery": "Initial execution completed. Readback was recovered from its saved report via fresh normal Webmin navigation; tests were not resubmitted."
+}
