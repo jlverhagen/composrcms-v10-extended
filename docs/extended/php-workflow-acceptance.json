@@ -131,7 +131,9 @@
     "sapi": null,
     "extensions": null,
     "backup_reference": "server-private-backup-reference-withheld",
-    "restore_verified": false
+    "restore_verified": false,
+    "isolated_database_restore_verified": true,
+    "restore_evidence": "php-backup-verification-2026-11-21.json"
   },
   "status_values": [
     "not_run",
