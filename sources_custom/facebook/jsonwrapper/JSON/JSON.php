@@ -459,6 +459,10 @@ class Services_JSON
     */
     function reduce_string($str)
     {
+        if ($str === null) {
+            $str = '';
+        }
+
         $str = preg_replace(array(
 
                 // eliminate single line comments in '// ...' form
