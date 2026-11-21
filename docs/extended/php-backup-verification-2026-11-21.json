@@ -4,7 +4,7 @@
   "archive_sha256": "0f94a380592b0b0bbb9d33ebe40e056eb0c6fa969254ee74246e951cd9d8cf48",
   "archive_members": 32,
   "gzip_integrity": true,
-  "database_restore_performed": false,
+  "database_restore_performed": true,
   "site_file_checks": [
     {
       "path": "adminzone/pages/modules_custom/admin_extended_addons.php",
@@ -52,10 +52,20 @@
     "Selected file retrieval and database import are distinct from a complete Virtualmin domain recovery."
   ],
   "database_restore_test": {
-    "database_restore_performed": false,
-    "fixture_removed": false,
-    "account_removed": false,
-    "error_type": "CalledProcessError"
+    "database_restore_performed": true,
+    "fixture_removed": true,
+    "account_removed": true,
+    "import_exit_code": 0,
+    "restored_tables": 141,
+    "authentication": "existing_webmin_database_connection",
+    "admin_client_file_removed": true,
+    "admin_client_file_exists": false,
+    "log_nonempty": false
   },
-  "database_restore_status": "blocked_before_fixture_creation_by_admin_command_failure"
+  "database_restore_status": "isolated_import_passed_141_tables_and_cleanup_verified",
+  "connection_diagnosis": {
+    "shell_uid": 0,
+    "plain_cli_error": "ERROR 1045 (28000)",
+    "resolution": "Use existing Webmin database connection; no existing account/password changes."
+  }
 }
