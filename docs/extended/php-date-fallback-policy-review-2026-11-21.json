@@ -1,0 +1,140 @@
+{
+  "date": "2026-11-21",
+  "status": "approved_temporary_deprecation_exception",
+  "runtime": "8.4.27",
+  "source_commit": "5dc32a730c1ede687eb3a380eac29552b1d85c92",
+  "timestamp": 1767312184,
+  "timestamp_definition": "strtotime(\"2026-01-02 00:03:04 UTC\")",
+  "source_sha256": "65c7b9831797bd53f100d46478df24afe4b6419973a9669b65b4051cc6558d6a",
+  "observations": [
+    {
+      "locale": "ja_JP.utf8",
+      "format": "%Od",
+      "metadata_hex": "e38087",
+      "native": null,
+      "legacy_hex": "e4ba8c"
+    },
+    {
+      "locale": "ja_JP.utf8",
+      "format": "%Om",
+      "metadata_hex": "e38087",
+      "native": null,
+      "legacy_hex": "e4b880"
+    },
+    {
+      "locale": "ja_JP.utf8",
+      "format": "%OH",
+      "metadata_hex": "e38087",
+      "native": null,
+      "legacy_hex": "e38087"
+    },
+    {
+      "locale": "ja_JP.utf8",
+      "format": "%Ec",
+      "metadata_hex": "2b3a323a323032302f30312f30313a2b2a3ae4bba4e5928c3a254543254579e5b9b4",
+      "native": null,
+      "legacy_hex": "e4bba4e5928c3038e5b9b43031e69c883032e697a5203030e699823033e588863034e7a792"
+    },
+    {
+      "locale": "ja_JP.utf8",
+      "format": "%EY",
+      "metadata_hex": "2b3a323a323032302f30312f30313a2b2a3ae4bba4e5928c3a254543254579e5b9b4",
+      "native": null,
+      "legacy_hex": "e4bba4e5928c3038e5b9b4"
+    },
+    {
+      "locale": "fa_IR",
+      "format": "%Od",
+      "metadata_hex": "dbb0dbb0",
+      "native": null,
+      "legacy_hex": "dbb0dbb2"
+    },
+    {
+      "locale": "fa_IR",
+      "format": "%Om",
+      "metadata_hex": "dbb0dbb0",
+      "native": null,
+      "legacy_hex": "dbb0dbb1"
+    },
+    {
+      "locale": "fa_IR",
+      "format": "%OH",
+      "metadata_hex": "dbb0dbb0",
+      "native": null,
+      "legacy_hex": "dbb0dbb0"
+    },
+    {
+      "locale": "fa_IR",
+      "format": "%Ec",
+      "metadata_hex": "",
+      "native": null,
+      "legacy_hex": "e280abd8acd985d8b9d98720dbb0dbb220da98d8a7d986d988db8cd98720dbb2dbb6d88c20dbb0dbb03adbb0dbb33adbb0dbb4e280ac"
+    },
+    {
+      "locale": "fa_IR",
+      "format": "%EY",
+      "metadata_hex": "",
+      "native": "2026",
+      "legacy_hex": "32303236"
+    },
+    {
+      "locale": "th_TH.utf8",
+      "format": "%Od",
+      "metadata_hex": "",
+      "native": "02",
+      "legacy_hex": "3032"
+    },
+    {
+      "locale": "th_TH.utf8",
+      "format": "%Om",
+      "metadata_hex": "",
+      "native": "01",
+      "legacy_hex": "3031"
+    },
+    {
+      "locale": "th_TH.utf8",
+      "format": "%OH",
+      "metadata_hex": "",
+      "native": "00",
+      "legacy_hex": "3030"
+    },
+    {
+      "locale": "th_TH.utf8",
+      "format": "%Ec",
+      "metadata_hex": "2b3a313a2d3534332f30312f30313a2b2a3ae0b89e2ee0b8a82e3a25454320254579",
+      "native": null,
+      "legacy_hex": "e0b8a7e0b8b1e0b899e0b8a8e0b8b8e0b881e0b8a3e0b98ce0b897e0b8b5e0b98820203220e0b8a1e0b881e0b8a3e0b8b2e0b884e0b8a120e0b89e2ee0b8a82e20323536392c2030302e30332e303420e0b8992e"
+    },
+    {
+      "locale": "th_TH.utf8",
+      "format": "%EY",
+      "metadata_hex": "2b3a313a2d3534332f30312f30313a2b2a3ae0b89e2ee0b8a82e3a25454320254579",
+      "native": null,
+      "legacy_hex": "e0b89e2ee0b8a82e2032353639"
+    }
+  ],
+  "method": "Local direct _cms_strftime_linux and reference @strftime observations; no CMS bootstrap, no remote matrix or implementation change. Reference diagnostics are suppressed only to characterize legacy output.",
+  "observed_constraint": "Local nl_langinfo(ALT_DIGITS) yielded only the Japanese zero symbol, while libc %Od produced a distinct representation for day two. Current metadata alone was not demonstrated sufficient for a general replacement.",
+  "intl_local_available": false,
+  "primary_references": [
+    "https://www.php.net/manual/en/function.strftime.php",
+    "https://www.php.net/manual/en/function.nl-langinfo.php",
+    "https://www.php.net/manual/en/intldateformatter.create.php"
+  ],
+  "recommendation": {
+    "scope": "Retain exact legacy fallback for formats/platforms outside verified native coverage as a documented temporary deprecation exception.",
+    "reason": "Avoid changing locale digits, era names/years, process-timezone semantics or platform-specific formatting while progressing the remaining audit and CMS workflow acceptance.",
+    "acceptance_impact": "F03 remains a known exception, not a resolved deprecation. No claim that all supported configurations are deprecation-free.",
+    "separate_followup": "Design and validate complete replacement, including locale data/ICU dependency decision and non-Linux runtime testing."
+  },
+  "alternatives": [
+    "Keep F03 as a release blocker until a complete replacement is implemented and tested.",
+    "Approve a narrower documented date-format/platform contract, with explicit migration for affected custom formats; not implemented or recommended here."
+  ],
+  "user_approval": {
+    "date": "2026-11-21",
+    "instruction": "yes, i approve that scope",
+    "approved_scope": "Retain exact legacy fallback for formats/platforms outside verified native coverage as a documented temporary deprecation exception.",
+    "full_replacement_remains_tracked": true
+  }
+}
