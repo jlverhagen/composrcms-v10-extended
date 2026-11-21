@@ -1005,8 +1005,8 @@
   },
   "progress": {
     "F03": {
-      "status": "partially_resolved",
-      "date": "2026-11-19",
+      "status": "approved_temporary_deprecation_exception",
+      "date": "2026-11-21",
       "startup_probe": "removed; numeric minute is not a locale encoding test",
       "production_calls_remaining": 1,
       "regression_test": "_tests/tests/unit_tests/temporal_format_compatibility.php",
@@ -1027,8 +1027,54 @@
       "locale_composites": "LC_TIME patterns, internal padding, empty twelve-hour fallback and bounded recursion",
       "numeric_modifiers": "single -, _ and 0 flags; widths through 128 characters",
       "locale_modifiers": "E/O use ordinary directives only when ERA/ALT_DIGITS metadata are empty",
-      "case_modifiers": "Selected ASCII %P and uppercase a/A/b/B/h/p/P/Z forms under C/POSIX LC_CTYPE; unsupported casing/combined flags retain fallback",
-      "followup_evidence": "php-date-modifier-review-2026-11-19.json"
+      "case_modifiers": "Selected ASCII %P and uppercase a/A/b/B/h/p/P/Z under C/POSIX and C UTF-8 aliases; non-ASCII, other LC_CTYPE and unsupported modifiers retain fallback.",
+      "followup_evidence": "php-date-modifier-review-2026-11-19.json",
+      "shipped_format_inventory": {
+        "date": "2026-11-21",
+        "format_entries": 23,
+        "shipped_language_keys": 20,
+        "literal_entries": 3,
+        "checks_per_remote_runtime": 899415,
+        "remote_locale_names": 869,
+        "runtimes": [
+          "8.2.36",
+          "8.3.37",
+          "8.4.28",
+          "8.5.13"
+        ],
+        "unsupported": 0,
+        "mismatches": 0,
+        "evidence": "php-shipped-date-formats-review-2026-11-21.json",
+        "remaining": "Custom formats and non-Linux behavior still retain deprecated fallback; F03 remains open."
+      },
+      "c_utf8_case_followup": {
+        "date": "2026-11-21",
+        "status": "fixed_locally_pending_combined_publication",
+        "runtimes": [
+          "8.2.36",
+          "8.3.37",
+          "8.4.28",
+          "8.5.13"
+        ],
+        "checks_per_runtime": 1055835,
+        "native_matches_per_runtime": 720171,
+        "non_ascii_fallbacks_per_runtime": 335664,
+        "ctype_aliases": [
+          "C.utf8",
+          "C.UTF-8",
+          "C.UTF8"
+        ],
+        "existing_suite_local_assertions": 819867,
+        "evidence": "php-c-utf8-case-review-2026-11-21.json"
+      },
+      "fallback_policy_review": {
+        "date": "2026-11-21",
+        "status": "approved_temporary_deprecation_exception",
+        "evidence": "php-date-fallback-policy-review-2026-11-21.json",
+        "accepted": true,
+        "followup": "php-date-fallback-replacement.md",
+        "acceptance_impact": "Remaining legacy fallback is no longer a release blocker by itself; it is not fixed and does not support a universal deprecation-free claim."
+      }
     },
     "R01": {
       "status": "completed",
@@ -1141,6 +1187,44 @@
         "parser_checks_per_runtime": 16,
         "evidence": "php-library-load-review-2026-11-18.json",
         "limitations": "No object constructors or library workflows in the declaration probe; separate response fixtures exercise parser objects only"
+      },
+      "followup_magic_setters": {
+        "date": "2026-11-20",
+        "php_files_scanned": 3668,
+        "direct_anonymous_classes": 0,
+        "magic_setters_reviewed": 2,
+        "runtime": "8.4.27",
+        "new_vobject_checks": 21,
+        "existing_guard_checks": 12,
+        "diagnostics": 0,
+        "evidence": "php-magic-setter-review-2026-11-20.json",
+        "remaining": "Broader computed/external writes and CMS workflow acceptance remain open.",
+        "local_property_suite_checks": 75,
+        "local_property_suite_modes": 7,
+        "remote_matrix_status": "passed",
+        "runtimes": [
+          "8.2.36",
+          "8.3.37",
+          "8.4.28",
+          "8.5.13"
+        ],
+        "remote_checks_per_runtime": 21
+      },
+      "followup_computed_writes": {
+        "date": "2026-11-21",
+        "reviewed_assignment_sites": 12,
+        "environment_copy_fields": 15,
+        "checks_per_runtime": 35,
+        "runtimes": [
+          "8.2.36",
+          "8.3.37",
+          "8.4.28",
+          "8.5.13"
+        ],
+        "diagnostics": 0,
+        "observations_match": true,
+        "production_changes": false,
+        "evidence": "php-computed-write-review-2026-11-21.json"
       }
     },
     "R03": {
@@ -1232,6 +1316,51 @@
         "legacy_and_cross_runtime_observations_match": true,
         "evidence": "php-sort-boundary-review-2026-11-19.json",
         "limitations": "Bounded input fixtures; full list screens, other input paths and R05/R06 remain open"
+      },
+      "followup_openid_realm": {
+        "date": "2026-11-21",
+        "status": "fixed_locally_awaiting_combined_addon_publication",
+        "addon_owner": "openid",
+        "source": "sources_custom/openid.php",
+        "checks_per_runtime": 27,
+        "runtimes": [
+          "8.2.36",
+          "8.3.37",
+          "8.4.28",
+          "8.5.13"
+        ],
+        "baseline_diagnostics_per_runtime": 2,
+        "fixed_diagnostics_per_runtime": 0,
+        "observations_preserved": true,
+        "evidence": "php-openid-boundary-review-2026-11-21.json"
+      },
+      "followup_json_null": {
+        "date": "2026-11-21",
+        "status": "fixed_locally_pending_combined_publication",
+        "files": [
+          "sources/json_inner.php",
+          "sources_custom/facebook/jsonwrapper/JSON/JSON.php"
+        ],
+        "checks_per_runtime": 88,
+        "baseline_diagnostics_per_runtime": 8,
+        "fixed_diagnostics": 0,
+        "runtimes": [
+          "8.2.36",
+          "8.3.37",
+          "8.4.28",
+          "8.5.13"
+        ],
+        "observations_preserved": true,
+        "evidence": "php-json-boundary-review-2026-11-21.json"
+      },
+      "increment_initialization_shortlist": {
+        "date": "2026-11-21",
+        "php_files_lexed": 3668,
+        "increment_decrement_tokens_inventoried": 1819,
+        "shortlisted_files_reviewed": 6,
+        "production_changes": false,
+        "evidence": "php-increment-shortlist-review-2026-11-21.json",
+        "limitation": "Inventory is not a type proof for every token; only the selected initialization shortlist is dispositioned."
       }
     },
     "R05": {
@@ -1249,7 +1378,15 @@
       "result_cells": 64,
       "completed_result_cells": 0,
       "candidate_package": null,
-      "remaining": "Freeze combined candidate, record environment/backup and execute full CMS workflows; focused CLI probes do not close workflow cells"
+      "remaining": "Freeze combined candidate, record environment/backup and execute full CMS workflows; focused CLI probes do not close workflow cells",
+      "preflight": {
+        "date": "2026-11-21",
+        "installed_version": "2026.11.1-alpha.20",
+        "guard_files_verified": 7,
+        "backup_restore_verified": false,
+        "evidence": "php-cms-preflight-2026-11-21.json",
+        "workflow_cells_executed": 0
+      }
     },
     "R06": {
       "status": "local_package_inventory_verified_final_acceptance_pending",
@@ -1262,7 +1399,18 @@
       "audit_owned_addons_built": 20,
       "addon_payloads_compared": 1382,
       "reproducible_core_builds": true,
-      "remaining": "Freeze final release candidate; signed/published catalogue inventory, CMS installation/upgrade/restore workflows and final package acceptance remain open."
+      "remaining": "Freeze final release candidate; signed/published catalogue inventory, CMS installation/upgrade/restore workflows and final package acceptance remain open.",
+      "post_fix_combined_verification": {
+        "date": "2026-11-21",
+        "source_commit": "1227b4b59ea839076706dd9877680c61889843cb",
+        "core_payload_files": 6265,
+        "integrity_entries": 6264,
+        "audited_addons": 21,
+        "addon_payloads": 1394,
+        "all_source_bytes_match": true,
+        "evidence": "php-combined-package-review-2026-11-21.json",
+        "final_acceptance": "pending"
+      }
     }
   }
 }
