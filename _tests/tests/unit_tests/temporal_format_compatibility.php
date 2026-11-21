@@ -95,7 +95,7 @@ class temporal_format_compatibility_test_set extends cms_test_case
             setlocale(LC_TIME, 'C');
             $this->assertTrue(cms_strftime('%%P %%^B %P %^B', 0) === '%P %^B am JANUARY', 'Escaped case directives stay literal');
             if (setlocale(LC_CTYPE, 'C.utf8', 'C.UTF-8') !== false) {
-                $this->assertTrue(_cms_strftime_linux('%^B', 0) === null, 'Unverified character-type locale keeps case fallback');
+                $this->assertTrue(_cms_strftime_linux('%^B', 0) === 'JANUARY', 'C UTF-8 locale retains ASCII month casing');
                 setlocale(LC_CTYPE, 'C');
             }
             $this->assertTrue(cms_strftime('%%o %%e %%l', 0) === '%o %e %l', 'Escaped directives must stay literal');
