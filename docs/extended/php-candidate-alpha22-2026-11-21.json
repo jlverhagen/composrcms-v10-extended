@@ -149,14 +149,12 @@
     "Backup and disposable restore validation required before upgrade.",
     "Not a completed or universally deprecation-free compatibility release."
   ],
-  "publication_status": {
-    "status": "blocked_by_automatic_approval_review",
-    "reason": "GitHub branch push could publish project/environment metadata; explicit destination approval required."
-  },
+  "publication_status": "sanitized_source_tree_published_on_audit_branch",
   "recovery": {
     "reference": "server-private-backup-reference-withheld",
-    "status": "backup_started_final_verification_not_retrieved",
+    "status": "archive_gzip_dump_and_selected_files_verified_database_restore_blocked",
     "restore_verified": false,
-    "limitation": "Webmin readback timed out; do not treat this as verified recovery readiness."
-  }
+    "evidence": "php-backup-verification-2026-11-21.json"
+  },
+  "published_tree_sha": "78ff5321f6a0c692eac4ce30027843478500343d"
 }
