@@ -639,3 +639,13 @@ After the user enabled extension local-file access, completed real multipart upl
 ### 2026-11-21 - Entity-encoded search mismatch (F16)
 
 Read-only inspection of news fixture 13 confirms its article stores `caf&eacute;` while rendering café. The combined news full-text index exists; direct database tests match `eacute` and do not match café. This confirms an encoded-content indexing mismatch for this fixture. Server-wide charset/collation defaults were observed but do not establish column collation. Legacy baseline, other editors/content types and a safe indexing design remain to investigate; this is not established as a PHP-version regression. W07 remains incomplete. Evidence: `php82-search-observations-2026-11-21.json`.
+
+### 2026-11-21 - Ordinary news search follow-up (F16)
+
+The news-only UI search for `revised` also returns no results although fixture 13 contains it. Read-only database checks found the word with LIKE and boolean full-text, but not natural-language full-text; the validated fixture resides in a two-row MyISAM news table. MyISAM common-word handling is a plausible cause on this small dataset, but remains to be isolated. This is additional to the entity-encoding mismatch and does not establish a PHP regression. W07 remains incomplete. See `php82-search-observations-2026-11-21.json`.
+
+A follow-up UI comparison found fixture 13 for `+revised` sorted by date; `revised` sorted by date still returned no results. The plus-prefixed query is a temporary search workaround, not a correction of default search or the entity mismatch.
+
+An isolated temporary MyISAM table confirmed the common-word threshold: `revised` in one of two rows scored zero in natural-language mode and matched in boolean mode; adding a third unrelated row produced a positive natural-language score. The temporary table disappeared with its session. This supports the threshold as the explanation for the two-row site result; the entity mismatch is separate.
+
+An isolated four-row ranking comparison also found natural-language scores of zero for `revised article` when both terms occurred in half the rows. Boolean mode found both matching rows but gave them equal scores even though one repeated `revised`. A global switch therefore needs relevance and query-semantics validation; it is not yet a tested fix. A literal Unicode word and its entity-encoded counterpart each matched their respective index tokens in this separate test.
