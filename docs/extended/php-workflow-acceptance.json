@@ -3,7 +3,7 @@
   "prepared_date": "2026-11-19",
   "source_checkpoint": "a20c4ed50570477cf8e6aac713a5e69e9fb3f078",
   "audit_issue": 36,
-  "status": "prepared_not_executed",
+  "status": "in_progress",
   "candidate": {
     "source_commit": "6d50a93adb288b0839df05b46f6b28733b08afc8",
     "core_package_sha256": "358a8812dfd1c1d76ef177fa11ac43a3f6aa164c99f33366c79f8f7fe8fb5901",
@@ -307,13 +307,14 @@
       "caution": "Use fixture content with recorded IDs; restore or remove only the recorded fixtures.",
       "results": {
         "8.2": {
-          "status": "not_run",
-          "evidence": "php82-comcode-workflow-2026-11-21.json",
-          "diagnostics": "Application, PHP-FPM and Apache log deltas empty; no rotation.",
+          "status": "pass",
+          "evidence": "php82-news-workflow-2026-11-21.json (also references Comcode evidence)",
+          "diagnostics": "Application, PHP-FPM and Apache log deltas empty during each content workflow; no rotation.",
           "fixture_ids": [
-            ":audit-alpha22-php82-fixture"
+            ":audit-alpha22-php82-fixture",
+            "news:13"
           ],
-          "notes": "Comcode preview/save/edit and Unicode/nested formatting passed, including first render and refresh after cache clearing. News article and other procedure coverage remain outstanding; full case status remains not_run."
+          "notes": "Administrative Comcode and unvalidated news create/preview/save/edit and Unicode rendering passed, including cold and refreshed rendering after cache clears. Retained fixtures for cross-version checks; publication/notification delivery outside this case."
         },
         "8.3": {
           "status": "not_run",
