@@ -389,10 +389,12 @@
       "results": {
         "8.2": {
           "status": "not_run",
-          "evidence": null,
+          "evidence": "php82-search-observations-2026-11-21.json",
           "diagnostics": null,
-          "fixture_ids": [],
-          "notes": null
+          "fixture_ids": [
+            "news:13"
+          ],
+          "notes": "Exact revised marker returned fixture; previous marker did not. Unicode caf\u00e9 and cafe returned no results despite visible fixture text; cause and diagnostics remain to investigate. Empty form rejected. Full case not complete."
         },
         "8.3": {
           "status": "not_run",
