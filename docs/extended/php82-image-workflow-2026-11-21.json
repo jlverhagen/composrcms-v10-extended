@@ -1,0 +1,145 @@
+{
+  "date": "2026-11-21",
+  "candidate": "2026.11.1-alpha.22",
+  "workflow": "W06",
+  "runtime": {
+    "php": "8.2.36",
+    "sapi": "FPM/FastCGI",
+    "gd": "enabled",
+    "error_reporting": 32767,
+    "log_errors": true
+  },
+  "permission_resolution": "User enabled extension local-file access; real file chooser then accepted selected controlled fixture files.",
+  "multipart_uploads": [
+    {
+      "format": "PNG",
+      "filename": "audit-image (1).png",
+      "bytes": 389,
+      "dimensions": [
+        160,
+        120
+      ],
+      "uploaded_bytes_match_source": true,
+      "https_download_bytes_match_source": true
+    },
+    {
+      "format": "JPEG",
+      "filename": "audit-image.jpg",
+      "bytes": 1405,
+      "dimensions": [
+        160,
+        120
+      ],
+      "uploaded_bytes_match_source": true,
+      "https_download_bytes_match_source": true
+    },
+    {
+      "format": "GIF",
+      "filename": "audit-image.gif",
+      "bytes": 424,
+      "dimensions": [
+        160,
+        120
+      ],
+      "uploaded_bytes_match_source": true,
+      "https_download_bytes_match_source": true
+    }
+  ],
+  "web_processing": {
+    "page": ":audit_image_processing",
+    "url": "https://composr.duckdns.org/index.php?page=audit_image_processing",
+    "implementation": "CMS THUMBNAIL symbol evaluated from a dedicated Comcode page during web request",
+    "results": [
+      {
+        "format": "PNG",
+        "mode": "box",
+        "width": 80,
+        "height": 60,
+        "downloaded_dimensions_match": true,
+        "sample_pixels_match": true
+      },
+      {
+        "format": "PNG",
+        "mode": "crop",
+        "width": 80,
+        "height": 80,
+        "downloaded_dimensions_match": true,
+        "sample_pixels_match": true
+      },
+      {
+        "format": "JPEG",
+        "mode": "box",
+        "width": 80,
+        "height": 60,
+        "downloaded_dimensions_match": true,
+        "sample_pixels_match": true
+      },
+      {
+        "format": "JPEG",
+        "mode": "crop",
+        "width": 80,
+        "height": 80,
+        "downloaded_dimensions_match": true,
+        "sample_pixels_match": true
+      },
+      {
+        "format": "GIF",
+        "mode": "box",
+        "width": 80,
+        "height": 60,
+        "downloaded_dimensions_match": true,
+        "sample_pixels_match": true
+      },
+      {
+        "format": "GIF",
+        "mode": "crop",
+        "width": 80,
+        "height": 80,
+        "downloaded_dimensions_match": true,
+        "sample_pixels_match": true
+      }
+    ],
+    "verification": "Downloaded all three originals and six generated images through HTTPS. SHA256 of original source, uploaded file and downloaded original match. Decoded downloaded files with GD and compared dimensions and left/right RGB samples to [220,40,40] and [20,80,220], tolerance 10 per channel.",
+    "assets_verified": 9
+  },
+  "media_library_thumbnails": {
+    "formats": 3,
+    "natural_dimensions": [
+      160,
+      120
+    ],
+    "behavior": "only_make_smaller thumbnails retained small source dimensions"
+  },
+  "diagnostics": [
+    {
+      "kind": "application",
+      "new_bytes": 0,
+      "diagnostic_matches": 0,
+      "rotated": false
+    },
+    {
+      "kind": "php_fpm",
+      "new_bytes": 0,
+      "diagnostic_matches": 0,
+      "rotated": false
+    },
+    {
+      "kind": "apache",
+      "new_bytes": 0,
+      "diagnostic_matches": 0,
+      "rotated": false
+    }
+  ],
+  "retained_fixtures": [
+    "media-folder:/audit-alpha22-images",
+    ":audit_image_processing",
+    "source-fixtures:alpha22-images-php82"
+  ],
+  "result": "pass",
+  "limitations": [
+    "Gallery addon is not installed; tested installed File/Media library and CMS thumbnail symbol instead.",
+    "Basic PNG/JPEG/static GIF fixtures only; animated images, oversized files and upload rejection paths are not covered.",
+    "This result applies to PHP 8.2.36; native CLI capability alone is not counted as web acceptance."
+  ],
+  "server_evidence": "image-upload-verification.json retained in private test staging; no private directory disclosed."
+}
