@@ -1,6 +1,6 @@
 # PHP 8.2–8.5 CMS workflow acceptance
 
-Prepared 2026-11-19 at source checkpoint `a20c4ed50570477cf8e6aac713a5e69e9fb3f078`. Tracks R05/R06 in issue #36. This is an execution ledger, not evidence that the CMS workflows have passed. One of 64 version/workflow cells has passed: W05 on PHP 8.2.36. One cell (W06 on PHP 8.2) is blocked by browser local-file permission; the remaining 62 full-case results are **not run**, with partial procedure evidence recorded separately. Earlier syntax scans, library loading and focused probes remain useful separate evidence.
+Prepared 2026-11-19 at source checkpoint `a20c4ed50570477cf8e6aac713a5e69e9fb3f078`. Tracks R05/R06 in issue #36. This is an execution ledger, not evidence that the CMS workflows have passed. Two of 64 version/workflow cells have passed: W05 and W06 on PHP 8.2.36. The remaining 62 full-case results are **not run**, with partial procedure evidence recorded separately. Earlier syntax scans, library loading and focused probes remain useful separate evidence.
 
 ## Execution order
 
@@ -19,7 +19,7 @@ Prepared 2026-11-19 at source checkpoint `a20c4ed50570477cf8e6aac713a5e69e9fb3f0
 | W03 | Permissions | Not run | Not run | Not run | Not run |
 | W04 | Admin Zone and update check | Not run | Not run | Not run | Not run |
 | W05 | Content and rendering | Pass | Not run | Not run | Not run |
-| W06 | Uploads and GD | Blocked | Not run | Not run | Not run |
+| W06 | Uploads and GD | Pass | Not run | Not run | Not run |
 | W07 | Search and indexing | Not run | Not run | Not run | Not run |
 | W08 | Scheduled tasks | Not run | Not run | Not run | Not run |
 | W09 | Mail handling | Not run | Not run | Not run | Not run |
