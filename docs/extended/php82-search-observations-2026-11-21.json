@@ -152,7 +152,75 @@
           1
         ]
       },
-      "limitations": "Isolated SQL experiment only; Composr translated and non-translated query paths, pagination, permissions, cross-database behavior, query semantics and performance remain untested. Does not address HTML entity indexing."
+      "limitations": "Isolated SQL experiment only; Composr translated and non-translated query paths, pagination, permissions, cross-database behavior, query semantics and performance remain untested. Does not address HTML entity indexing.",
+      "site_query_check": {
+        "generated_default_query": "SELECT r.* FROM cms_news r WHERE ((MATCH (r.title,r.news,r.news_article) AGAINST ('revised')))",
+        "read_only_fallback_result": {
+          "fixture_id": 13,
+          "natural_score": 0,
+          "boolean_score": 1
+        },
+        "explain": "fulltext index news_search__combined; Using where; Using temporary; Using filesort",
+        "scope": "One test site, two news rows; no performance conclusion for larger tables."
+      },
+      "isolated_visibility_pagination": {
+        "dataset_rows": 6,
+        "restricted_match_id": 2,
+        "allowed_matching_ids": [
+          1,
+          3,
+          4
+        ],
+        "page_size": 2,
+        "page_one": [
+          1,
+          3
+        ],
+        "page_two": [
+          4
+        ],
+        "count": 3,
+        "limitation": "A simulated SQL allowed flag, not Composr permissions, filtering, or pagination; integration tests remain required."
+      }
+    },
+    "prototype_site_test": {
+      "scope": "Temporary news-only prototype; ordinary relevance search, MySQL, non-translated, no metadata-only or title-only search.",
+      "results": {
+        "revised_relevance": "fixture 13 returned",
+        "revised_date": "no result; outside prototype scope",
+        "plus_revised_date": "fixture 13 returned as before",
+        "nonexistent_relevance": "no results",
+        "café_relevance": "no results; entity issue remains"
+      },
+      "cleanup": "Original search source restored and SHA-256 matched its saved copy; post-restore query confirmed original behavior.",
+      "limitations": "Super-admin only; permissions, pagination, multilingual, other content types and performance remain untested. Prototype was temporary and was not retained or published."
+    },
+    "draft_patch_test": {
+      "php": "8.2.36",
+      "site": "closed test site, super-admin session",
+      "results": {
+        "revised_relevance": "fixture 13 returned",
+        "revised_date": "fixture 13 returned",
+        "plus_revised_date": "fixture 13 returned",
+        "absent_term": "no results"
+      },
+      "cleanup": "original file restored and SHA-256 matched saved copy",
+      "not_tested": [
+        "non-super-admin permissions",
+        "pagination",
+        "multilingual",
+        "other content types",
+        "entity-encoded café"
+      ],
+      "php_syntax_lint": [
+        "8.2",
+        "8.3",
+        "8.5"
+      ],
+      "guest_su_relevance": "fixture 13 returned",
+      "guest_su_date": "fixture 13 returned",
+      "guest_su_title_only": "no result for body-only word",
+      "caveat": "Guest checks used an administrator SU session and do not establish restricted-category behavior."
     }
   }
 }
