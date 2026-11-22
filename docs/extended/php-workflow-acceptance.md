@@ -1,6 +1,6 @@
 # PHP 8.2–8.5 CMS workflow acceptance
 
-Prepared 2026-11-19 at source checkpoint `a20c4ed50570477cf8e6aac713a5e69e9fb3f078`. Tracks R05/R06 in issue #36. This is an execution ledger, not evidence that the CMS workflows have passed. All 64 version/workflow cells currently remain **not run**. Earlier syntax scans, library loading and focused probes remain useful separate evidence.
+Prepared 2026-11-19 at source checkpoint `a20c4ed50570477cf8e6aac713a5e69e9fb3f078`. Tracks R05/R06 in issue #36. This is an execution ledger, not evidence that the CMS workflows have passed. One of 64 version/workflow cells has passed: W05 on PHP 8.2.36. The remaining 63 full-case results are **not run**, with partial procedure evidence recorded separately. Earlier syntax scans, library loading and focused probes remain useful separate evidence.
 
 ## Execution order
 
@@ -18,7 +18,7 @@ Prepared 2026-11-19 at source checkpoint `a20c4ed50570477cf8e6aac713a5e69e9fb3f0
 | W02 | Session and authentication | Not run | Not run | Not run | Not run |
 | W03 | Permissions | Not run | Not run | Not run | Not run |
 | W04 | Admin Zone and update check | Not run | Not run | Not run | Not run |
-| W05 | Content and rendering | Not run | Not run | Not run | Not run |
+| W05 | Content and rendering | Pass | Not run | Not run | Not run |
 | W06 | Uploads and GD | Not run | Not run | Not run | Not run |
 | W07 | Search and indexing | Not run | Not run | Not run | Not run |
 | W08 | Scheduled tasks | Not run | Not run | Not run | Not run |
@@ -82,4 +82,4 @@ When the candidate is concrete and staged, provide its version, exact .cms link/
 
 ## Approved date fallback exception, 2026-11-21
 
-The user approved preserving the remaining legacy date formatter fallback as a temporary deprecation exception. This path alone no longer blocks a test candidate, but it is not a resolved deprecation. Track complete replacement in php-date-fallback-replacement.md. Normal date workflows must still pass; unrelated warnings or failures are not covered by this exception. All 64 workflow cells remain not_run until executed with evidence.
+The user approved preserving the remaining legacy date formatter fallback as a temporary deprecation exception. This path alone no longer blocks a test candidate, but it is not a resolved deprecation. Track complete replacement in php-date-fallback-replacement.md. Normal date workflows must still pass; unrelated warnings or failures are not covered by this exception. Workflow cells remain not_run until executed with evidence; see the current matrix above.
