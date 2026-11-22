@@ -1009,6 +1009,14 @@
         "name": "Hook_fields_float::get_field_inputter",
         "evidence": "php82-integrity-review-2026-11-21.json"
       }
+    ],
+    "F16": [
+      {
+        "file": "sources/hooks/modules/search/news.php",
+        "kind": "search-index-rendered-text-mismatch",
+        "name": "Entity-encoded editor content not searchable by rendered accented word",
+        "evidence": "php82-search-observations-2026-11-21.json"
+      }
     ]
   },
   "progress": {
@@ -1425,6 +1433,10 @@
     "F15": {
       "status": "fixed_in_source_pending_consolidated_candidate",
       "summary": "Existing site override avoids unconditional float field fatal_exit; remove bundled debug exit. Local isolated 13-case probe and lint passed PHP 8.4.27; CMS/cross-version acceptance pending."
+    },
+    "F16": {
+      "status": "confirmed_fixture_specific_needs_design",
+      "summary": "News fixture stored caf&eacute; and full-text index matches eacute but not caf\u00e9. Scope, legacy baseline, table collation and safe indexing design remain to investigate; not established as PHP regression."
     }
   }
 }
