@@ -34,5 +34,27 @@
     "Do not classify Unicode absence as PHP compatibility defect without investigation.",
     "No dedicated fixture edit during this search session; revision markers refer to previously performed edit."
   ],
-  "status": "partial; unicode mismatch under investigation"
+  "status": "confirmed fixture-specific entity-index mismatch; full workflow incomplete",
+  "database_investigation": {
+    "fixture": "news:13",
+    "stored_news_article_excerpt": "caf&eacute;",
+    "literal_like": {
+      "encoded_entity": true,
+      "utf8_cafe_accented": false,
+      "ascii_cafe": false
+    },
+    "combined_fulltext_boolean": {
+      "café": false,
+      "eacute": true
+    },
+    "fulltext_index_present": true,
+    "server_defaults": {
+      "character_set_server": "latin1",
+      "collation_server": "latin1_swedish_ci",
+      "ft_min_word_len": 4,
+      "innodb_ft_min_token_size": 3
+    },
+    "interpretation": "Entity-encoded content is indexed as its markup rather than the rendered accented word in this fixture. This establishes a database-level mismatch, not whether all Unicode search or all editors are affected. Server defaults are not proof of table/column collation.",
+    "php_regression_established": false
+  }
 }
