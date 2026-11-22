@@ -347,11 +347,14 @@
       "caution": "Use test-only media; inspect actual helper behavior before execution.",
       "results": {
         "8.2": {
-          "status": "not_run",
-          "evidence": null,
+          "status": "blocked",
+          "evidence": "php82-image-workflow-preparation-2026-11-21.json",
           "diagnostics": null,
-          "fixture_ids": [],
-          "notes": null
+          "fixture_ids": [
+            "media-folder:/audit-alpha22-images",
+            "source-fixtures:alpha22-images-php82"
+          ],
+          "notes": "Source images and isolated media folder prepared. Actual file chooser blocked by extension local-file access permission. No upload or processing pass claimed; permission question pending."
         },
         "8.3": {
           "status": "not_run",
