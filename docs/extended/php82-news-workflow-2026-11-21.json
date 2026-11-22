@@ -1,0 +1,95 @@
+{
+  "date": "2026-11-21",
+  "candidate": "2026.11.1-alpha.22",
+  "runtime": {
+    "php": "8.2.36",
+    "sapi": "FPM/FastCGI",
+    "error_reporting": 32767,
+    "log_errors": true
+  },
+  "fixture": {
+    "news_id": 13,
+    "category": 1,
+    "title_r1": "AUDIT alpha22 PHP82 news fixture R1",
+    "title_r2": "AUDIT alpha22 PHP82 news fixture R2",
+    "marker_r1": "AUDIT-NEWS-R1: café Ω 106.5.",
+    "marker_r2": "AUDIT-NEWS-R2: café Ω 106.5.",
+    "status": "unvalidated; retained for cross-version checks"
+  },
+  "steps": [
+    {
+      "step": "Open news add form",
+      "result": "pass"
+    },
+    {
+      "step": "Leave optional article fields at defaults; choose General category and disable validation",
+      "result": "pass"
+    },
+    {
+      "step": "Preview Unicode article text",
+      "result": "pass"
+    },
+    {
+      "step": "Save news item 13 and observe success",
+      "result": "pass"
+    },
+    {
+      "step": "Render saved unvalidated article through authenticated direct view",
+      "result": "pass"
+    },
+    {
+      "step": "Edit title and body; preview revision 2",
+      "result": "pass"
+    },
+    {
+      "step": "Save edit and observe success",
+      "result": "pass"
+    },
+    {
+      "step": "Verify R2 marker and title; R1 absent; article remains unvalidated",
+      "result": "pass"
+    },
+    {
+      "step": "Clear test-site caches via upgrader",
+      "result": "pass"
+    },
+    {
+      "step": "Verify first render and refreshed render after cache rebuild",
+      "result": "pass"
+    }
+  ],
+  "diagnostics": [
+    {
+      "log_kind": "application",
+      "new_bytes": 0,
+      "php_diagnostic_matches": 0,
+      "rotated": false,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "log_kind": "php_fpm",
+      "new_bytes": 0,
+      "php_diagnostic_matches": 0,
+      "rotated": false,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "log_kind": "apache",
+      "new_bytes": 0,
+      "php_diagnostic_matches": 0,
+      "rotated": false,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "notification_observation": "CMS confirmation reported its standard staff-validation notification upon unvalidated creation. No subscriber publication tested.",
+  "combined_W05_evidence": [
+    "php82-comcode-workflow-2026-11-21.json",
+    "php82-news-workflow-2026-11-21.json"
+  ],
+  "W05_result": "pass for stated administrative Comcode and draft-news content procedure on PHP 8.2.36",
+  "limitations": [
+    "Does not cover publishing/subscriber delivery, all raw Comcode tags, uploads, or role permissions.",
+    "Other PHP versions require independent execution.",
+    "Editor source-toggle automation did not switch modes reliably; used the visible rich-text body and verified preview/save output."
+  ]
+}
