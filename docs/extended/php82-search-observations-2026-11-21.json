@@ -26,6 +26,18 @@
     {
       "query": "empty",
       "result": "Client form validation rejected the empty query."
+    },
+    {
+      "query": "revised",
+      "result": "No results when searching news, although the current article contains the word."
+    },
+    {
+      "query": "+revised, sorted by date",
+      "result": "One result: news fixture 13."
+    },
+    {
+      "query": "revised, sorted by date",
+      "result": "No results."
     }
   ],
   "limitations": [
@@ -34,7 +46,7 @@
     "Do not classify Unicode absence as PHP compatibility defect without investigation.",
     "No dedicated fixture edit during this search session; revision markers refer to previously performed edit."
   ],
-  "status": "confirmed fixture-specific entity-index mismatch; full workflow incomplete",
+  "status": "ordinary and entity-encoded search mismatches observed; full workflow incomplete",
   "database_investigation": {
     "fixture": "news:13",
     "stored_news_article_excerpt": "caf&eacute;",
@@ -55,6 +67,52 @@
       "innodb_ft_min_token_size": 3
     },
     "interpretation": "Entity-encoded content is indexed as its markup rather than the rendered accented word in this fixture. This establishes a database-level mismatch, not whether all Unicode search or all editors are affected. Server defaults are not proof of table/column collation.",
-    "php_regression_established": false
+    "php_regression_established": false,
+    "ordinary_word_check": {
+      "word": "revised",
+      "fixture_validated": true,
+      "literal_like": true,
+      "natural_language_fulltext": false,
+      "boolean_fulltext": true,
+      "news_row_count": 2,
+      "table_engine": "MyISAM",
+      "table_collation": "utf8mb4_general_ci",
+      "interpretation": "An isolated temporary MyISAM full-text table reproduced the 50% natural-language threshold: with revised in one of two rows, natural score was zero while boolean matched; adding one unrelated row made the natural score positive, with boolean still matching. This explains the observed failure on the two-row fixture table. This is separate from entity-encoded text.",
+      "isolated_threshold_test": {
+        "engine": "MyISAM",
+        "one_match_in_two_rows": {
+          "natural_score": 0,
+          "boolean_match": true
+        },
+        "one_match_in_three_rows": {
+          "natural_score": 0.6700310707092285,
+          "boolean_match": true
+        },
+        "cleanup": "temporary table automatically dropped when database session ended"
+      }
+    },
+    "ranking_comparison": {
+      "engine": "MyISAM",
+      "query": "revised article",
+      "rows": [
+        "revised news article revised",
+        "revised article other",
+        "other content unrelated",
+        "plain café and caf&eacute;"
+      ],
+      "natural_scores": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boolean_scores": [
+        2,
+        2,
+        0,
+        0
+      ],
+      "interpretation": "At the 50% threshold natural-language ignores both common terms; boolean mode finds both matching rows but assigns equal scores despite one row repeating revised. This small example demonstrates that switching search modes affects relevance behavior and requires broader tests. A separate row containing literal café and caf&eacute; matched both café and eacute respectively in boolean mode."
+    }
   }
 }
