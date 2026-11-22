@@ -394,7 +394,7 @@
           "fixture_ids": [
             "news:13"
           ],
-          "notes": "Exact revised marker found and old marker absent. Rendered caf\u00e9 is stored as caf&eacute;; database full-text matches eacute and not caf\u00e9. F16 open; full case remains not_run."
+          "notes": "Exact revised marker found and old marker absent. Ordinary revised returns no UI results; direct MyISAM full-text matches it in boolean mode but not natural-language mode on a two-row table. Rendered caf\u00e9 is stored as caf&eacute; and boolean full-text matches eacute rather than caf\u00e9. F16 remains open; full case remains not_run."
         },
         "8.3": {
           "status": "not_run",
