@@ -501,6 +501,11 @@ function find_addon_dependencies_on($addon)
                 $dep = is_array($_hook_bits[0]) ? call_user_func_array($_hook_bits[0][0], $_hook_bits[0][1]) : @eval($_hook_bits[0]);
             }
 
+            // Older addon registry hooks may declare no dependencies as an empty array.
+            if ($dep === array()) {
+                $dep = array('requires' => array());
+            }
+
             $ocproducts_addon_dep_cache[$hook] = $dep['requires'];
         }
     }
