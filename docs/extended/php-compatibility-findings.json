@@ -1372,7 +1372,7 @@
       }
     },
     "R05": {
-      "status": "prepared_not_executed",
+      "status": "in_progress",
       "date": "2026-11-19",
       "ledger": "php-workflow-acceptance.json",
       "procedures": "php-workflow-acceptance.md",
@@ -1384,9 +1384,9 @@
         "8.5"
       ],
       "result_cells": 64,
-      "completed_result_cells": 0,
-      "candidate_package": null,
-      "remaining": "Freeze combined candidate, record environment/backup and execute full CMS workflows; focused CLI probes do not close workflow cells",
+      "completed_result_cells": 1,
+      "candidate_package": "2026.11.1-alpha.22",
+      "remaining": "Complete remaining 63 workflow/version cells; record partial procedures separately and retain approved F03/F04 exceptions.",
       "preflight": {
         "date": "2026-11-21",
         "installed_version": "2026.11.1-alpha.20",
@@ -1394,7 +1394,8 @@
         "backup_restore_verified": false,
         "evidence": "php-cms-preflight-2026-11-21.json",
         "workflow_cells_executed": 0
-      }
+      },
+      "latest_workflow_evidence": "php82-news-workflow-2026-11-21.json"
     },
     "R06": {
       "status": "local_package_inventory_verified_final_acceptance_pending",
