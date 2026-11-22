@@ -1436,7 +1436,7 @@
     },
     "F16": {
       "status": "confirmed_fixture_specific_needs_design",
-      "summary": "News fixture stored caf&eacute; and full-text index matches eacute but not caf\u00e9. Scope, legacy baseline, table collation and safe indexing design remain to investigate; not established as PHP regression."
+      "summary": "News search misses ordinary revised and rendered caf\u00e9. An isolated MyISAM test confirms the natural-language 50% threshold excludes revised when it appears in one of two rows; adding a third unrelated row restores its match. Stored caf&eacute; matches eacute but not caf\u00e9 in boolean full-text. Scope, legacy baseline and safe design remain to investigate; no PHP regression established."
     }
   }
 }
