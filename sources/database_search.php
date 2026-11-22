@@ -1335,6 +1335,15 @@ function get_search_rows($meta_type, $meta_id_field, $content, $boolean_search, 
         } else { // Much simpler code if we don't have multi-lang-content
             list(, $boolean_operator, $body_where, $include_where, $disclude_where) = build_content_where($content, $boolean_search, $boolean_operator);
 
+            // Preserve natural-language relevance while allowing common words to
+            // match in the non-translated news full-text index on MySQL.
+            $news_natural_relevance = '';
+            if (($table === 'news r') && (array_keys($fields) === array('r.title', 'r.news', 'r.news_article')) && (count($raw_fields) === 0) && (!$boolean_search) && (!$only_titles) && (!$only_search_meta) && (strpos(get_db_type(), 'mysql') !== false) && (count($body_where) === 1) && (strpos($body_where[0], 'MATCH (') === 0) && (preg_match('/^[\p{L}\p{N}\s]+$/u', $content) === 1)) {
+                $news_natural_relevance = preg_replace('#\?#', 'r.title,r.news,r.news_article', $body_where[0]);
+                $body_where[0] = db_full_text_assemble($content, true);
+                $news_boolean_relevance = preg_replace('#\?#', 'r.title,r.news,r.news_article', $body_where[0]);
+            }
+
             $simple_table = preg_replace('# .*#', '', $table);
             $indices_for_table = $GLOBALS['SITE_DB']->query_select('db_meta_indices', array('i_name', 'i_fields'), array('i_table' => $simple_table));
 
@@ -1454,6 +1463,9 @@ function get_search_rows($meta_type, $meta_id_field, $content, $boolean_search, 
                 $_count_query_main_search = '(SELECT COUNT(*) FROM (' . $tmp_subquery . ') counter)';
             }
             $query = 'SELECT ' . $select . $query;
+            if (($news_natural_relevance !== '') && ($order === '')) {
+                $query .= ' ORDER BY ' . $news_natural_relevance . ' DESC, ' . $news_boolean_relevance . ' DESC, r.id ASC';
+            }
             if (($order != '') && ($order . ' ' . $direction != 'contextual_relevance DESC') && ($order != 'contextual_relevance DESC')) {
                 $query .= ' ORDER BY ' . $order;
                 if (($direction == 'DESC') && (substr($order, -4) != ' ASC') && (substr($order, -5) != ' DESC')) {
