@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-21",
+  "candidate": "2026.11.1-alpha.22",
+  "workflow": "W06",
+  "fixture_source": {
+    "url": "https://composr.duckdns.org/extended-mirror/fixtures/alpha22-images-php82/index.html",
+    "formats": [
+      "PNG",
+      "JPEG",
+      "GIF"
+    ],
+    "dimensions": [
+      160,
+      120
+    ],
+    "design": "Left red half and right blue half",
+    "generation": "PHP 8.2 GD; three source files created successfully"
+  },
+  "media_folder": "/audit-alpha22-images",
+  "observed_steps": [
+    "Gallery module is not installed; missing-page response, with existing theme-icon warnings on sitemap rendering",
+    "Opened installed File/Media library",
+    "Created isolated folder with description Disposable PHP compatibility image fixtures",
+    "Downloaded controlled PNG to browser computer",
+    "Opened real file chooser from Browse button",
+    "File chooser setFiles rejected because extension Allow access to file URLs is disabled"
+  ],
+  "upload_status": "blocked_before_file_selection",
+  "browser_permission": "User must enable Allow access to file URLs for the ChatGPT Chrome extension to permit local file selection. This expands extension local-file access; not changed automatically.",
+  "pending_user_question": true,
+  "native_gd_attempt": "A later server-side decode/resize/crop probe was submitted, but browser call timed out; execution and results not verified. Do not count it as passed.",
+  "limitations": [
+    "No multipart upload completed",
+    "No resize/crop/thumbnail or downloaded-output comparison verified",
+    "No final diagnostic log capture retrieved",
+    "Initial source-transfer call timed out and browser runtime was reinitialized; fresh-tab PNG transfer succeeded, JPEG retry timed out"
+  ],
+  "next_step": "Resume chooser with controlled fixture paths after user enables permission; otherwise leave W06 blocked and continue other cases."
+}
