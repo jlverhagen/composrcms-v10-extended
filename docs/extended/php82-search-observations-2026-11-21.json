@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-21",
+  "runtime": "PHP 8.2.36 FPM/FastCGI",
+  "candidate": "2026.11.1-alpha.22",
+  "observations": [
+    {
+      "query": "\"AUDIT-NEWS-R2\"",
+      "result": "One result: news fixture 13, current text."
+    },
+    {
+      "query": "\"AUDIT-NEWS-R1\"",
+      "result": "No results after fixture edit."
+    },
+    {
+      "query": "café",
+      "result": "No results despite text rendering in fixture."
+    },
+    {
+      "query": "\"café\"",
+      "result": "No results."
+    },
+    {
+      "query": "cafe",
+      "result": "No results."
+    },
+    {
+      "query": "empty",
+      "result": "Client form validation rejected the empty query."
+    }
+  ],
+  "limitations": [
+    "No diagnostic log capture for these searches.",
+    "Unicode cause and search backend/index settings remain unverified.",
+    "Do not classify Unicode absence as PHP compatibility defect without investigation.",
+    "No dedicated fixture edit during this search session; revision markers refer to previously performed edit."
+  ],
+  "status": "partial; unicode mismatch under investigation"
+}
