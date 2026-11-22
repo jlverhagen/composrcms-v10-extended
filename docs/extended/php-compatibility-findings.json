@@ -1386,7 +1386,7 @@
       "result_cells": 64,
       "completed_result_cells": 1,
       "candidate_package": "2026.11.1-alpha.22",
-      "remaining": "Complete remaining 63 workflow/version cells; record partial procedures separately and retain approved F03/F04 exceptions.",
+      "remaining": "Complete 62 not-run workflow/version cells and unblock W06 PHP 8.2 local file selection; one content workflow pass. Focused CLI/image capability checks are not multipart upload acceptance.",
       "preflight": {
         "date": "2026-11-21",
         "installed_version": "2026.11.1-alpha.20",
@@ -1395,7 +1395,8 @@
         "evidence": "php-cms-preflight-2026-11-21.json",
         "workflow_cells_executed": 0
       },
-      "latest_workflow_evidence": "php82-news-workflow-2026-11-21.json"
+      "latest_workflow_evidence": "php82-news-workflow-2026-11-21.json",
+      "blocked_result_cells": 1
     },
     "R06": {
       "status": "local_package_inventory_verified_final_acceptance_pending",
