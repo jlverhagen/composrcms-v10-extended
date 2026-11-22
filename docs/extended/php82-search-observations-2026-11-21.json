@@ -113,6 +113,46 @@
         0
       ],
       "interpretation": "At the 50% threshold natural-language ignores both common terms; boolean mode finds both matching rows but assigns equal scores despite one row repeating revised. This small example demonstrates that switching search modes affects relevance behavior and requires broader tests. A separate row containing literal café and caf&eacute; matched both café and eacute respectively in boolean mode."
+    },
+    "fallback_experiment": {
+      "engine": "MyISAM",
+      "query": "revised apple",
+      "strategy": "Filter using boolean full-text, order by natural-language score, then boolean score and id.",
+      "four_rows": {
+        "ordered_ids": [
+          1,
+          2,
+          3
+        ],
+        "natural_scores": [
+          0,
+          0,
+          0
+        ],
+        "boolean_scores": [
+          2,
+          1,
+          1
+        ]
+      },
+      "six_rows": {
+        "ordered_ids": [
+          1,
+          2,
+          3
+        ],
+        "natural_scores": [
+          1.4658,
+          0.67,
+          0.67
+        ],
+        "boolean_scores": [
+          2,
+          1,
+          1
+        ]
+      },
+      "limitations": "Isolated SQL experiment only; Composr translated and non-translated query paths, pagination, permissions, cross-database behavior, query semantics and performance remain untested. Does not address HTML entity indexing."
     }
   }
 }
