@@ -1338,10 +1338,11 @@ function get_search_rows($meta_type, $meta_id_field, $content, $boolean_search, 
             // Preserve natural-language relevance while allowing common words to
             // match in the non-translated news full-text index on MySQL.
             $news_natural_relevance = '';
-            if (($table === 'news r') && (array_keys($fields) === array('r.title', 'r.news', 'r.news_article')) && (count($raw_fields) === 0) && (!$boolean_search) && (!$only_titles) && (!$only_search_meta) && (strpos(get_db_type(), 'mysql') !== false) && (count($body_where) === 1) && (strpos($body_where[0], 'MATCH (') === 0) && (preg_match('/^[\p{L}\p{N}\s]+$/u', $content) === 1)) {
-                $news_natural_relevance = preg_replace('#\?#', 'r.title,r.news,r.news_article', $body_where[0]);
+            if (($table === 'news r') && (array_keys($fields) === array('r.title', 'r.news', 'r.news_article')) && (count($raw_fields) === 0) && (!$boolean_search) && (!$only_search_meta) && (strpos(get_db_type(), 'mysql') !== false) && (count($body_where) === 1) && (strpos($body_where[0], 'MATCH (') === 0) && (preg_match('/^[\p{L}\p{N}\s]+$/u', $content) === 1)) {
+                $news_search_fields = $only_titles ? 'r.title' : 'r.title,r.news,r.news_article';
+                $news_natural_relevance = preg_replace('#\?#', $news_search_fields, $body_where[0]);
                 $body_where[0] = db_full_text_assemble($content, true);
-                $news_boolean_relevance = preg_replace('#\?#', 'r.title,r.news,r.news_article', $body_where[0]);
+                $news_boolean_relevance = preg_replace('#\?#', $news_search_fields, $body_where[0]);
             }
 
             $simple_table = preg_replace('# .*#', '', $table);
