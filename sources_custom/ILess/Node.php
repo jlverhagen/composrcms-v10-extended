@@ -44,6 +44,14 @@ abstract class ILess_Node
     public $currentFileInfo;
 
     /**
+     * Whether this node is an operand inside a parenthesized operation.
+     * The parser marks operands of several node types, not just expressions.
+     *
+     * @var boolean
+     */
+    public $parensInOp = false;
+
+    /**
      * Constructor
      *
      * @param mixed $value

@@ -42,6 +42,9 @@ class ILess_Node_Media extends ILess_Node implements ILess_Node_VisitableInterfa
      */
     public $rules = array();
 
+    /** @var array Extensions collected while visiting this media block. */
+    public $allExtends = array();
+
     /**
      * Referenced flag
      *

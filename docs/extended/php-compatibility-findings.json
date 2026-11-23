@@ -1017,6 +1017,30 @@
         "name": "Entity-encoded editor content not searchable by rendered accented word",
         "evidence": "php82-search-observations-2026-11-21.json"
       }
+    ],
+    "F17": [
+      {
+        "file": "sources_custom/ILess/Parser/Core.php",
+        "kind": "dynamic-property-deprecation",
+        "name": "LESS arithmetic operand parensInOp",
+        "evidence": "php-less-operand-review-2026-11-22.json"
+      }
+    ],
+    "F18": [
+      {
+        "file": "sources_custom/ILess/Color.php",
+        "kind": "float-string-to-integer-deprecation",
+        "name": "Fractional color channel to dechex conversion",
+        "evidence": "php-less-operand-review-2026-11-22.json"
+      }
+    ],
+    "F19": [
+      {
+        "file": "sources_custom/ILess/Visitor/ExtendFinder.php",
+        "kind": "dynamic-property-deprecation",
+        "name": "LESS media and directive extension collections",
+        "evidence": "php-less-operand-review-2026-11-22.json"
+      }
     ]
   },
   "progress": {

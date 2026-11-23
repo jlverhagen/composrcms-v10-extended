@@ -36,6 +36,9 @@ class ILess_Node_Directive extends ILess_Node implements ILess_Node_VisitableInt
      */
     public $rules = array();
 
+    /** @var array Extensions collected while visiting this directive. */
+    public $allExtends = array();
+
     /**
      * Current index
      *

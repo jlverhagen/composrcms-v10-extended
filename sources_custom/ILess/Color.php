@@ -511,7 +511,7 @@ class ILess_Color
         $result = '';
         foreach ($argb as $i) {
             $i = ILess_Math::round($i);
-            $i = dechex($i > 255 ? 255 : ($i < 0 ? 0 : $i));
+            $i = dechex((int)($i > 255 ? 255 : ($i < 0 ? 0 : $i)));
             $result .= str_pad($i, 2, '0', STR_PAD_LEFT);
         }
 
@@ -540,7 +540,7 @@ class ILess_Color
             // }
             $color = array();
             foreach ($this->getFixedRgb() as $i) {
-                $color[] = str_pad(dechex($i), 2, '0', STR_PAD_LEFT);
+                $color[] = str_pad(dechex((int)$i), 2, '0', STR_PAD_LEFT);
             }
             $color = join('', $color);
             // convert color to short format

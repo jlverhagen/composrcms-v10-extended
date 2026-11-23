@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-22",
+  "site": "composr.duckdns.org",
+  "installed_version": "2026.11.1-alpha.22",
+  "candidate_version": "2026.11.1-alpha.23",
+  "backup": {
+    "scope": "Full Virtualmin backup of the test virtual server, including home directory and database dump",
+    "bytes": 2053765129,
+    "sha256": "5c662e92d75f7a1615b8720cb03add7d27f4c59c3a0c4370634ae3d34ac7e02a",
+    "gzip_integrity": "passed",
+    "archive_inventory": "Home directory archive and database dump present",
+    "restore_test": "Not performed on this new backup"
+  },
+  "guard": {
+    "manifest_sha256": "16e4229919635518698054ae988761770d8caa7ffb79a003d5e283b26ecebc28",
+    "protected_files_checked": 7,
+    "result": "all matched"
+  },
+  "limitations": [
+    "The archive integrity check does not establish that the site can be fully restored.",
+    "The previous isolated database restore tested a different backup.",
+    "Candidate has not been installed or published."
+  ]
+}

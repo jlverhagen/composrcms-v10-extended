@@ -537,8 +537,9 @@ function find_addon_dependencies_on($addon)
  * @param  PATH $dir Directory to save to
  * @param  ?array $mtimes A map of file mtimes to use (null: none)
  * @param  ?PATH $file_base Alternate file base to get addon files from (null: main website file base)
+ * @param  ?integer $metadata_mtime Timestamp for generated addon.inf (null: current time)
  */
-function create_addon($file, $files, $addon, $incompatibilities, $dependencies, $author, $organisation, $version, $category, $copyright_attribution, $licence, $description, $dir = 'exports/addons', $mtimes = null, $file_base = null)
+function create_addon($file, $files, $addon, $incompatibilities, $dependencies, $author, $organisation, $version, $category, $copyright_attribution, $licence, $description, $dir = 'exports/addons', $mtimes = null, $file_base = null, $metadata_mtime = null)
 {
     require_code('tar');
 
@@ -622,7 +623,7 @@ function create_addon($file, $files, $addon, $incompatibilities, $dependencies, 
     foreach ($settings as $setting_name => $setting_value) {
         $addon_inf .= $setting_name . '="' . str_replace("\n", '\n', str_replace('"', '\'', $setting_value)) . '"' . "\n";
     }
-    tar_add_file($tar, 'addon.inf', $addon_inf, 0644, time());
+    tar_add_file($tar, 'addon.inf', $addon_inf, 0644, ($metadata_mtime === null) ? time() : $metadata_mtime);
 
     tar_close($tar);
 

@@ -221,6 +221,18 @@
       "guest_su_date": "fixture 13 returned",
       "guest_su_title_only": "no result for body-only word",
       "caveat": "Guest checks used an administrator SU session and do not establish restricted-category behavior."
+    },
+    "encoded_guest_search": {
+      "runtime": "PHP 8.2 web",
+      "actor": "admin SU as Guest",
+      "draft": "guarded news full-text fallback",
+      "queries": {
+        "café": "no results",
+        "eacute": "fixture 13 returned",
+        "caf&eacute;": "no results"
+      },
+      "interpretation": "The draft indexes the entity name as a word but does not make the rendered word searchable. Searching an entity name is not an acceptable automatic substitution: it can match unrelated entity uses and punctuation changes query handling. A decoded search representation or other verified design is needed.",
+      "cleanup": "original search source restored and verified by SHA-256"
     }
   }
 }

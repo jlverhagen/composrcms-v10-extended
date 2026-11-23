@@ -1,0 +1,168 @@
+{
+  "date": "2026-11-22",
+  "finding": "F17",
+  "scope": "isolated CLI copies of current development ILess; no installed-site or web LESS compilation",
+  "cause": "Parser assigns parensInOp to dimension, color, and variable operands without a declared property, causing PHP dynamic-property deprecations.",
+  "change": "Declare the boolean flag on ILess_Node; existing Expression and Operation declarations are retained.",
+  "node_sha256_before": "0e6c69770a4bfe53b1f0ea69bb696485d68a2d0ec4d9ecafdbb28c0d9f18a1b0",
+  "node_sha256_after": "d5c54bf42386fbd876a7bb1db71e01276e1b88c03c52fa4ab426d76f9929417e",
+  "fixture_probe_sha256": "b57c5bb64cd6a1df1307b35b98621eef4c66cd1af0e5117a92e5b1d6486c0792",
+  "fixture_count": 7,
+  "fixture_coverage": [
+    "dimension addition and division",
+    "variable multiplication and negation",
+    "color addition",
+    "nested arithmetic",
+    "calc expression",
+    "nested selectors"
+  ],
+  "output_sha256": "681324a091ed8fc496bc35a29facce9833178fbdaefbb9b427485f84a1b4b5d7",
+  "results": {
+    "8.2.36": {
+      "before_exit": 0,
+      "after_exit": 0,
+      "before_stderr_lines": 34,
+      "after_stderr_lines": 0,
+      "before_after_output_identical": true
+    },
+    "8.3.37": {
+      "before_exit": 0,
+      "after_exit": 0,
+      "before_stderr_lines": 34,
+      "after_stderr_lines": 0,
+      "before_after_output_identical": true
+    },
+    "8.4.28": {
+      "before_exit": 0,
+      "after_exit": 0,
+      "before_stderr_lines": 34,
+      "after_stderr_lines": 0,
+      "before_after_output_identical": true
+    },
+    "8.5.13": {
+      "before_exit": 0,
+      "after_exit": 0,
+      "before_stderr_lines": 34,
+      "after_stderr_lines": 0,
+      "before_after_output_identical": true
+    }
+  },
+  "regression_test": "_tests/tests/unit_tests/less_operations.php; exercised through a stub cms_test_case under local PHP 8.4.27",
+  "limits": [
+    "The pre-fix diagnostics were duplicated by display and logging configuration: 34 stderr lines per remote run do not mean 34 unique deprecations.",
+    "No CMS web compilation, theme asset delivery, complete LESS syntax coverage, release packaging, or installed-site change was performed.",
+    "The new shared declaration changes property existence on other ILess node subclasses; repository review found the existing parensInOp property-existence check guarded by the separately declared parens property."
+  ],
+  "extended_batch": {
+    "findings": [
+      "F17",
+      "F18",
+      "F19"
+    ],
+    "fixture_count": 22,
+    "additional_direct_argb_check": true,
+    "coverage": [
+      "arithmetic",
+      "variable negation",
+      "color operations and functions",
+      "mixins",
+      "nested selectors",
+      "media and selector extension",
+      "supports directives",
+      "calc",
+      "direct ARGB conversion"
+    ],
+    "probe_sha256": "dae162023708a00db7bdca7096719b80ed1938efe5ed99cabc1b6750d35b08d0",
+    "output_sha256": "9e89db50c6fa8e91196a9972eaf5fe7e654f6bc5c96c2f881ac3d56339de1891",
+    "per_version": {
+      "8.2.36": {
+        "before_exit": 0,
+        "after_exit": 0,
+        "before_stderr_lines": 58,
+        "after_stderr_lines": 0,
+        "before_after_output_identical": true,
+        "regression_passed_with_stub_framework": true
+      },
+      "8.3.37": {
+        "before_exit": 0,
+        "after_exit": 0,
+        "before_stderr_lines": 58,
+        "after_stderr_lines": 0,
+        "before_after_output_identical": true,
+        "regression_passed_with_stub_framework": true
+      },
+      "8.4.28": {
+        "before_exit": 0,
+        "after_exit": 0,
+        "before_stderr_lines": 58,
+        "after_stderr_lines": 0,
+        "before_after_output_identical": true,
+        "regression_passed_with_stub_framework": true
+      },
+      "8.5.13": {
+        "before_exit": 0,
+        "after_exit": 0,
+        "before_stderr_lines": 58,
+        "after_stderr_lines": 0,
+        "before_after_output_identical": true,
+        "regression_passed_with_stub_framework": true
+      }
+    },
+    "additional_changes": {
+      "sources_custom/ILess/Color.php": "Explicit integer conversion at both dechex calls, preserving previous implicit truncation behavior.",
+      "sources_custom/ILess/Node/Media.php": "Declare allExtends before visitor assignment.",
+      "sources_custom/ILess/Node/Directive.php": "Declare allExtends before visitor assignment."
+    },
+    "regression_negative_control": "The new regression test failed on the baseline, reporting deprecations, and passed on the fixed source in a stub test framework.",
+    "limitations": [
+      "No CMS web LESS compilation or final package acceptance.",
+      "No assertions that pre-existing fractional color conversion is mathematically correct; outputs intentionally match baseline.",
+      "Only the stated fixtures and diagnostics were covered."
+    ]
+  },
+  "offline_addon_packaging": {
+    "scope": "Development working trees; temporary local builds only, not released artifacts",
+    "builder": "hub/publisher/build_addon_tars.php",
+    "addons": {
+      "less": {
+        "entries": 88,
+        "first_sha256": "b83af711b74d1353ab6cf66c98ce35e7628f22c7070704a3f6affcc76d2e8cfa",
+        "repeat_sha256": "b368d4082e3de4d9574962b93b4f3e0d25f52986b3b4a8ecf9cc45e1a2f54a14",
+        "verified_sources": [
+          "sources_custom/ILess/Node.php",
+          "sources_custom/ILess/Color.php",
+          "sources_custom/ILess/Node/Media.php",
+          "sources_custom/ILess/Node/Directive.php"
+        ]
+      },
+      "testing_platform": {
+        "entries": 464,
+        "first_sha256": "282ae16fcc5305635a8052d164492dcec992aab7f3492ddbeb15d1db86a6e1b7",
+        "repeat_sha256": "287340af28b137b4f1d206ac74a5bb1855e7422e73e9dfd33647731a30e4578e",
+        "verified_sources": [
+          "_tests/tests/unit_tests/less_operations.php"
+        ]
+      }
+    },
+    "verification": "Both first-build TARs passed the Extended local addon identity/hash preflight; listed source bytes matched the working tree. After safe extraction, the packaged regression ran successfully against packaged ILess under local PHP 8.4.27 using a stub test framework.",
+    "repeat_comparison": "All members and file contents matched between builds; addon.inf mtime was the only metadata difference observed, yielding different archive hashes.",
+    "limitations": [
+      "The copies were not installed in Composr.",
+      "The new packages were not signed or published.",
+      "Builds used the current working tree, including pending changes.",
+      "Byte reproducibility of these addon TARs is not established; stock create_addon supplies the generated metadata timestamp."
+    ],
+    "reproducibility_follow_up": {
+      "fix": "Optional generated addon.inf mtime parameter in core create_addon; offline addon builder explicitly uses zero and rejects older core exporters without this capability. Existing callers retain current-time behavior.",
+      "first_and_repeat_match": true,
+      "less_sha256": "bd9867cf2cba5b0652450bb3ec49b2b4c1b30733edd7426cc23646050a5f546a",
+      "testing_platform_sha256": "b351f26a007feb731f7e7e4be7ae3958c7689db807ea7898654e8266cd30b61a",
+      "verification": "Both matching first-build TARs passed Extended identity and hash preflight. A legacy builder invoking create_addon without the new argument generated addon.inf with current time; the modified offline builder used timestamp zero.",
+      "automated_tests": "Six addon policy/reproducibility tests passed. Full hub discovery on a temporary expected-layout checkout: 68 tests, 67 passed, one skipped because local PHP lacked cURL. An initial run against the wrong directory layout failed to locate the CMS files and was rerun with the proper layout.",
+      "limits": [
+        "Reproducibility is verified for repeated builds from the same working tree and filesystem metadata, not across machines or checkouts.",
+        "No web installation, signature, publication, or final package acceptance."
+      ]
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "version": "2026.11.1-alpha.23",
+  "date": "2026-11-22",
+  "status": "local_unpublished_working_tree_candidate_not_accepted",
+  "source": {
+    "core_head": "91538e906c52ce94f7292ec7b3724f7e7acdccef",
+    "hub_head": "3189addf321f642fce43a23b734a3f58a2773ad0",
+    "core_modified_and_untracked_file_sha256": {
+      "docs/extended/php-compatibility-audit-2026-11-17.md": "e256364df4524868354393144d50c1e025ca33f7bb55341be40cebbed35aa6d2",
+      "docs/extended/php-compatibility-findings.json": "f6bc3d5eac789c1d5fb665e001a837522ae08b4b660badb8e14bf38237339659",
+      "docs/extended/php-workflow-acceptance.json": "c0a81c7721847189673053f47672ec3c365a4c01d1551708ec7a4449541a0cda",
+      "docs/extended/php-workflow-acceptance.md": "7d9af25124072ecfada0d28b8439ed5960f6ca3884a91a74e938aa9901852907",
+      "docs/extended/php82-search-observations-2026-11-21.json": "ea4c52d8840592332c2a1df4e2b0a1e23118b668f10955c1695be75b6f6c4a42",
+      "sources/addons2.php": "cc88ec658a167e57f88e352431a3d12e9fc6aaf400de345b004bed54444a7c8b",
+      "sources/database_search.php": "79bc9ea36c40f0e4daab8c14145815ffa632f3641ea044f5797046e929d56e0b",
+      "sources_custom/ILess/Color.php": "24513ceb8a274ee72659753893cfc8148aaa0f67cfd3ecdd278a7505989dfffd",
+      "sources_custom/ILess/Node.php": "d5c54bf42386fbd876a7bb1db71e01276e1b88c03c52fa4ab426d76f9929417e",
+      "sources_custom/ILess/Node/Directive.php": "3c8e6615e871d77fba5065b06af1b661633def84e90e2a56f84e2481b23c70ee",
+      "sources_custom/ILess/Node/Media.php": "d517c925d23fd4b8c3aaf5a850f0c139f30ada8d6f965883f956148033ca7c1c",
+      "sources_custom/hooks/systems/addon_registry/testing_platform.php": "18eb5475bb9145aef34b21ed1aed17cb6c70ae140cd69b717bd8c7124523a120",
+      "_tests/tests/unit_tests/less_operations.php": "0506a807553bf77a27b94f209bf395b519034fa1519f9ac8563ec92d9992bc9e",
+      "docs/extended/php-less-operand-review-2026-11-22.json": "ab869eb65e5a52463101b815ed6af731fd77a6e64ad4e38b1021b02cbd527519"
+    },
+    "hub_modified_and_untracked_file_sha256": {
+      "hub/publisher/README.md": "672a9b15c7bdf072734be3d2765d009fbacda27475c3429ae9d32b50b7cf4239",
+      "hub/publisher/build_addon_tars.php": "3b9e21f8be5bc8ed0315ac4a0f512808b667a26a5c9160330103777b2e643e3e",
+      "hub/tests/test_addon_maintenance_policy.py": "0b2a2a1e7c471290b5375db4d6e95f6e950852966ee4dd8adb2a18f1a5fcd947",
+      "hub/tests/test_transport_php.py": "a7de677c34071da0076365de850bf983e10758cc2f401ce9c55cac722f19a7f8",
+      "hub/publisher/verify_composr_packages.py": "5dffd29f1d90d22995dc2754dd290740485579cb06f9cfd7bf317e2bbb2e0c4c",
+      "hub/tests/test_addon_reproducibility.py": "b7a3cb1a1ca3a8d1eebfdc60ab809335318e2c9a3165a276ab3b704d33d813d2",
+      "hub/tests/test_composr_packages.py": "66a78f618262d40454f90ebfc277a08f18654b7eb24e708d0a6600f78d85c65b"
+    },
+    "warning": "Both inputs contained uncommitted changes; checkout HEADs alone do not identify the tested source. The evidence file being written is not part of this source snapshot."
+  },
+  "core_archives": {
+    "SHA256SUMS": {
+      "sha256": "6696098303eb16aa4f6cd6b41671970bafd9ffdf281c3b51394160745a31bf25",
+      "bytes": 557
+    },
+    "catalogue-enforcement-2026.11.1-alpha.23.sha256": {
+      "sha256": "16e4229919635518698054ae988761770d8caa7ffb79a003d5e283b26ecebc28",
+      "bytes": 791
+    },
+    "composr-2026.11.1-alpha.23.tar.gz": {
+      "sha256": "2c95286dad743efab90fc688d4f8f88c241462bbbbeda61633293766c6f8e96c",
+      "bytes": 17756755
+    },
+    "composr_manualextraction_installer-2026.11.1-alpha.23.zip": {
+      "sha256": "081cfc7cc68844a9452f522d5195636fdff1826426b5a2156db4fe9255f2fde8",
+      "bytes": 21219906
+    },
+    "composr_quick_installer-2026.11.1-alpha.23.zip": {
+      "sha256": "49f1bafef78804a06a5a8561f0b38e0d520442bb28f40514e4ac71b74d50f2df",
+      "bytes": 17882701
+    },
+    "composr_upgrader-2026.11.1-alpha.23.cms": {
+      "sha256": "b51f51f59cdc2247d9a43e8e91655c22adea8b0e439c4262e98dc3eae6033751",
+      "bytes": 55644160
+    }
+  },
+  "addons": {
+    "better_mail-10.x.tar": {
+      "sha256": "359e7081c62241ce2e9af4d8c1adfd81587d5112a3c8bc6d8f9e4d8ebceaf466",
+      "entries": 230
+    },
+    "cloudinary-10.x.tar": {
+      "sha256": "8b16d50ee4281769a6db7762bc35a470c24453c157af9642c806d75860d46c10",
+      "entries": 15
+    },
+    "composr_homesite-10.x.tar": {
+      "sha256": "de9de1e1607aa05323f7c85c87734b8fcfd535f6d8c22b6b7c76c2f6bf7b819c",
+      "entries": 64
+    },
+    "excel_support-10.x.tar": {
+      "sha256": "96fd416ccc5dc0423a0f02f5dff2e538a780ef2f1a8c04a9d80504c8860b057a",
+      "entries": 90
+    },
+    "facebook_support-10.x.tar": {
+      "sha256": "1bf78fa2c138238029df6c30dea187031ea41120184a7a17ef707043670bb0fc",
+      "entries": 52
+    },
+    "free_article_import-10.x.tar": {
+      "sha256": "0c0906d55ed2395b2d9394c8adccc40103776f30ee8557544211fa83d73d9ec9",
+      "entries": 4
+    },
+    "gallery_syndication-10.x.tar": {
+      "sha256": "8b55f15487eac5b468917002b414df111660c7b39c38d5e81493e68dfacee3e7",
+      "entries": 23
+    },
+    "getid3-10.x.tar": {
+      "sha256": "bb4a25e34c5934849eff081001b81815f10e5afe595729091edbf176a50f622a",
+      "entries": 87
+    },
+    "image_syndication-10.x.tar": {
+      "sha256": "d032ceaf4ca3176ef6333b6256113f954d51753f8ad576bac19f8c37d3425259",
+      "entries": 40
+    },
+    "less-10.x.tar": {
+      "sha256": "bd9867cf2cba5b0652450bb3ec49b2b4c1b30733edd7426cc23646050a5f546a",
+      "entries": 88
+    },
+    "locations_catalogues-10.x.tar": {
+      "sha256": "7f76fc02d294d129f3fc8fe92f1a015e3d4e1a61f0a4a23911aa901bd2c55ba0",
+      "entries": 8
+    },
+    "multi_domain_login-10.x.tar": {
+      "sha256": "f9cd5b10629c4975035723568eccdd25b0861b060638e6d5ad7e5df01ec29b9f",
+      "entries": 4
+    },
+    "nested_cpf_csv_lists-10.x.tar": {
+      "sha256": "e763d0197a994e66a1ece9ceb42f4a703abfec9ac10f6d2aa82176a92a256ed4",
+      "entries": 6
+    },
+    "openid-10.x.tar": {
+      "sha256": "bca2ebf4fae947d7f43ab179b34ae66a98e3e19490a80e6c5a47e07e9535fb77",
+      "entries": 13
+    },
+    "sortable_tables-10.x.tar": {
+      "sha256": "5353693ab3c824b1b1059494f5ae515ed3949112171f36ba38bade0a09df7ef0",
+      "entries": 14
+    },
+    "testing_platform-10.x.tar": {
+      "sha256": "b351f26a007feb731f7e7e4be7ae3958c7689db807ea7898654e8266cd30b61a",
+      "entries": 464
+    },
+    "theme_debug-10.x.tar": {
+      "sha256": "06f3c06c1d312e0900443774d57a2b2fda44082dc8257bd97d8464766ca40d56",
+      "entries": 6
+    },
+    "trickstr-10.x.tar": {
+      "sha256": "1804ae721ede98c2db09b99f11720061c0195c41e086bcaa04e1897c82aabd0c",
+      "entries": 18
+    },
+    "twitter_support-10.x.tar": {
+      "sha256": "affc8984f733aea7a65cc0b1e19c3f400437cde9af6670f44aa6df781f099d53",
+      "entries": 11
+    },
+    "user_simple_csv_sync-10.x.tar": {
+      "sha256": "092e850eae709733908f3f42e1100c55de6836cdcf048b33ec3a09e61c1dcd15",
+      "entries": 10
+    },
+    "webdav-10.x.tar": {
+      "sha256": "9f84c43ed4c7cd1fa183884430a599b2a0a38fd1bd7c48dfe1d59c1842432d40",
+      "entries": 171
+    }
+  },
+  "checks": [
+    "Core verifier passed version, cross-format inventory, checksums, guarded files and quick installer index checks.",
+    "All 21 addon archives passed Extended local package identity and hash preflight.",
+    "Repeated local builds matched all 6 core files and all 21 addon TARs byte for byte using the same working tree and filesystem metadata.",
+    "Upgrader contained exact working-tree sources/addons2.php and sources/database_search.php. LESS addon contained all four changed ILess files; testing_platform contained the new LESS regression test.",
+    "Four core package verifier regression tests passed."
+  ],
+  "limits": [
+    "This is a local unsigned build. No publication, upgrade, live install, or full CMS workflow acceptance.",
+    "The core includes the ordinary news search draft: super-admin and SU-as-guest checks were limited and full permissions, multilingual behavior, pagination, and performance remain unverified. Entity-encoded search remains unresolved.",
+    "The LESS changes are in the optional less addon, not automatically applied by the core upgrader.",
+    "Fresh backup and restore guard verification remain necessary before a site upgrade.",
+    "Repeatability was tested on one machine with identical filesystem metadata; cross-machine repeatability is not established."
+  ],
+  "committed_source_rebuild": {
+    "core_commit": "ff5f7be4af998743970bd763444f7685f852db63",
+    "hub_commit": "1d6836d62dc0b05f9f1b6e14311f1b8d5df28b3a",
+    "result": "All six core release files and 21 addon TARs matched the earlier working-tree build byte-for-byte on the same machine and filesystem metadata.",
+    "publication": "Local commits only; not pushed, signed, or published.",
+    "notes": "The prior working-tree hashes identify the original build inputs. The core commit includes this evidence file as it existed before adding this committed-source result; this follow-up does not change packaged code."
+  }
+}
