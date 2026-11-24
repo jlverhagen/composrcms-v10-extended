@@ -956,6 +956,27 @@ function nl_delim_match_sql($field, $i, $type = 'short', $param = null, $table_a
 }
 
 /**
+ * Add resolved news category permissions to a search condition.
+ *
+ * @param  string $where_clause Existing condition
+ * @param  array $cat_access Category IDs keyed by their string representation
+ * @return string Condition, unchanged if an unexpected category ID is encountered
+ */
+function search_news_category_access_where($where_clause, $cat_access)
+{
+    $allowed_categories = array();
+    foreach (array_keys($cat_access) as $category_id) {
+        $category_id = strval($category_id);
+        if (preg_match('#^(0|[1-9][0-9]*)$#D', $category_id) !== 1) {
+            return $where_clause;
+        }
+        $allowed_categories[] = $category_id;
+    }
+    $access_where = (count($allowed_categories) == 0) ? '1=0' : ('r.news_category IN (' . implode(',', $allowed_categories) . ')');
+    return ($where_clause == '') ? $access_where : ('(' . $where_clause . ') AND ' . $access_where);
+}
+
+/**
  * Get some rows, queried from the database according to the search parameters.
  *
  * @param  ?ID_TEXT $meta_type The META type used by our content (null: Cannot support META search)
@@ -1009,6 +1030,13 @@ function get_search_rows($meta_type, $meta_id_field, $content, $boolean_search, 
         $cat_sql .= ' UNION ALL ';
         $cat_sql .= 'SELECT DISTINCT category_name FROM ' . $db->get_table_prefix() . 'member_category_access WHERE (member_id=' . strval((int)get_member()) . ' AND active_until>' . strval(time()) . ') AND ' . db_string_equal_to('module_the_name', $permissions_module);
         $cat_access = list_to_map('category_name', $db->query($cat_sql, null, null, false, true));
+
+        // News category IDs are numeric. Apply the already-resolved access list
+        // before limiting either query, so inaccessible news cannot consume the
+        // entire result window. Retain the PHP check below as a second guard.
+        if (($permissions_module === 'news') && ($permissions_field === 'news_category') && (!$permissions_field_is_string) && (strpos(get_db_type(), 'mysql') !== false)) {
+            $where_clause = search_news_category_access_where($where_clause, $cat_access);
+        }
     }
 
     if (key($fields) == '') {
