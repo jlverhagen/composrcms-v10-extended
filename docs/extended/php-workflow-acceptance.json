@@ -394,7 +394,7 @@
           "fixture_ids": [
             "news:13"
           ],
-          "notes": "Exact revised marker found and old marker absent. Ordinary revised returns no UI results; direct MyISAM full-text matches it in boolean mode but not natural-language mode on a two-row table. Rendered caf\u00e9 is stored as caf&eacute; and boolean full-text matches eacute rather than caf\u00e9. F16 remains open; full case remains not_run."
+          "notes": "Exact revised marker found and old marker absent. Ordinary revised returns no UI results; direct MyISAM full-text matches it in boolean mode but not natural-language mode on a two-row table. Rendered café is stored as caf&eacute; and boolean full-text matches eacute rather than café. F16 remains open; full case remains not_run."
         },
         "8.3": {
           "status": "not_run",
@@ -431,7 +431,7 @@
           "evidence": null,
           "diagnostics": null,
           "fixture_ids": [],
-          "notes": "Preflight: cron service active, system schedule references the Composr bridge every five minutes. A disposable hook invoked twice via the web bridge with limit_hook recorded two runs; the hook and marker were removed and their absence verified. This confirms the selected web invocation, not the system schedule firing, failure reporting, diagnostics, or the complete W08 case. Admin Zone required session reconfirmation. Follow-up: system journal contains recent entries launching the site cron bridge; these establish launch, not completion. Optional Composr cron log was absent. Failure reporting remains untested. Isolated CLI harness using extracted bridge and stubbed dependencies: an intentionally thrown exception retained the simulated hook lock and skipped the finished marker on PHP 8.2, 8.3 and 8.5. Full CMS reporting and database persistence are unverified. Follow-up issue #61."
+          "notes": "Earlier preflight found the cron service active and inferred a five-minute test-site bridge schedule. A 2026-11-24 recheck did not substantiate that attribution; see the correction in php-workflow-acceptance.md. A disposable hook invoked twice via the web bridge with limit_hook recorded two runs; the hook and marker were removed and their absence verified. This confirms the selected web invocation, not the system schedule firing, failure reporting, diagnostics, or the complete W08 case. Admin Zone required session reconfirmation. Follow-up: system journal contains recent entries launching the site cron bridge; these establish launch, not completion. Optional Composr cron log was absent. Failure reporting remains untested. Isolated CLI harness using extracted bridge and stubbed dependencies: an intentionally thrown exception retained the simulated hook lock and skipped the finished marker on PHP 8.2, 8.3 and 8.5. Full CMS reporting and database persistence are unverified. Follow-up issue #61. On 2026-11-24 the site dashboard showed the scheduler setup task; crond was active, but the site's last_cron and start/finish marker timestamps were 2026-11-22 08:50:51 UTC. No explicit test-site document-root or domain bridge entry was found in the inspected system cron files, and recent bridge command log entries matched other paths. Indirect wrappers or systemd timers have not been ruled out. No full cron hook or schedule change was made; W08 remains not_run."
         },
         "8.3": {
           "status": "not_run",
