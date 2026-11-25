@@ -1016,7 +1016,6 @@ function get_search_rows($meta_type, $meta_id_field, $content, $boolean_search, 
     }
 
     $db = (substr($table, 0, 2) != 'f_') ? $GLOBALS['SITE_DB'] : $GLOBALS['FORUM_DB'];
-    $news_access_sql_applied = false;
 
     if ((!is_null($permissions_module)) && (!$GLOBALS['FORUM_DRIVER']->is_super_admin(get_member()))) {
         $g_or = _get_where_clause_groups(get_member());
@@ -1036,9 +1035,7 @@ function get_search_rows($meta_type, $meta_id_field, $content, $boolean_search, 
         // before limiting either query, so inaccessible news cannot consume the
         // entire result window. Retain the PHP check below as a second guard.
         if (($permissions_module === 'news') && ($permissions_field === 'news_category') && (!$permissions_field_is_string) && (strpos(get_db_type(), 'mysql') !== false)) {
-            $new_where_clause = search_news_category_access_where($where_clause, $cat_access);
-            $news_access_sql_applied = ($new_where_clause !== $where_clause);
-            $where_clause = $new_where_clause;
+            $where_clause = search_news_category_access_where($where_clause, $cat_access);
         }
     }
 
@@ -1494,19 +1491,6 @@ function get_search_rows($meta_type, $meta_id_field, $content, $boolean_search, 
 
                 $_count_query_main_search = '(SELECT COUNT(*) FROM (' . $tmp_subquery . ') counter)';
             }
-            // For the simple non-translated news path, count the union of the
-            // bounded keyword and content IDs rather than adding both counts.
-            // Other paths retain their existing approximate counting behavior.
-            $news_union_count = null;
-            if (($table === 'news r') && ($meta_type === 'news') && ($_count_query_keywords_search !== null) && (strpos(get_db_type(), 'mysql') !== false) && (db_has_subqueries($db->connection_read)) && ((!isset($cat_access)) || ($news_access_sql_applied))) {
-                $keyword_ids = 'SELECT r.id FROM ' . $_keywords_query;
-                $content_ids = 'SELECT r.id' . $query;
-                $GLOBALS['SITE_DB']->static_ob->apply_sql_limit_clause($keyword_ids, MAXIMUM_RESULT_COUNT_POINT);
-                $GLOBALS['SITE_DB']->static_ob->apply_sql_limit_clause($content_ids, MAXIMUM_RESULT_COUNT_POINT);
-                $union_ids = 'SELECT id FROM (' . $keyword_ids . ') search_keyword_ids UNION SELECT id FROM (' . $content_ids . ') search_content_ids';
-                $GLOBALS['SITE_DB']->static_ob->apply_sql_limit_clause($union_ids, MAXIMUM_RESULT_COUNT_POINT);
-                $news_union_count = $db->query_value_if_there('SELECT COUNT(*) FROM (' . $union_ids . ') search_unique_ids', true);
-            }
             $query = 'SELECT ' . $select . $query;
             if (($news_natural_relevance !== '') && ($order === '')) {
                 $query .= ' ORDER BY ' . $news_natural_relevance . ' DESC, ' . $news_boolean_relevance . ' DESC, r.id ASC';
@@ -1603,9 +1587,6 @@ function get_search_rows($meta_type, $meta_id_field, $content, $boolean_search, 
         attach_message(do_lang('COUNT_RESULTS') . ': ' . $results, 'inform');
     }
 
-    if (isset($news_union_count) && ($news_union_count !== null)) {
-        $t_count = intval($news_union_count);
-    }
     if (isset($cat_access)) {
         $before = count($t_rows);
         foreach ($t_rows as $i => $row) {
