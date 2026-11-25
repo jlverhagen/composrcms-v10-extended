@@ -278,15 +278,7 @@ The active seven-entry enforcement SHA-256 manifest was checked from the test si
 
 On the closed site, authenticated web requests under PHP 8.2 rendered the retained Comcode fixture with the R2 Unicode text, nested strong/italic markup, and no R1 marker, both initially and on refresh. News fixture 13 rendered its R2 title and body with the expected Unicode text and no visible PHP error. The news view may update its view counter. These are bounded read/render checks; no edit, clean-cache rebuild, independent anonymous access, scoped diagnostic-log delta or PHP 8.3–8.5 web test was performed. W12 remains not_run pending its remaining procedure; these observations do not change the existing W05 result or complete W11.
 
-## Integrity finding classification, 2026-11-25 Central
-
-The existing alpha.23 integrity scan displayed 44 unchecked entries. Based on their displayed site-relative names, 30 relate to sales-portal files, six have backup-like names, two are feeds, one is the custom float-field override, one is a mirror lock, and four fall into other categories. These categories do not establish ownership or whether any file can safely be removed. No handling or deletion was submitted.
-
-A read-only SHA-256 comparison of the sales-portal templates found 13 names present in each of two template locations. Four pairs were byte-identical and nine pairs differed. Identical names or contents do not establish which location is active, ownership, or whether either copy is safe to remove. The Admin Zone addon list rendered without a visible PHP diagnostic and no row matching the sales-portal name was observed; this does not establish that the module or its files are unused, or that they have no unregistered owner. No install or uninstall action was submitted. The dashboard again showed alpha.23 and the closed-site notice. Full W10/W12 procedures, use/ownership review, and scoped server diagnostic-log checks remain outstanding; this is not acceptance on other PHP versions.
-
-## Scheduler observation and excluded files, 2026-11-25 Central
-
-The user identified the sales-portal files reported by the integrity scan as fixtures for a separate addon project and requested that they be ignored. They are outside this audit and must be preserved; their ownership and use require no further investigation for this project.
+## Scheduler observation, 2026-11-25 Central
 
 On the closed alpha.23 test site, a read-only check at 17:39:28 Central found matching CMS `last_cron_started` and `last_cron_finished` timestamps of 17:35:02. The broader system journal showed the site-specific cron command starting and ending at 17:25, 17:30, 17:35 and 17:40 Central. No output lines were returned for the dedicated job logger over the initial 20-minute query. An initial query restricted to the crond systemd unit returned zero matching launch records even though the broader system journal contained them; the unit-scoped result must not be interpreted as scheduler inactivity.
 
