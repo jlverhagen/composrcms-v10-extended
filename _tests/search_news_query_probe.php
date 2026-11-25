@@ -23,7 +23,7 @@ function list_to_map($key,$rows){$r=array();foreach($rows as $row){$r[$row[$key]
 class Forum {public $admin=false;function is_super_admin($m){return $this->admin;}}
 class FakeStatic {function apply_sql_limit_clause(&$sql,$limit){$sql.=' LIMIT '.(int)$limit;}}
 class FakeDB {
-    public $db,$dedupe_mode=false,$connection_read=null,$queries=array(),$static_ob;
+    public $db,$dedupe_mode=false,$connection_read=null,$queries=array(),$static_ob,$fail_keyword_count=false;
     function __construct(){
         $this->static_ob=new FakeStatic();
         $this->db=new SQLite3(':memory:');
@@ -48,6 +48,7 @@ class FakeDB {
     }
     function query_value_if_there($sql,$fail_ok=false){
         if (preg_match('/\\bunion\\b/i', $sql)) throw new Exception('Count query contains UNION');
+        if ($this->fail_keyword_count && strpos($sql, 'search_keyword_only_ids') !== false) return null;
         if (substr($sql,0,1)==='(' && substr($sql,-1)===')') $sql=substr($sql,1,-1);
         $r=$this->query($sql);return reset($r[0]);
     }
@@ -76,6 +77,13 @@ $order='r.date_and_time';
 $rows=get_search_rows('news','id','audit',true,'AND',false,'DESC',1,0,false,'news r',array('r.title'=>'SHORT_TRANS'),'r.validated=1','', $order,'r.*',array(),'news','news_category');
 if($GLOBALS['TOTAL_SEARCH_RESULTS']!==4){throw new Exception('Partial overlap or duplicate keyword count failed: '.$GLOBALS['TOTAL_SEARCH_RESULTS']);}
 echo "Keyword-only, content-only and duplicate keywords count distinctly\n";
+$GLOBALS['SITE_DB']->fail_keyword_count=true;
+$GLOBALS['TOTAL_SEARCH_RESULTS']=0;
+$order='r.date_and_time';
+$rows=get_search_rows('news','id','audit',true,'AND',false,'DESC',1,0,false,'news r',array('r.title'=>'SHORT_TRANS'),'r.validated=1','', $order,'r.*',array(),'news','news_category');
+if (count($rows)!==1 || (int)reset($rows)['id']!==13 || $GLOBALS['TOTAL_SEARCH_RESULTS']<4) throw new Exception('Failed count did not fall back');
+echo "Failed supplemental count falls back and retains visible rows\n";
+$GLOBALS['SITE_DB']->fail_keyword_count=false;
 $GLOBALS['SITE_DB']->db->exec("DELETE FROM cms_group_category_access");
 $GLOBALS['TOTAL_SEARCH_RESULTS']=0;
 $order='r.date_and_time';
@@ -92,3 +100,19 @@ $order='r.date_and_time';
 $rows=get_search_rows('news','id','audit',true,'AND',false,'DESC',1,0,true,'news r',array('r.title'=>'SHORT_TRANS'),'r.validated=1','', $order,'r.*',array(),'news','news_category');
 if(count($rows)!==1 || (int)reset($rows)['id']!==16){throw new Exception('Admin title-only search failed');}
 echo "Admin title-only search is not restricted\n";
+$GLOBALS['FORUM_DRIVER']->admin=false;
+$GLOBALS['SITE_DB']->db->exec('DELETE FROM cms_news');
+$GLOBALS['SITE_DB']->db->exec('DELETE FROM cms_seo_meta_keywords');
+$GLOBALS['SITE_DB']->db->exec('DELETE FROM cms_member_category_access');
+$GLOBALS['SITE_DB']->db->exec("INSERT INTO cms_group_category_access VALUES (1,'news','1')");
+$GLOBALS['SITE_DB']->db->exec('BEGIN');
+for ($i=1; $i<=2100; $i++) {
+    $GLOBALS['SITE_DB']->db->exec("INSERT INTO cms_news VALUES ($i,1,1,'audit fixture',$i)");
+    $GLOBALS['SITE_DB']->db->exec("INSERT INTO cms_seo_meta_keywords VALUES ('$i','news','audit')");
+}
+$GLOBALS['SITE_DB']->db->exec('COMMIT');
+$GLOBALS['TOTAL_SEARCH_RESULTS']=0;
+$order='r.date_and_time';
+$rows=get_search_rows('news','id','audit',true,'AND',false,'DESC',1,0,false,'news r',array('r.title'=>'SHORT_TRANS'),'r.validated=1','', $order,'r.*',array(),'news','news_category');
+if ($GLOBALS['TOTAL_SEARCH_RESULTS']!==2000) throw new Exception('Capped count changed: '.$GLOBALS['TOTAL_SEARCH_RESULTS']);
+echo "Capped count is approximate: 2000 reported for 2100 matching records\n";
