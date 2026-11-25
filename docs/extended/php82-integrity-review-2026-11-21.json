@@ -7,7 +7,6 @@
   "override": "sources_custom/hooks/systems/fields/float.php",
   "override_disposition": "Preserve: normalized comparison differs only by removal of unconditional fatal_exit in bundled hook.",
   "custom_file_groups": [
-    "Existing sales_portal code and templates",
     "Existing news_api backup TAR files",
     "Existing mirror synchronization lock",
     "Existing site assets and backup files"
