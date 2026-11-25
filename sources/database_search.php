@@ -1016,6 +1016,7 @@ function get_search_rows($meta_type, $meta_id_field, $content, $boolean_search, 
     }
 
     $db = (substr($table, 0, 2) != 'f_') ? $GLOBALS['SITE_DB'] : $GLOBALS['FORUM_DB'];
+    $news_access_sql_applied = false;
 
     if ((!is_null($permissions_module)) && (!$GLOBALS['FORUM_DRIVER']->is_super_admin(get_member()))) {
         $g_or = _get_where_clause_groups(get_member());
@@ -1035,7 +1036,9 @@ function get_search_rows($meta_type, $meta_id_field, $content, $boolean_search, 
         // before limiting either query, so inaccessible news cannot consume the
         // entire result window. Retain the PHP check below as a second guard.
         if (($permissions_module === 'news') && ($permissions_field === 'news_category') && (!$permissions_field_is_string) && (strpos(get_db_type(), 'mysql') !== false)) {
-            $where_clause = search_news_category_access_where($where_clause, $cat_access);
+            $filtered_where_clause = search_news_category_access_where($where_clause, $cat_access);
+            $news_access_sql_applied = ($filtered_where_clause !== $where_clause);
+            $where_clause = $filtered_where_clause;
         }
     }
 
@@ -1483,6 +1486,17 @@ function get_search_rows($meta_type, $meta_id_field, $content, $boolean_search, 
                 $query .= (($where_clause == '') ? ' WHERE ' : ' AND ') . '(' . $where_clause_and . ')';
             }
             $query .= ($group_by_ok ? ' GROUP BY r.id' : '');
+            $news_keyword_only_count_query = null;
+            if (($table === 'news r') && ($meta_type === 'news') && ($_count_query_keywords_search !== null) && (strpos(get_db_type(), 'mysql') !== false) && (db_has_subqueries($db->connection_read)) && ((!isset($cat_access)) || ($news_access_sql_applied))) {
+                // Both source sets are bounded. Count distinct keyword IDs not
+                // already in the content set, then add the content count below.
+                // This avoids a UNION query, which the database safety check rejects.
+                $content_ids = 'SELECT r.id' . $query;
+                $GLOBALS['SITE_DB']->static_ob->apply_sql_limit_clause($content_ids, MAXIMUM_RESULT_COUNT_POINT);
+                $keyword_only_ids = 'SELECT DISTINCT r.id FROM ' . $_keywords_query . ' AND NOT EXISTS (SELECT 1 FROM (' . $content_ids . ') search_content_ids WHERE search_content_ids.id=r.id)';
+                $GLOBALS['SITE_DB']->static_ob->apply_sql_limit_clause($keyword_only_ids, MAXIMUM_RESULT_COUNT_POINT);
+                $news_keyword_only_count_query = 'SELECT COUNT(*) FROM (' . $keyword_only_ids . ') search_keyword_only_ids';
+            }
             if (!db_has_subqueries($db->connection_read)) {
                 $_count_query_main_search = 'SELECT COUNT(*) ' . $query;
             } else { // Has to do a nested subquery to reduce scope of COUNT(*), because the unbounded full-text's binary tree descendance can be extremely slow on physical disks if common words exist that aren't defined as MySQL stop words
@@ -1517,6 +1531,13 @@ function get_search_rows($meta_type, $meta_id_field, $content, $boolean_search, 
             $t_main_search_rows_count = $db->query_value_if_there(remove_unneeded_joins_rough($_count_query_main_search));
             cms_profile_end_for('SEARCH:t_main_search_rows_count', $_count_query_main_search);
             $t_count += $t_main_search_rows_count;
+            $news_unique_count = null;
+            if (($news_keyword_only_count_query !== null) && ($t_main_search_rows_count !== null)) {
+                $keyword_only_count = $db->query_value_if_there($news_keyword_only_count_query, true);
+                if ($keyword_only_count !== null) {
+                    $news_unique_count = intval($t_main_search_rows_count) + intval($keyword_only_count);
+                }
+            }
 
             cms_profile_start_for('SEARCH:t_main_search_rows');
             $t_main_search_rows = $db->query(remove_unneeded_joins_rough($query), $max + $start, null, false, true/*, $fields Actually will hurt performance - we usually won't show text_parsed fields as we re-parse Comcode with syntax highlighting*/);
@@ -1587,6 +1608,9 @@ function get_search_rows($meta_type, $meta_id_field, $content, $boolean_search, 
         attach_message(do_lang('COUNT_RESULTS') . ': ' . $results, 'inform');
     }
 
+    if (isset($news_unique_count)) {
+        $t_count = $news_unique_count;
+    }
     if (isset($cat_access)) {
         $before = count($t_rows);
         foreach ($t_rows as $i => $row) {
