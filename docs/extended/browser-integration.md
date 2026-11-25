@@ -90,7 +90,7 @@ The original stock TAR also passed separate PHP preflight on all four versions w
 
 ## Nested-file and theme stock exports
 
-Composr 10.0.52 generated both TARs through its stock exporter. The nested custom export selected only `icon/mime/readme.txt`. The theme export used the test site's News Site theme with 194 CSS, image and theme metadata selections. Sales Portal templates were excluded. Composr added companion files such as `.editfrom` where applicable.
+Composr 10.0.52 generated both TARs through its stock exporter. The nested custom export selected only `icon/mime/readme.txt`. The theme export used the test site's News Site theme with 194 CSS, image and theme metadata selections. Composr added companion files such as `.editfrom` where applicable.
 
 | Addon ID | Entries | Bytes | SHA-256 |
 | --- | ---: | ---: | --- |
