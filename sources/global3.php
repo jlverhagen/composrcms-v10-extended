@@ -627,7 +627,10 @@ function set_extra_request_metadata($metadata, $row = null, $content_type = null
 
         foreach ($cma_mappings as $meta_type => $cma_field) {
             if (!isset($METADATA[$meta_type])) {
-                if ($cma_field == 'content_type_universal_label' || isset($row[$cma_info[$cma_field]])) {
+                // A null field mapping historically accessed the empty-string key.
+                // Normalise it before every row lookup for PHP 8.5.
+                $row_field = $cma_info[$cma_field] ?? '';
+                if ($cma_field == 'content_type_universal_label' || isset($row[$row_field])) {
                     switch ($meta_type) {
                         case 'type':
                             $val_raw = $cma_info[$cma_field];
@@ -636,26 +639,26 @@ function set_extra_request_metadata($metadata, $row = null, $content_type = null
 
                         case 'created':
                         case 'modified':
-                            $val_raw = strval($row[$cma_info[$cma_field]]);
-                            $val = date('Y-m-d', $row[$cma_info[$cma_field]]);
+                            $val_raw = strval($row[$row_field]);
+                            $val = date('Y-m-d', $row[$row_field]);
                             break;
 
                         case 'publisher':
                         case 'creator':
                             if ($cma_field == 'author_field') {
-                                $val_raw = $row[$cma_info[$cma_field]];
+                                $val_raw = $row[$row_field];
                                 $val = $val_raw;
                             } else {
-                                $val_raw = strval($row[$cma_info[$cma_field]]);
-                                $val = $GLOBALS['FORUM_DRIVER']->get_username($row[$cma_info[$cma_field]]);
+                                $val_raw = strval($row[$row_field]);
+                                $val = $GLOBALS['FORUM_DRIVER']->get_username($row[$row_field]);
                             }
                             break;
 
                         case 'title':
                             if ($cma_info['title_field_dereference']) {
-                                $val_raw = get_translated_text($row[$cma_info[$cma_field]], $cma_info['connection']);
+                                $val_raw = get_translated_text($row[$row_field], $cma_info['connection']);
                             } else {
-                                $val_raw = $row[$cma_info[$cma_field]];
+                                $val_raw = $row[$row_field];
                             }
 
                             if ($content_type === 'comcode_page') {
@@ -675,26 +678,26 @@ function set_extra_request_metadata($metadata, $row = null, $content_type = null
                             break;
 
                         case 'description':
-                            if (is_integer($row[$cma_info[$cma_field]])) {
-                                $val_raw = get_translated_text($row[$cma_info[$cma_field]], $cma_info['connection']);
+                            if (is_integer($row[$row_field])) {
+                                $val_raw = get_translated_text($row[$row_field], $cma_info['connection']);
                             } else {
-                                $val_raw = $row[$cma_info[$cma_field]];
+                                $val_raw = $row[$row_field];
                             }
                             $val = $val_raw;
                             break;
 
                         case 'views':
-                            $val_raw = strval($row[$cma_info[$cma_field]]);
+                            $val_raw = strval($row[$row_field]);
                             $val = $val_raw;
                             break;
 
                         case 'validated':
-                            $val_raw = strval($row[$cma_info[$cma_field]]);
+                            $val_raw = strval($row[$row_field]);
                             $val = $val_raw;
                             break;
 
                         default:
-                            $val_raw = $row[$cma_info[$cma_field]];
+                            $val_raw = $row[$row_field];
                             $val = $val_raw;
                             break;
                     }
