@@ -218,6 +218,18 @@ function get_csv_data_values__and($csv_file, $map, $desired_field = null)
             $results[] = is_null($desired_field) ? $row : $row[$desired_field];
         }
     }
+    if ($desired_field === null) {
+        $seen = array();
+        foreach ($results as $key => $row) {
+            $signature = serialize($row);
+            if (isset($seen[$signature])) {
+                unset($results[$key]);
+            } else {
+                $seen[$signature] = true;
+            }
+        }
+        return $results;
+    }
     return array_unique($results);
 }
 
