@@ -28,7 +28,7 @@ Prepared 2026-11-19 at source checkpoint `a20c4ed50570477cf8e6aac713a5e69e9fb3f0
 | W12 | Integrity inventory | Not run | Not run | Not run | Not run |
 | W13 | Upgrade preservation | Not run | Not run | Not run | Not run |
 | W14 | Database behavior | Pass (bounded) | Pass (bounded) | Pass (bounded) | Pass (bounded) |
-| W15 | Optional maintained addons | Fail | Not run | Not run | Not run |
+| W15 | Optional maintained addons | Not run | Not run | Not run | Not run |
 | W16 | Final package acceptance | Not run | Not run | Not run | Not run |
 
 ## Procedures and test scope
@@ -509,3 +509,12 @@ A standalone regression was added at `_tests/webstandards_null_parent_probe.php`
 On the closed alpha.24 site, an authenticated Commandr request reported PHP 8.2.36 FPM. A newly created, uniquely named CSV fixture and disposable Comcode page exercised the already-installed locally built `sortable_tables` addon. The page displayed three expected rows including a quoted comma, escaped quotation marks and a UTF-8 name. Selecting the UTF-8 name filtered to its single row. Sorting the numeric column produced values 2, 9, 10 and then 10, 9, 2. These were browser interactions on the test site. The disposable page was deleted through the CMS; its source file was absent afterward. The CSV fixture was compared with the exact created bytes before deletion. Against the pre-test baselines, the application, site PHP, Apache and PHP 8.2 FPM logs retained their identities and had zero appended bytes. This is partial addon evidence only; other PHP web versions, database-table mode, and signed/final package acceptance remain open. W15 PHP 8.2 remains failed due to #72.
 
 For #72, a test-only change to an isolated copy of the Spout library performed an XLSX write/read round trip and restored the prior libxml loader callback and enabled/disabled state after successful and failing opens, on PHP 8.2.36, 8.3.37, 8.4.28 and 8.5.13 CLI. The experiment temporarily changes request-global parser state and uses a PHP-deprecated function; it is not committed, installed, security-approved or web-accepted. The approach requires a safe design review and further tests; no site security setting was changed.
+
+
+## Spreadsheet addon exclusion decision, 2026-11-26 Central
+
+The user chose to exclude `excel_support` from Extended until it can be properly rewritten and reviewed; #72 tracks that work. The previously recorded PHP 8.2 XLSX failure remains historical evidence and is not a compatibility pass. Since the addon is now outside the maintained release scope, that failure alone no longer sets the W15 PHP 8.2 cell to fail. W15 is **not run** as a whole because the remaining maintained addon workflows are incomplete.
+
+Core's legacy addon exporter skips `excel_support` and the already-excluded support-credits addon. Hub's offline addon builder rejects explicit or mixed requests for either excluded addon and skips them during automatic selection. Core installer construction, core package verification, source staging review and the generic staged-release archive builder reject the excluded spreadsheet payload. Existing user installations and their files are not removed; retained upstream source in the repository is reference material. The alpha.22 package list and prior test records above describe historical candidates and have not been rewritten.
+
+Validation: five hub maintenance-policy tests passed using PHP 8.2 CLI; the core legacy export probe passed automatic, normal explicit, spreadsheet explicit, and support-credits explicit selection under PHP 8.2, 8.3, 8.4 and 8.5 CLI. Four focused Python checks passed for installer rejection, verifier rejection, source archive rejection and unrelated core-file acceptance. From a clean earlier reviewed checkout whose relevant addon payloads have not changed, the modified offline builder rejected an explicit spreadsheet request and built the 20 remaining alpha.22-scope addon TARs in a temporary directory; inspection found no spreadsheet payload in them. These are local build and regression checks, not a published release, signed catalogue or web addon lifecycle acceptance. Older published artifacts were not modified. Before publishing, rebuild and verify one consolidated candidate from the final commits, recheck backup and guard status, and let the user perform the agreed upgrade.
