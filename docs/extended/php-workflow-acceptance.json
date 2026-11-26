@@ -653,32 +653,39 @@
         "8.2": {
           "status": "not_run",
           "evidence": null,
-          "diagnostics": null,
+          "diagnostics": "Combined four-version web-test window: application, site PHP and Apache logs unchanged; FPM restart notices only; no log rotation.",
           "fixture_ids": [
-            "news:13"
+            "news:13",
+            "news:18"
           ],
-          "notes": "Partial supporting evidence from W05: the PHP 8.2 CMS created, read and edited retained unvalidated news fixture 13 and verified revision 2 persisted after cache clear. Delete, database failure handling, duplicate replay and explicit driver/server details for this case remain unverified; full W14 is not run."
+          "notes": "Partial supporting evidence from W05: the PHP 8.2 CMS created, read and edited retained unvalidated news fixture 13 and verified revision 2 persisted after cache clear. Delete, database failure handling, duplicate replay and explicit driver/server details for this case remain unverified; full W14 is not run. Alpha.24 closed-site administrator web test: edited fixture 18 and read the saved title and marked body on PHP 8.2.36 FPM; original title restored; site returned to PHP 8.2.36. Application, site PHP and Apache logs had no new bytes in the combined test window; FPM logs contained routine restart notices; baselines intact. This is partial acceptance; per-version create/delete, replay and failure handling were not all tested. Nullable BIT behavior and all null-key trigger conditions were not established by this web path."
         },
         "8.3": {
           "status": "not_run",
           "evidence": null,
-          "diagnostics": null,
-          "fixture_ids": [],
-          "notes": null
+          "diagnostics": "Combined four-version web-test window: application, site PHP and Apache logs unchanged; FPM restart notices only; no log rotation.",
+          "fixture_ids": [
+            "news:18"
+          ],
+          "notes": " Alpha.24 closed-site administrator web test: edited fixture 18 and read the saved title and marked body on PHP 8.3.37 FPM; original title restored; site returned to PHP 8.2.36. Application, site PHP and Apache logs had no new bytes in the combined test window; FPM logs contained routine restart notices; baselines intact. This is partial acceptance; per-version create/delete, replay and failure handling were not all tested. Nullable BIT behavior and all null-key trigger conditions were not established by this web path."
         },
         "8.4": {
           "status": "not_run",
           "evidence": null,
-          "diagnostics": null,
-          "fixture_ids": [],
-          "notes": null
+          "diagnostics": "Combined four-version web-test window: application, site PHP and Apache logs unchanged; FPM restart notices only; no log rotation.",
+          "fixture_ids": [
+            "news:18"
+          ],
+          "notes": " Alpha.24 closed-site administrator web test: edited fixture 18 and read the saved title and marked body on PHP 8.4.28 FPM; original title restored; site returned to PHP 8.2.36. Application, site PHP and Apache logs had no new bytes in the combined test window; FPM logs contained routine restart notices; baselines intact. This is partial acceptance; per-version create/delete, replay and failure handling were not all tested. Nullable BIT behavior and all null-key trigger conditions were not established by this web path."
         },
         "8.5": {
           "status": "not_run",
           "evidence": null,
-          "diagnostics": null,
-          "fixture_ids": [],
-          "notes": null
+          "diagnostics": "Combined four-version web-test window: application, site PHP and Apache logs unchanged; FPM restart notices only; no log rotation.",
+          "fixture_ids": [
+            "news:18"
+          ],
+          "notes": " Alpha.24 closed-site administrator web test: edited fixture 18 and read the saved title and marked body on PHP 8.5.13 FPM; original title restored; site returned to PHP 8.2.36. Application, site PHP and Apache logs had no new bytes in the combined test window; FPM logs contained routine restart notices; baselines intact. This is partial acceptance; per-version create/delete, replay and failure handling were not all tested. Nullable BIT behavior and all null-key trigger conditions were not established by this web path."
         }
       }
     },
