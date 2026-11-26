@@ -56,6 +56,11 @@ $done_message = false;
 
 $addons = find_all_hooks('systems', 'addon_registry');
 foreach ($addons as $name => $place) {
+    // Retained reference sources are outside the Extended publication scope.
+    if (in_array($name, array('composr_homesite_support_credits', 'excel_support'), true)) {
+        continue;
+    }
+
     if (($only !== null) && ($only !== $name)) {
         continue;
     }
@@ -259,3 +264,4 @@ return <<<END
     :\$GLOBALS['SITE_DB']->query_update('download_downloads', array('description' => '{$_description}'), array('url' => 'uploads/downloads/' . rawurlencode('{$file}')));
 END;
 }
+
