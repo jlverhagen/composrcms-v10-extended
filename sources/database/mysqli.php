@@ -331,7 +331,9 @@ class Database_Static_mysqli extends Database_super_mysql
                         $newrow[$name] = floatval($v);
                     }
                 } elseif ($type === 16) { // Bit field
-                    if ((strlen($v) === 1) && (ord($v[0]) <= 1)) {
+                    if ($v === null) {
+                        $newrow[$name] = null;
+                    } elseif ((strlen($v) === 1) && (ord($v[0]) <= 1)) {
                         $newrow[$name] = ord($v); // 0/1 char format
                     } else {
                         $newrow[$name] = intval($v); // Int-as-string format
