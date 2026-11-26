@@ -8,6 +8,10 @@
 6. Publish an immutable release manifest using a separate core-update signing key.
 7. Release first as administrator-notification-only; do not auto-apply core updates.
 
+## Excluded spreadsheet addon
+
+`excel_support` is outside the Extended release scope until a secure replacement is reviewed and tested (issue #72). Keep its historical upstream source for reference, but omit its registry hook, `sources_custom/spout/`, `sources_custom/files_spout.php`, and its `sources_custom/files2.php` override from release staging. The hub's package builders and verifier reject these paths; its addon builder rejects the addon ID. Stage a clean release tree without changing existing installations, and do not delete user files during upgrades. Existing historical releases and inventories are evidence of older scope, not the current release list.
+
 ## Offline prototype
 
 Run these commands from the checkpoint root using Python 3.11 or later. The packaging input is a stable, reviewed staging tree. For scaffold testing use `cms`; for an actual release use the complete, reviewed release tree. Every entry in the supplied tree is considered for inclusion, including hidden files and empty directories. Stage only release files and keep Git metadata, credentials, deployment configuration, and generated output outside that tree.
