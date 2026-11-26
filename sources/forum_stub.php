@@ -386,15 +386,16 @@ class Forum_driver_base
     public function get_usergroup_list($hide_hidden = false, $only_permissive = false, $force_show_all = false, $force_find = null, $for_member = null, $skip_hidden = false)
     {
         global $USERGROUP_LIST_CACHE;
-        if ((!is_null($USERGROUP_LIST_CACHE)) && (isset($USERGROUP_LIST_CACHE[$hide_hidden][$only_permissive][$force_show_all][serialize($force_find)][$for_member][$skip_hidden]))) {
-            return $USERGROUP_LIST_CACHE[$hide_hidden][$only_permissive][$force_show_all][serialize($force_find)][$for_member][$skip_hidden];
+        $member_cache_key = ($for_member === null) ? '' : $for_member;
+        if ((!is_null($USERGROUP_LIST_CACHE)) && (isset($USERGROUP_LIST_CACHE[$hide_hidden][$only_permissive][$force_show_all][serialize($force_find)][$member_cache_key][$skip_hidden]))) {
+            return $USERGROUP_LIST_CACHE[$hide_hidden][$only_permissive][$force_show_all][serialize($force_find)][$member_cache_key][$skip_hidden];
         }
 
         $ret = $this->_get_usergroup_list($hide_hidden, $only_permissive, $force_show_all, $force_find, $for_member, $skip_hidden);
         if (is_null($USERGROUP_LIST_CACHE)) {
             $USERGROUP_LIST_CACHE = array();
         }
-        $USERGROUP_LIST_CACHE[$hide_hidden][$only_permissive][$force_show_all][serialize($force_find)][$for_member][$skip_hidden] = $ret;
+        $USERGROUP_LIST_CACHE[$hide_hidden][$only_permissive][$force_show_all][serialize($force_find)][$member_cache_key][$skip_hidden] = $ret;
         return $ret;
     }
 
