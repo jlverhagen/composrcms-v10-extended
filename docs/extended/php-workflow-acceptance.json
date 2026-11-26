@@ -656,9 +656,10 @@
           "diagnostics": "Combined four-version web-test window: application, site PHP and Apache logs unchanged; FPM restart notices only; no log rotation.",
           "fixture_ids": [
             "news:13",
-            "news:18"
+            "news:18",
+            "news:22"
           ],
-          "notes": "Partial supporting evidence from W05: the PHP 8.2 CMS created, read and edited retained unvalidated news fixture 13 and verified revision 2 persisted after cache clear. Delete, database failure handling, duplicate replay and explicit driver/server details for this case remain unverified; full W14 is not run. Alpha.24 closed-site administrator web test: edited fixture 18 and read the saved title and marked body on PHP 8.2.36 FPM; original title restored; site returned to PHP 8.2.36. Application, site PHP and Apache logs had no new bytes in the combined test window; FPM logs contained routine restart notices; baselines intact. This is partial acceptance; per-version create/delete, replay and failure handling were not all tested. Nullable BIT behavior and all null-key trigger conditions were not established by this web path."
+          "notes": "Partial supporting evidence from W05: the PHP 8.2 CMS created, read and edited retained unvalidated news fixture 13 and verified revision 2 persisted after cache clear. Delete, database failure handling, duplicate replay and explicit driver/server details for this case remain unverified; full W14 is not run. Alpha.24 closed-site administrator web test: edited fixture 18 and read the saved title and marked body on PHP 8.2.36 FPM; original title restored; site returned to PHP 8.2.36. Application, site PHP and Apache logs had no new bytes in the combined test window; FPM logs contained routine restart notices; baselines intact. This is partial acceptance; per-version create/delete, replay and failure handling were not all tested. Nullable BIT behavior and all null-key trigger conditions were not established by this web path. Alpha.24 browser POST result reload showed the similar-submission confirmation with Proceed not selected. Fixture 22 was deleted after user approval. For PHP 8.2 one matching row was counted before deletion; for PHP 8.3–8.5 zero rows remained for each complete title after cleanup. Sequential replay only, no concurrency test. CMS web database-write failure handling remains unverified."
         },
         "8.3": {
           "status": "not_run",
@@ -666,9 +667,10 @@
           "diagnostics": "Combined four-version web-test window: application, site PHP and Apache logs unchanged; FPM restart notices only; no log rotation.",
           "fixture_ids": [
             "news:18",
-            "news:19"
+            "news:19",
+            "news:23"
           ],
-          "notes": " Alpha.24 closed-site administrator web test: edited fixture 18 and read the saved title and marked body on PHP 8.3.37 FPM; original title restored; site returned to PHP 8.2.36. Application, site PHP and Apache logs had no new bytes in the combined test window; FPM logs contained routine restart notices; baselines intact. This is partial acceptance; per-version create/delete, replay and failure handling were not all tested. Nullable BIT behavior and all null-key trigger conditions were not established by this web path. Alpha.24: created/read and subsequently deleted fixture 19 using CMS web on PHP 8.3; missing-news response confirmed deletion. Application/site PHP/Apache logs unchanged and FPM logs contained restart notices during the combined four-version window. Duplicate replay and CMS web database-write failure handling remain unverified."
+          "notes": " Alpha.24 closed-site administrator web test: edited fixture 18 and read the saved title and marked body on PHP 8.3.37 FPM; original title restored; site returned to PHP 8.2.36. Application, site PHP and Apache logs had no new bytes in the combined test window; FPM logs contained routine restart notices; baselines intact. This is partial acceptance; per-version create/delete, replay and failure handling were not all tested. Nullable BIT behavior and all null-key trigger conditions were not established by this web path. Alpha.24: created/read and subsequently deleted fixture 19 using CMS web on PHP 8.3; missing-news response confirmed deletion. Application/site PHP/Apache logs unchanged and FPM logs contained restart notices during the combined four-version window. Duplicate replay and CMS web database-write failure handling remain unverified. Alpha.24 browser POST result reload showed the similar-submission confirmation with Proceed not selected. Fixture 23 was deleted after user approval. For PHP 8.2 one matching row was counted before deletion; for PHP 8.3–8.5 zero rows remained for each complete title after cleanup. Sequential replay only, no concurrency test. CMS web database-write failure handling remains unverified."
         },
         "8.4": {
           "status": "not_run",
@@ -676,9 +678,10 @@
           "diagnostics": "Combined four-version web-test window: application, site PHP and Apache logs unchanged; FPM restart notices only; no log rotation.",
           "fixture_ids": [
             "news:18",
-            "news:20"
+            "news:20",
+            "news:24"
           ],
-          "notes": " Alpha.24 closed-site administrator web test: edited fixture 18 and read the saved title and marked body on PHP 8.4.28 FPM; original title restored; site returned to PHP 8.2.36. Application, site PHP and Apache logs had no new bytes in the combined test window; FPM logs contained routine restart notices; baselines intact. This is partial acceptance; per-version create/delete, replay and failure handling were not all tested. Nullable BIT behavior and all null-key trigger conditions were not established by this web path. Alpha.24: created/read and subsequently deleted fixture 20 using CMS web on PHP 8.4; missing-news response confirmed deletion. Application/site PHP/Apache logs unchanged and FPM logs contained restart notices during the combined four-version window. Duplicate replay and CMS web database-write failure handling remain unverified."
+          "notes": " Alpha.24 closed-site administrator web test: edited fixture 18 and read the saved title and marked body on PHP 8.4.28 FPM; original title restored; site returned to PHP 8.2.36. Application, site PHP and Apache logs had no new bytes in the combined test window; FPM logs contained routine restart notices; baselines intact. This is partial acceptance; per-version create/delete, replay and failure handling were not all tested. Nullable BIT behavior and all null-key trigger conditions were not established by this web path. Alpha.24: created/read and subsequently deleted fixture 20 using CMS web on PHP 8.4; missing-news response confirmed deletion. Application/site PHP/Apache logs unchanged and FPM logs contained restart notices during the combined four-version window. Duplicate replay and CMS web database-write failure handling remain unverified. Alpha.24 browser POST result reload showed the similar-submission confirmation with Proceed not selected. Fixture 24 was deleted after user approval. For PHP 8.2 one matching row was counted before deletion; for PHP 8.3–8.5 zero rows remained for each complete title after cleanup. Sequential replay only, no concurrency test. CMS web database-write failure handling remains unverified."
         },
         "8.5": {
           "status": "not_run",
@@ -686,9 +689,10 @@
           "diagnostics": "Combined four-version web-test window: application, site PHP and Apache logs unchanged; FPM restart notices only; no log rotation.",
           "fixture_ids": [
             "news:18",
-            "news:21"
+            "news:21",
+            "news:25"
           ],
-          "notes": " Alpha.24 closed-site administrator web test: edited fixture 18 and read the saved title and marked body on PHP 8.5.13 FPM; original title restored; site returned to PHP 8.2.36. Application, site PHP and Apache logs had no new bytes in the combined test window; FPM logs contained routine restart notices; baselines intact. This is partial acceptance; per-version create/delete, replay and failure handling were not all tested. Nullable BIT behavior and all null-key trigger conditions were not established by this web path. Alpha.24: created/read and subsequently deleted fixture 21 using CMS web on PHP 8.5; missing-news response confirmed deletion. Application/site PHP/Apache logs unchanged and FPM logs contained restart notices during the combined four-version window. Duplicate replay and CMS web database-write failure handling remain unverified."
+          "notes": " Alpha.24 closed-site administrator web test: edited fixture 18 and read the saved title and marked body on PHP 8.5.13 FPM; original title restored; site returned to PHP 8.2.36. Application, site PHP and Apache logs had no new bytes in the combined test window; FPM logs contained routine restart notices; baselines intact. This is partial acceptance; per-version create/delete, replay and failure handling were not all tested. Nullable BIT behavior and all null-key trigger conditions were not established by this web path. Alpha.24: created/read and subsequently deleted fixture 21 using CMS web on PHP 8.5; missing-news response confirmed deletion. Application/site PHP/Apache logs unchanged and FPM logs contained restart notices during the combined four-version window. Duplicate replay and CMS web database-write failure handling remain unverified. Alpha.24 browser POST result reload showed the similar-submission confirmation with Proceed not selected. Fixture 25 was deleted after user approval. For PHP 8.2 one matching row was counted before deletion; for PHP 8.3–8.5 zero rows remained for each complete title after cleanup. Sequential replay only, no concurrency test. CMS web database-write failure handling remains unverified."
         }
       }
     },
