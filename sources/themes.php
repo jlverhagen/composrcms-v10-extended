@@ -160,7 +160,7 @@ function find_theme_image($id, $silent_fail = false, $leave_local = false, $them
                         }
                     }
 
-                    $checked[$url_path] = true;
+                    $checked[(string)$url_path] = true;
                 }
             }
         } else {
