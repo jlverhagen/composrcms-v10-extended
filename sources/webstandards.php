@@ -969,7 +969,7 @@ function _get_next_tag()
 
                 // Can't have loose text in form/body/etc
                 // 'x' is there for when called externally, checking on an x that has replaced, for example, a directive tag (which isn't actual text - so can't trip the error)
-                if (($in_no_mans_land != 'x') && (trim($in_no_mans_land) != '') && (isset($TEXT_NO_BLOCK[$PARENT_TAG])) && ($GLOBALS['BLOCK_CONSTRAIN'])) {
+                if (($in_no_mans_land != 'x') && (trim($in_no_mans_land) != '') && (isset($TEXT_NO_BLOCK[(string) $PARENT_TAG])) && ($GLOBALS['BLOCK_CONSTRAIN'])) {
                     $errors[] = array('XHTML_TEXT_NO_BLOCK', $PARENT_TAG);
                 }
 
