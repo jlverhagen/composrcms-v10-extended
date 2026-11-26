@@ -169,7 +169,7 @@ class JSMin
                             } elseif ($this->a === '\\') {
                                 $this->output .= $this->a;
                                 $this->a = $this->get();
-                            } elseif (ord($this->a) <= $chr_lf) {
+                            } elseif (ord($this->a === '' ? $this->a : $this->a[0]) <= $chr_lf) {
                                 //return array('Unterminated regular expression literal.');	We don't need to handle errors
                                 break;
                             }
@@ -238,7 +238,7 @@ class JSMin
         if ($c === null) {
             return false;
         }
-        $o = ord($c);
+        $o = ord($c === '' ? $c : $c[0]);
         return $o >= 65 && $o <= 90 || $o >= 97 && $o <= 122 || $o >= 48 && $o <= 57 || $c === '\\' || $c === '_' || $c === '$' || $o > 126;
     }
 
@@ -361,7 +361,7 @@ class JSMin
                             return null;
                         }
 
-                        if (ord($c) <= $chr_lf) {
+                        if (ord($c === '' ? $c : $c[0]) <= $chr_lf) {
                             return $c;
                         }
                     }
