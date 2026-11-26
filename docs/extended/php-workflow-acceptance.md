@@ -502,3 +502,10 @@ On the closed alpha.24 site, the prebuilt `theme_debug` TAR (SHA-256 `a0903bf4c5
 
 
 A standalone regression was added at `_tests/webstandards_null_parent_probe.php` in commit `f30df5ef33378da7010ba52fe9aa1ef81e999000`. Against the hash-verified #71 candidate, it passed on PHP 8.2.36, 8.3.37, 8.4.28 and 8.5.13 CLI, including the legacy empty-string-key behavior. This supplements the focused web regression above and does not complete W11.
+
+
+## W15 sortable-tables CSV edge cases, 2026-11-26 Central
+
+On the closed alpha.24 site, an authenticated Commandr request reported PHP 8.2.36 FPM. A newly created, uniquely named CSV fixture and disposable Comcode page exercised the already-installed locally built `sortable_tables` addon. The page displayed three expected rows including a quoted comma, escaped quotation marks and a UTF-8 name. Selecting the UTF-8 name filtered to its single row. Sorting the numeric column produced values 2, 9, 10 and then 10, 9, 2. These were browser interactions on the test site. The disposable page was deleted through the CMS; its source file was absent afterward. The CSV fixture was compared with the exact created bytes before deletion. Against the pre-test baselines, the application, site PHP, Apache and PHP 8.2 FPM logs retained their identities and had zero appended bytes. This is partial addon evidence only; other PHP web versions, database-table mode, and signed/final package acceptance remain open. W15 PHP 8.2 remains failed due to #72.
+
+For #72, a test-only change to an isolated copy of the Spout library performed an XLSX write/read round trip and restored the prior libxml loader callback and enabled/disabled state after successful and failing opens, on PHP 8.2.36, 8.3.37, 8.4.28 and 8.5.13 CLI. The experiment temporarily changes request-global parser state and uses a PHP-deprecated function; it is not committed, installed, security-approved or web-accepted. The approach requires a safe design review and further tests; no site security setting was changed.
