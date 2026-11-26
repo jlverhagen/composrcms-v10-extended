@@ -1,6 +1,6 @@
 # PHP 8.2–8.5 CMS workflow acceptance
 
-Prepared 2026-11-19 at source checkpoint `a20c4ed50570477cf8e6aac713a5e69e9fb3f078`. Tracks R05/R06 in issue #36. This is an execution ledger, not evidence that the CMS workflows have passed. Of 64 version/workflow cells, W05 and W06 on PHP 8.2.36 passed, W10 on PHP 8.2 failed, and 61 remain **not run**. Partial procedure evidence is recorded separately. Earlier syntax scans, library loading and focused probes remain useful separate evidence.
+Prepared 2026-11-19 at source checkpoint `a20c4ed50570477cf8e6aac713a5e69e9fb3f078`. Tracks R05/R06 in issue #36. This is an execution ledger, not evidence that the CMS workflows have passed. At that initial checkpoint, W05 and W06 on PHP 8.2.36 passed, W10 on PHP 8.2 failed, and the other 61 cells had not run. See the current matrix and later entries for subsequent results. Partial procedure evidence is recorded separately. Earlier syntax scans, library loading and focused probes remain useful separate evidence.
 
 ## Execution order
 
