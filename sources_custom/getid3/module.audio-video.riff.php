@@ -1624,6 +1624,9 @@ class getid3_riff extends getid3_handler
 						if (isset($RIFFchunk[$chunkname]) && is_array($RIFFchunk[$chunkname])) {
 							$thisindex = count($RIFFchunk[$chunkname]);
 						}
+						if ($RIFFchunk === false) {
+							$RIFFchunk = array();
+						}
 						$RIFFchunk[$chunkname][$thisindex]['offset'] = $this->ftell() - 8;
 						$RIFFchunk[$chunkname][$thisindex]['size']   = $chunksize;
 						switch ($chunkname) {
