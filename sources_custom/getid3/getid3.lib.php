@@ -277,7 +277,7 @@ class getid3_lib
 				$isnormalized = intval($bitword[16]);
 				$fractionstring = substr($bitword, 17, 63);
 				$exponent = pow(2, self::Bin2Dec($exponentstring) - 16383);
-				$fraction = $isnormalized + self::DecimalBinary2Float($fractionstring);
+				$fraction = $isnormalized + (bindec($fractionstring) / pow(2, strlen($fractionstring)));
 				$floatvalue = $exponent * $fraction;
 				if ($signbit == '1') {
 					$floatvalue *= -1;
