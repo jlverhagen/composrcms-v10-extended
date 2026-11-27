@@ -49,7 +49,7 @@ class Block_side_tag_cloud
     public function caching_environment()
     {
         $info = array();
-        $info['cache_on'] = 'array(array_key_exists(\'title\',$map)?$map[\'title\']:do_lang(\'search:TAG_CLOUD\'),array_key_exists(\'max\',$map)?intval($map[\'max\']):30,array_key_exists(\'zone\',$map)?$map[\'zone\']:\'_SEARCH\',array_key_exists(\'param\',$map)?$map[\'param\']:\'\',((array_key_exists(\'apply_permissions\', $map) ? intval($map[\'apply_permissions\']) : 0) == 1))';
+        $info['cache_on'] = 'array(array_key_exists(\'title\',$map)?$map[\'title\']:do_lang(\'search:TAG_CLOUD\'),array_key_exists(\'max\',$map)?intval($map[\'max\']):30,array_key_exists(\'zone\',$map)?$map[\'zone\']:\'_SEARCH\',array_key_exists(\'param\',$map)?$map[\'param\']:\'\',((array_key_exists(\'apply_permissions\', $map) ? intval($map[\'apply_permissions\']) : 1) == 1))';
         $info['special_cache_flags'] = CACHE_AGAINST_DEFAULT | CACHE_AGAINST_PERMISSIVE_GROUPS;
         $info['ttl'] = (get_value('no_block_timeout') === '1') ? 60 * 60 * 24 * 365 * 5/*5 year timeout*/ : 60 * 1;
         return $info;
@@ -70,7 +70,7 @@ class Block_side_tag_cloud
 
         $zone = array_key_exists('zone', $map) ? $map['zone'] : get_module_zone('search');
         $max_tags = array_key_exists('max', $map) ? intval($map['max']) : 30;
-        $apply_permissions = ((array_key_exists('apply_permissions', $map) ? intval($map['apply_permissions']) : 0) == 1);
+        $apply_permissions = ((array_key_exists('apply_permissions', $map) ? intval($map['apply_permissions']) : 1) == 1);
 
         $tags = array();
         $largest_num = 0;
