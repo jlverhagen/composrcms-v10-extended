@@ -57,7 +57,7 @@ $done_message = false;
 $addons = find_all_hooks('systems', 'addon_registry');
 foreach ($addons as $name => $place) {
     // Retained reference sources are outside the Extended publication scope.
-    if (in_array($name, array('composr_homesite_support_credits', 'excel_support'), true)) {
+    if (in_array($name, array('composr_homesite_support_credits', 'excel_support', 'nested_cpf_csv_lists'), true)) {
         continue;
     }
 
