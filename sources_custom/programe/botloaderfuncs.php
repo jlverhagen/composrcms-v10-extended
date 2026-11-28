@@ -837,8 +837,8 @@ function endElement($parser, $name)
 
     if (strtoupper($name)=="CATEGORY"){
         $template=trim($template);
-        $topic=trim($topic);
-        $that=trim($that);
+        $topic=trim((string) $topic);
+        $that=trim((string) $that);
         $pattern=trim($pattern);
 
         if ($that==""){
