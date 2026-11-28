@@ -572,14 +572,14 @@ function normalsentences($input){
 
 	//$cfull=preg_replace($contractsearch,$contractreplace,$cfull);
 
-	$cfull=str_replace($aftersearch,$afterreplace,$cfull);
+	$cfull=str_replace($aftersearch ?? "",$afterreplace ?? "",$cfull);
 
 	$replacecounter=1;
 	$aftersearch=array();
 	$afterreplace=array();
 
 	//$cfull=str_replace($removepunct,"",$cfull);
-	$cfull=str_replace($likeperiodsearch,$likeperiodreplace,$cfull);
+	$cfull=str_replace($likeperiodsearch ?? "",$likeperiodreplace ?? "",$cfull);
 
 	$newsentences=array();
 
@@ -621,7 +621,7 @@ function gender($input){
 
 	$newinput=preg_replace($gendersearch,$genderreplace,$input);
 
-	$newinput=str_replace($aftersearch,$afterreplace,$newinput);
+	$newinput=str_replace($aftersearch ?? "",$afterreplace ?? "",$newinput);
 
 	$replacecounter=1;
 	$aftersearch=array();
@@ -655,7 +655,7 @@ function firstthird($input){
 
 	$newinput=preg_replace($firstthirdsearch,$firstthirdreplace,$input);
 
-	$newinput=str_replace($aftersearch,$afterreplace,$newinput);
+	$newinput=str_replace($aftersearch ?? "",$afterreplace ?? "",$newinput);
 
 	$replacecounter=1;
 	$aftersearch=array();
@@ -687,7 +687,7 @@ function firstsecond($input){
 
 //	$newinput=preg_replace($firstsecondsearch,$firstsecondreplace,$input);
 $newinput=$input;
-	$newinput=str_replace($aftersearch,$afterreplace,$newinput);
+	$newinput=str_replace($aftersearch ?? "",$afterreplace ?? "",$newinput);
 
 	$replacecounter=1;
 	$aftersearch=array();
