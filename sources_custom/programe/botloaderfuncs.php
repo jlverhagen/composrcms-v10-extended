@@ -134,7 +134,7 @@ function flushcache()
 function upperkeysarray($testa)
 {
     $newtesta=array();
-    $newkeys=@array_keys($testa);
+    $newkeys=is_array($testa) ? array_keys($testa) : array();
     if (is_array($newkeys)) {
         for ($x=0;$x<count($newkeys);$x++){
             $newtesta[strtoupper($newkeys[$x])]=$testa[$newkeys[$x]];
@@ -634,7 +634,7 @@ function endS($parser,$name)
 function handlemeS($parser, $data)
 {
     global $whaton, $learnfiles, $selectbot;
-    if (strtoupper($whaton)=="LEARN"){
+    if (strtoupper((string) $whaton)=="LEARN"){
         if (trim($data)=="*"){
             learnallfiles($selectbot);
         }
@@ -761,14 +761,14 @@ function startElement($parser, $name, $attrs)
     elseif (strtoupper($name)=="PATTERN"){
         $whaton="PATTERN";
     }
-    elseif ((strtoupper($name)=="THAT")&&(strtoupper($whaton)!="TEMPLATE")){
+    elseif ((strtoupper($name)=="THAT")&&(strtoupper((string) $whaton)!="TEMPLATE")){
         $whaton="THAT";
     }
     elseif (strtoupper($name)=="TOPIC"){
         $whaton="TOPIC";
     }
 
-    if ((strtoupper($whaton)=="PATTERN")&&(strtoupper($name)!="PATTERN")){
+    if ((strtoupper((string) $whaton)=="PATTERN")&&(strtoupper($name)!="PATTERN")){
 
 
         if (strtoupper($name)=="BOT"){
@@ -780,7 +780,7 @@ function startElement($parser, $name, $attrs)
         else{
             $pattern .= "<$name";
 
-            while (list ($key, $val) = each ($attrs)) {
+            foreach ($attrs as $key => $val) {
                 $pattern .= " $key=\"$val\" ";
             }
 
@@ -788,17 +788,17 @@ function startElement($parser, $name, $attrs)
         }
 
     }
-    elseif ((strtoupper($whaton)=="TEMPLATE")&&(strtoupper($name)!="TEMPLATE")){
+    elseif ((strtoupper((string) $whaton)=="TEMPLATE")&&(strtoupper($name)!="TEMPLATE")){
 
         $template .="<$name";
 
-        while (list ($key, $val) = each ($attrs)) {
+        foreach ($attrs as $key => $val) {
             $template .= " $key=\"$val\" ";
         }
 
         $template .=">";
     }
-    elseif (strtoupper($whaton)=="TOPIC"){
+    elseif (strtoupper((string) $whaton)=="TOPIC"){
 
         $attrs = upperkeysarray($attrs);
         $topic=$attrs["NAME"];
@@ -870,12 +870,12 @@ function endElement($parser, $name)
 
     }
     else {
-        if ((strtoupper($whaton)=="PATTERN")&&(strtoupper($name)!="PATTERN")){
+        if ((strtoupper((string) $whaton)=="PATTERN")&&(strtoupper($name)!="PATTERN")){
             if (strtoupper($name)!="BOT"){
                 $pattern .="</$name>";
             }
         }
-        elseif ((strtoupper($whaton)=="TEMPLATE")&&(strtoupper($name)!="TEMPLATE")){
+        elseif ((strtoupper((string) $whaton)=="TEMPLATE")&&(strtoupper($name)!="TEMPLATE")){
             $template .="</$name>";
         }
     }
@@ -903,16 +903,16 @@ function handleme($parser, $data)
 {
     global $whaton,$pattern,$template,$topic,$that;
 
-    if (strtoupper($whaton)=="PATTERN"){
+    if (strtoupper((string) $whaton)=="PATTERN"){
         $pattern .= $data;
     }
-    elseif (strtoupper($whaton)=="TOPIC"){
+    elseif (strtoupper((string) $whaton)=="TOPIC"){
         $topic .= $data;
     }
-    elseif (strtoupper($whaton)=="THAT"){
+    elseif (strtoupper((string) $whaton)=="THAT"){
         $that .= $data;
     }
-    elseif (strtoupper($whaton)=="TEMPLATE"){
+    elseif (strtoupper((string) $whaton)=="TEMPLATE"){
         $template .= $data;
     }
 }
