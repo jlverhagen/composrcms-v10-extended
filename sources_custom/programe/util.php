@@ -87,7 +87,7 @@ function cleanup(){
 			$clean_thatstack="delete from thatstack where enteredtime < date_add(now(), interval - " . MINUTESTOKEEPDATA . " minute)";
 			$clean_thatindex="delete from thatindex where enteredtime < date_add(now(), interval - " . MINUTESTOKEEPDATA . " minute)";
 
-			$selectcode = mysqli_query($GLOBALS['SITE_DB']->connection_write[0], $GLOBALS['SITE_DB']->connection_write[0], $clean_dstore);
+			$selectcode = mysqli_query($GLOBALS['SITE_DB']->connection_write[0], $clean_dstore);
 			if ($selectcode){
 			}
 			$selectcode = mysqli_query($GLOBALS['SITE_DB']->connection_write[0], $clean_thatstack);
